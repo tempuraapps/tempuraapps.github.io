@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>リード日記 — 本番の成功は、リード管理から。 | TempuraApps</title>
+<meta name="description" content="オーボエ・ファゴットなどダブルリード管楽器のための専用日記。リード1本ずつの調子と使用時間を記録し、本番前にいちばん吹けるリードを見極める、iPhone向けアプリです。">
+<meta name="theme-color" content="#F4EFE4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15110D" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://tempuraapps.github.io/reeddiary/">
+<link rel="icon" type="image/png" sizes="64x64" href="./icon-64.png">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TempuraApps">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="リード日記 — 本番の成功は、リード管理から。">
+<meta property="og:description" content="リード1本ずつの調子と使用時間を記録し、本番前にいちばん吹けるリードを見極める、ダブルリード奏者のための日記アプリ。">
+<meta property="og:url" content="https://tempuraapps.github.io/reeddiary/">
+<meta property="og:image" content="https://tempuraapps.github.io/reeddiary/icon-512.png">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    color-scheme: light dark;
+    /* ===== THEME TOKENS（アプリ別に差し替え）===== */
+    --bg:#F4EFE4; --surface:#FCF9F2; --ink:#241E18; --ink-2:#6A6055;
+    --accent:#2A3D5C; --border:#E7DDCC; --grad-a:#2A3D5C; --grad-b:#B8893C;
+    --icon-shadow:0 16px 40px rgba(0,0,0,.14); --card-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#15110D; --surface:#201A14; --ink:#EEE5D6; --ink-2:#B3A994;
+      --accent:#9CB6DA; --border:#2C251C; --grad-a:#9CB6DA; --grad-b:#DFB85F;
+      --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
+    }
+  }
+  /* ===== 構造CSS（4LP共通。トークンのみ参照）===== */
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Helvetica Neue",Arial,sans-serif;
+    line-height:1.85; font-size:16px; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:960px; margin-inline:auto; padding-inline:20px; }
+
+  /* header */
+  .site-head .head-inner{
+    display:flex; align-items:center; justify-content:space-between; min-height:56px; gap:12px;
+  }
+  .wordmark{ font-size:13px; letter-spacing:.06em; color:var(--ink-2); font-weight:600; }
+  .head-link{ font-size:14px; color:var(--ink-2); padding:8px 0; }
+  .head-link:hover{ color:var(--accent); }
+
+  /* hero */
+  .hero{
+    text-align:center;
+    padding-block:clamp(40px,10vw,96px) clamp(48px,9vw,88px);
+    background:var(--bg);
+    background-image:
+      radial-gradient(120% 70% at 50% -20%, color-mix(in srgb, var(--grad-a) 15%, transparent), transparent 70%),
+      radial-gradient(60% 42% at 82% 0%, color-mix(in srgb, var(--grad-b) 12%, transparent), transparent 70%);
+  }
+  .hero-inner{ max-width:640px; margin-inline:auto; padding-inline:20px; }
+  .app-icon{
+    width:128px; height:128px; border-radius:22.37%;
+    margin:0 auto 24px; box-shadow:var(--icon-shadow);
+  }
+  .eyebrow{ font-size:13px; letter-spacing:.08em; color:var(--accent); font-weight:600; margin:0 0 10px; }
+  h1{
+    font-size:clamp(30px,7.5vw,46px); line-height:1.3; letter-spacing:-0.02em;
+    font-weight:700; margin:0 0 16px;
+  }
+  .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
+  .badge-soon{
+    display:inline-block; margin:0 0 14px; padding:10px 22px;
+    background:var(--ink); color:var(--bg); border-radius:999px;
+    font-size:15px; font-weight:600; cursor:default; -webkit-user-select:none; user-select:none;
+  }
+  .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+
+  /* features */
+  .features{ padding-block:clamp(56px,11vw,104px); }
+  h2{
+    font-size:clamp(24px,5vw,32px); line-height:1.3; letter-spacing:-0.02em;
+    font-weight:700; text-align:center; margin:0 0 36px;
+  }
+  .cards{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+  @media (min-width:640px){ .cards{ grid-template-columns:1fr 1fr; gap:20px; } }
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:24px; box-shadow:var(--card-shadow); }
+  .chip{
+    width:44px; height:44px; border-radius:12px; margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent);
+    background:var(--surface);
+    background:color-mix(in srgb, var(--accent) 13%, var(--surface));
+  }
+  .chip svg{ width:24px; height:24px; }
+  .card h3{ font-size:17px; font-weight:600; margin:0 0 6px; }
+  .card p{ font-size:15px; color:var(--ink-2); margin:0; }
+  .instruments{ text-align:center; font-size:14px; color:var(--ink-2); margin:24px 0 0; }
+
+  /* privacy */
+  .privacy{ padding-block:0 clamp(56px,11vw,104px); }
+  .privacy-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:24px;
+    padding:clamp(28px,5vw,40px); text-align:center; max-width:720px; margin-inline:auto; box-shadow:var(--card-shadow);
+  }
+  .privacy-box h2{ margin:0 0 14px; }
+  .privacy-box p{ font-size:16px; color:var(--ink-2); max-width:34em; margin:0 auto; }
+
+  /* cta */
+  .cta{
+    text-align:center; padding-block:clamp(56px,11vw,104px);
+    background-image:radial-gradient(80% 70% at 50% 130%, color-mix(in srgb, var(--grad-a) 12%, transparent), transparent 72%);
+  }
+  .cta-head{ font-size:clamp(24px,5vw,34px); line-height:1.35; font-weight:700; letter-spacing:-0.02em; margin:0 0 12px; }
+  .cta p{ font-size:15px; color:var(--ink-2); margin:0; }
+
+  /* footer */
+  .site-foot{ border-top:1px solid var(--border); }
+  .site-foot .foot-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding-block:22px; font-size:13px; color:var(--ink-2);
+  }
+  .site-foot a{ color:var(--ink-2); }
+  .site-foot a:hover{ color:var(--accent); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-inner">
+    <span class="wordmark">TempuraApps</span>
+    <a class="head-link" href="./privacy.html">プライバシーポリシー</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <img class="app-icon" src="./icon-512.png" width="128" height="128" fetchpriority="high" alt="リード日記（アプリアイコン）">
+      <p class="eyebrow">ダブルリード奏者のための記録アプリ</p>
+      <h1>本番の成功は、<br>リード管理から。</h1>
+      <p class="subcopy">オーボエ・ファゴットなどダブルリード管楽器のための専用日記。リード1本ずつの調子と使用時間を日々記録し、本番前に&#8220;いちばん吹けるリード&#8221;を見極めます。</p>
+      <p class="badge-soon">App Store にて近日公開</p>
+      <p class="platform">iOS 18.0 以降 / iPhone 向け</p>
+    </div>
+  </section>
+
+  <section class="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <h2 id="features-h">毎日の記録が、本番の武器になる</h2>
+      <ul class="cards" role="list">
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 7a2 2 0 0 1 2-2h3.5l2 2H19a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>
+          </div>
+          <h3>リード管理</h3>
+          <p>楽器フォルダ別に、調子・評価・写真・使用時間を1本ずつ記録できます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="17" height="15.5" rx="2.2"/><path d="M3.5 9.5h17M8.5 3v4M15.5 3v4"/></svg>
+          </div>
+          <h3>カレンダー記録</h3>
+          <p>日々の調子や練習をカレンダーで振り返り、本番までのコンディションを把握できます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M9.5 2.5h5M12 2.5V6M18.5 6.5l1.5-1.5"/></svg>
+          </div>
+          <h3>使用時間の打刻</h3>
+          <p>吹いた時間をその場で打刻。練習の記録も一緒に残せます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 3v16a2 2 0 0 0 2 2h15"/><path d="M7.5 15l3.5-3.5 3 3 5.5-6"/></svg>
+          </div>
+          <h3>分析・比較</h3>
+          <p>調子の推移グラフ、リード比較レーダーチャート、種類別レポートで傾向をつかめます。</p>
+        </li>
+      </ul>
+      <p class="instruments">対応楽器: オーボエ / イングリッシュホルン / オーボエ・ダモーレ / ファゴット</p>
+    </div>
+  </section>
+
+  <section class="privacy" aria-labelledby="privacy-h">
+    <div class="wrap">
+      <div class="privacy-box">
+        <h2 id="privacy-h">リードの記録は、端末の中に</h2>
+        <p>リードや練習の記録・写真は端末内に保存されます。アカウント登録は不要で、広告表示や広告目的のトラッキングもありません。取り扱いの詳細は<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <p class="cta-head">App Store にて近日公開予定。</p>
+      <p>リリース情報・お問い合わせ: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <span>© 2026 TempuraApps</span>
+    <a href="./privacy.html">プライバシーポリシー</a>
+  </div>
+</footer>
+</body>
+</html>

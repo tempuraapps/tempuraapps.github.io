@@ -154,6 +154,12 @@
   a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
   /* ワードマークは今はリンクではないので、押せそうに見せない */
   span.wordmark:hover{ color:var(--ink-2); }
+  /* アプリ画面。実機の画面をそのまま1枚 */
+  .shot{ margin:0; display:flex; justify-content:center; }
+  .shot-img{
+    width:min(72vw,296px); height:auto; border-radius:34px;
+    border:1px solid var(--border); box-shadow:0 14px 36px rgba(0,0,0,.12);
+  }
 </style>
 </head>
 <body>
@@ -179,6 +185,15 @@
       <!-- リリース時に差し替える箇所: <title> / og:title / 下の .badge-soon / CTAの見出し -->
       <p class="badge-soon">Coming soon to the App Store</p>
       <p class="platform">iOS 18.0 or later / iPhone</p>
+    </div>
+  </section>
+
+  <section class="shots" aria-labelledby="shots-h">
+    <div class="wrap">
+      <h2 id="shots-h">Everything you saved, in one place.</h2>
+      <figure class="shot">
+        <img class="shot-img" src="../shot-list-en.jpg" width="640" height="1391" loading="lazy" decoding="async" alt="The context list screen. Notes are grouped into Favorites and Other, each row showing its title, last updated date, tags, and the AI it came from. A search field sits at the top.">
+      </figure>
     </div>
   </section>
 

@@ -154,6 +154,22 @@
   a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
   /* ワードマークは今はリンクではないので、押せそうに見せない */
   span.wordmark:hover{ color:var(--ink-2); }
+  /* アプリ画面のギャラリー。狭い画面は横スクロール、広い画面は3枚並び */
+  .shot-list{
+    list-style:none; margin:0; padding:0 0 4px; display:flex; gap:16px;
+    overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none;
+  }
+  .shot-list::-webkit-scrollbar{ display:none; }
+  .shot-list > li{ flex:0 0 auto; width:min(62vw,268px); scroll-snap-align:center; }
+  @media (min-width:660px){
+    .shot-list{ overflow-x:visible; justify-content:center; gap:28px; }
+    .shot-list > li{ width:268px; }
+  }
+  .shot-img{
+    width:100%; height:auto; border-radius:30px;
+    border:1px solid var(--border); box-shadow:0 12px 32px rgba(0,0,0,.10);
+  }
+  .shot-cap{ font-size:14px; color:var(--ink-2); text-align:center; margin:12px 0 0; }
 </style>
 </head>
 <body>
@@ -179,6 +195,22 @@
       <!-- リリース時に差し替える箇所: <title> / og:title / 下の .badge-soon / CTAの見出し -->
       <p class="badge-soon">App Store にて近日公開</p>
       <p class="platform">iOS 18.0 以降 / iPhone 向け</p>
+    </div>
+  </section>
+
+  <section class="shots" aria-labelledby="shots-h">
+    <div class="wrap">
+      <h2 id="shots-h">文脈を、貯めて、渡す。</h2>
+      <ul class="shot-list" role="list">
+        <li>
+          <img class="shot-img" src="./shot-list.jpg" width="640" height="1391" loading="lazy" decoding="async" alt="コンテキストの一覧画面。お気に入りとその他に分かれ、各行にタイトル・更新日・タグ・作成元のAIが並んでいる。">
+          <p class="shot-cap">お気に入りとタグで、一覧に。</p>
+        </li>
+        <li>
+          <img class="shot-img" src="./shot-detail.jpg" width="640" height="1391" loading="lazy" decoding="async" alt="コンテキストの詳細画面。本文の全文が表示され、下部に「AIに渡す」ボタンがある。">
+          <p class="shot-cap">開いて、そのまま次のAIへ。</p>
+        </li>
+      </ul>
     </div>
   </section>
 

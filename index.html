@@ -71,6 +71,10 @@
     object-fit:cover; border-radius:clamp(12px,2.5vw,20px);
     border:1px solid var(--border);
   }
+  /* バナーは全体が生成りの明色。暗い背景の上だと発光したように浮くので少し落とす */
+  @media (prefers-color-scheme: dark){
+    .cover{ filter:brightness(.88); }
+  }
 
   /* hero */
   .hero{

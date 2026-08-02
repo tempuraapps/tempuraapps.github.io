@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TempuraApps — 日常が少し便利で楽しくなる iPhone アプリ</title>
-<meta name="description" content="日常が少し便利で楽しくなる iPhone アプリをつくっています。AIノリツギ・未知あるきを公開中。">
+<title>TempuraApps — iPhone apps that make everyday life a little easier and more fun</title>
+<meta name="description" content="We make iPhone apps that make everyday life a little easier and more fun. AI Noritsugi and MichiAruki are out now.">
 <meta name="theme-color" content="#F7F3EC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1B1712" media="(prefers-color-scheme: dark)">
-<link rel="canonical" href="https://tempuraapps.github.io/">
+<link rel="canonical" href="https://tempuraapps.github.io/en/">
 <link rel="alternate" hreflang="ja" href="https://tempuraapps.github.io/">
 <link rel="alternate" hreflang="en" href="https://tempuraapps.github.io/en/">
 <link rel="alternate" hreflang="x-default" href="https://tempuraapps.github.io/">
-<link rel="icon" type="image/png" sizes="64x64" href="./icon-64.png">
-<link rel="apple-touch-icon" href="./icon-180.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../icon-64.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TempuraApps">
-<meta property="og:locale" content="ja_JP">
-<meta property="og:locale:alternate" content="en_US">
-<meta property="og:title" content="TempuraApps — 日常が少し便利で楽しくなる iPhone アプリ">
-<meta property="og:description" content="日常が少し便利で楽しくなる iPhone アプリをつくっています。">
-<meta property="og:url" content="https://tempuraapps.github.io/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:title" content="TempuraApps — iPhone apps that make everyday life a little easier and more fun">
+<meta property="og:description" content="We make iPhone apps that make everyday life a little easier and more fun.">
+<meta property="og:url" content="https://tempuraapps.github.io/en/">
 <meta property="og:image" content="https://tempuraapps.github.io/ogp.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="480">
-<meta property="og:image:alt" content="TempuraApps のブランドバナー">
+<meta property="og:image:alt" content="TempuraApps brand banner">
 <meta name="twitter:card" content="summary_large_image">
 <style>
   :root{
@@ -49,13 +49,13 @@
     .is-michiaruki{ --app-accent:#5CC6B2; }
   }
 
-  /* ===== 構造CSS（既存4LPと同系）===== */
+  /* ===== 構造CSS ===== */
   *{ box-sizing:border-box; }
   html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
   body{
     margin:0; background:var(--bg); color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Helvetica Neue",Arial,sans-serif;
-    line-height:1.85; font-size:16px; -webkit-font-smoothing:antialiased;
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.75; font-size:16px; -webkit-font-smoothing:antialiased;
   }
   a{ color:var(--accent); text-decoration:none; }
   a:hover{ text-decoration:underline; }
@@ -92,15 +92,15 @@
       radial-gradient(60% 42% at 82% 0%, color-mix(in srgb, var(--grad-b) 12%, transparent), transparent 70%);
   }
   .hero-inner{ max-width:640px; margin-inline:auto; padding-inline:20px; }
-  /* バナーが大きな主張を担うので、見出しは以前より控えめにしている */
-  h1{ font-size:clamp(28px,6vw,40px); line-height:1.25; letter-spacing:-0.02em; font-weight:700; margin:0 0 6px; }
+  /* バナーが大きな主張を担うので、見出しは控えめにしている */
+  h1{ font-size:clamp(28px,6vw,40px); line-height:1.2; letter-spacing:-0.02em; font-weight:700; margin:0 0 6px; }
   .handle{ font-size:14px; color:var(--ink-2); margin:0 0 18px; }
   .handle a{ color:var(--ink-2); }
   .handle a:hover{ color:var(--accent); }
   .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto; }
 
   /* sections */
-  h2{ font-size:clamp(24px,5vw,32px); line-height:1.3; letter-spacing:-0.02em; font-weight:700; text-align:center; margin:0 0 32px; }
+  h2{ font-size:clamp(24px,5vw,32px); line-height:1.25; letter-spacing:-0.02em; font-weight:700; text-align:center; margin:0 0 32px; }
 
   /* apps grid */
   .apps{ padding-block:clamp(52px,11vw,104px); }
@@ -126,7 +126,7 @@
   .app-body{ min-width:0; }
   .app-eyebrow{ font-size:12px; letter-spacing:.05em; color:var(--ink-2); margin:0 0 2px; }
   .app-card h3{ font-size:17px; font-weight:600; margin:0 0 4px; color:var(--ink); }
-  .app-tagline{ font-size:14px; line-height:1.6; color:var(--ink-2); margin:0 0 12px; }
+  .app-tagline{ font-size:14px; line-height:1.5; color:var(--ink-2); margin:0 0 12px; }
   .app-meta{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:0; }
   .more{ font-size:14px; font-weight:600; color:var(--app-accent); }
   .app-card > a:hover .more{ text-decoration:underline; }
@@ -155,9 +155,9 @@
 <header class="site-head">
   <div class="wrap head-inner">
     <span class="wordmark">TempuraApps</span>
-    <nav class="head-links" aria-label="サイト内リンク">
-      <a class="head-link" href="#links">お問い合わせ</a>
-      <a class="head-link" href="./en/" lang="en" hreflang="en">English</a>
+    <nav class="head-links" aria-label="Site links">
+      <a class="head-link" href="#links">Contact</a>
+      <a class="head-link" href="../" lang="ja" hreflang="ja">日本語</a>
     </nav>
   </div>
 </header>
@@ -166,7 +166,7 @@
   <div class="wrap cover-wrap">
     <!-- X / Instagram / Facebook と同じブランドバナー。装飾なので alt は空。
          ページ本体の見出しと連絡先がテキストとして別にあるため、情報は欠けない。 -->
-    <img class="cover" src="./cover.jpg" width="1600" height="640" alt="" fetchpriority="high">
+    <img class="cover" src="../cover.jpg" width="1600" height="640" alt="" fetchpriority="high">
   </div>
 
   <section class="hero">
@@ -174,36 +174,37 @@
       <h1>TempuraApps</h1>
       <p class="handle"><a href="https://x.com/TempuraApps" rel="me noopener" target="_blank">@TempuraApps</a></p>
       <!-- ⚠️ ここは開発者としての約束になる。全アプリを縛る書き方（記録は端末内・アカウント不要 等）は
-           入れないこと。設計に関する約束はアプリごとの LP とプライバシーポリシーに書く。 -->
-      <p class="subcopy">日常が少し便利で楽しくなる iPhone アプリをつくっています。</p>
+           入れないこと。設計に関する約束はアプリごとの LP とプライバシーポリシーに書く。
+           開発体制（ひとりで作っている 等）も書かない。 -->
+      <p class="subcopy">We make iPhone apps that make everyday life a little easier and more fun.</p>
     </div>
   </section>
 
   <section class="apps" id="apps" aria-labelledby="apps-h">
     <div class="wrap">
-      <h2 id="apps-h">つくっているアプリ</h2>
+      <h2 id="apps-h">Our apps</h2>
       <!-- 並び順はこの <li> の入れ替えのみで変更可（CSS order は使わない）。
            LP のあるアプリだけを載せる。行き先の無いカードは置かない。 -->
       <ul class="cards" role="list">
         <li class="app-card is-ai-noritsugi">
-          <a href="./ai-noritsugi/">
-            <img class="app-icon" src="./ai-noritsugi/icon-180.png" width="64" height="64" alt="">
+          <a href="../ai-noritsugi/en/">
+            <img class="app-icon" src="../ai-noritsugi/icon-180.png" width="64" height="64" alt="">
             <div class="app-body">
-              <p class="app-eyebrow">AI間のコンテキスト引き継ぎ</p>
-              <h3>AIノリツギ</h3>
-              <p class="app-tagline">AIを変えても、思考は止めない。</p>
-              <p class="app-meta"><span class="more">詳しく見る <span aria-hidden="true">→</span></span></p>
+              <p class="app-eyebrow">Carry context between AIs</p>
+              <h3>AI Noritsugi</h3>
+              <p class="app-tagline">Switch AI. Keep your thread.</p>
+              <p class="app-meta"><span class="more">Learn more <span aria-hidden="true">→</span></span></p>
             </div>
           </a>
         </li>
         <li class="app-card is-michiaruki">
-          <a href="./michiaruki/">
-            <img class="app-icon" src="./michiaruki/icon-180.png" width="64" height="64" alt="">
+          <a href="../michiaruki/en/">
+            <img class="app-icon" src="../michiaruki/icon-180.png" width="64" height="64" alt="">
             <div class="app-body">
-              <p class="app-eyebrow">散歩の記録アプリ</p>
-              <h3>未知あるき</h3>
-              <p class="app-tagline">まだ歩いていない道が、地図に残っている。</p>
-              <p class="app-meta"><span class="more">詳しく見る <span aria-hidden="true">→</span></span></p>
+              <p class="app-eyebrow">Walk tracking</p>
+              <h3>MichiAruki</h3>
+              <p class="app-tagline">The streets you haven't walked, still on the map.</p>
+              <p class="app-meta"><span class="more">Learn more <span aria-hidden="true">→</span></span></p>
             </div>
           </a>
         </li>
@@ -213,13 +214,13 @@
 
   <section class="links" id="links" aria-labelledby="links-h">
     <div class="wrap">
-      <h2 id="links-h">お問い合わせ</h2>
-      <!-- 項目を増やすときは <li> を1行足す。例: <li><a href="URL">note</a></li> -->
+      <h2 id="links-h">Contact</h2>
+      <!-- 項目を増やすときは <li> を1行足す -->
       <ul class="links-list" role="list">
         <li><a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></li>
-        <li><a href="https://x.com/TempuraApps" rel="me noopener" target="_blank">X（@TempuraApps）</a></li>
-        <li><a href="https://www.instagram.com/tempuraapps/" rel="me noopener" target="_blank">Instagram（@tempuraapps）</a></li>
-        <li><a href="https://www.facebook.com/profile.php?id=61592551509905" rel="me noopener" target="_blank">Facebook ページ</a></li>
+        <li><a href="https://x.com/TempuraApps" rel="me noopener" target="_blank">X (@TempuraApps)</a></li>
+        <li><a href="https://www.instagram.com/tempuraapps/" rel="me noopener" target="_blank">Instagram (@tempuraapps)</a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=61592551509905" rel="me noopener" target="_blank">Facebook</a></li>
       </ul>
     </div>
   </section>
@@ -227,7 +228,7 @@
 
 <footer class="site-foot">
   <div class="wrap foot-inner">
-    <p class="foot-policies">プライバシーポリシー：<a href="./ai-noritsugi/privacy.html">AIノリツギ</a> / <a href="./michiaruki/privacy.html">未知あるき</a></p>
+    <p class="foot-policies">Privacy Policy: <a href="../ai-noritsugi/en/privacy.html">AI Noritsugi</a> / <a href="../michiaruki/en/privacy.html">MichiAruki</a></p>
     <p>© 2026 TempuraApps</p>
   </div>
 </footer>

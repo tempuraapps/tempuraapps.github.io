@@ -149,11 +149,15 @@
   .privacy-box p a, .cta p a{ text-decoration:underline; text-underline-offset:2px; }
   /* キーボード操作中の現在位置を明示する */
   a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
-  /* アプリ画面。ライト/ダークで撮り分けた実機の画面を1枚 */
+  /* アプリ画面。4画面を1枚にまとめた横長の紹介画像（ライト/ダーク共通） */
   .shots{ padding-block:0 clamp(8px,2vw,16px); }
   .shot{ margin:0; display:flex; flex-direction:column; align-items:center; gap:14px; }
+  /* 狭い画面では縮めずに横スクロールさせる。4枚並びのため幅なりに縮めると
+     画像に焼き込んだ見出しが読めなくなる（360px 幅だと1枚あたり約85px）。
+     min-width が max-width より優先されるので、640px を下限に溢れてスクロールする。 */
+  .shot-scroll{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .shot-img{
-    width:min(80vw,320px); height:auto; border-radius:40px;
+    width:100%; min-width:640px; max-width:920px; height:auto; border-radius:12px;
     border:1px solid var(--border); box-shadow:var(--shot-shadow);
   }
   .shot figcaption{ font-size:14px; color:var(--ink-2); text-align:center; }
@@ -189,11 +193,10 @@
     <div class="wrap">
       <h2 id="shots-h">Everything you've saved, <span class="nowrap">in one place.</span></h2>
       <figure class="shot">
-        <picture>
-          <source srcset="../shot-list-en-dark.jpg" media="(prefers-color-scheme: dark)">
-          <img class="shot-img" src="../shot-list-en.jpg" width="960" height="2087" decoding="async" alt="The context list screen, grouped into Favorites and Other. Each row shows a title, date, tags, and the AI it came from.">
-        </picture>
-        <figcaption>Favorites sit at the top; everything else is newest first.</figcaption>
+        <div class="shot-scroll">
+          <img class="shot-img" src="../app-image-en.jpg" width="1536" height="1024" decoding="async" alt="Four app screens. 1. The context list — “AI Noritsugi, Your Knowledge, Always Connected. Multiple AIs, one seamless hub.” 2. A single context — “One Tap to AI. Tap any context, instantly continue with AI.” 3. The tag list — “Find Instantly with Tags. Search or browse tags to find what you need, fast.” 4. The keyboard open inside another app — “Type, Tap, AI Gets It. No need to open the app. Connect with AI, anywhere. Anytime.”">
+        </div>
+        <figcaption>The list, a single context, tags, and the keyboard.</figcaption>
       </figure>
     </div>
   </section>

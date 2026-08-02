@@ -10,15 +10,17 @@
 <link rel="canonical" href="https://tempuraapps.github.io/">
 <link rel="icon" type="image/png" sizes="64x64" href="./icon-64.png">
 <link rel="apple-touch-icon" href="./icon-180.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%23E0A546'/%3E%3Ctext%20x='32'%20y='45'%20font-family='-apple-system,sans-serif'%20font-size='38'%20font-weight='700'%20text-anchor='middle'%20fill='%23FFFFFF'%3ET%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TempuraApps">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="TempuraApps — 記録は、あなたの端末の中に。">
 <meta property="og:description" content="個人開発のiPhoneアプリブランド。記録は端末内・アカウント登録不要・広告なしのローカルファースト設計。">
 <meta property="og:url" content="https://tempuraapps.github.io/">
-<meta name="twitter:card" content="summary">
-<!-- TODO: 屋号ワードマーク画像を用意後、og:image（/ogp.png, 1200×630, 絶対URL）と apple-touch-icon / PNG favicon を追加する -->
+<meta property="og:image" content="https://tempuraapps.github.io/ogp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="480">
+<meta property="og:image:alt" content="TempuraApps のブランドバナー">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root{
     color-scheme: light dark;
@@ -62,10 +64,18 @@
   .head-link{ font-size:14px; color:var(--ink-2); padding:8px 0; }
   .head-link:hover{ color:var(--accent); }
 
+  /* cover（SNS と同じブランドバナー。装飾なので alt は空にしてある）*/
+  .cover-wrap{ padding-block:clamp(12px,3vw,24px) 0; }
+  .cover{
+    width:100%; height:auto; aspect-ratio:1983/793;
+    object-fit:cover; border-radius:clamp(12px,2.5vw,20px);
+    border:1px solid var(--border);
+  }
+
   /* hero */
   .hero{
     text-align:center;
-    padding-block:clamp(44px,10vw,96px) clamp(48px,9vw,88px);
+    padding-block:clamp(28px,6vw,52px) clamp(48px,9vw,88px);
     background:var(--bg);
     background-image:
       radial-gradient(120% 70% at 50% -20%, color-mix(in srgb, var(--grad-a) 15%, transparent), transparent 70%),
@@ -73,8 +83,11 @@
   }
   .hero-inner{ max-width:640px; margin-inline:auto; padding-inline:20px; }
   .eyebrow{ font-size:13px; letter-spacing:.08em; color:var(--accent); font-weight:600; margin:0 0 12px; }
-  h1{ font-size:clamp(34px,8vw,50px); line-height:1.25; letter-spacing:-0.02em; font-weight:700; margin:0 0 6px; }
+  /* バナーが大きな主張を担うので、見出しは以前より控えめにしている */
+  h1{ font-size:clamp(28px,6vw,40px); line-height:1.25; letter-spacing:-0.02em; font-weight:700; margin:0 0 6px; }
   .handle{ font-size:14px; color:var(--ink-2); margin:0 0 18px; }
+  .handle a{ color:var(--ink-2); }
+  .handle a:hover{ color:var(--accent); }
   .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
   .cta-button{
     display:inline-block; padding:12px 28px; background:var(--ink); color:var(--bg);
@@ -153,6 +166,12 @@
 </header>
 
 <main>
+  <div class="wrap cover-wrap">
+    <!-- X / Instagram / Facebook と同じブランドバナー。装飾なので alt は空。
+         ページ本体の見出しと連絡先がテキストとして別にあるため、情報は欠けない。 -->
+    <img class="cover" src="./cover.jpg" width="1600" height="640" alt="" fetchpriority="high">
+  </div>
+
   <section class="hero">
     <div class="hero-inner">
       <p class="eyebrow">個人開発の iPhone アプリ</p>

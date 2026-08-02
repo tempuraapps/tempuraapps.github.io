@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TempuraApps — 記録は、あなたの端末の中に。個人開発のiPhoneアプリ</title>
-<meta name="description" content="TempuraApps（@TempuraApps）は個人開発のiPhoneアプリブランドです。記録は端末内・アカウント登録不要・広告なしのローカルファースト設計。AIノリツギ・未知あるきを公開しています。">
+<title>TempuraApps — 日常が少し楽しくなる、個人開発のiPhoneアプリ</title>
+<meta name="description" content="TempuraApps（@TempuraApps）は個人開発のiPhoneアプリブランドです。日常が少し楽しくなる、手になじむ道具をつくっています。AIノリツギ・未知あるきを公開中。">
 <meta name="theme-color" content="#F7F3EC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1B1712" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://tempuraapps.github.io/">
@@ -13,8 +13,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TempuraApps">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:title" content="TempuraApps — 記録は、あなたの端末の中に。">
-<meta property="og:description" content="個人開発のiPhoneアプリブランド。記録は端末内・アカウント登録不要・広告なしのローカルファースト設計。">
+<meta property="og:title" content="TempuraApps — 日常が少し楽しくなる iPhone アプリ">
+<meta property="og:description" content="個人開発のiPhoneアプリブランド。日常が少し楽しくなる、手になじむ道具をつくっています。">
 <meta property="og:url" content="https://tempuraapps.github.io/">
 <meta property="og:image" content="https://tempuraapps.github.io/ogp.jpg">
 <meta property="og:image:width" content="1200">
@@ -132,15 +132,6 @@
   .more{ font-size:14px; font-weight:600; color:var(--app-accent); }
   .app-card > a:hover .more{ text-decoration:underline; }
 
-  /* about */
-  .about{ padding-block:0 clamp(52px,11vw,104px); }
-  .about-box{
-    background:var(--surface); border:1px solid var(--border); border-radius:24px;
-    padding:clamp(28px,5vw,40px); text-align:center; max-width:720px; margin-inline:auto; box-shadow:var(--card-shadow);
-  }
-  .about-box h2{ margin:0 0 14px; }
-  .about-box p{ font-size:16px; color:var(--ink-2); max-width:36em; margin:0 auto; }
-
   /* links */
   .links{ padding-block:0 clamp(52px,11vw,104px); }
   .links-list{ list-style:none; margin:0 auto; padding:0; max-width:520px; }
@@ -181,7 +172,9 @@
       <p class="eyebrow">個人開発の iPhone アプリ</p>
       <h1>TempuraApps</h1>
       <p class="handle"><a href="https://x.com/TempuraApps" rel="me noopener" target="_blank">@TempuraApps</a></p>
-      <p class="subcopy">暮らしの記録を、静かに残せる iPhone アプリをつくっています。アカウント登録は不要、広告もありません。記録は、あなたの端末の中に。</p>
+      <!-- ⚠️ ここは開発者としての約束になる。全アプリを縛る書き方（記録は端末内・アカウント不要 等）は
+           入れないこと。設計に関する約束はアプリごとの LP とプライバシーポリシーに書く。 -->
+      <p class="subcopy">日常が少し楽しくなる iPhone アプリを、ひとりでつくっています。使うときに迷わない、静かで手になじむ道具を目指しています。</p>
       <a class="cta-button" href="#apps">アプリを見る</a>
     </div>
   </section>
@@ -189,7 +182,7 @@
   <section class="apps" id="apps" aria-labelledby="apps-h">
     <div class="wrap">
       <h2 id="apps-h">つくっているアプリ</h2>
-      <p class="section-lead">どれも記録は端末の中だけ。アカウント登録は要りません。</p>
+      <p class="section-lead">いま公開しているアプリです。</p>
       <!-- 並び順はこの <li> の入れ替えのみで変更可（CSS order は使わない）。
            LP のあるアプリだけを載せる。行き先の無いカードは置かない。 -->
       <ul class="cards" role="list">
@@ -216,15 +209,6 @@
           </a>
         </li>
       </ul>
-    </div>
-  </section>
-
-  <section class="about" aria-labelledby="about-h">
-    <div class="wrap">
-      <div class="about-box">
-        <h2 id="about-h">大切にしていること</h2>
-        <p>TempuraApps のアプリは、すべて「ローカルファースト」でつくっています。記録した内容は端末内に保存され、アカウント登録は不要。広告表示や、広告目的のトラッキングもありません。道具は静かに、記録は手元に。これがどのアプリにも共通する設計です。データの取り扱いの詳細は、ページ下部の各アプリのプライバシーポリシーをご覧ください。</p>
-      </div>
     </div>
   </section>
 

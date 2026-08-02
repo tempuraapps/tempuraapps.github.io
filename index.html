@@ -86,22 +86,15 @@
       radial-gradient(60% 42% at 82% 0%, color-mix(in srgb, var(--grad-b) 12%, transparent), transparent 70%);
   }
   .hero-inner{ max-width:640px; margin-inline:auto; padding-inline:20px; }
-  .eyebrow{ font-size:13px; letter-spacing:.08em; color:var(--accent); font-weight:600; margin:0 0 12px; }
   /* バナーが大きな主張を担うので、見出しは以前より控えめにしている */
   h1{ font-size:clamp(28px,6vw,40px); line-height:1.25; letter-spacing:-0.02em; font-weight:700; margin:0 0 6px; }
   .handle{ font-size:14px; color:var(--ink-2); margin:0 0 18px; }
   .handle a{ color:var(--ink-2); }
   .handle a:hover{ color:var(--accent); }
-  .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
-  .cta-button{
-    display:inline-block; padding:12px 28px; background:var(--ink); color:var(--bg);
-    border-radius:999px; font-size:15px; font-weight:600;
-  }
-  .cta-button:hover{ text-decoration:none; opacity:.92; }
+  .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto; }
 
   /* sections */
-  h2{ font-size:clamp(24px,5vw,32px); line-height:1.3; letter-spacing:-0.02em; font-weight:700; text-align:center; margin:0 0 8px; }
-  .section-lead{ text-align:center; color:var(--ink-2); font-size:15px; margin:0 0 32px; }
+  h2{ font-size:clamp(24px,5vw,32px); line-height:1.3; letter-spacing:-0.02em; font-weight:700; text-align:center; margin:0 0 32px; }
 
   /* apps grid */
   .apps{ padding-block:clamp(52px,11vw,104px); }
@@ -169,20 +162,17 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <p class="eyebrow">個人開発の iPhone アプリ</p>
       <h1>TempuraApps</h1>
       <p class="handle"><a href="https://x.com/TempuraApps" rel="me noopener" target="_blank">@TempuraApps</a></p>
       <!-- ⚠️ ここは開発者としての約束になる。全アプリを縛る書き方（記録は端末内・アカウント不要 等）は
            入れないこと。設計に関する約束はアプリごとの LP とプライバシーポリシーに書く。 -->
-      <p class="subcopy">日常が少し楽しくなる iPhone アプリを、ひとりでつくっています。使うときに迷わない、静かで手になじむ道具を目指しています。</p>
-      <a class="cta-button" href="#apps">アプリを見る</a>
+      <p class="subcopy">日常が少し楽しくなる iPhone アプリを、ひとりでつくっています。</p>
     </div>
   </section>
 
   <section class="apps" id="apps" aria-labelledby="apps-h">
     <div class="wrap">
       <h2 id="apps-h">つくっているアプリ</h2>
-      <p class="section-lead">いま公開しているアプリです。</p>
       <!-- 並び順はこの <li> の入れ替えのみで変更可（CSS order は使わない）。
            LP のあるアプリだけを載せる。行き先の無いカードは置かない。 -->
       <ul class="cards" role="list">
@@ -214,12 +204,11 @@
 
   <section class="links" id="links" aria-labelledby="links-h">
     <div class="wrap">
-      <h2 id="links-h">リンク・お問い合わせ</h2>
-      <p class="section-lead">ご感想・不具合のご連絡はお気軽にどうぞ。</p>
-      <!-- 項目を増やすときは <li> を1行足す。例: <li><a href="URL">note で開発の記録を読む</a></li> -->
+      <h2 id="links-h">お問い合わせ</h2>
+      <!-- 項目を増やすときは <li> を1行足す。例: <li><a href="URL">note</a></li> -->
       <ul class="links-list" role="list">
-        <li><a href="mailto:tempuraapps.support@gmail.com">メールで問い合わせる — tempuraapps.support@gmail.com</a></li>
-        <li><a href="https://x.com/TempuraApps" rel="me noopener" target="_blank">X で最新情報を見る（@TempuraApps）</a></li>
+        <li><a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></li>
+        <li><a href="https://x.com/TempuraApps" rel="me noopener" target="_blank">X（@TempuraApps）</a></li>
         <li><a href="https://www.instagram.com/tempuraapps/" rel="me noopener" target="_blank">Instagram（@tempuraapps）</a></li>
         <li><a href="https://www.facebook.com/profile.php?id=61592551509905" rel="me noopener" target="_blank">Facebook ページ</a></li>
       </ul>

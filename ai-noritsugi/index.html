@@ -149,11 +149,15 @@
   .privacy-box p a, .cta p a{ text-decoration:underline; text-underline-offset:2px; }
   /* キーボード操作中の現在位置を明示する */
   a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
-  /* アプリ画面。ライト/ダークで撮り分けた実機の画面を1枚 */
+  /* アプリ画面。4画面を1枚にまとめた横長の紹介画像（ライト/ダーク共通） */
   .shots{ padding-block:0 clamp(8px,2vw,16px); }
   .shot{ margin:0; display:flex; flex-direction:column; align-items:center; gap:14px; }
+  /* 狭い画面では縮めずに横スクロールさせる。4枚並びのため幅なりに縮めると
+     画像に焼き込んだ見出しが読めなくなる（360px 幅だと1枚あたり約85px）。
+     min-width が max-width より優先されるので、640px を下限に溢れてスクロールする。 */
+  .shot-scroll{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .shot-img{
-    width:min(80vw,320px); height:auto; border-radius:40px;
+    width:100%; min-width:640px; max-width:920px; height:auto; border-radius:12px;
     border:1px solid var(--border); box-shadow:var(--shot-shadow);
   }
   .shot figcaption{ font-size:14px; color:var(--ink-2); text-align:center; }
@@ -188,11 +192,10 @@
     <div class="wrap">
       <h2 id="shots-h"><span class="nowrap">保存したコンテキストが</span>、<span class="nowrap">ここに並ぶ。</span></h2>
       <figure class="shot">
-        <picture>
-          <source srcset="./shot-list-dark.jpg" media="(prefers-color-scheme: dark)">
-          <img class="shot-img" src="./shot-list.jpg" width="960" height="2087" decoding="async" alt="コンテキストの一覧画面。お気に入りとその他に分かれ、各行にタイトル・更新日・タグ・作成元のAIが並んでいる。上部には検索欄がある。">
-        </picture>
-        <figcaption>お気に入りが上、その下は更新の新しい順に並びます。</figcaption>
+        <div class="shot-scroll">
+          <img class="shot-img" src="./app-image.jpg" width="1536" height="1024" decoding="async" alt="アプリの4画面。1. コンテキストの一覧「AIノリツギ、あなたのナレッジをつなぎ続ける — 複数のAIを、ひとつの文脈で。」2. コンテキストの詳細「ワンタップでAIに渡せる — 選んでタップするだけ。どのAIにもすぐ引き継げる。」3. タグの一覧「キーワードですぐに見つかる — タグや検索で、必要なコンテキストを瞬時に。」4. 他アプリで開いた専用キーボード「キーボードからAIに直接渡せる — アプリを開かなくても、その場で渡せる。思考を止めずに、AIとつながる。」">
+        </div>
+        <figcaption>一覧・詳細・タグ・キーボードの4画面。</figcaption>
       </figure>
     </div>
   </section>

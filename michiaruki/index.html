@@ -30,13 +30,13 @@
     color-scheme: light dark;
     /* ===== THEME TOKENS（アプリの Theme.swift のブランド色に合わせる）===== */
     --bg:#F6F9F8; --surface:#FFFFFF; --ink:#18212B; --ink-2:#566270;
-    --accent:#1B7A6C; --border:#E1E9E7; --grad-a:#1B7A6C; --grad-b:#5FA94E;
+    --accent:#4E6341; --border:#E1E9E7; --grad-a:#4E6341; --grad-b:#5FA94E;
     --icon-shadow:0 16px 40px rgba(0,0,0,.14), 0 0 0 1px rgba(24,33,43,.06); --card-shadow:0 1px 2px rgba(0,0,0,.04);
   }
   @media (prefers-color-scheme: dark){
     :root{
       --bg:#0F1216; --surface:#181E22; --ink:#F2F4F6; --ink-2:#A3AEBA;
-      --accent:#5CC6B2; --border:#26312F; --grad-a:#5CC6B2; --grad-b:#8FCB7E;
+      --accent:#9DB88C; --border:#26312F; --grad-a:#9DB88C; --grad-b:#8FCB7E;
       --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
     }
   }
@@ -201,7 +201,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
           </div>
           <h3>行き先をさがす</h3>
-          <p>公園やカフェなど、近くの行き先を地図から探せます。気に入った場所はスポットとして残しておけば、次の散歩の目印になります。</p>
+          <p>行き先も出発地も、検索や地図から自分で選べます。気に入った場所はスポットに残せば、次の散歩の目印になります。</p>
         </li>
       </ul>
       <p class="instruments">記録は JSON で書き出し・読み込みできます。</p>
@@ -212,7 +212,7 @@
     <div class="wrap">
       <div class="privacy-box">
         <h2 id="privacy-h"><span class="nowrap">歩いた場所は、</span><span class="nowrap">あなたの端末の中に</span></h2>
-        <p>散歩の記録・軌跡・あるいた地図・スポット・メモは、すべて端末内にのみ保存されます。他の端末と同期することはなく、当方のサーバーへ送ることもありません。例外は、近くの行き先をさがすときに周辺の座標と検索条件が Apple の地図サービスへ送られる場合だけです。詳細は<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+        <p>散歩の記録・軌跡・あるいた地図・スポット・メモは、すべて端末内にのみ保存されます。他の端末と同期することはなく、当方のサーバーへ送ることもありません。例外は、場所をさがすときに周辺の座標と検索条件が Apple の地図サービスへ送られる場合だけです。詳細は<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
       </div>
     </div>
   </section>

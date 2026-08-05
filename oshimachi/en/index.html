@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TempuraApps | OshiMachi — Find the town you'd want to live in.</title>
+<meta name="description" content="Rate the towns you visit by how much you'd want to live there. Map, wishlist, and commute times, in a private notebook for your towns. No account, no ads.">
+<meta name="theme-color" content="#F6EFE8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1613" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://tempuraapps.github.io/oshimachi/en/">
+<link rel="alternate" hreflang="ja" href="https://tempuraapps.github.io/oshimachi/">
+<link rel="alternate" hreflang="en" href="https://tempuraapps.github.io/oshimachi/en/">
+<link rel="alternate" hreflang="x-default" href="https://tempuraapps.github.io/oshimachi/">
+<link rel="icon" type="image/png" sizes="64x64" href="../icon-64.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TempuraApps">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:title" content="TempuraApps | OshiMachi — Find the town you'd want to live in.">
+<meta property="og:description" content="Keep what you liked — and what gave you pause — in your own words. A private notebook for the towns you visit.">
+<meta property="og:url" content="https://tempuraapps.github.io/oshimachi/en/">
+<meta property="og:image" content="https://tempuraapps.github.io/oshimachi/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="The OshiMachi app icon">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    color-scheme: light dark;
+    /* ===== THEME TOKENS（アプリ別に差し替え）===== */
+    --bg:#F6EFE8; --surface:#FFFDFA; --ink:#3A3A37; --ink-2:#6F6960;
+    --accent:#3E7C5D; --border:#EADFD5; --grad-a:#3E7C5D; --grad-b:#E0A546;
+    --icon-shadow:0 16px 40px rgba(0,0,0,.14), 0 0 0 1px rgba(24,33,43,.06); --card-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1A1613; --surface:#252019; --ink:#ECEFEA; --ink-2:#9C968E;
+      --accent:#69AC84; --border:#322B25; --grad-a:#69AC84; --grad-b:#EFC069;
+      --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
+    }
+  }
+  /* ===== 構造CSS（LP共通。トークンのみ参照）===== */
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Helvetica Neue",Arial,sans-serif;
+    line-height:1.85; font-size:16px; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:960px; margin-inline:auto; padding-inline:20px; }
+
+  /* header */
+  .site-head .head-inner{
+    display:flex; align-items:center; justify-content:space-between; min-height:56px; gap:12px; flex-wrap:wrap;
+  }
+  .wordmark{ font-size:13px; letter-spacing:.06em; color:var(--ink-2); font-weight:600; }
+  .wordmark:hover{ color:var(--accent); }
+  .head-links, .foot-links{ display:flex; align-items:center; flex-wrap:wrap; gap:18px; row-gap:2px; }
+  .head-links a, .foot-links a{ white-space:nowrap; }
+  .head-link{ font-size:14px; color:var(--ink-2); padding:8px 0; }
+  .head-link:hover{ color:var(--accent); }
+
+  /* hero */
+  .hero{
+    text-align:center;
+    padding-block:clamp(40px,10vw,96px) clamp(48px,9vw,88px);
+    background:var(--bg);
+    background-image:
+      radial-gradient(120% 70% at 50% -20%, color-mix(in srgb, var(--grad-a) 15%, transparent), transparent 70%),
+      radial-gradient(60% 42% at 82% 0%, color-mix(in srgb, var(--grad-b) 12%, transparent), transparent 70%);
+  }
+  .hero-inner{ max-width:640px; margin-inline:auto; padding-inline:20px; }
+  .app-icon{
+    width:128px; height:128px; border-radius:22.37%;
+    margin:0 auto 24px; box-shadow:var(--icon-shadow);
+  }
+  .eyebrow{ font-size:13px; letter-spacing:.08em; color:var(--accent); font-weight:600; margin:0 0 10px; }
+  h1{
+    font-size:clamp(30px,7.5vw,46px); line-height:1.3; letter-spacing:-0.02em;
+    font-weight:700; margin:0 0 16px;
+  }
+  .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
+  .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+
+  /* features */
+  .features{ padding-block:clamp(56px,11vw,104px); }
+  h2{
+    font-size:clamp(24px,5vw,32px); line-height:1.3; letter-spacing:-0.02em;
+    font-weight:700; text-align:center; margin:0 0 36px;
+  }
+  .cards{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+  @media (min-width:640px){ .cards{ grid-template-columns:1fr 1fr; gap:20px; } }
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:24px; box-shadow:var(--card-shadow); }
+  .chip{
+    width:44px; height:44px; border-radius:12px; margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent);
+    background:var(--surface);
+    background:color-mix(in srgb, var(--accent) 13%, var(--surface));
+  }
+  .chip svg{ width:24px; height:24px; }
+  .card h3{ font-size:17px; font-weight:600; margin:0 0 6px; }
+  .card p{ font-size:15px; color:var(--ink-2); margin:0; }
+  .instruments{ text-align:center; font-size:14px; color:var(--ink-2); margin:24px 0 0; }
+
+  /* privacy */
+  .privacy{ padding-block:0 clamp(56px,11vw,104px); }
+  .privacy-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:24px;
+    padding:clamp(28px,5vw,40px); text-align:center; max-width:720px; margin-inline:auto; box-shadow:var(--card-shadow);
+  }
+  .privacy-box h2{ margin:0 0 14px; }
+  .privacy-box p{ font-size:16px; color:var(--ink-2); max-width:34em; margin:0 auto; }
+
+  /* cta */
+  .cta{
+    text-align:center; padding-block:clamp(56px,11vw,104px);
+    background-image:radial-gradient(80% 70% at 50% 130%, color-mix(in srgb, var(--grad-a) 12%, transparent), transparent 72%);
+  }
+  .cta-head{ font-size:clamp(24px,5vw,34px); line-height:1.35; font-weight:700; letter-spacing:-0.02em; margin:0 0 12px; }
+  .cta p{ font-size:15px; color:var(--ink-2); margin:0; }
+
+  /* footer */
+  .site-foot{ border-top:1px solid var(--border); }
+  .site-foot .foot-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding-block:22px; font-size:13px; color:var(--ink-2);
+  }
+  .site-foot a{ color:var(--ink-2); }
+  .site-foot a:hover{ color:var(--accent); }
+  .foot-links a{ padding:6px 0; }
+
+  /* 地の文に混ざるリンクは、色だけでは本文と見分けられないので下線を戻す */
+  .privacy-box p a, .cta p a{ text-decoration:underline; text-underline-offset:2px; }
+  /* キーボード操作中の現在位置を明示する */
+  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+  /* 見出しを語中で割らせず、読点の位置でだけ折り返す */
+  .nowrap{ white-space:nowrap; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="wordmark" href="../../en/">TempuraApps</a>
+    <nav class="head-links" aria-label="Site links">
+      <a class="head-link" href="./support.html">Support</a>
+      <a class="head-link" href="./privacy.html">Privacy Policy</a>
+      <a class="head-link" href="../" lang="ja" hreflang="ja">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <img class="app-icon" src="../icon-384.jpg" width="128" height="128" fetchpriority="high" alt="The OshiMachi app icon">
+      <p class="eyebrow">OshiMachi</p>
+      <h1>Find the town you'd<br>want to live in.</h1>
+      <p class="subcopy">Rate each town you visit by how much you'd want to live there, and a picture of what you actually look for in a place starts to form. Map, calendar, a wishlist of towns to visit, commute times — a private notebook for your towns. No account, no ads.</p>
+      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
+           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p class="platform">iOS 18.0 or later / iPhone</p>
+    </div>
+  </section>
+
+  <section class="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <h2 id="features-h">Six tools for finding your town</h2>
+      <ul class="cards" role="list">
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3.2l2.6 5.3 5.8.85-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.85z"/></svg>
+          </div>
+          <h3>Ranked by how much you'd live there</h3>
+          <p>Give a town one to five stars for how much you'd want to live there, and your home screen becomes a ranking. First place gets a poster, and four stars or more earns an “Oshimachi certified” stamp.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 6h9"/><path d="M17 6h3"/><circle cx="15" cy="6" r="2"/><path d="M4 12h5"/><path d="M13 12h7"/><circle cx="11" cy="12" r="2"/><path d="M4 18h9"/><path d="M17 18h3"/><circle cx="15" cy="18" r="2"/></svg>
+          </div>
+          <h3>Rate on your own criteria</h3>
+          <p>Four criteria come set up: transit, safety, comfort, and food. Delete the ones you don't care about, or add your own — rent, quietness, whatever matters to you.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 21.2s7-5.4 7-11.1a7 7 0 1 0-14 0c0 5.7 7 11.1 7 11.1z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          </div>
+          <h3>See them on a map</h3>
+          <p>Towns you've visited appear as medal pins in ranking order; towns you want to visit appear as green hearts. Seeing them laid out geographically tells you something a list can't.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 20.4l-1.6-1.45C5.3 14.3 2.4 11.7 2.4 8.5 2.4 6 4.4 4 6.9 4c1.4 0 2.8.66 3.7 1.7L12 7.1l1.4-1.4C14.3 4.66 15.7 4 17.1 4c2.5 0 4.5 2 4.5 4.5 0 3.2-2.9 5.8-8 10.45z"/></svg>
+          </div>
+          <h3>Line up the ones you haven't visited</h3>
+          <p>Add towns you haven't been to yet, with a planned date. You get a countdown to the day, and after the visit it carries straight over into a town record.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.2V12l3.2 1.9"/></svg>
+          </div>
+          <h3>Filter by commute</h3>
+          <p>Set your workplace and each town shows a driving time. For trains, check Apple Maps and note the time yourself — either one can then be used as a filter.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3.5 20.5h17"/><path d="M7 20.5v-6"/><path d="M12 20.5V8"/><path d="M17 20.5v-9.5"/></svg>
+          </div>
+          <h3>Look back at the pattern</h3>
+          <p>Reports cover your rating tendencies, the areas you visit most, and a year in review. Town cards and the yearly summary can be shared as images — sharing is free.</p>
+        </li>
+      </ul>
+      <p class="instruments">Free covers 5 towns and 5 places on your wishlist. Pro removes the limits and adds full reports, dark mode, and JSON export.</p>
+    </div>
+  </section>
+
+  <section class="privacy" aria-labelledby="privacy-h">
+    <div class="wrap">
+      <div class="privacy-box">
+        <h2 id="privacy-h">Your towns stay on <span class="nowrap">your iPhone</span></h2>
+        <p>Town records, ratings, notes, and photos are stored only on your device. No account is required, and the app never asks for location (GPS) permission. We measure anonymous usage to help improve the app, but never town names, notes, or the photos themselves. See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-h">
+    <div class="wrap">
+      <h2 class="cta-head" id="cta-h">Put into words why you <span class="nowrap">love that town.</span></h2>
+      <p>Common questions are answered on the <a href="./support.html">support page</a>. Contact: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <span>&copy; 2026 TempuraApps</span>
+    <nav class="foot-links" aria-label="Secondary">
+      <a href="./support.html">Support</a>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="../" lang="ja" hreflang="ja">日本語</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

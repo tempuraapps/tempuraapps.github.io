@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TempuraApps | リード日記 — 本番の成功は、リード管理から。</title>
+<meta name="description" content="オーボエ・イングリッシュホルン・オーボエダモーレ・ファゴットのダブルリード奏者へ。リード1本ずつの調子と使用時間を、その日の練習といっしょに記録する iPhone アプリ。">
+<meta name="theme-color" content="#F4EFE4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15110D" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://tempuraapps.github.io/reeddiary/">
+<link rel="alternate" hreflang="ja" href="https://tempuraapps.github.io/reeddiary/">
+<link rel="alternate" hreflang="en" href="https://tempuraapps.github.io/reeddiary/en/">
+<link rel="alternate" hreflang="x-default" href="https://tempuraapps.github.io/reeddiary/">
+<link rel="icon" type="image/png" sizes="64x64" href="./icon-64.png">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TempuraApps">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="TempuraApps | リード日記 — 本番の成功は、リード管理から。">
+<meta property="og:description" content="一本ずつ違うリードの調子を、その日の練習といっしょに書きとめる。ダブルリード奏者のための記録アプリ。">
+<meta property="og:url" content="https://tempuraapps.github.io/reeddiary/">
+<meta property="og:image" content="https://tempuraapps.github.io/reeddiary/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="リード日記（アプリアイコン）">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    color-scheme: light dark;
+    /* ===== THEME TOKENS（アプリ別に差し替え）===== */
+    --bg:#F4EFE4; --surface:#FCF9F2; --ink:#241E18; --ink-2:#6E6656;
+    --accent:#2A3D5C; --border:#E7DDCC; --grad-a:#2A3D5C; --grad-b:#B8893C;
+    --icon-shadow:0 16px 40px rgba(0,0,0,.14), 0 0 0 1px rgba(24,33,43,.06); --card-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#15110D; --surface:#201A14; --ink:#EEE5D6; --ink-2:#9E927E;
+      --accent:#9CB6DA; --border:#2C251C; --grad-a:#9CB6DA; --grad-b:#DFB85F;
+      --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
+    }
+  }
+  /* ===== 構造CSS（LP共通。トークンのみ参照）===== */
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Helvetica Neue",Arial,sans-serif;
+    line-height:1.85; font-size:16px; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:960px; margin-inline:auto; padding-inline:20px; }
+
+  /* header */
+  .site-head .head-inner{
+    display:flex; align-items:center; justify-content:space-between; min-height:56px; gap:12px; flex-wrap:wrap;
+  }
+  .wordmark{ font-size:13px; letter-spacing:.06em; color:var(--ink-2); font-weight:600; }
+  .wordmark:hover{ color:var(--accent); }
+  .head-links, .foot-links{ display:flex; align-items:center; flex-wrap:wrap; gap:18px; row-gap:2px; }
+  .head-links a, .foot-links a{ white-space:nowrap; }
+  .head-link{ font-size:14px; color:var(--ink-2); padding:8px 0; }
+  .head-link:hover{ color:var(--accent); }
+
+  /* hero */
+  .hero{
+    text-align:center;
+    padding-block:clamp(40px,10vw,96px) clamp(48px,9vw,88px);
+    background:var(--bg);
+    background-image:
+      radial-gradient(120% 70% at 50% -20%, color-mix(in srgb, var(--grad-a) 15%, transparent), transparent 70%),
+      radial-gradient(60% 42% at 82% 0%, color-mix(in srgb, var(--grad-b) 12%, transparent), transparent 70%);
+  }
+  .hero-inner{ max-width:640px; margin-inline:auto; padding-inline:20px; }
+  .app-icon{
+    width:128px; height:128px; border-radius:22.37%;
+    margin:0 auto 24px; box-shadow:var(--icon-shadow);
+  }
+  .eyebrow{ font-size:13px; letter-spacing:.08em; color:var(--accent); font-weight:600; margin:0 0 10px; }
+  h1{
+    font-size:clamp(30px,7.5vw,46px); line-height:1.3; letter-spacing:-0.02em;
+    font-weight:700; margin:0 0 16px;
+  }
+  .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
+  .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+
+  /* features */
+  .features{ padding-block:clamp(56px,11vw,104px); }
+  h2{
+    font-size:clamp(24px,5vw,32px); line-height:1.3; letter-spacing:-0.02em;
+    font-weight:700; text-align:center; margin:0 0 36px;
+  }
+  .cards{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+  @media (min-width:640px){ .cards{ grid-template-columns:1fr 1fr; gap:20px; } }
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:24px; box-shadow:var(--card-shadow); }
+  .chip{
+    width:44px; height:44px; border-radius:12px; margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent);
+    background:var(--surface);
+    background:color-mix(in srgb, var(--accent) 13%, var(--surface));
+  }
+  .chip svg{ width:24px; height:24px; }
+  .card h3{ font-size:17px; font-weight:600; margin:0 0 6px; }
+  .card p{ font-size:15px; color:var(--ink-2); margin:0; }
+  .instruments{ text-align:center; font-size:14px; color:var(--ink-2); margin:24px 0 0; }
+
+  /* privacy */
+  .privacy{ padding-block:0 clamp(56px,11vw,104px); }
+  .privacy-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:24px;
+    padding:clamp(28px,5vw,40px); text-align:center; max-width:720px; margin-inline:auto; box-shadow:var(--card-shadow);
+  }
+  .privacy-box h2{ margin:0 0 14px; }
+  .privacy-box p{ font-size:16px; color:var(--ink-2); max-width:34em; margin:0 auto; }
+
+  /* cta */
+  .cta{
+    text-align:center; padding-block:clamp(56px,11vw,104px);
+    background-image:radial-gradient(80% 70% at 50% 130%, color-mix(in srgb, var(--grad-a) 12%, transparent), transparent 72%);
+  }
+  .cta-head{ font-size:clamp(24px,5vw,34px); line-height:1.35; font-weight:700; letter-spacing:-0.02em; margin:0 0 12px; }
+  .cta p{ font-size:15px; color:var(--ink-2); margin:0; }
+
+  /* footer */
+  .site-foot{ border-top:1px solid var(--border); }
+  .site-foot .foot-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding-block:22px; font-size:13px; color:var(--ink-2);
+  }
+  .site-foot a{ color:var(--ink-2); }
+  .site-foot a:hover{ color:var(--accent); }
+  .foot-links a{ padding:6px 0; }
+
+  /* 地の文に混ざるリンクは、色だけでは本文と見分けられないので下線を戻す */
+  .privacy-box p a, .cta p a{ text-decoration:underline; text-underline-offset:2px; }
+  /* キーボード操作中の現在位置を明示する */
+  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+  /* 見出しを語中で割らせず、読点の位置でだけ折り返す */
+  .nowrap{ white-space:nowrap; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="wordmark" href="../">TempuraApps</a>
+    <nav class="head-links" aria-label="サイト内リンク">
+      <a class="head-link" href="./support.html">サポート</a>
+      <a class="head-link" href="./privacy.html">プライバシーポリシー</a>
+      <a class="head-link" href="./en/" lang="en" hreflang="en">English</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <img class="app-icon" src="./icon-384.jpg" width="128" height="128" fetchpriority="high" alt="リード日記（アプリアイコン）">
+      <p class="eyebrow">リード日記</p>
+      <h1>本番の成功は、<br>リード管理から。</h1>
+      <p class="subcopy">一本ずつ違うリードの調子を、その日の練習といっしょに書きとめる。オーボエ・イングリッシュホルン・オーボエダモーレ・ファゴットのダブルリード奏者のための記録アプリです。</p>
+      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
+           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p class="platform">iOS 18.0 以降 / iPhone 向け</p>
+    </div>
+  </section>
+
+  <section class="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <h2 id="features-h">リードを見きわめる、6つの道具</h2>
+      <ul class="cards" role="list">
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 3.5h8.5L19 9v11.5H5z"/><path d="M13.5 3.5V9H19"/><path d="M8.4 13h7.2"/><path d="M8.4 16.4h4.6"/></svg>
+          </div>
+          <h3>その日の調子を一本ずつ</h3>
+          <p>吹いたリードに、ステータス（色）と★評価、ひとことメモを残します。翌日ひらけば、どれが上がり調子でどれが落ちてきたかがひと目で分かります。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="13.6" r="7.4"/><path d="M12 9.6v4l2.6 1.6"/><path d="M9.6 2.5h4.8"/><path d="M12 2.5v3.7"/></svg>
+          </div>
+          <h3>使用時間を打刻する</h3>
+          <p>練習1回の中で、どのリードを何分吹いたかをまとめて記録できます。持ち替えの多い練習でも、あとから各リードの日記に反映されます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3 6.6a2 2 0 0 1 2-2h3.8l2 2.6H19a2 2 0 0 1 2 2v8.4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          </div>
+          <h3>楽器ごとのフォルダで整理</h3>
+          <p>オーボエ / イングリッシュホルン / オーボエダモーレ / ファゴットごとにリードを分けて管理。色付きのステータスで「今日吹ける一本」がすぐ見つかります。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M9 18V6.2l10-2v11.6"/><circle cx="6.4" cy="18" r="2.6"/><circle cx="16.4" cy="15.8" r="2.6"/></svg>
+          </div>
+          <h3>本番の日に、どれを吹いたか</h3>
+          <p>演奏会を予定として登録し、当日に選んだリードを記録に残せます。次の本番でリードを選ぶときの手がかりになります。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17"/><path d="M8 3v4"/><path d="M16 3v4"/></svg>
+          </div>
+          <h3>カレンダーで振り返る</h3>
+          <p>月のグリッドに、記録のある日が並びます。日付をタップすれば、その日に吹いたリードと調子をまとめて見返せます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M3.5 20.5h17"/><path d="M6 16l4.2-4.6 3.4 2.6L20 7"/></svg>
+          </div>
+          <h3>傾向を数字で見る</h3>
+          <p>リード別のステータス分布と評価の平均、種類ごとの寿命や「絶好調」までの日数、リード同士の比較。次に何を作るか・仕入れるかを決める材料になります。</p>
+        </li>
+      </ul>
+      <p class="instruments">無料で現役のリードを5本まで登録できます。Pro にすると上限がなくなり、分析レポートのフル表示・ダークモード・JSON でのバックアップが使えます。</p>
+    </div>
+  </section>
+
+  <section class="privacy" aria-labelledby="privacy-h">
+    <div class="wrap">
+      <div class="privacy-box">
+        <h2 id="privacy-h">記録は、<span class="nowrap">あなたの端末の中に</span></h2>
+        <p>リードの記録・写真・練習の記録は、すべて利用者の端末内にのみ保存され、ほかの端末と同期されることはありません。アカウント登録は不要です。改善のための匿名の利用状況の計測は行いますが、メモや写真そのものは送りません。詳細は<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-h">
+    <div class="wrap">
+      <h2 class="cta-head" id="cta-h">「今日はどれで吹こう」に、<span class="nowrap">答えを。</span></h2>
+      <p>よくあるご質問は<a href="./support.html">サポート</a>に掲載しています。お問い合わせ: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <span>&copy; 2026 TempuraApps</span>
+    <nav class="foot-links" aria-label="補助リンク">
+      <a href="./support.html">サポート</a>
+      <a href="./privacy.html">プライバシーポリシー</a>
+      <a href="./en/" lang="en" hreflang="en">English</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

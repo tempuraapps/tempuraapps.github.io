@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TempuraApps | One Good Deed — One good thing a day.</title>
-<meta name="description" content="Write down one small good thing you did each day. A seasonal mark blooms on the calendar for every day you write. Everything stays on your iPhone — no account, no ads.">
+<meta name="description" content="Write down one small good thing you did each day. A seasonal mark lights up on the calendar for every day you write. Your entries stay on your iPhone — no account, no ads.">
 <meta name="theme-color" content="#FBF6F6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#141011" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://tempuraapps.github.io/ichinichiichizen/en/">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ja_JP">
 <meta property="og:title" content="TempuraApps | One Good Deed — One good thing a day.">
-<meta property="og:description" content="Write down one small good thing a day and watch the seasonal marks bloom across your calendar. Thirty seconds a day.">
+<meta property="og:description" content="Write down one small good thing a day and watch the seasonal marks light up across your calendar. Thirty seconds a day.">
 <meta property="og:url" content="https://tempuraapps.github.io/ichinichiichizen/en/">
 <meta property="og:image" content="https://tempuraapps.github.io/ichinichiichizen/icon-512.png">
 <meta property="og:image:width" content="512">
@@ -28,7 +28,8 @@
 <style>
   :root{
     color-scheme: light dark;
-    /* ===== THEME TOKENS（アプリの SeasonTheme.swift 春パレットに合わせる）===== */
+    /* ===== THEME TOKENS（--accent / --grad-a はアプリの SeasonTheme.swift 春パレットの brand と同値。
+       地の色と罫線はWeb用に起こしたもので、アプリの paper / hairline とは一致しない）===== */
     --bg:#FBF6F6; --surface:#FFFFFF; --ink:#18212B; --ink-2:#566270;
     --accent:#AC4254; --border:#EFE2E4; --grad-a:#AC4254; --grad-b:#E9A6B3;
     --icon-shadow:0 16px 40px rgba(0,0,0,.14), 0 0 0 1px rgba(24,33,43,.06); --card-shadow:0 1px 2px rgba(0,0,0,.04);
@@ -161,7 +162,7 @@
       <img class="app-icon" src="../icon-384.jpg" width="128" height="128" fetchpriority="high" alt="The One Good Deed app icon">
       <p class="eyebrow">A one-a-day good deed diary</p>
       <h1>One good thing a day.</h1>
-      <p class="subcopy">You gave up your seat. You picked up a piece of litter. Small things are exactly the ones you forget if you don't write them down. Thirty seconds a day, one line at a time. No account, no ads.</p>
+      <p class="subcopy">You gave up your seat. You picked up a piece of litter. Small things are exactly the ones you forget if you don't write them down. Thirty seconds a day, one entry at a time. No account, no ads.</p>
       <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
            あわせて CTA セクションの本文にも導線を足すこと。 -->
       <p class="platform">iOS 18.0 or later / iPhone</p>
@@ -177,21 +178,21 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M16.5 3.5l4 4L8 20H4v-4z"/><path d="M14 6l4 4"/></svg>
           </div>
           <h3>Write today's good deed</h3>
-          <p>One a day, up to 100 characters, with as many hashtags as you like. On days when nothing comes to mind, pick one of the suggestions and it becomes your entry.</p>
+          <p>One a day, up to 100 characters, with as many hashtags as you like. On days when nothing comes to mind, the app offers an idea — tap through until one fits and it becomes your entry.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17"/><path d="M8 3v4M16 3v4"/><circle cx="12" cy="15" r="1.6"/></svg>
           </div>
-          <h3>Watch the calendar bloom</h3>
-          <p>Every day you write gets a seasonal mark. A month's worth is visible at a glance, and you can open any past day to read it again.</p>
+          <h3>Watch your calendar light up</h3>
+          <p>Every day you write, a seasonal mark lights up. A month's worth is visible at a glance, and you can open any past day to read it again.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 20V12"/><path d="M10 20V5"/><path d="M16 20v-6"/><path d="M2.5 20h19"/></svg>
           </div>
-          <h3>Look back</h3>
-          <p>Your current streak, your longest streak, and your total number of entries, with a breakdown by hashtag. Reaching a milestone brings a small celebration.</p>
+          <h3>Recap</h3>
+          <p>Your current streak, your longest streak, and your total number of entries, plus a By tag view of the month you're looking at. Your streak milestones are listed here too.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
@@ -209,7 +210,7 @@
     <div class="wrap">
       <div class="privacy-box">
         <h2 id="privacy-h">What you write stays on <span class="nowrap">your iPhone</span></h2>
-        <p>The text of your entries and your hashtags are stored only on your device and are never sent to a server. No account is required. The app does send anonymous usage statistics — which features were used — to help us improve it, but never the text you write. See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
+        <p>The text of your entries and your hashtags are stored only on your device and are never sent to a server. No account is required. The app does send anonymous usage statistics to help us improve it: which features were used, along with a few setting values such as the fact that you turned the reminder on and the time you set it to. It never includes the text of your entries or the content of your hashtags. See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
       </div>
     </div>
   </section>

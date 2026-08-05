@@ -28,9 +28,10 @@
 <style>
   :root{
     color-scheme: light dark;
-    /* ===== THEME TOKENS（アプリ別に差し替え）===== */
+    /* ===== THEME TOKENS（アプリの Theme.swift と同値。ただし light の --accent だけは、
+       brand の #3E7C5D だと 13px の .eyebrow で 4.34:1 と AA を割るので #376E53 に詰めてある）===== */
     --bg:#F6EFE8; --surface:#FFFDFA; --ink:#3A3A37; --ink-2:#6F6960;
-    --accent:#3E7C5D; --border:#EADFD5; --grad-a:#3E7C5D; --grad-b:#E0A546;
+    --accent:#376E53; --border:#EADFD5; --grad-a:#376E53; --grad-b:#E0A546;
     --icon-shadow:0 16px 40px rgba(0,0,0,.14), 0 0 0 1px rgba(24,33,43,.06); --card-shadow:0 1px 2px rgba(0,0,0,.04);
   }
   @media (prefers-color-scheme: dark){

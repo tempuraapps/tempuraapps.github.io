@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TempuraApps | One Good Deed — One good thing a day.</title>
+<meta name="description" content="Write down one small good thing you did each day. A seasonal mark lights up on the calendar for every day you write. Your entries stay on your iPhone — no account, no ads.">
+<meta name="theme-color" content="#FBF6F6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141011" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://tempuraapps.github.io/ichinichiichizen/en/">
+<link rel="alternate" hreflang="ja" href="https://tempuraapps.github.io/ichinichiichizen/">
+<link rel="alternate" hreflang="en" href="https://tempuraapps.github.io/ichinichiichizen/en/">
+<link rel="alternate" hreflang="x-default" href="https://tempuraapps.github.io/ichinichiichizen/">
+<link rel="icon" type="image/png" sizes="64x64" href="../icon-64.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TempuraApps">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:title" content="TempuraApps | One Good Deed — One good thing a day.">
+<meta property="og:description" content="Write down one small good thing a day and watch the seasonal marks light up across your calendar. Thirty seconds a day.">
+<meta property="og:url" content="https://tempuraapps.github.io/ichinichiichizen/en/">
+<meta property="og:image" content="https://tempuraapps.github.io/ichinichiichizen/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="The One Good Deed app icon">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    color-scheme: light dark;
+    /* ===== THEME TOKENS（--accent / --grad-a はアプリの SeasonTheme.swift 春パレットの brand と同値。
+       地の色と罫線はWeb用に起こしたもので、アプリの paper / hairline とは一致しない）===== */
+    --bg:#FBF6F6; --surface:#FFFFFF; --ink:#18212B; --ink-2:#566270;
+    --accent:#AC4254; --border:#EFE2E4; --grad-a:#AC4254; --grad-b:#E9A6B3;
+    --icon-shadow:0 16px 40px rgba(0,0,0,.14), 0 0 0 1px rgba(24,33,43,.06); --card-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#141011; --surface:#1F1A1B; --ink:#F2F4F6; --ink-2:#A3AEBA;
+      --accent:#ECA6B3; --border:#332629; --grad-a:#ECA6B3; --grad-b:#C9788A;
+      --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
+    }
+  }
+  /* ===== 構造CSS（LP共通。トークンのみ参照）===== */
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.75; font-size:16px; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:960px; margin-inline:auto; padding-inline:20px; }
+
+  /* header */
+  .site-head .head-inner{
+    display:flex; align-items:center; justify-content:space-between; min-height:56px; gap:12px; flex-wrap:wrap;
+  }
+  .wordmark{ font-size:13px; letter-spacing:.06em; color:var(--ink-2); font-weight:600; }
+  .wordmark:hover{ color:var(--accent); }
+  .head-links, .foot-links{ display:flex; align-items:center; flex-wrap:wrap; gap:18px; row-gap:2px; }
+  .head-links a, .foot-links a{ white-space:nowrap; }
+  .head-link{ font-size:14px; color:var(--ink-2); padding:8px 0; }
+  .head-link:hover{ color:var(--accent); }
+
+  /* hero */
+  .hero{
+    text-align:center;
+    padding-block:clamp(40px,10vw,96px) clamp(48px,9vw,88px);
+    background:var(--bg);
+    background-image:
+      radial-gradient(120% 70% at 50% -20%, color-mix(in srgb, var(--grad-a) 15%, transparent), transparent 70%),
+      radial-gradient(60% 42% at 82% 0%, color-mix(in srgb, var(--grad-b) 12%, transparent), transparent 70%);
+  }
+  .hero-inner{ max-width:640px; margin-inline:auto; padding-inline:20px; }
+  .app-icon{
+    width:128px; height:128px; border-radius:22.37%;
+    margin:0 auto 24px; box-shadow:var(--icon-shadow);
+  }
+  .eyebrow{ font-size:13px; letter-spacing:.08em; color:var(--accent); font-weight:600; margin:0 0 10px; }
+  h1{
+    font-size:clamp(30px,7.5vw,46px); line-height:1.25; letter-spacing:-0.02em;
+    font-weight:700; margin:0 0 16px;
+  }
+  .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
+  .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+
+  /* features */
+  .features{ padding-block:clamp(56px,11vw,104px); }
+  h2{
+    font-size:clamp(24px,5vw,32px); line-height:1.25; letter-spacing:-0.02em;
+    font-weight:700; text-align:center; margin:0 0 36px;
+  }
+  .cards{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+  @media (min-width:640px){ .cards{ grid-template-columns:1fr 1fr; gap:20px; } }
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:24px; box-shadow:var(--card-shadow); }
+  .chip{
+    width:44px; height:44px; border-radius:12px; margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent);
+    background:var(--surface);
+    background:color-mix(in srgb, var(--accent) 13%, var(--surface));
+  }
+  .chip svg{ width:24px; height:24px; }
+  .card h3{ font-size:17px; font-weight:600; margin:0 0 6px; }
+  .card p{ font-size:15px; color:var(--ink-2); margin:0; }
+  .instruments{ text-align:center; font-size:14px; color:var(--ink-2); margin:24px 0 0; }
+
+  /* privacy */
+  .privacy{ padding-block:0 clamp(56px,11vw,104px); }
+  .privacy-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:24px;
+    padding:clamp(28px,5vw,40px); text-align:center; max-width:720px; margin-inline:auto; box-shadow:var(--card-shadow);
+  }
+  .privacy-box h2{ margin:0 0 14px; }
+  .privacy-box p{ font-size:16px; color:var(--ink-2); max-width:34em; margin:0 auto; }
+
+  /* cta */
+  .cta{
+    text-align:center; padding-block:clamp(56px,11vw,104px);
+    background-image:radial-gradient(80% 70% at 50% 130%, color-mix(in srgb, var(--grad-a) 12%, transparent), transparent 72%);
+  }
+  .cta-head{ font-size:clamp(24px,5vw,34px); line-height:1.3; font-weight:700; letter-spacing:-0.02em; margin:0 0 12px; }
+  .cta p{ font-size:15px; color:var(--ink-2); margin:0; }
+
+  /* footer */
+  .site-foot{ border-top:1px solid var(--border); }
+  .site-foot .foot-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding-block:22px; font-size:13px; color:var(--ink-2);
+  }
+  .site-foot a{ color:var(--ink-2); }
+  .site-foot a:hover{ color:var(--accent); }
+  .foot-links a{ padding:6px 0; }
+
+  .privacy-box p a, .cta p a{ text-decoration:underline; text-underline-offset:2px; }
+  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+  .nowrap{ white-space:nowrap; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="wordmark" href="../../en/">TempuraApps</a>
+    <nav class="head-links" aria-label="Site links">
+      <a class="head-link" href="./support.html">Support</a>
+      <a class="head-link" href="./privacy.html">Privacy Policy</a>
+      <a class="head-link" href="../" lang="ja" hreflang="ja">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <img class="app-icon" src="../icon-384.jpg" width="128" height="128" fetchpriority="high" alt="The One Good Deed app icon">
+      <p class="eyebrow">A one-a-day good deed diary</p>
+      <h1>One good thing a day.</h1>
+      <p class="subcopy">You gave up your seat. You picked up a piece of litter. Small things are exactly the ones you forget if you don't write them down. Thirty seconds a day, one entry at a time. No account, no ads.</p>
+      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
+           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p class="platform">iOS 18.0 or later / iPhone</p>
+    </div>
+  </section>
+
+  <section class="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <h2 id="features-h">Write it, keep it up, look back</h2>
+      <ul class="cards" role="list">
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M16.5 3.5l4 4L8 20H4v-4z"/><path d="M14 6l4 4"/></svg>
+          </div>
+          <h3>Write today's good deed</h3>
+          <p>One a day, up to 100 characters, with as many hashtags as you like. On days when nothing comes to mind, the app offers an idea — tap through until one fits and it becomes your entry.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17"/><path d="M8 3v4M16 3v4"/><circle cx="12" cy="15" r="1.6"/></svg>
+          </div>
+          <h3>Watch your calendar light up</h3>
+          <p>Every day you write, a seasonal mark lights up. A month's worth is visible at a glance, and you can open any past day to read it again.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 20V12"/><path d="M10 20V5"/><path d="M16 20v-6"/><path d="M2.5 20h19"/></svg>
+          </div>
+          <h3>Recap</h3>
+          <p>Your current streak, your longest streak, and your total number of entries, plus a By tag view of the month you're looking at. Your streak milestones are listed here too.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3.5c2.2 1.9 3.4 3.9 3.4 5.9a3.4 3.4 0 0 1-6.8 0c0-2 1.2-4 3.4-5.9z"/><path d="M12 12.8v7.7"/><path d="M12 16.5c-1.6-1.2-3.3-1.6-5-1.2"/><path d="M12 18.6c1.4-1 2.9-1.4 4.4-1.1"/></svg>
+          </div>
+          <h3>Colours that follow the season</h3>
+          <p>Four palettes — spring, summer, autumn, and winter. Let them change automatically with the month, and take the home screen icon along with them if you like.</p>
+        </li>
+      </ul>
+      <p class="instruments">A single daily reminder, at whatever time you choose. Export and import your entries as JSON.</p>
+    </div>
+  </section>
+
+  <section class="privacy" aria-labelledby="privacy-h">
+    <div class="wrap">
+      <div class="privacy-box">
+        <h2 id="privacy-h">What you write stays on <span class="nowrap">your iPhone</span></h2>
+        <p>The text of your entries and your hashtags are stored only on your device and are never sent to a server. No account is required. The app does send anonymous usage statistics to help us improve it: which features were used, along with a few setting values such as the fact that you turned the reminder on and the time you set it to. It never includes the text of your entries or the content of your hashtags. See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-h">
+    <div class="wrap">
+      <h2 class="cta-head" id="cta-h">One more, today.</h2>
+      <p>Common questions are answered on the <a href="./support.html">support page</a>. Contact: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <span>© 2026 TempuraApps</span>
+    <nav class="foot-links" aria-label="Secondary links">
+      <a href="./support.html">Support</a>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="../" lang="ja" hreflang="ja">日本語</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

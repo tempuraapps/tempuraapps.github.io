@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TempuraApps — 毎日がちょっと便利に、楽しくなる iPhone アプリ</title>
-<meta name="description" content="毎日がちょっと便利に、楽しくなるようなアプリをつくっています。AIノリツギ・未知あるき・一日一善を公開中。">
+<meta name="description" content="毎日がちょっと便利に、楽しくなるようなアプリをつくっています。AIノリツギ・未知あるき・一日一善・推し街さがし・ピタワリ・リード日記。">
 <meta name="theme-color" content="#F7F3EC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1B1712" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://tempuraapps.github.io/">
@@ -45,10 +45,16 @@
   .is-ai-noritsugi{ --app-accent:#264A73; }
   .is-michiaruki{ --app-accent:#1F8A7A; }
   .is-ichinichiichizen{ --app-accent:#AC4254; }
+  .is-oshimachi{ --app-accent:#376E53; }
+  .is-pitawari{ --app-accent:#4D63CE; }
+  .is-reeddiary{ --app-accent:#2A3D5C; }
   @media (prefers-color-scheme: dark){
     .is-ai-noritsugi{ --app-accent:#7EA6D1; }
     .is-michiaruki{ --app-accent:#5CC6B2; }
     .is-ichinichiichizen{ --app-accent:#ECA6B3; }
+    .is-oshimachi{ --app-accent:#69AC84; }
+    .is-pitawari{ --app-accent:#AAB8FF; }
+    .is-reeddiary{ --app-accent:#9CB6DA; }
   }
 
   /* ===== 構造CSS（既存4LPと同系）===== */
@@ -108,7 +114,9 @@
   .apps{ padding-block:clamp(52px,11vw,104px); }
   .cards{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
   @media (min-width:640px){ .cards{ grid-template-columns:1fr 1fr; gap:20px; } }
-  .app-card{ --app-accent:var(--accent); }
+  /* --app-accent の既定。.app-card に置くと .is-* と同じ詳細度で、後ろに書いた側が
+     必ず勝ってアプリ別の色が一切効かなくなる（実際に効いていなかった）。親に置いて継承させる。 */
+  .cards{ --app-accent:var(--accent); }
   .app-card > a{
     display:flex; gap:16px; padding:20px; height:100%;
     background:var(--surface); border:1px solid var(--border); border-radius:20px;
@@ -220,6 +228,39 @@
             </div>
           </a>
         </li>
+        <li class="app-card is-oshimachi">
+          <a href="./oshimachi/">
+            <img class="app-icon" src="./oshimachi/icon-180.png" width="64" height="64" alt="">
+            <div class="app-body">
+              <p class="app-eyebrow">住みたい街さがしの記録</p>
+              <h3>推し街さがし</h3>
+              <p class="app-tagline">住みたいほど好きな街を、さがそう。</p>
+              <p class="app-meta"><span class="more">詳しく見る <span aria-hidden="true">→</span></span></p>
+            </div>
+          </a>
+        </li>
+        <li class="app-card is-pitawari">
+          <a href="./pitawari/">
+            <img class="app-icon" src="./pitawari/icon-180.png" width="64" height="64" alt="">
+            <div class="app-body">
+              <p class="app-eyebrow">明細ごとの割り勘</p>
+              <h3>ピタワリ</h3>
+              <p class="app-tagline">割り勘、ぴたっと。</p>
+              <p class="app-meta"><span class="more">詳しく見る <span aria-hidden="true">→</span></span></p>
+            </div>
+          </a>
+        </li>
+        <li class="app-card is-reeddiary">
+          <a href="./reeddiary/">
+            <img class="app-icon" src="./reeddiary/icon-180.png" width="64" height="64" alt="">
+            <div class="app-body">
+              <p class="app-eyebrow">ダブルリードの管理</p>
+              <h3>リード日記</h3>
+              <p class="app-tagline">本番の成功は、リード管理から。</p>
+              <p class="app-meta"><span class="more">詳しく見る <span aria-hidden="true">→</span></span></p>
+            </div>
+          </a>
+        </li>
       </ul>
     </div>
   </section>
@@ -240,7 +281,7 @@
 
 <footer class="site-foot">
   <div class="wrap foot-inner">
-    <p class="foot-policies">プライバシーポリシー：<a href="./ai-noritsugi/privacy.html">AIノリツギ</a> / <a href="./michiaruki/privacy.html">未知あるき</a> / <a href="./ichinichiichizen/privacy.html">一日一善</a></p>
+    <p class="foot-policies">プライバシーポリシー：<a href="./ai-noritsugi/privacy.html">AIノリツギ</a> / <a href="./michiaruki/privacy.html">未知あるき</a> / <a href="./ichinichiichizen/privacy.html">一日一善</a> / <a href="./oshimachi/privacy.html">推し街さがし</a> / <a href="./pitawari/privacy.html">ピタワリ</a> / <a href="./reeddiary/privacy.html">リード日記</a></p>
     <p>© 2026 TempuraApps</p>
   </div>
 </footer>

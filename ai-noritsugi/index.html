@@ -151,7 +151,7 @@
   a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
   /* アプリ画面。4画面を1枚にまとめた横長の紹介画像（ライト/ダーク共通） */
   .shots{ padding-block:0 clamp(8px,2vw,16px); }
-  .shot{ margin:0; display:flex; flex-direction:column; align-items:center; gap:14px; }
+  .shot{ margin:0; display:flex; flex-direction:column; align-items:center; }
   /* 狭い画面では縮めずに横スクロールさせる。4枚並びのため幅なりに縮めると
      画像に焼き込んだ見出しが読めなくなる（360px 幅だと1枚あたり約85px）。
      min-width が max-width より優先されるので、640px を下限に溢れてスクロールする。 */
@@ -160,7 +160,6 @@
     width:100%; min-width:640px; max-width:920px; height:auto; border-radius:12px;
     border:1px solid var(--border); box-shadow:var(--shot-shadow);
   }
-  .shot figcaption{ font-size:14px; color:var(--ink-2); text-align:center; }
 </style>
 </head>
 <body>
@@ -179,7 +178,7 @@
   <section class="hero">
     <div class="hero-inner">
       <img class="app-icon" src="./icon-384.jpg" width="128" height="128" fetchpriority="high" alt="AIノリツギ（アプリアイコン）">
-      <p class="eyebrow">AI間のコンテキスト引き継ぎ</p>
+      <p class="eyebrow">AIノリツギ</p>
       <h1>次のAIへ、<br>コンテキストを乗り継ごう。</h1>
       <p class="subcopy">ChatGPT で考えた続きを、Claude で。会話ログではなく前提だけを保存しておけば、あとは貼り付けるだけで、どのAIでも続きから話せます。アカウント不要・広告なしのコンテキスト管理アプリです。</p>
       <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
@@ -188,14 +187,12 @@
     </div>
   </section>
 
-  <section class="shots" aria-labelledby="shots-h">
+  <section class="shots" aria-label="アプリの画面">
     <div class="wrap">
-      <h2 id="shots-h"><span class="nowrap">保存したコンテキストが</span>、<span class="nowrap">ここに並ぶ。</span></h2>
       <figure class="shot">
         <div class="shot-scroll">
           <img class="shot-img" src="./app-image.jpg" width="1536" height="1024" decoding="async" alt="アプリの4画面。1. コンテキストの一覧「AIノリツギ、あなたのナレッジをつなぎ続ける — 複数のAIを、ひとつの文脈で。」2. コンテキストの詳細「ワンタップでAIに渡せる — 選んでタップするだけ。どのAIにもすぐ引き継げる。」3. タグの一覧「キーワードですぐに見つかる — タグや検索で、必要なコンテキストを瞬時に。」4. 他アプリで開いた専用キーボード「キーボードからAIに直接渡せる — アプリを開かなくても、その場で渡せる。思考を止めずに、AIとつながる。」">
         </div>
-        <figcaption>一覧・詳細・タグ・キーボードの4画面。</figcaption>
       </figure>
     </div>
   </section>

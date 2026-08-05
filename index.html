@@ -114,7 +114,9 @@
   .apps{ padding-block:clamp(52px,11vw,104px); }
   .cards{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
   @media (min-width:640px){ .cards{ grid-template-columns:1fr 1fr; gap:20px; } }
-  .app-card{ --app-accent:var(--accent); }
+  /* --app-accent の既定。.app-card に置くと .is-* と同じ詳細度で、後ろに書いた側が
+     必ず勝ってアプリ別の色が一切効かなくなる（実際に効いていなかった）。親に置いて継承させる。 */
+  .cards{ --app-accent:var(--accent); }
   .app-card > a{
     display:flex; gap:16px; padding:20px; height:100%;
     background:var(--surface); border:1px solid var(--border); border-radius:20px;

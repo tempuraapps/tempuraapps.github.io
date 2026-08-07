@@ -143,45 +143,100 @@
 
   /* アプリ画面。4画面を1枚にまとめた横長の紹介画像（ライト/ダーク共通） */
   .shots{ padding-block:0 clamp(8px,2vw,16px); }
-  .shot{ margin:0; display:flex; flex-direction:column; align-items:center; }
-  /* 狭い画面では縮めずに横スクロールさせる。4枚並びのため幅なりに縮めると
-     画像に焼き込んだ見出しが読めなくなる（360px 幅だと1枚あたり約85px）。
-     min-width が max-width より優先されるので、640px を下限に溢れてスクロールする。 */
-  .shot-scroll{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-  .shot-img{
-    width:100%; min-width:640px; max-width:920px; height:auto; border-radius:12px;
-    border:1px solid var(--border); box-shadow:var(--shot-shadow);
+  .shot{ margin:0; }
+  .sr-only{
+    position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+    overflow:hidden; clip-path:inset(50%); white-space:nowrap;
   }
 
-  @media (prefers-reduced-motion: reduce){
-    *{ animation:none !important; transition:none !important; }
+  /* ===== 画面の紹介（LP共通）=====
+     素材は「4画面ぶんを横に並べた1枚の合成画像」（比率16:9）。これを CSS で4分割して
+     1画面ずつ見せる。画像ファイルは1枚のままで、追加の書き出しは要らない。
+       スマホ  … 1画面ずつスナップして送る。前後が少し覗くので送れることが分かる
+       900px〜 … 4枚を隙間なく並べる。合成画像そのままの見た目で、送る操作は要らない
+     枠に対して画像を 400% の幅で置き、1画面ぶん（-100%）ずつ左へずらして目的の1枚を出す。
+     以前は 640px の画像を横に引っ張らせていたが、スクロールバーが出るうえ、
+     4枚のうちどこを見ているのか分からなかった。 */
+  .shot-frame{ width:100%; }
+  .shot-track{
+    display:flex; gap:12px; overflow-x:auto; overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    padding-inline:max(0px, calc((100% - 260px) / 2)); scrollbar-width:none;
   }
-  /* ===== 画像の拡大（LP共通）=====
-     スマホでは .shot-scroll の中で 640px の画像を横に引っ張って見る形になっていて、
-     4枚並びだと1枚あたり約160pxしかなく、焼き込んだ見出しが読めない。タップで dialog を開き、
-     画面の高さいっぱい（＝1枚が実機の幅にほぼ等しい）にして横スクロールで見せる。 */
-  .shot-zoom{
-    display:block; width:100%; min-width:640px; max-width:920px; overflow:visible;
-    margin:0; padding:0; border:0; background:none; font:inherit; color:inherit;
+  .shot-track::-webkit-scrollbar{ display:none; }
+  .shot-slide{
+    flex:0 0 auto; width:260px; aspect-ratio:4/9; scroll-snap-align:center;
+    position:relative; overflow:hidden; margin:0; padding:0; background:none;
+    border:1px solid var(--border); border-radius:12px; box-shadow:var(--shot-shadow);
     cursor:zoom-in; -webkit-tap-highlight-color:transparent;
   }
-  .shot-zoom:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+  .shot-slide:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+  .shot-slide img{
+    position:absolute; top:0; left:calc(var(--i) * -100%);
+    height:100%; width:auto; max-width:none;
+  }
+  .shot-dots{ display:flex; justify-content:center; gap:8px; margin-top:14px; }
+  .shot-dot{
+    width:8px; height:8px; padding:0; border:0; border-radius:50%;
+    background:var(--ink-2); opacity:.28; cursor:pointer;
+  }
+  .shot-dot[aria-current="true"]{ opacity:1; background:var(--accent); }
   /* 拡大できることは見た目では分からないので一言添える。ただし script が動かなかったときに
      嘘の案内が残らないよう、JS が付ける .has-lightbox が無ければ出さない。 */
   .shot-hint{ display:none; margin:10px 0 0; font-size:13px; color:var(--ink-2); text-align:center; }
   .has-lightbox .shot-hint{ display:block; }
 
+  @media (min-width:900px){
+    /* 送る意味がないので4枚を隙間なく並べる。角丸と枠は外側にまとめて1枚に見せる。 */
+    .shot-frame{
+      max-width:920px; margin-inline:auto; overflow:hidden; border-radius:12px;
+      border:1px solid var(--border); box-shadow:var(--shot-shadow);
+    }
+    .shot-track{ gap:0; padding-inline:0; overflow:visible; scroll-snap-type:none; }
+    .shot-slide{ flex:1 1 0; width:auto; border:0; border-radius:0; box-shadow:none; }
+    .shot-dots{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+  /* ===== 拡大表示（LP共通）=====
+     .shot-slide と同じ4分割の仕掛けで、1画面を画面の高さいっぱいに出す。
+     390x844 なら1枚が約375px＝実機の画面幅とほぼ同じになる。
+     900px 以上は送る必要がないので、4枚まとめて画面に収める。 */
   .lightbox{
     position:fixed; inset:0; width:100%; height:100dvh; max-width:100%; max-height:100dvh;
     margin:0; padding:0; border:0; overflow:hidden; background:#000;
   }
   .lightbox::backdrop{ background:#000; }
-  .lightbox-scroll{
-    width:100%; height:100%; overflow:auto; -webkit-overflow-scrolling:touch;
-    display:flex; align-items:center;
+  .lightbox-track{
+    display:flex; width:100%; height:100%; overflow-x:auto; overscroll-behavior:contain;
+    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none;
   }
-  /* 高さを画面いっぱいに固定して、はみ出した幅を横スクロールで送る。 */
-  .lightbox-img{ height:100%; width:auto; max-width:none; margin-inline:auto; border-radius:0; }
+  .lightbox-track::-webkit-scrollbar{ display:none; }
+  .lightbox-slide{
+    flex:0 0 100%; height:100%; scroll-snap-align:center;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .lightbox-pane{ height:100%; aspect-ratio:4/9; position:relative; overflow:hidden; }
+  .lightbox-pane img{
+    position:absolute; top:0; left:calc(var(--i) * -100%);
+    height:100%; width:auto; max-width:none;
+  }
+  /* 閉じるボタンと同じ理由で、地色を暗く敷いた上に白を置く。明るい画面の上だと
+     白い点だけでは消えてしまう。 */
+  .lightbox-dots{
+    position:absolute; left:50%; transform:translateX(-50%);
+    bottom:max(18px, env(safe-area-inset-bottom));
+    display:flex; gap:10px; padding:9px 13px; border-radius:999px;
+    background:rgba(0,0,0,.45);
+  }
+  .lightbox-dot{
+    width:8px; height:8px; padding:0; border:0; border-radius:50%;
+    background:#fff; opacity:.4; cursor:pointer;
+  }
+  .lightbox-dot[aria-current="true"]{ opacity:1; }
+  .lightbox-dot:focus-visible, .lightbox-close:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
   .lightbox-close{
     position:absolute; top:max(10px, env(safe-area-inset-top)); right:max(10px, env(safe-area-inset-right));
     width:44px; height:44px; padding:0; border:0; border-radius:50%;
@@ -190,11 +245,17 @@
     background:rgba(0,0,0,.55); box-shadow:0 0 0 1px rgba(255,255,255,.35);
     color:#fff; font-size:24px; line-height:1; cursor:pointer;
   }
-  .lightbox-close:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
-  /* マウスの環境では横に送らせる意味がないので、全体を1枚に収める。 */
   @media (min-width:900px){
-    .lightbox-scroll{ justify-content:center; padding:24px; }
-    .lightbox-img{ height:auto; width:100%; max-width:1820px; max-height:100%; object-fit:contain; }
+    .lightbox[open]{ display:flex; align-items:center; justify-content:center; padding:24px; }
+    /* 幅は「入る高さから逆算した幅」と「実際の幅」の小さい方。max-width で詰めると
+       高さが比率どおりに縮まず、4分割の切り出し位置がずれる。 */
+    .lightbox-track{
+      width:min(100%, calc((100dvh - 48px) * 16 / 9)); height:auto; aspect-ratio:16/9;
+      overflow:visible; scroll-snap-type:none;
+    }
+    .lightbox-slide{ flex:1 1 0; height:auto; }
+    .lightbox-pane{ width:100%; height:auto; }
+    .lightbox-dots{ display:none; }
   }
 </style>
 </head>
@@ -226,10 +287,20 @@
   <section class="shots" aria-label="App screens">
     <div class="wrap">
       <figure class="shot">
-        <div class="shot-scroll">
-          <button type="button" class="shot-zoom">
-            <img class="shot-img" src="../app-image-en.jpg" width="1920" height="1080" decoding="async" alt="Four app screens. 1. Home — “One good deed, one day at a time. Turn small acts of kindness into a daily habit.” 2. Calendar — “Every good day blooms. See a month of good deeds at a glance.” 3. Recap — “A month of kindness, all in one recap. Breakdowns, milestones, and past months (Pro).” 4. Settings — “Keep going through every season. Choose Spring, Summer, Autumn, or Winter (Pro).”">
-          </button>
+        <p class="sr-only">Four app screens. 1. Home — “One good deed, one day at a time. Turn small acts of kindness into a daily habit.” 2. Calendar — “Every good day blooms. See a month of good deeds at a glance.” 3. Recap — “A month of kindness, all in one recap. Breakdowns, milestones, and past months (Pro).” 4. Settings — “Keep going through every season. Choose Spring, Summer, Autumn, or Winter (Pro).”</p>
+        <div class="shot-frame">
+          <div class="shot-track">
+            <button type="button" class="shot-slide" style="--i:0" aria-label="Enlarge screen 1"><img src="../app-image-en.jpg" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:1" aria-label="Enlarge screen 2"><img src="../app-image-en.jpg" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:2" aria-label="Enlarge screen 3"><img src="../app-image-en.jpg" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:3" aria-label="Enlarge screen 4"><img src="../app-image-en.jpg" alt="" decoding="async"></button>
+          </div>
+        </div>
+        <div class="shot-dots">
+          <button type="button" class="shot-dot" aria-label="Show screen 1"></button>
+          <button type="button" class="shot-dot" aria-label="Show screen 2"></button>
+          <button type="button" class="shot-dot" aria-label="Show screen 3"></button>
+          <button type="button" class="shot-dot" aria-label="Show screen 4"></button>
         </div>
         <figcaption class="shot-hint">Tap to enlarge</figcaption>
       </figure>
@@ -301,44 +372,135 @@
   </div>
 </footer>
 <dialog class="lightbox" aria-label="Enlarged view">
-  <div class="lightbox-scroll">
-    <img class="lightbox-img" alt="" decoding="async">
+  <div class="lightbox-track">
+    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:0"><img alt="" decoding="async"></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:1"><img alt="" decoding="async"></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:2"><img alt="" decoding="async"></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:3"><img alt="" decoding="async"></div></div>
+  </div>
+  <div class="lightbox-dots">
+    <button type="button" class="lightbox-dot" aria-label="Show screen 1"></button>
+    <button type="button" class="lightbox-dot" aria-label="Show screen 2"></button>
+    <button type="button" class="lightbox-dot" aria-label="Show screen 3"></button>
+    <button type="button" class="lightbox-dot" aria-label="Show screen 4"></button>
   </div>
   <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
 </dialog>
 <script>
 (function(){
-  var trigger = document.querySelector('.shot-zoom');
+  var figure = document.querySelector('.shot');
   var dlg = document.querySelector('.lightbox');
-  if(!trigger || !dlg || typeof dlg.showModal !== 'function') return;
+  if(!figure || !dlg || typeof dlg.showModal !== 'function') return;
 
-  var img = trigger.querySelector('.shot-img');
-  var big = dlg.querySelector('.lightbox-img');
-  var scroller = dlg.querySelector('.lightbox-scroll');
-  var moved = false, sx = 0, sy = 0;
+  var track = figure.querySelector('.shot-track');
+  var slides = figure.querySelectorAll('.shot-slide');
+  var dots = figure.querySelectorAll('.shot-dot');
+  var lbTrack = dlg.querySelector('.lightbox-track');
+  var lbDots = dlg.querySelectorAll('.lightbox-dot');
+  var still = matchMedia('(prefers-reduced-motion: reduce)');
+  var opener = null, loaded = false;
 
   document.documentElement.classList.add('has-lightbox');
 
-  // .shot-scroll の中で画像を横に引っ張って見る作りなので、送るつもりのドラッグで
-  // 開いてしまわないように、10px 以上動いたタッチは開く操作として扱わない。
-  trigger.addEventListener('touchstart', function(e){
-    moved = false; sx = e.touches[0].clientX; sy = e.touches[0].clientY;
-  }, {passive:true});
-  trigger.addEventListener('touchmove', function(e){
-    var t = e.touches[0];
-    if(Math.abs(t.clientX - sx) > 10 || Math.abs(t.clientY - sy) > 10) moved = true;
-  }, {passive:true});
+  // どの1枚を見ているかは「枠の中央にいちばん近い子」で決める。
+  // 送っている最中の端数や、900px 以上で横に並んでいるときも同じ式で通る。
+  function nearest(el){
+    var box = el.getBoundingClientRect(), mid = box.left + box.width / 2;
+    var best = 0, min = Infinity;
+    for(var i = 0; i < el.children.length; i++){
+      var r = el.children[i].getBoundingClientRect();
+      var d = Math.abs(r.left + r.width / 2 - mid);
+      if(d < min){ min = d; best = i; }
+    }
+    return best;
+  }
+  function mark(list, at){
+    for(var i = 0; i < list.length; i++){
+      if(i === at) list[i].setAttribute('aria-current', 'true');
+      else list[i].removeAttribute('aria-current');
+    }
+  }
+  // scrollIntoView は先祖まで動かしてしまうので、差分を出して自分だけ動かす。
+  function goTo(el, at, smooth){
+    var kid = el.children[at];
+    if(!kid) return;
+    var box = el.getBoundingClientRect(), r = kid.getBoundingClientRect();
+    var delta = (r.left + r.width / 2) - (box.left + box.width / 2);
+    el.scrollTo({ left: el.scrollLeft + delta, behavior: (smooth && !still.matches) ? 'smooth' : 'auto' });
+  }
+  // 送っている最中はスクロールから拾い、押して移動したときは押した先を正とする。
+  // 「今どこか」を測り直すのではなく持っておくのは、送りのアニメーションが終わる前に
+  // 次を押されても正しく1つ進めるため（測り直すと動き終わるまで同じ場所を指す）。
+  var lbAt = 0;
+  function watch(el, list, set){
+    var queued = false;
+    el.addEventListener('scroll', function(){
+      if(queued) return;
+      queued = true;
+      requestAnimationFrame(function(){
+        queued = false;
+        var now = nearest(el);
+        if(set) set(now);
+        mark(list, now);
+      });
+    }, {passive:true});
+  }
+  function bindDots(list, el, set){
+    for(var i = 0; i < list.length; i++) (function(to){
+      list[to].addEventListener('click', function(){ if(set) set(to); mark(list, to); goTo(el, to, true); });
+    })(i);
+  }
 
-  trigger.addEventListener('click', function(){
-    if(moved){ moved = false; return; }
-    if(!big.getAttribute('src')) big.src = img.currentSrc || img.src;
-    dlg.showModal();
-    scroller.scrollLeft = 0;
+  // 送るつもりのスワイプで開かないように、10px 以上動いたタッチは開く操作として扱わない。
+  var moved = false, sx = 0, sy = 0;
+  for(var i = 0; i < slides.length; i++) (function(index){
+    var slide = slides[index];
+    slide.addEventListener('touchstart', function(e){
+      moved = false; sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    }, {passive:true});
+    slide.addEventListener('touchmove', function(e){
+      var t = e.touches[0];
+      if(Math.abs(t.clientX - sx) > 10 || Math.abs(t.clientY - sy) > 10) moved = true;
+    }, {passive:true});
+    slide.addEventListener('click', function(){
+      if(moved){ moved = false; return; }
+      if(!loaded){
+        var src = slide.querySelector('img');
+        src = src.currentSrc || src.src;
+        var big = dlg.querySelectorAll('.lightbox-pane img');
+        for(var n = 0; n < big.length; n++) big[n].src = src;
+        loaded = true;
+      }
+      opener = slide;
+      dlg.showModal();
+      lbAt = index;
+      mark(lbDots, index);
+      goTo(lbTrack, index, false);   // 押した1枚から開く
+    });
+  })(i);
+
+  bindDots(dots, track);
+  bindDots(lbDots, lbTrack, function(i){ lbAt = i; });
+  watch(track, dots);
+  watch(lbTrack, lbDots, function(i){ lbAt = i; });
+  mark(dots, 0);
+  mark(lbDots, 0);
+
+  // 拡大中は1枚が画面をほぼ覆うので、画像の上のタップでは閉じない（送る操作と紛れるため）。
+  // 閉じるのは閉じるボタン・Esc、それと 900px 以上で余る黒い余白。
+  dlg.addEventListener('click', function(e){
+    if(!e.target.closest('.lightbox-pane') && !e.target.closest('.lightbox-dots')) dlg.close();
   });
-
-  // 画像そのものは掴んで送るので、閉じるのは画像の外（余白と閉じるボタン）だけにする。
-  dlg.addEventListener('click', function(e){ if(e.target !== big) dlg.close(); });
-  dlg.addEventListener('close', function(){ trigger.focus({preventScroll:true}); });
+  dlg.addEventListener('keydown', function(e){
+    if(e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    var to = lbAt + (e.key === 'ArrowRight' ? 1 : -1);
+    if(to < 0 || to >= lbTrack.children.length) return;
+    e.preventDefault();
+    lbAt = to;
+    mark(lbDots, to);
+    goTo(lbTrack, to, true);
+  });
+  dlg.addEventListener('close', function(){ if(opener) opener.focus({preventScroll:true}); });
 })();
 </script>
 </body>

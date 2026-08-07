@@ -212,6 +212,10 @@
   .lightbox{
     position:fixed; inset:0; width:100%; height:100dvh; max-width:100%; max-height:100dvh;
     margin:0; padding:0; border:0; overflow:hidden; background:#000;
+    /* iOS は二度押しでページ側を拡大する。これはタッチイベントより上の層で認識されるので
+       touchend の preventDefault では止まりきらず、自前の寄りと二重に効いてしまう。
+       manipulation は送り・つまみは残したまま、二度押し拡大だけを無効にする。 */
+    touch-action:manipulation;
   }
   .lightbox::backdrop{ background:#000; }
   .lightbox-track{
@@ -223,7 +227,7 @@
     flex:0 0 100%; height:100%; scroll-snap-align:center;
     display:flex; align-items:center; justify-content:center;
   }
-  .lightbox-pane{ height:100%; aspect-ratio:4/9; position:relative; overflow:hidden; }
+  .lightbox-pane{ height:100%; aspect-ratio:4/9; position:relative; overflow:hidden; touch-action:manipulation; }
   /* ===== ダブルタップで寄る =====
      .lightbox-pane を器（スクロールする側）、.lightbox-crop を中身（1画面ぶんの切り抜き）に
      分けてある。寄るときは crop の高さだけ増やす。img は crop に対して height:100% /
@@ -532,9 +536,19 @@
   });
 
   // ===== ダブルタップで寄る =====
-  // iOS Safari は dblclick が当てにならず、放っておくと OS 側のスマートズームが割り込む。
-  // touchend を2回拾って自前で判定し、2回目を preventDefault して OS の拡大を止める。
-  var lastTap = 0, tapX = 0, tapY = 0;
+  // iOS Safari の dblclick は当てにならないので、touchend を2回拾って自前で判定する。
+  // OS 側の二度押し拡大は .lightbox の touch-action:manipulation で止めてある。
+  var lastTap = 0, tapX = 0, tapY = 0, touchZoomAt = -1e9;
+  // 送るスワイプと寄っている間の指運びを、二度押しと取り違えないようにする。
+  // インライン側の moved（枠外で開く判定）と同じ考え方だが、拡大表示は別物なので別に持つ。
+  var lbMoved = false, lbSX = 0, lbSY = 0;
+  dlg.addEventListener('touchstart', function(e){
+    lbMoved = false; lbSX = e.touches[0].clientX; lbSY = e.touches[0].clientY;
+  }, {passive:true});
+  dlg.addEventListener('touchmove', function(e){
+    var t = e.touches[0];
+    if(Math.abs(t.clientX - lbSX) > 10 || Math.abs(t.clientY - lbSY) > 10) lbMoved = true;
+  }, {passive:true});
   function toggleZoom(pane, x, y){
     var on = dlg.classList.toggle('is-zoomed');
     if(!on){ pane.scrollTop = 0; pane.scrollLeft = 0; return; }
@@ -547,27 +561,34 @@
   dlg.addEventListener('touchend', function(e){
     var pane = e.target.closest && e.target.closest('.lightbox-pane');
     if(!pane || e.changedTouches.length !== 1) return;
+    // 指を滑らせたあとの離しは、二度押しの1回目にも2回目にもしない。
+    // 送りの終わりや、寄って見ている最中のスクロールがここに来る。
+    // 指が残っている（つまむ操作の途中）ときも同じ。
+    if(lbMoved || e.touches.length){ lastTap = 0; return; }
     var t = e.changedTouches[0], now = e.timeStamp;
     // 2回目が「前のタップの近く」かつ「すぐ」なら二度押し。指を滑らせた場合は
     // 離す位置が前のタップから離れるので、この距離判定で自然に弾かれる。
     var quick = now - lastTap < 320 && Math.abs(t.clientX - tapX) < 24 && Math.abs(t.clientY - tapY) < 24;
     if(quick){
-      e.preventDefault();           // OS のスマートズームを止める
+      e.preventDefault();           // 合成 click を止める（OS の拡大は touch-action で殺してある）
       lastTap = 0;
+      touchZoomAt = now;            // このあと来る合成 dblclick を弾くための印
       toggleZoom(pane, t.clientX, t.clientY);
       return;
     }
     lastTap = now; tapX = t.clientX; tapY = t.clientY;
   });
-  // マウスの環境用。タッチでは lastTap が立つので、そちらで処理済みなら何もしない。
+  // マウスの環境用。指で二度押ししたときは touchend 側で処理済みで、ブラウザが続けて
+  // dblclick を合成してくることがある。そのまま通すともう一度トグルして、寄った直後に戻る。
   dlg.addEventListener('dblclick', function(e){
     var pane = e.target.closest('.lightbox-pane');
-    if(!pane || lastTap !== 0) return;
+    if(!pane || e.timeStamp - touchZoomAt < 700) return;
     e.preventDefault();
     toggleZoom(pane, e.clientX, e.clientY);
   });
   // 送ったり閉じたりしたら寄りは解除する。寄ったまま次の1枚へ行くと迷子になる。
   function unzoom(){
+    lastTap = 0;
     if(!dlg.classList.contains('is-zoomed')) return;
     dlg.classList.remove('is-zoomed');
     for(var i = 0; i < lbTrack.children.length; i++){

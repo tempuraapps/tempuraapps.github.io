@@ -224,7 +224,22 @@
     display:flex; align-items:center; justify-content:center;
   }
   .lightbox-pane{ height:100%; aspect-ratio:4/9; position:relative; overflow:hidden; }
-  .lightbox-pane img{
+  /* ===== ダブルタップで寄る =====
+     .lightbox-pane を器（スクロールする側）、.lightbox-crop を中身（1画面ぶんの切り抜き）に
+     分けてある。寄るときは crop の高さだけ増やす。img は crop に対して height:100% /
+     left:-100%×i のままなので、切り出し位置の計算をどこも書き換えずに拡大できる。
+     はみ出した分は器のスクロールで送る＝慣性も端の止まりも OS 任せ。 */
+  .lightbox-crop{ height:100%; aspect-ratio:4/9; position:relative; overflow:hidden; margin-inline:auto; }
+  .lightbox.is-zoomed .lightbox-pane{
+    overflow:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
+    scrollbar-width:none; cursor:zoom-out;
+  }
+  .lightbox.is-zoomed .lightbox-pane::-webkit-scrollbar{ display:none; }
+  .lightbox.is-zoomed .lightbox-crop{ height:250%; }
+  /* 寄っている間は送りを止める。止めないと、寄せて見ている最中の横の指運びで隣へ飛ぶ。 */
+  .lightbox.is-zoomed .lightbox-track{ overflow:hidden; scroll-snap-type:none; }
+  .lightbox.is-zoomed .lightbox-dots{ display:none; }
+  .lightbox-crop img{
     position:absolute; top:0; left:calc(var(--i) * -100%);
     height:100%; width:auto; max-width:none;
   }
@@ -260,6 +275,7 @@
     }
     .lightbox-slide{ flex:1 1 0; height:auto; }
     .lightbox-pane{ width:100%; height:auto; }
+    .lightbox-crop{ width:100%; height:auto; }
     .lightbox-dots{ display:none; }
   }
 </style>
@@ -378,10 +394,10 @@
 </footer>
 <dialog class="lightbox" aria-label="画面の拡大表示">
   <div class="lightbox-track">
-    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:0"><img alt="" decoding="async"></div></div>
-    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:1"><img alt="" decoding="async"></div></div>
-    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:2"><img alt="" decoding="async"></div></div>
-    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:3"><img alt="" decoding="async"></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane"><div class="lightbox-crop" style="--i:0"><img alt="" decoding="async"></div></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane"><div class="lightbox-crop" style="--i:1"><img alt="" decoding="async"></div></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane"><div class="lightbox-crop" style="--i:2"><img alt="" decoding="async"></div></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane"><div class="lightbox-crop" style="--i:3"><img alt="" decoding="async"></div></div></div>
   </div>
   <div class="lightbox-dots">
     <button type="button" class="lightbox-dot" aria-label="1枚目の画面を表示"></button>
@@ -436,7 +452,7 @@
   // 送っている最中はスクロールから拾い、押して移動したときは押した先を正とする。
   // 「今どこか」を測り直すのではなく持っておくのは、送りのアニメーションが終わる前に
   // 次を押されても正しく1つ進めるため（測り直すと動き終わるまで同じ場所を指す）。
-  var lbAt = 0;
+  var lbAt = 0, unzoomRef = null;
   function watch(el, list, set){
     var queued = false;
     el.addEventListener('scroll', function(){
@@ -452,7 +468,7 @@
   }
   function bindDots(list, el, set){
     for(var i = 0; i < list.length; i++) (function(to){
-      list[to].addEventListener('click', function(){ if(set) set(to); mark(list, to); goTo(el, to, true); });
+      list[to].addEventListener('click', function(){ if(unzoomRef) unzoomRef(); if(set) set(to); mark(list, to); goTo(el, to, true); });
     })(i);
   }
 
@@ -477,6 +493,7 @@
         loaded = true;
       }
       opener = slide;
+      unzoom();
       dlg.showModal();
       lbAt = index;
       mark(lbDots, index);
@@ -496,16 +513,63 @@
   dlg.addEventListener('click', function(e){
     if(!e.target.closest('.lightbox-pane') && !e.target.closest('.lightbox-dots')) dlg.close();
   });
+
+  // ===== ダブルタップで寄る =====
+  // iOS Safari は dblclick が当てにならず、放っておくと OS 側のスマートズームが割り込む。
+  // touchend を2回拾って自前で判定し、2回目を preventDefault して OS の拡大を止める。
+  var lastTap = 0, tapX = 0, tapY = 0;
+  function toggleZoom(pane, x, y){
+    var on = dlg.classList.toggle('is-zoomed');
+    if(!on){ pane.scrollTop = 0; pane.scrollLeft = 0; return; }
+    // 押した場所が寄せたあとも真ん中に来るように送る。
+    var box = pane.getBoundingClientRect();
+    var rx = (x - box.left) / box.width, ry = (y - box.top) / box.height;
+    pane.scrollLeft = rx * (pane.scrollWidth - pane.clientWidth);
+    pane.scrollTop  = ry * (pane.scrollHeight - pane.clientHeight);
+  }
+  dlg.addEventListener('touchend', function(e){
+    var pane = e.target.closest && e.target.closest('.lightbox-pane');
+    if(!pane || e.changedTouches.length !== 1) return;
+    var t = e.changedTouches[0], now = e.timeStamp;
+    // 2回目が「前のタップの近く」かつ「すぐ」なら二度押し。指を滑らせた場合は
+    // 離す位置が前のタップから離れるので、この距離判定で自然に弾かれる。
+    var quick = now - lastTap < 320 && Math.abs(t.clientX - tapX) < 24 && Math.abs(t.clientY - tapY) < 24;
+    if(quick){
+      e.preventDefault();           // OS のスマートズームを止める
+      lastTap = 0;
+      toggleZoom(pane, t.clientX, t.clientY);
+      return;
+    }
+    lastTap = now; tapX = t.clientX; tapY = t.clientY;
+  });
+  // マウスの環境用。タッチでは lastTap が立つので、そちらで処理済みなら何もしない。
+  dlg.addEventListener('dblclick', function(e){
+    var pane = e.target.closest('.lightbox-pane');
+    if(!pane || lastTap !== 0) return;
+    e.preventDefault();
+    toggleZoom(pane, e.clientX, e.clientY);
+  });
+  // 送ったり閉じたりしたら寄りは解除する。寄ったまま次の1枚へ行くと迷子になる。
+  function unzoom(){
+    if(!dlg.classList.contains('is-zoomed')) return;
+    dlg.classList.remove('is-zoomed');
+    for(var i = 0; i < lbTrack.children.length; i++){
+      var p = lbTrack.children[i].querySelector('.lightbox-pane');
+      if(p){ p.scrollTop = 0; p.scrollLeft = 0; }
+    }
+  }
   dlg.addEventListener('keydown', function(e){
     if(e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
     var to = lbAt + (e.key === 'ArrowRight' ? 1 : -1);
     if(to < 0 || to >= lbTrack.children.length) return;
     e.preventDefault();
+    unzoom();
     lbAt = to;
     mark(lbDots, to);
     goTo(lbTrack, to, true);
   });
-  dlg.addEventListener('close', function(){ if(opener) opener.focus({preventScroll:true}); });
+  unzoomRef = unzoom;
+  dlg.addEventListener('close', function(){ unzoom(); if(opener) opener.focus({preventScroll:true}); });
 })();
 </script>
 </body>

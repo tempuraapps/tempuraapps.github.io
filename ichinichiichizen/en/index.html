@@ -33,12 +33,14 @@
     --bg:#FBF6F6; --surface:#FFFFFF; --ink:#18212B; --ink-2:#566270;
     --accent:#AC4254; --border:#EFE2E4; --grad-a:#AC4254; --grad-b:#E9A6B3;
     --icon-shadow:0 16px 40px rgba(0,0,0,.14), 0 0 0 1px rgba(24,33,43,.06); --card-shadow:0 1px 2px rgba(0,0,0,.04);
+    --shot-shadow:0 14px 36px rgba(0,0,0,.12);
   }
   @media (prefers-color-scheme: dark){
     :root{
       --bg:#141011; --surface:#1F1A1B; --ink:#F2F4F6; --ink-2:#A3AEBA;
       --accent:#ECA6B3; --border:#332629; --grad-a:#ECA6B3; --grad-b:#C9788A;
       --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
+      --shot-shadow:0 16px 44px rgba(0,0,0,.6);
     }
   }
   /* ===== 構造CSS（LP共通。トークンのみ参照）===== */
@@ -139,6 +141,18 @@
   a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
   .nowrap{ white-space:nowrap; }
 
+  /* アプリ画面。4画面を1枚にまとめた横長の紹介画像（ライト/ダーク共通） */
+  .shots{ padding-block:0 clamp(8px,2vw,16px); }
+  .shot{ margin:0; display:flex; flex-direction:column; align-items:center; }
+  /* 狭い画面では縮めずに横スクロールさせる。4枚並びのため幅なりに縮めると
+     画像に焼き込んだ見出しが読めなくなる（360px 幅だと1枚あたり約85px）。
+     min-width が max-width より優先されるので、640px を下限に溢れてスクロールする。 */
+  .shot-scroll{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .shot-img{
+    width:100%; min-width:640px; max-width:920px; height:auto; border-radius:12px;
+    border:1px solid var(--border); box-shadow:var(--shot-shadow);
+  }
+
   @media (prefers-reduced-motion: reduce){
     *{ animation:none !important; transition:none !important; }
   }
@@ -166,6 +180,16 @@
       <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
            あわせて CTA セクションの本文にも導線を足すこと。 -->
       <p class="platform">iOS 18.0 or later / iPhone</p>
+    </div>
+  </section>
+
+  <section class="shots" aria-label="App screens">
+    <div class="wrap">
+      <figure class="shot">
+        <div class="shot-scroll">
+          <img class="shot-img" src="../app-image-en.jpg" width="1920" height="1080" decoding="async" alt="Four app screens. 1. Home — “One good deed, one day at a time. Turn small acts of kindness into a daily habit.” 2. Calendar — “Every good day blooms. See a month of good deeds at a glance.” 3. Recap — “A month of kindness, all in one recap. Breakdowns, milestones, and past months (Pro).” 4. Settings — “Keep going through every season. Choose Spring, Summer, Autumn, or Winter (Pro).”">
+        </div>
+      </figure>
     </div>
   </section>
 

@@ -394,7 +394,7 @@
     </nav>
   </div>
 </footer>
-<dialog class="lightbox" aria-label="画面の拡大表示">
+<dialog class="lightbox" data-zoom="./app-image@2x.webp" aria-label="画面の拡大表示">
   <div class="lightbox-track">
     <div class="lightbox-slide"><div class="lightbox-pane"><div class="lightbox-crop" style="--i:0"><img alt="" decoding="async"></div></div></div>
     <div class="lightbox-slide"><div class="lightbox-pane"><div class="lightbox-crop" style="--i:1"><img alt="" decoding="async"></div></div></div>
@@ -488,8 +488,11 @@
     slide.addEventListener('click', function(){
       if(moved){ moved = false; return; }
       if(!loaded){
-        var src = slide.querySelector('img');
-        src = src.currentSrc || src.src;
+        // インラインは1画面260pxしか無いので 2560 版で十分。拡大表示は1画面が
+        // 実機の画面幅まで広がり、さらに二度押しで寄れるので、そこだけ 5120 版を読む。
+        // 開かれるまで取りに行かないので、最初の表示の重さは変わらない。
+        var img = slide.querySelector('img');
+        var src = dlg.getAttribute('data-zoom') || img.currentSrc || img.src;
         var big = dlg.querySelectorAll('.lightbox-pane img');
         for(var n = 0; n < big.length; n++) big[n].src = src;
         loaded = true;

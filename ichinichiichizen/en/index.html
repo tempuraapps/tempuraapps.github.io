@@ -156,6 +156,46 @@
   @media (prefers-reduced-motion: reduce){
     *{ animation:none !important; transition:none !important; }
   }
+  /* ===== 画像の拡大（LP共通）=====
+     スマホでは .shot-scroll の中で 640px の画像を横に引っ張って見る形になっていて、
+     4枚並びだと1枚あたり約160pxしかなく、焼き込んだ見出しが読めない。タップで dialog を開き、
+     画面の高さいっぱい（＝1枚が実機の幅にほぼ等しい）にして横スクロールで見せる。 */
+  .shot-zoom{
+    display:block; width:100%; min-width:640px; max-width:920px; overflow:visible;
+    margin:0; padding:0; border:0; background:none; font:inherit; color:inherit;
+    cursor:zoom-in; -webkit-tap-highlight-color:transparent;
+  }
+  .shot-zoom:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+  /* 拡大できることは見た目では分からないので一言添える。ただし script が動かなかったときに
+     嘘の案内が残らないよう、JS が付ける .has-lightbox が無ければ出さない。 */
+  .shot-hint{ display:none; margin:10px 0 0; font-size:13px; color:var(--ink-2); text-align:center; }
+  .has-lightbox .shot-hint{ display:block; }
+
+  .lightbox{
+    position:fixed; inset:0; width:100%; height:100dvh; max-width:100%; max-height:100dvh;
+    margin:0; padding:0; border:0; overflow:hidden; background:#000;
+  }
+  .lightbox::backdrop{ background:#000; }
+  .lightbox-scroll{
+    width:100%; height:100%; overflow:auto; -webkit-overflow-scrolling:touch;
+    display:flex; align-items:center;
+  }
+  /* 高さを画面いっぱいに固定して、はみ出した幅を横スクロールで送る。 */
+  .lightbox-img{ height:100%; width:auto; max-width:none; margin-inline:auto; border-radius:0; }
+  .lightbox-close{
+    position:absolute; top:max(10px, env(safe-area-inset-top)); right:max(10px, env(safe-area-inset-right));
+    width:44px; height:44px; padding:0; border:0; border-radius:50%;
+    /* 画像は明るいものも暗いものもあるので、地色を暗く敷いた上に白抜きにして
+       どちらの上でも読めるようにする（白の半透明だと明るい画面の上で消える）。 */
+    background:rgba(0,0,0,.55); box-shadow:0 0 0 1px rgba(255,255,255,.35);
+    color:#fff; font-size:24px; line-height:1; cursor:pointer;
+  }
+  .lightbox-close:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
+  /* マウスの環境では横に送らせる意味がないので、全体を1枚に収める。 */
+  @media (min-width:900px){
+    .lightbox-scroll{ justify-content:center; padding:24px; }
+    .lightbox-img{ height:auto; width:100%; max-width:1820px; max-height:100%; object-fit:contain; }
+  }
 </style>
 </head>
 <body>
@@ -187,8 +227,11 @@
     <div class="wrap">
       <figure class="shot">
         <div class="shot-scroll">
-          <img class="shot-img" src="../app-image-en.jpg" width="1920" height="1080" decoding="async" alt="Four app screens. 1. Home — “One good deed, one day at a time. Turn small acts of kindness into a daily habit.” 2. Calendar — “Every good day blooms. See a month of good deeds at a glance.” 3. Recap — “A month of kindness, all in one recap. Breakdowns, milestones, and past months (Pro).” 4. Settings — “Keep going through every season. Choose Spring, Summer, Autumn, or Winter (Pro).”">
+          <button type="button" class="shot-zoom">
+            <img class="shot-img" src="../app-image-en.jpg" width="1920" height="1080" decoding="async" alt="Four app screens. 1. Home — “One good deed, one day at a time. Turn small acts of kindness into a daily habit.” 2. Calendar — “Every good day blooms. See a month of good deeds at a glance.” 3. Recap — “A month of kindness, all in one recap. Breakdowns, milestones, and past months (Pro).” 4. Settings — “Keep going through every season. Choose Spring, Summer, Autumn, or Winter (Pro).”">
+          </button>
         </div>
+        <figcaption class="shot-hint">Tap to enlarge</figcaption>
       </figure>
     </div>
   </section>
@@ -257,5 +300,46 @@
     </nav>
   </div>
 </footer>
+<dialog class="lightbox" aria-label="Enlarged view">
+  <div class="lightbox-scroll">
+    <img class="lightbox-img" alt="" decoding="async">
+  </div>
+  <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+</dialog>
+<script>
+(function(){
+  var trigger = document.querySelector('.shot-zoom');
+  var dlg = document.querySelector('.lightbox');
+  if(!trigger || !dlg || typeof dlg.showModal !== 'function') return;
+
+  var img = trigger.querySelector('.shot-img');
+  var big = dlg.querySelector('.lightbox-img');
+  var scroller = dlg.querySelector('.lightbox-scroll');
+  var moved = false, sx = 0, sy = 0;
+
+  document.documentElement.classList.add('has-lightbox');
+
+  // .shot-scroll の中で画像を横に引っ張って見る作りなので、送るつもりのドラッグで
+  // 開いてしまわないように、10px 以上動いたタッチは開く操作として扱わない。
+  trigger.addEventListener('touchstart', function(e){
+    moved = false; sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+  }, {passive:true});
+  trigger.addEventListener('touchmove', function(e){
+    var t = e.touches[0];
+    if(Math.abs(t.clientX - sx) > 10 || Math.abs(t.clientY - sy) > 10) moved = true;
+  }, {passive:true});
+
+  trigger.addEventListener('click', function(){
+    if(moved){ moved = false; return; }
+    if(!big.getAttribute('src')) big.src = img.currentSrc || img.src;
+    dlg.showModal();
+    scroller.scrollLeft = 0;
+  });
+
+  // 画像そのものは掴んで送るので、閉じるのは画像の外（余白と閉じるボタン）だけにする。
+  dlg.addEventListener('click', function(e){ if(e.target !== big) dlg.close(); });
+  dlg.addEventListener('close', function(){ trigger.focus({preventScroll:true}); });
+})();
+</script>
 </body>
 </html>

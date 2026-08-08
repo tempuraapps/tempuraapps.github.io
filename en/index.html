@@ -89,6 +89,62 @@
   @media (prefers-color-scheme: dark){
     .cover{ filter:brightness(.88); }
   }
+  /* バナーを押すと拡大できる。押せる見た目は cursor だけで示し、案内の文言は置かない。
+     JS が動いたときだけ .has-lightbox が付くので、押しても何も起きない状態で
+     zoom-in のカーソルが出ることはない。 */
+  .cover-btn{
+    display:block; width:100%; padding:0; border:0; background:none;
+    line-height:0; border-radius:clamp(12px,2.5vw,20px);
+  }
+  .has-lightbox .cover-btn{ cursor:zoom-in; }
+  .cover-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+  /* ===== 拡大表示 =====
+     LP と同じ <dialog>。バナーは1枚なので画面に収まるまで縮めて出すだけでよい。
+     さらに寄せたいときは、つまむ操作（touch-action:manipulation は二度押しの拡大だけを
+     止め、つまみは残す）で寄れる。 */
+  .lightbox{
+    position:fixed; inset:0; width:100%; height:100dvh; max-width:100%; max-height:100dvh;
+    margin:0; padding:0; border:0; background:#000;
+    /* iOS は画像を二度押しするとページ側を拡大する。拡大表示では邪魔にしかならないので止める。 */
+    touch-action:manipulation;
+  }
+  .lightbox[open]{
+    display:flex; align-items:center; justify-content:center;
+    padding:clamp(8px,3vw,24px);
+  }
+  .lightbox::backdrop{ background:#000; }
+  /* 黒地の上なので、インラインの .cover と違って暗く落とす必要はない。
+     拡大しているときは、絵をそのままの明るさで見せたい。 */
+  .lightbox img{
+    width:auto; height:auto; max-width:100%; max-height:100%;
+    border-radius:clamp(6px,1.5vw,12px); cursor:zoom-out;
+  }
+  /* 狭い画面では、画面に収めても大きくならない（インラインでもすでに幅いっぱいで、
+     390px なら 1.05倍にしかならない）。読める大きさまで寄せて、はみ出したぶんは
+     横に送って見る。1000px あれば、帯の中の文字が実機でも読める大きさになる。 */
+  @media (max-width:899px){
+    /* はみ出したぶんを左右どちらへも送れるようにする。justify-content:center のままだと
+       右へは送れるが左が届かない（中央寄せの分がマイナス位置に行くため）。
+       flex-start に戻したうえで margin:auto で中央に置くと、両側とも送れる。 */
+    .lightbox[open]{
+      padding:0; overflow:auto; overscroll-behavior:contain; justify-content:flex-start;
+      -webkit-overflow-scrolling:touch; scrollbar-width:none;   /* 送れる帯は LP と同じく隠す */
+    }
+    .lightbox[open]::-webkit-scrollbar{ display:none; }
+    .lightbox img{
+      flex:none; margin:auto;
+      width:1000px; max-width:none; max-height:none; border-radius:0;
+    }
+  }
+  .lightbox-close{
+    position:absolute; top:max(10px, env(safe-area-inset-top)); right:max(10px, env(safe-area-inset-right));
+    width:44px; height:44px; padding:0; border:0; border-radius:50%;
+    /* バナーは明るいので、地色を暗く敷いた上に白抜きにしないと消える。 */
+    background:rgba(0,0,0,.55); box-shadow:0 0 0 1px rgba(255,255,255,.35);
+    color:#fff; font-size:24px; line-height:1; cursor:pointer;
+  }
+  .lightbox-close:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
 
   /* hero */
   .hero{
@@ -176,7 +232,9 @@
   <div class="wrap cover-wrap">
     <!-- X / Instagram / Facebook と同じブランドバナー。装飾なので alt は空。
          ページ本体の見出しと連絡先がテキストとして別にあるため、情報は欠けない。 -->
-    <img class="cover" src="../cover.jpg" width="1600" height="640" alt="" fetchpriority="high">
+    <button type="button" class="cover-btn" aria-label="Enlarge the banner">
+      <img class="cover" src="../cover.jpg" width="1600" height="640" alt="" fetchpriority="high">
+    </button>
   </div>
 
   <section class="hero">
@@ -286,5 +344,35 @@
     <p>© 2026 TempuraApps</p>
   </div>
 </footer>
+<dialog class="lightbox" data-zoom="../cover@2x.jpg" aria-label="Enlarged banner">
+  <img alt="" decoding="async">
+  <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+</dialog>
+<script>
+(function(){
+  var btn = document.querySelector('.cover-btn');
+  var dlg = document.querySelector('.lightbox');
+  if(!btn || !dlg || typeof dlg.showModal !== 'function') return;
+
+  // 押しても何も起きない状態で「押せる見た目」を出さないよう、JS が通ってから付ける。
+  document.documentElement.classList.add('has-lightbox');
+
+  var opener = null, loaded = false;
+  btn.addEventListener('click', function(){
+    if(!loaded){
+      // インラインは 920px までしか出ないので 1600 版で足りる。拡大では素材の原寸まで
+      // 寄せるので、そこだけ 1983 版を読む。開かれるまで取りに行かない。
+      var img = dlg.querySelector('img');
+      img.src = dlg.getAttribute('data-zoom');
+      loaded = true;
+    }
+    opener = btn;
+    dlg.showModal();
+  });
+  // 1枚しか無く送る操作も無いので、画像の上を押しても閉じてよい。
+  dlg.addEventListener('click', function(){ dlg.close(); });
+  dlg.addEventListener('close', function(){ if(opener) opener.focus({preventScroll:true}); });
+})();
+</script>
 </body>
 </html>

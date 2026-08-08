@@ -90,24 +90,23 @@
     .cover{ filter:brightness(.88); }
   }
   /* バナーを押すと拡大できる。押せる見た目は cursor だけで示し、案内の文言は置かない。
-     JS が動いたときだけ .has-lightbox が付くので、押しても何も起きない状態で
-     zoom-in のカーソルが出ることはない。 */
+     ただし拡大は 900px 以上のときだけ。狭い画面ではインラインですでに幅いっぱいに
+     出ているので、拡大しても大きくならず、押せても意味がないため。
+     JS が動いて、かつ広い画面のときだけ .has-lightbox が付く。 */
   .cover-btn{
     display:block; width:100%; padding:0; border:0; background:none;
     line-height:0; border-radius:clamp(12px,2.5vw,20px);
   }
+  /* 狭い画面では JS が disabled にする。既定の淡色化は絵に掛けたくないので戻す。 */
+  .cover-btn:disabled{ opacity:1; cursor:default; }
   .has-lightbox .cover-btn{ cursor:zoom-in; }
   .cover-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
 
-  /* ===== 拡大表示 =====
-     LP と同じ <dialog>。バナーは1枚なので画面に収まるまで縮めて出すだけでよい。
-     さらに寄せたいときは、つまむ操作（touch-action:manipulation は二度押しの拡大だけを
-     止め、つまみは残す）で寄れる。 */
+  /* ===== 拡大表示（900px 以上のみ）=====
+     LP と同じ <dialog>。バナーは1枚なので、画面に収まるまで縮めて出すだけでよい。 */
   .lightbox{
     position:fixed; inset:0; width:100%; height:100dvh; max-width:100%; max-height:100dvh;
     margin:0; padding:0; border:0; background:#000;
-    /* iOS は画像を二度押しするとページ側を拡大する。拡大表示では邪魔にしかならないので止める。 */
-    touch-action:manipulation;
   }
   .lightbox[open]{
     display:flex; align-items:center; justify-content:center;
@@ -119,23 +118,6 @@
   .lightbox img{
     width:auto; height:auto; max-width:100%; max-height:100%;
     border-radius:clamp(6px,1.5vw,12px); cursor:zoom-out;
-  }
-  /* 狭い画面では、画面に収めても大きくならない（インラインでもすでに幅いっぱいで、
-     390px なら 1.05倍にしかならない）。読める大きさまで寄せて、はみ出したぶんは
-     横に送って見る。1000px あれば、帯の中の文字が実機でも読める大きさになる。 */
-  @media (max-width:899px){
-    /* はみ出したぶんを左右どちらへも送れるようにする。justify-content:center のままだと
-       右へは送れるが左が届かない（中央寄せの分がマイナス位置に行くため）。
-       flex-start に戻したうえで margin:auto で中央に置くと、両側とも送れる。 */
-    .lightbox[open]{
-      padding:0; overflow:auto; overscroll-behavior:contain; justify-content:flex-start;
-      -webkit-overflow-scrolling:touch; scrollbar-width:none;   /* 送れる帯は LP と同じく隠す */
-    }
-    .lightbox[open]::-webkit-scrollbar{ display:none; }
-    .lightbox img{
-      flex:none; margin:auto;
-      width:1000px; max-width:none; max-height:none; border-radius:0;
-    }
   }
   .lightbox-close{
     position:absolute; top:max(10px, env(safe-area-inset-top)); right:max(10px, env(safe-area-inset-right));
@@ -354,14 +336,26 @@
   var dlg = document.querySelector('.lightbox');
   if(!btn || !dlg || typeof dlg.showModal !== 'function') return;
 
-  // 押しても何も起きない状態で「押せる見た目」を出さないよう、JS が通ってから付ける。
-  document.documentElement.classList.add('has-lightbox');
+  // 拡大は広い画面のときだけ。狭い画面ではインラインですでに幅いっぱいに出ていて、
+  // 拡大しても大きくならないため（390px だと 1.05倍にしかならない）。
+  var wide = matchMedia('(min-width:900px)');
+  function sync(){
+    var on = wide.matches;
+    document.documentElement.classList.toggle('has-lightbox', on);
+    btn.disabled = !on;                       // 読み上げ・キーボードからも外す
+    if(!on && dlg.open) dlg.close();          // 広い画面で開いたまま狭くされたとき用
+  }
+  sync();
+  // Safari 13 以前は addEventListener を持たないので、その場合だけ addListener に落とす。
+  if(wide.addEventListener) wide.addEventListener('change', sync);
+  else if(wide.addListener) wide.addListener(sync);
 
   var opener = null, loaded = false;
   btn.addEventListener('click', function(){
+    if(!wide.matches) return;
     if(!loaded){
       // インラインは 920px までしか出ないので 1600 版で足りる。拡大では素材の原寸まで
-      // 寄せるので、そこだけ 1983 版を読む。開かれるまで取りに行かない。
+      // 出せるので、そこだけ 1983 版を読む。開かれるまで取りに行かない。
       var img = dlg.querySelector('img');
       img.src = dlg.getAttribute('data-zoom');
       loaded = true;

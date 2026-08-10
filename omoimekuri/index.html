@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TempuraApps | おもいめくり — 大切な一枚が、今日のあなたに会いにくる。</title>
+<meta name="description" content="選んだ写真のテーマから、毎日一枚だけが届く日めくりアプリ。「また会いたい」を押した写真は少し戻ってきやすくなり、ホーム画面ウィジェットにも同じ一枚。写真は端末内だけに保存され、アプリ内へは複製されません。アカウント不要・広告なしのiPhone向けアプリ。">
+<meta name="theme-color" content="#FFF9F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C1917" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://tempuraapps.github.io/omoimekuri/">
+<link rel="alternate" hreflang="ja" href="https://tempuraapps.github.io/omoimekuri/">
+<link rel="alternate" hreflang="en" href="https://tempuraapps.github.io/omoimekuri/en/">
+<link rel="alternate" hreflang="x-default" href="https://tempuraapps.github.io/omoimekuri/">
+<link rel="icon" type="image/png" sizes="64x64" href="./icon-64.png">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TempuraApps">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="TempuraApps | おもいめくり — 大切な一枚が、今日のあなたに会いにくる。">
+<meta property="og:description" content="選んだ写真のテーマから、毎日一枚だけが届く日めくりアプリ。「また会いたい」を押した写真は少し戻ってきやすくなります。">
+<meta property="og:url" content="https://tempuraapps.github.io/omoimekuri/">
+<meta property="og:image" content="https://tempuraapps.github.io/omoimekuri/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="おもいめくりのアプリアイコン">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    color-scheme: light dark;
+    /* ===== THEME TOKENS（アプリの Theme.swift のブランド色に合わせる）=====
+       おもいめくりの既定パレットは橙。hero のグラデーションの上で WCAG AA 4.5:1 を
+       満たすよう調整済みの値を使う（ライト/ダークとも）。 */
+    --bg:#FFF9F2; --surface:#FFFFFF; --ink:#2B2118; --ink-2:#6B6058;
+    --accent:#B84E1B; --border:#E8DDD3; --grad-a:#F5A06E; --grad-b:#E86F36;
+    --icon-shadow:0 16px 40px rgba(0,0,0,.14), 0 0 0 1px rgba(56,47,53,.06); --card-shadow:0 1px 2px rgba(0,0,0,.04);
+    --shot-shadow:0 14px 36px rgba(0,0,0,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1C1917; --surface:#262220; --ink:#F2EBE3; --ink-2:#A89C92;
+      --accent:#F5A06E; --border:#3A332E; --grad-a:#F5A06E; --grad-b:#E86F36;
+      --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
+      --shot-shadow:0 16px 44px rgba(0,0,0,.6);
+    }
+  }
+  /* ===== 構造CSS（LP共通。トークンのみ参照）===== */
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Helvetica Neue",Arial,sans-serif;
+    line-height:1.85; font-size:16px; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:960px; margin-inline:auto; padding-inline:20px; }
+
+  /* header */
+  .site-head .head-inner{
+    display:flex; align-items:center; justify-content:space-between; min-height:56px; gap:12px; flex-wrap:wrap;
+  }
+  .wordmark{ font-size:13px; letter-spacing:.06em; color:var(--ink-2); font-weight:600; }
+  .wordmark:hover{ color:var(--accent); }
+  .head-links, .foot-links{ display:flex; align-items:center; flex-wrap:wrap; gap:18px; row-gap:2px; }
+  .head-links a, .foot-links a{ white-space:nowrap; }
+  .head-link{ font-size:14px; color:var(--ink-2); padding:8px 0; }
+  .head-link:hover{ color:var(--accent); }
+
+  /* hero */
+  .hero{
+    text-align:center;
+    padding-block:clamp(40px,10vw,96px) clamp(48px,9vw,88px);
+    background:var(--bg);
+    background-image:
+      radial-gradient(120% 70% at 50% -20%, color-mix(in srgb, var(--grad-a) 15%, transparent), transparent 70%),
+      radial-gradient(60% 42% at 82% 0%, color-mix(in srgb, var(--grad-b) 12%, transparent), transparent 70%);
+  }
+  .hero-inner{ max-width:640px; margin-inline:auto; padding-inline:20px; }
+  .app-icon{
+    width:128px; height:128px; border-radius:22.37%;
+    margin:0 auto 24px; box-shadow:var(--icon-shadow);
+  }
+  .eyebrow{ font-size:13px; letter-spacing:.08em; color:var(--accent); font-weight:600; margin:0 0 10px; }
+  h1{
+    font-size:clamp(30px,7.5vw,46px); line-height:1.3; letter-spacing:-0.02em;
+    font-weight:700; margin:0 0 16px;
+  }
+  .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
+  .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+
+  /* features */
+  .features{ padding-block:clamp(56px,11vw,104px); }
+  h2{
+    font-size:clamp(24px,5vw,32px); line-height:1.3; letter-spacing:-0.02em;
+    font-weight:700; text-align:center; margin:0 0 36px;
+  }
+  .cards{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+  @media (min-width:640px){ .cards{ grid-template-columns:1fr 1fr; gap:20px; } }
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:24px; box-shadow:var(--card-shadow); }
+  .chip{
+    width:44px; height:44px; border-radius:12px; margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent);
+    background:var(--surface);
+    background:color-mix(in srgb, var(--accent) 13%, var(--surface));
+  }
+  .chip svg{ width:24px; height:24px; }
+  .card h3{ font-size:17px; font-weight:600; margin:0 0 6px; }
+  .card p{ font-size:15px; color:var(--ink-2); margin:0; }
+  .instruments{ text-align:center; font-size:14px; color:var(--ink-2); margin:24px 0 0; }
+
+  /* privacy */
+  .privacy{ padding-block:0 clamp(56px,11vw,104px); }
+  .privacy-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:24px;
+    padding:clamp(28px,5vw,40px); text-align:center; max-width:720px; margin-inline:auto; box-shadow:var(--card-shadow);
+  }
+  .privacy-box h2{ margin:0 0 14px; }
+  .privacy-box p{ font-size:16px; color:var(--ink-2); max-width:34em; margin:0 auto; }
+
+  /* cta */
+  .cta{
+    text-align:center; padding-block:clamp(56px,11vw,104px);
+    background-image:radial-gradient(80% 70% at 50% 130%, color-mix(in srgb, var(--grad-a) 12%, transparent), transparent 72%);
+  }
+  .cta-head{ font-size:clamp(24px,5vw,34px); line-height:1.35; font-weight:700; letter-spacing:-0.02em; margin:0 0 12px; }
+  .cta p{ font-size:15px; color:var(--ink-2); margin:0; }
+
+  /* footer */
+  .site-foot{ border-top:1px solid var(--border); }
+  .site-foot .foot-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding-block:22px; font-size:13px; color:var(--ink-2);
+  }
+  .site-foot a{ color:var(--ink-2); }
+  .site-foot a:hover{ color:var(--accent); }
+  .foot-links a{ padding:6px 0; }
+
+  /* 地の文に混ざるリンクは、色だけでは本文と見分けられないので下線を戻す */
+  .privacy-box p a, .cta p a{ text-decoration:underline; text-underline-offset:2px; }
+  /* キーボード操作中の現在位置を明示する */
+  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+  /* 見出しを語中で割らせず、読点の位置でだけ折り返す */
+  .nowrap{ white-space:nowrap; }
+
+  /* アプリ画面。4画面を1枚にまとめた横長の紹介画像（ライト/ダーク共通） */
+  .shots{ padding-block:0 clamp(8px,2vw,16px); }
+  .shot{ margin:0; }
+  .sr-only{
+    position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+    overflow:hidden; clip-path:inset(50%); white-space:nowrap;
+  }
+
+  /* ===== 画面の紹介（LP共通）=====
+     素材は「4画面ぶんを横に並べた1枚の合成画像」（比率16:9）。これを CSS で4分割して
+     1画面ずつ見せる。画像ファイルは1枚のままで、追加の書き出しは要らない。
+       スマホ  … 1画面ずつスナップして送る。前後が少し覗くので送れることが分かる
+       900px〜 … 4枚を隙間なく並べる。合成画像そのままの見た目で、送る操作は要らない
+     枠に対して画像を 400% の幅で置き、1画面ぶん（-100%）ずつ左へずらして目的の1枚を出す。
+     以前は 640px の画像を横に引っ張らせていたが、スクロールバーが出るうえ、
+     4枚のうちどこを見ているのか分からなかった。 */
+  .shot-frame{ width:100%; }
+  .shot-track{
+    display:flex; gap:12px; overflow-x:auto; overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    padding-inline:max(0px, calc((100% - 260px) / 2)); scrollbar-width:none;
+  }
+  .shot-track::-webkit-scrollbar{ display:none; }
+  .shot-slide{
+    flex:0 0 auto; width:260px; aspect-ratio:4/9; scroll-snap-align:center;
+    position:relative; overflow:hidden; margin:0; padding:0; background:none;
+    border:1px solid var(--border); border-radius:12px; box-shadow:var(--shot-shadow);
+    cursor:zoom-in; -webkit-tap-highlight-color:transparent;
+  }
+  .shot-slide:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+  .shot-slide img{
+    position:absolute; top:0; left:calc(var(--i) * -100%);
+    height:100%; width:auto; max-width:none;
+  }
+  /* ドットは JS が動いて初めて機能するので、押しても何も起きない状態で出さない
+     （ヒントと同じ扱い）。JS 無しでも枠内を指でなぞれば送れる。 */
+  .shot-dots{ display:none; justify-content:center; gap:8px; margin-top:14px; }
+  .has-lightbox .shot-dots{ display:flex; }
+  .shot-dot{
+    width:8px; height:8px; padding:0; border:0; border-radius:50%;
+    background:var(--ink-2); opacity:.28; cursor:pointer;
+  }
+  .shot-dot[aria-current="true"]{ opacity:1; background:var(--accent); }
+  /* 拡大できることは見た目では分からないので一言添える。ただし script が動かなかったときに
+     嘘の案内が残らないよう、JS が付ける .has-lightbox が無ければ出さない。 */
+  .shot-hint{ display:none; margin:10px 0 0; font-size:13px; color:var(--ink-2); text-align:center; }
+  .has-lightbox .shot-hint{ display:block; }
+
+  @media (min-width:900px){
+    /* 送る意味がないので4枚を隙間なく並べる。角丸と枠は外側にまとめて1枚に見せる。 */
+    .shot-frame{
+      max-width:920px; margin-inline:auto; overflow:hidden; border-radius:12px;
+      border:1px solid var(--border); box-shadow:var(--shot-shadow);
+    }
+    .shot-track{ gap:0; padding-inline:0; overflow:visible; scroll-snap-type:none; }
+    .shot-slide{ flex:1 1 0; width:auto; border:0; border-radius:0; box-shadow:none; }
+    .shot-dots, .has-lightbox .shot-dots{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+  /* ===== 拡大表示（LP共通）=====
+     .shot-slide と同じ4分割の仕掛けで、1画面を画面の高さいっぱいに出す。
+     390x844 なら1枚が約375px＝実機の画面幅とほぼ同じになる。
+     900px 以上は送る必要がないので、4枚まとめて画面に収める。 */
+  .lightbox{
+    position:fixed; inset:0; width:100%; height:100dvh; max-width:100%; max-height:100dvh;
+    margin:0; padding:0; border:0; overflow:hidden; background:#000;
+    /* iOS は画像を二度押しするとページ側を拡大する。拡大表示では邪魔にしかならないので
+       止める。manipulation は送り・つまみは残したまま二度押し拡大だけを無効にする。 */
+    touch-action:manipulation;
+  }
+  .lightbox::backdrop{ background:#000; }
+  .lightbox-track{
+    display:flex; width:100%; height:100%; overflow-x:auto; overscroll-behavior:contain;
+    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  }
+  .lightbox-track::-webkit-scrollbar{ display:none; }
+  .lightbox-slide{
+    flex:0 0 100%; height:100%; scroll-snap-align:center;
+    display:flex; align-items:center; justify-content:center;
+  }
+  /* 1画面ぶんの切り抜き。img を4画面ぶんの幅のまま置いて、--i の位置までずらして見せる。 */
+  .lightbox-pane{
+    height:100%; aspect-ratio:4/9; position:relative; overflow:hidden;
+    touch-action:manipulation;
+  }
+  .lightbox-pane img{
+    position:absolute; top:0; left:calc(var(--i) * -100%);
+    height:100%; width:auto; max-width:none;
+  }
+  /* 閉じるボタンと同じ理由で、地色を暗く敷いた上に白を置く。明るい画面の上だと
+     白い点だけでは消えてしまう。 */
+  .lightbox-dots{
+    position:absolute; left:50%; transform:translateX(-50%);
+    bottom:max(18px, env(safe-area-inset-bottom));
+    display:flex; gap:10px; padding:9px 13px; border-radius:999px;
+    background:rgba(0,0,0,.45);
+  }
+  .lightbox-dot{
+    width:8px; height:8px; padding:0; border:0; border-radius:50%;
+    background:#fff; opacity:.4; cursor:pointer;
+  }
+  .lightbox-dot[aria-current="true"]{ opacity:1; }
+  .lightbox-dot:focus-visible, .lightbox-close:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
+  .lightbox-close{
+    position:absolute; top:max(10px, env(safe-area-inset-top)); right:max(10px, env(safe-area-inset-right));
+    width:44px; height:44px; padding:0; border:0; border-radius:50%;
+    /* 画像は明るいものも暗いものもあるので、地色を暗く敷いた上に白抜きにして
+       どちらの上でも読めるようにする（白の半透明だと明るい画面の上で消える）。 */
+    background:rgba(0,0,0,.55); box-shadow:0 0 0 1px rgba(255,255,255,.35);
+    color:#fff; font-size:24px; line-height:1; cursor:pointer;
+  }
+  @media (min-width:900px){
+    .lightbox[open]{ display:flex; align-items:center; justify-content:center; padding:24px; }
+    /* 幅は「入る高さから逆算した幅」と「実際の幅」の小さい方。max-width で詰めると
+       高さが比率どおりに縮まず、4分割の切り出し位置がずれる。 */
+    .lightbox-track{
+      width:min(100%, calc((100dvh - 48px) * 16 / 9)); height:auto; aspect-ratio:16/9;
+      overflow:visible; scroll-snap-type:none;
+    }
+    .lightbox-slide{ flex:1 1 0; height:auto; }
+    .lightbox-pane{ width:100%; height:auto; }
+    .lightbox-dots{ display:none; }
+  }
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="wordmark" href="../">TempuraApps</a>
+    <nav class="head-links" aria-label="サイト内リンク">
+      <a class="head-link" href="./support.html">サポート</a>
+      <a class="head-link" href="./privacy.html">プライバシーポリシー</a>
+      <a class="head-link" href="./en/" lang="en" hreflang="en">English</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <img class="app-icon" src="./icon-384.jpg" width="128" height="128" fetchpriority="high" alt="おもいめくり（アプリアイコン）">
+      <p class="eyebrow">おもいめくり</p>
+      <h1><span class="nowrap">大切な一枚が、</span><span class="nowrap">今日のあなたに会いにくる。</span></h1>
+      <p class="subcopy">テーマに写真を集めておくと、毎日一枚だけが大きく届きます。「また会いたい」を押した写真は少し戻ってきやすくなり、同じ日はウィジェットにもアプリにも同じ一枚が表示されます。見たくない日は「今は出さない」でそっと外せます（写真は消えません）。アカウント不要・広告なしの日めくりアプリです。</p>
+      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
+           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p class="platform">iOS 18.0 以降 / iPhone 向け（iPad 非対応・表示言語は日本語のみ）</p>
+    </div>
+  </section>
+
+  <section class="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <h2 id="features-h">毎日をめくるための、6つの道具</h2>
+      <ul class="cards" role="list">
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 16.5l4.5-4.5 3 3 3.5-4 5 5.5"/></svg>
+          </div>
+          <h3>テーマをつくる</h3>
+          <p>大切な人・ペット・思い出に名前をつけ、代表色を6色から選びます。写真は端末の写真ライブラリから複数選ぶだけです。作れるテーマは1つです。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="14" height="14" rx="3"/><path d="M4.5 15l3.5-4 2.5 2.5 3-3.5 3.5 4"/><circle cx="19" cy="6" r="2.6"/></svg>
+          </div>
+          <h3>今日の一枚</h3>
+          <p>アプリを開くと、その日の一枚が大きく表示されます。同じ日のあいだは変わらないので、ウィジェットとアプリで同じ写真が出ます。写真の上にテーマ名と日付、下に撮影日が並びます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 20.5c-3.4-2.3-6.5-4.8-6.5-8A3.6 3.6 0 0 1 12 10a3.6 3.6 0 0 1 6.5 2.5c0 3.2-3.1 5.7-6.5 8z"/></svg>
+          </div>
+          <h3>また会いたい</h3>
+          <p>今日の一枚に押せるボタンです。お気に入り登録ではなく、その写真が日めくりに再登場しやすくなるという意味です。もう一度押すと解除できます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 12s3.2-6 8-6 8 6 8 6-3.2 6-8 6-8-6-8-6z"/><path d="M4 4l16 16"/></svg>
+          </div>
+          <h3>今は出さない</h3>
+          <p>気持ちに合わない写真を、1週間または1か月だけ日めくりから外せます。写真が削除されることはありません。テーマ編集からいつでも戻せます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="3.5" width="8" height="8" rx="2"/><rect x="13.5" y="3.5" width="7" height="17" rx="2"/><rect x="3.5" y="13.5" width="8" height="7" rx="2"/></svg>
+          </div>
+          <h3>ホーム画面ウィジェット</h3>
+          <p>小・中サイズのウィジェットに、今日の一枚とテーマ名・日付を表示します。タップするとアプリが開きます。更新のタイミングは iOS の仕様で前後することがあります。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="3.5" width="11" height="16" rx="2.5"/><rect x="9" y="6.5" width="11" height="16" rx="2.5"/></svg>
+          </div>
+          <h3>今月のめくり</h3>
+          <p>月末に、その月「また会いたい」を押した写真から最大4枚をまとめます。4枚に満たないときは、その月に出会った写真で補います。縦長のカード画像として写真アプリに保存できます。</p>
+        </li>
+      </ul>
+      <p class="instruments">写真の選び方は、完全なランダムでも人気順でもありません。「また会いたい」を押した写真は少し戻ってきやすくなり、直近に出た写真や前日に出た写真は出にくくなります。忘れていた一枚にも会えて、大切な一枚は少し戻ってきやすい、そのくらいのゆるさで選ばれます。</p>
+      <p class="instruments">テーマを複数つくる・写真を無制限に追加する（無料は50枚まで）・月次カードのレイアウトを選ぶ・過去のめくりを全期間見返すことは、おもいめくり Pro として近日公開予定です。詳しくは<a href="./support.html">サポート</a>をご覧ください。</p>
+    </div>
+  </section>
+
+  <section class="privacy" aria-labelledby="privacy-h">
+    <div class="wrap">
+      <div class="privacy-box">
+        <h2 id="privacy-h"><span class="nowrap">写真は、</span><span class="nowrap">あなたの端末の中に</span></h2>
+        <p>写真そのもの・テーマ名・撮影日・写真の識別子は、すべて端末内にのみ保存され、外部に送信されることはありません。写真をアプリ内に複製することはなく、写真ライブラリの識別子だけを保存して都度読み出します。品質改善のための匿名の利用状況の計測は行っていますが、送るのは操作の種別だけで、写真やテーマ名の内容は含みません。詳細は<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-h">
+    <div class="wrap">
+      <h2 class="cta-head" id="cta-h">今日の一枚に、会いにいこう。</h2>
+      <p>よくあるご質問は<a href="./support.html">サポート</a>に掲載しています。お問い合わせ: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <span>© 2026 TempuraApps</span>
+    <nav class="foot-links" aria-label="補助リンク">
+      <a href="./support.html">サポート</a>
+      <a href="./privacy.html">プライバシーポリシー</a>
+      <a href="./en/" lang="en" hreflang="en">English</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

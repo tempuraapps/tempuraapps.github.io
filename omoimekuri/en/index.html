@@ -294,6 +294,29 @@
     </div>
   </section>
 
+  <section class="shots" aria-label="App screens">
+    <div class="wrap">
+      <figure class="shot">
+        <p class="sr-only">Four screens from the app. 1. Today&rsquo;s photo &mdash; one photo from your theme arrives large. 2. Edit theme &mdash; choose which photos turn, and see how often you tapped See again and when each last appeared. 3. This month&rsquo;s turn &mdash; four photos you wanted to see again become one card. 4. How to use &mdash; one photo a day, what See again means, and how to add the widget.</p>
+        <div class="shot-frame">
+          <div class="shot-track">
+            <button type="button" class="shot-slide" style="--i:0" aria-label="Enlarge screen 1"><img src="../app-image-en.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:1" aria-label="Enlarge screen 2"><img src="../app-image-en.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:2" aria-label="Enlarge screen 3"><img src="../app-image-en.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:3" aria-label="Enlarge screen 4"><img src="../app-image-en.webp" alt="" decoding="async"></button>
+          </div>
+        </div>
+        <div class="shot-dots">
+          <button type="button" class="shot-dot" aria-label="Show screen 1"></button>
+          <button type="button" class="shot-dot" aria-label="Show screen 2"></button>
+          <button type="button" class="shot-dot" aria-label="Show screen 3"></button>
+          <button type="button" class="shot-dot" aria-label="Show screen 4"></button>
+        </div>
+        <figcaption class="shot-hint">Tap to enlarge</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <section class="features" aria-labelledby="features-h">
     <div class="wrap">
       <h2 id="features-h">Six tools for turning the page each day</h2>
@@ -373,5 +396,141 @@
     </nav>
   </div>
 </footer>
+<!-- data-zoom は拡大表示だけが読む画像。姉妹アプリと同じく 5120x2880 の @2x を指す。 -->
+<dialog class="lightbox" data-zoom="../app-image-en@2x.webp" aria-label="Enlarged view">
+  <div class="lightbox-track">
+    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:0"><img alt="" decoding="async"></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:1"><img alt="" decoding="async"></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:2"><img alt="" decoding="async"></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:3"><img alt="" decoding="async"></div></div>
+  </div>
+  <div class="lightbox-dots">
+    <button type="button" class="lightbox-dot" aria-label="Show screen 1"></button>
+    <button type="button" class="lightbox-dot" aria-label="Show screen 2"></button>
+    <button type="button" class="lightbox-dot" aria-label="Show screen 3"></button>
+    <button type="button" class="lightbox-dot" aria-label="Show screen 4"></button>
+  </div>
+  <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+</dialog>
+<script>
+(function(){
+  var figure = document.querySelector('.shot');
+  var dlg = document.querySelector('.lightbox');
+  if(!figure || !dlg || typeof dlg.showModal !== 'function') return;
+
+  var track = figure.querySelector('.shot-track');
+  var slides = figure.querySelectorAll('.shot-slide');
+  var dots = figure.querySelectorAll('.shot-dot');
+  var lbTrack = dlg.querySelector('.lightbox-track');
+  var lbDots = dlg.querySelectorAll('.lightbox-dot');
+  var still = matchMedia('(prefers-reduced-motion: reduce)');
+  var opener = null, loaded = false;
+
+  document.documentElement.classList.add('has-lightbox');
+
+  // どの1枚を見ているかは「枠の中央にいちばん近い子」で決める。
+  // 送っている最中の端数や、900px 以上で横に並んでいるときも同じ式で通る。
+  function nearest(el){
+    var box = el.getBoundingClientRect(), mid = box.left + box.width / 2;
+    var best = 0, min = Infinity;
+    for(var i = 0; i < el.children.length; i++){
+      var r = el.children[i].getBoundingClientRect();
+      var d = Math.abs(r.left + r.width / 2 - mid);
+      if(d < min){ min = d; best = i; }
+    }
+    return best;
+  }
+  function mark(list, at){
+    for(var i = 0; i < list.length; i++){
+      if(i === at) list[i].setAttribute('aria-current', 'true');
+      else list[i].removeAttribute('aria-current');
+    }
+  }
+  // scrollIntoView は先祖まで動かしてしまうので、差分を出して自分だけ動かす。
+  function goTo(el, at, smooth){
+    var kid = el.children[at];
+    if(!kid) return;
+    var box = el.getBoundingClientRect(), r = kid.getBoundingClientRect();
+    var delta = (r.left + r.width / 2) - (box.left + box.width / 2);
+    el.scrollTo({ left: el.scrollLeft + delta, behavior: (smooth && !still.matches) ? 'smooth' : 'auto' });
+  }
+  // 送っている最中はスクロールから拾い、押して移動したときは押した先を正とする。
+  // 「今どこか」を測り直すのではなく持っておくのは、送りのアニメーションが終わる前に
+  // 次を押されても正しく1つ進めるため（測り直すと動き終わるまで同じ場所を指す）。
+  var lbAt = 0;
+  function watch(el, list, set){
+    var queued = false;
+    el.addEventListener('scroll', function(){
+      if(queued) return;
+      queued = true;
+      requestAnimationFrame(function(){
+        queued = false;
+        var now = nearest(el);
+        if(set) set(now);
+        mark(list, now);
+      });
+    }, {passive:true});
+  }
+  function bindDots(list, el, set){
+    for(var i = 0; i < list.length; i++) (function(to){
+      list[to].addEventListener('click', function(){ if(set) set(to); mark(list, to); goTo(el, to, true); });
+    })(i);
+  }
+
+  // 送るつもりのスワイプで開かないように、10px 以上動いたタッチは開く操作として扱わない。
+  var moved = false, sx = 0, sy = 0;
+  for(var i = 0; i < slides.length; i++) (function(index){
+    var slide = slides[index];
+    slide.addEventListener('touchstart', function(e){
+      moved = false; sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    }, {passive:true});
+    slide.addEventListener('touchmove', function(e){
+      var t = e.touches[0];
+      if(Math.abs(t.clientX - sx) > 10 || Math.abs(t.clientY - sy) > 10) moved = true;
+    }, {passive:true});
+    slide.addEventListener('click', function(){
+      if(moved){ moved = false; return; }
+      if(!loaded){
+        // 拡大表示で読む画像は data-zoom で指定する（無ければインラインと同じものを使う）。
+        // 開かれるまで取りに行かないので、最初の表示の重さは変わらない。
+        var img = slide.querySelector('img');
+        var src = dlg.getAttribute('data-zoom') || img.currentSrc || img.src;
+        var big = dlg.querySelectorAll('.lightbox-pane img');
+        for(var n = 0; n < big.length; n++) big[n].src = src;
+        loaded = true;
+      }
+      opener = slide;
+      dlg.showModal();
+      lbAt = index;
+      mark(lbDots, index);
+      goTo(lbTrack, index, false);   // 押した1枚から開く
+    });
+  })(i);
+
+  bindDots(dots, track);
+  bindDots(lbDots, lbTrack, function(i){ lbAt = i; });
+  watch(track, dots);
+  watch(lbTrack, lbDots, function(i){ lbAt = i; });
+  mark(dots, 0);
+  mark(lbDots, 0);
+
+  // 拡大中は1枚が画面をほぼ覆うので、画像の上のタップでは閉じない（送る操作と紛れるため）。
+  // 閉じるのは閉じるボタン・Esc、それと 900px 以上で余る黒い余白。
+  dlg.addEventListener('click', function(e){
+    if(!e.target.closest('.lightbox-pane') && !e.target.closest('.lightbox-dots')) dlg.close();
+  });
+
+  dlg.addEventListener('keydown', function(e){
+    if(e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    var to = lbAt + (e.key === 'ArrowRight' ? 1 : -1);
+    if(to < 0 || to >= lbTrack.children.length) return;
+    e.preventDefault();
+    lbAt = to;
+    mark(lbDots, to);
+    goTo(lbTrack, to, true);
+  });
+  dlg.addEventListener('close', function(){ if(opener) opener.focus({preventScroll:true}); });
+})();
+</script>
 </body>
 </html>

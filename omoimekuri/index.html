@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TempuraApps | おもいめくり — 大切な一枚が、今日のあなたに会いにくる。</title>
-<meta name="description" content="選んだ写真のテーマから、毎日一枚だけが届く日めくりアプリ。「また会いたい」を押した写真は少し戻ってきやすくなり、ホーム画面ウィジェットにも同じ一枚。写真は端末内だけに保存され、アプリ内へは複製されません。アカウント不要・広告なしのiPhone向けアプリ。">
+<meta name="description" content="選んだ写真のテーマから、毎日一枚だけが届く日めくりアプリ。ホーム画面ウィジェットにも同じ一枚が出て、月のカレンダーであとから見返せます。写真は端末内だけに保存され、アプリ内へは複製されません。アカウント不要・広告なしのiPhone向けアプリ。">
 <meta name="theme-color" content="#FFF9F2" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1C1917" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://tempuraapps.github.io/omoimekuri/">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:title" content="TempuraApps | おもいめくり — 大切な一枚が、今日のあなたに会いにくる。">
-<meta property="og:description" content="選んだ写真のテーマから、毎日一枚だけが届く日めくりアプリ。「また会いたい」を押した写真は少し戻ってきやすくなります。">
+<meta property="og:description" content="選んだ写真のテーマから、毎日一枚だけが届く日めくりアプリ。ホーム画面ウィジェットにも同じ一枚が出ます。">
 <meta property="og:url" content="https://tempuraapps.github.io/omoimekuri/">
 <meta property="og:image" content="https://tempuraapps.github.io/omoimekuri/icon-512.png">
 <meta property="og:image:width" content="512">
@@ -291,23 +291,29 @@
       <img class="app-icon" src="./icon-384.jpg" width="128" height="128" fetchpriority="high" alt="おもいめくり（アプリアイコン）">
       <p class="eyebrow">おもいめくり</p>
       <h1><span class="nowrap">大切な一枚が、</span><span class="nowrap">今日のあなたに会いにくる。</span></h1>
-      <p class="subcopy">テーマに写真を集めておくと、毎日一枚だけが大きく届きます。「また会いたい」を押した写真は少し戻ってきやすくなり、同じ日はウィジェットにもアプリにも同じ一枚が表示されます。見たくない日は「今は出さない」でそっと外せます（写真は消えません）。アカウント不要・広告なしの日めくりアプリです。</p>
+      <p class="subcopy">テーマに写真を集めておくと、毎日一枚だけが大きく届きます。同じ日はウィジェットにもアプリにも同じ一枚。見たくない日は「今は出さない」でそっと外せます（写真は消えません）。届いた一枚は月のカレンダーに残るので、あとからまとめて見返せます。アカウント不要・広告なしの日めくりアプリです。</p>
       <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
            あわせて CTA セクションの本文にも導線を足すこと。 -->
       <p class="platform">iOS 18.0 以降 / iPhone 向け</p>
     </div>
   </section>
 
+  <!-- ⚠️ 紹介画像を出していない。**画像が旧UIのまま**だから。
+       `app-image.webp` に写っているのは「また会いたい」ボタン・テーマの代表色6色・
+       月次の4枚カードで、いずれも**アプリから廃止済み**。タブ名も「テーマ」のままで、
+       いまは「きょう」。撮り直すまでは、無いほうが正しい。
+       撮り直したらこのコメントを外して下のカルーセルを戻すこと（ライトボックスの
+       JS は `.shot` が無ければ何もしないので、外したままでも壊れない）。
   <section class="shots" aria-label="アプリの画面">
     <div class="wrap">
       <figure class="shot">
         <p class="sr-only">アプリの4画面。1. 今日の一枚「テーマに入れた写真から、その日の一枚が大きく届く」2. テーマ編集「めくる写真を選び、また会いたいの回数と最後に出た日を確かめる」3. 今月のめくり「その月に また会いたい を押した写真から4枚が1枚のカードになる」4. 使い方「毎日一枚だけ届くこと、また会いたいの意味、ウィジェットの置き方」</p>
         <div class="shot-frame">
           <div class="shot-track">
-            <button type="button" class="shot-slide" style="--i:0" aria-label="1枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
-            <button type="button" class="shot-slide" style="--i:1" aria-label="2枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
-            <button type="button" class="shot-slide" style="--i:2" aria-label="3枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
-            <button type="button" class="shot-slide" style="--i:3" aria-label="4枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="‑‑i:0" aria-label="1枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="‑‑i:1" aria-label="2枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="‑‑i:2" aria-label="3枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="‑‑i:3" aria-label="4枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
           </div>
         </div>
         <div class="shot-dots">
@@ -320,6 +326,7 @@
       </figure>
     </div>
   </section>
+  -->
 
   <section class="features" aria-labelledby="features-h">
     <div class="wrap">
@@ -330,46 +337,46 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 16.5l4.5-4.5 3 3 3.5-4 5 5.5"/></svg>
           </div>
           <h3>テーマをつくる</h3>
-          <p>大切な人・ペット・思い出に名前をつけ、代表色を6色から選びます。写真は端末の写真ライブラリから複数選ぶだけです。作れるテーマは1つです。</p>
+          <p>大切な人・ペット・場所に名前をつけて、端末の写真ライブラリから写真をまとめて選ぶだけ。8枚以上あると、同じ顔ぶれが続きにくくなります。無料では1つ、Pro でいくつでも作れます。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="14" height="14" rx="3"/><path d="M4.5 15l3.5-4 2.5 2.5 3-3.5 3.5 4"/><circle cx="19" cy="6" r="2.6"/></svg>
           </div>
           <h3>今日の一枚</h3>
-          <p>アプリを開くと、その日の一枚が大きく表示されます。同じ日のあいだは変わらないので、ウィジェットとアプリで同じ写真が出ます。写真の上にテーマ名と日付、下に撮影日が並びます。</p>
+          <p>アプリを開くと、その日の一枚が大きく表示されます。同じ日のあいだは変わらないので、ウィジェットとアプリで同じ写真が出ます。上にテーマ名と日付、下に撮影日。タップすれば全画面で見られます。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 20.5c-3.4-2.3-6.5-4.8-6.5-8A3.6 3.6 0 0 1 12 10a3.6 3.6 0 0 1 6.5 2.5c0 3.2-3.1 5.7-6.5 8z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3.5v3M16 3.5v3M3.5 10h17"/></svg>
           </div>
-          <h3>また会いたい</h3>
-          <p>今日の一枚に押せるボタンです。お気に入り登録ではなく、その写真が日めくりに再登場しやすくなるという意味です。もう一度押すと解除できます。</p>
+          <h3>めくり</h3>
+          <p>その日届いた写真が、月のカレンダーの升目に並びます。タップすれば大きく見られます。無料は直近3か月まで、Pro で全期間を見返せます。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 12s3.2-6 8-6 8 6 8 6-3.2 6-8 6-8-6-8-6z"/><path d="M4 4l16 16"/></svg>
           </div>
           <h3>今は出さない</h3>
-          <p>気持ちに合わない写真を、1週間または1か月だけ日めくりから外せます。写真が削除されることはありません。テーマ編集からいつでも戻せます。</p>
+          <p>気持ちに合わない写真を、1か月だけ日めくりから外せます。写真が削除されることはありません。押した直後の「元に戻す」でも、テーマ編集のタップ1回でも戻せます。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="3.5" width="8" height="8" rx="2"/><rect x="13.5" y="3.5" width="7" height="17" rx="2"/><rect x="3.5" y="13.5" width="8" height="7" rx="2"/></svg>
           </div>
           <h3>ホーム画面ウィジェット</h3>
-          <p>小・中サイズのウィジェットに、今日の一枚とテーマ名・日付を表示します。タップするとアプリが開きます。更新のタイミングは iOS の仕様で前後することがあります。</p>
+          <p>小は写真を全面に、日付だけを添えて。中は写真と当月のカレンダーを並べて。タップするとアプリの「きょう」が開きます。更新のタイミングは iOS の仕様で前後することがあります。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="3.5" width="11" height="16" rx="2.5"/><rect x="9" y="6.5" width="11" height="16" rx="2.5"/></svg>
           </div>
-          <h3>今月のめくり</h3>
-          <p>月末に、その月「また会いたい」を押した写真から最大4枚をまとめます。4枚に満たないときは、その月に出会った写真で補います。縦長のカード画像として写真アプリに保存できます。</p>
+          <h3>その月を、1枚に</h3>
+          <p>「めくり」の共有ボタンで、その月のカレンダーが縦長のカード画像になります。そのまま送ることも、iOS の共有画面から写真アプリに保存することもできます。</p>
         </li>
       </ul>
-      <p class="instruments">写真の選び方は、完全なランダムでも人気順でもありません。「また会いたい」を押した写真は少し戻ってきやすくなり、直近に出た写真や前日に出た写真は出にくくなります。忘れていた一枚にも会えて、大切な一枚は少し戻ってきやすい、そのくらいのゆるさで選ばれます。</p>
-      <p class="instruments">テーマを複数つくる・写真を無制限に追加する（無料は50枚まで）・月次カードのレイアウトを選ぶ・過去のめくりを全期間見返すことは、おもいめくり Pro として近日公開予定です。詳しくは<a href="./support.html">サポート</a>をご覧ください。</p>
+      <p class="instruments">写真の選び方は、完全なランダムでも人気順でもありません。まだあまり出ていない写真がすこし出やすく、この1週間に出たばかりの写真は出にくくなります。前の日と同じ写真も避けます。忘れていた一枚にも会えて、同じ顔ぶれが続かない、そのくらいのゆるさで選ばれます。並べ替えや手動での指定はできません。</p>
+      <p class="instruments">テーマをいくつでも作る・写真を何枚でも追加する・過去のめくりをすべて見返すことは、おもいめくり Pro（月額 300円／年額 3,000円・自動更新）でお使いいただけます。無料のままでも、テーマ1つ・写真50枚・直近3か月のめくりまでは制限なく使えます。今日の一枚、今は出さない、ウィジェット、めくりのカレンダーとその月のカードの共有、データのバックアップは、いずれも無料です。詳しくは<a href="./support.html">サポート</a>をご覧ください。</p>
     </div>
   </section>
 

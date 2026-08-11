@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TempuraApps | TASTOCK — Bring a flavor you don't know yet to everyday cooking.</title>
-<meta name="description" content="Harissa, chili crisp — seasonings you bought but aren't sure how to use. TASTOCK logs each one with just a photo and a name, tells you which is closest to its best-before date, and keeps the recipes you made with it. Records stay on your iPhone — no account, no ads.">
+<meta name="description" content="Harissa, chili crisp — seasonings you buy but never finish. TASTOCK logs each one with just a name, tells you which is closest to its best-before date, and keeps your ratings and recipe notes even after the bottle is gone. Records stay on your iPhone — no account, no ads.">
 <meta name="theme-color" content="#FAF7F0" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1A1815" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://tempuraapps.github.io/tastock/en/">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ja_JP">
 <meta property="og:title" content="TempuraApps | TASTOCK — Bring a flavor you don't know yet to everyday cooking.">
-<meta property="og:description" content="TASTOCK, for keeping track of unusual seasonings. It tells you which one is closest to its best-before date, and keeps the recipes you made with it.">
+<meta property="og:description" content="TASTOCK, for keeping track of unusual seasonings. It tells you which one is closest to its best-before date, and the record outlives the bottle.">
 <meta property="og:url" content="https://tempuraapps.github.io/tastock/en/">
 <meta property="og:image" content="https://tempuraapps.github.io/tastock/icon-512.png">
 <meta property="og:image:width" content="512">
@@ -29,7 +29,7 @@
   :root{
     color-scheme: light dark;
     /* ===== THEME TOKENS（アプリの Theme.swift のブランド色に合わせる）=====
-       TASTOCK の既定パレットは「オリーブ」。--ink-2 と --accent は、アプリの subtle / brand を
+       TASTOCK の既定パレットは「抹茶」（旧称オリーブ）。--ink-2 と --accent は、アプリの subtle / brand を
        そのまま持ってくると hero のグラデーションの上で AA 4.5:1 を割るので、一段濃い側に寄せてある
        （subtle #6D675C → #5A5348、brand #52653B → brandDeep #435331）。
        ダークも同様に測ってある（--ink-2 7.0:1 / --accent 8.7:1）。 */
@@ -274,35 +274,20 @@
       <img class="app-icon" src="../icon-384.jpg" width="128" height="128" fetchpriority="high" alt="TASTOCK app icon">
       <p class="eyebrow">TASTOCK</p>
       <h1>Bring a flavor you don't know yet<br>to everyday cooking.</h1>
-      <p class="subcopy">Harissa, chili crisp, yuzu kosho &mdash; fun to buy, but easy to lose track of once they&rsquo;re at the back of the shelf. TASTOCK logs each one with just a photo and a name, and tells you which is closest to its best-before date. No account, no ads.</p>
+      <p class="subcopy">Harissa, chili crisp, yuzu kosho &mdash; the day you buy it is the best part, and then it sits at the back of the cupboard until the date has passed. TASTOCK logs each bottle with just a name and tells you which is closest to its best-before date. When one runs out, your rating and recipe notes stay. No account, no ads.</p>
       <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
            あわせて CTA セクションの本文にも導線を足すこと。 -->
       <p class="platform">iOS 18.0 or later / iPhone</p>
     </div>
   </section>
 
-  <section class="shots" aria-label="App screens">
-    <div class="wrap">
-      <figure class="shot">
-        <p class="sr-only">Four app screens. 1. Home: &ldquo;This week&rsquo;s pick &mdash; the seasoning closest to its best-before date, with a direct path to log the recipe.&rdquo; 2. Shelf: &ldquo;See what you have, in photos &mdash; search by name, filter by category or date.&rdquo; 3. Recipes: &ldquo;Keep the recipes you made &mdash; along with how much of each seasoning you used.&rdquo; 4. Discover: &ldquo;Find a flavor you don&rsquo;t know yet &mdash; what it tastes like, and how to use it for the first time.&rdquo;</p>
-        <div class="shot-frame">
-          <div class="shot-track">
-            <button type="button" class="shot-slide" style="--i:0" aria-label="Enlarge screen 1"><img src="../app-image-en.webp" alt="" decoding="async"></button>
-            <button type="button" class="shot-slide" style="--i:1" aria-label="Enlarge screen 2"><img src="../app-image-en.webp" alt="" decoding="async"></button>
-            <button type="button" class="shot-slide" style="--i:2" aria-label="Enlarge screen 3"><img src="../app-image-en.webp" alt="" decoding="async"></button>
-            <button type="button" class="shot-slide" style="--i:3" aria-label="Enlarge screen 4"><img src="../app-image-en.webp" alt="" decoding="async"></button>
-          </div>
-        </div>
-        <div class="shot-dots">
-          <button type="button" class="shot-dot" aria-label="Show screen 1"></button>
-          <button type="button" class="shot-dot" aria-label="Show screen 2"></button>
-          <button type="button" class="shot-dot" aria-label="Show screen 3"></button>
-          <button type="button" class="shot-dot" aria-label="Show screen 4"></button>
-        </div>
-        <figcaption class="shot-hint">Tap to enlarge</figcaption>
-      </figure>
-    </div>
-  </section>
+  <!-- ⚠️ **画面の紹介セクションは外してある（2026-08-12）。**
+       素材（`../app-image-en.webp` / `../app-image-en@2x.webp`）はリポジトリに残っているが、
+       **中身が簡素化リファクタ前のアプリ**で、もう存在しない4画面と5タブのタブバーを写している。
+       審査 2.3（Accurate Metadata）を避けるため外した。詳細は ja 版の同じ位置のコメント。
+       撮り直しが済んだら、この位置に姉妹アプリ（`../../fukumeguri/en/index.html`）と同じ
+       `<section class="shots">` と、`</footer>` の下の `<dialog class="lightbox">` を戻すこと。
+       CSS とスクリプトは消していない。スクリプトは `.shot` が無ければ何もしない。 -->
 
   <section class="features" aria-labelledby="features-h">
     <div class="wrap">
@@ -312,46 +297,46 @@
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8.5v7M8.5 12h7"/></svg>
           </div>
-          <h3>Add it with a photo and a name</h3>
-          <p>All you need is a name, category, and whether it&rsquo;s opened. Add the origin or flavor notes whenever you think of them. You can log a bottle before you&rsquo;ve even unpacked the bag.</p>
+          <h3>Just the name is enough</h3>
+          <p>The name is the only thing you have to fill in. Add the best-before date and tags whenever you get around to it. You can log a bottle before you&rsquo;ve even unpacked the bag.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/><path d="M12 13.5v3.2l2.2 1.3"/></svg>
           </div>
-          <h3>See what&rsquo;s closest to its best-before date</h3>
-          <p>Open Home and the one you should use next is right at the top. It shows the days left &mdash; like &ldquo;4 days&rdquo; &mdash; alongside a color, so it still comes through if colors are hard to tell apart. You can also turn on notifications.</p>
+          <h3>Soonest to expire, always first</h3>
+          <p>The list is always sorted by best-before date &mdash; there is no sorting to do. It shows the days left &mdash; like &ldquo;4 days&rdquo; &mdash; alongside a color, so it still comes through if colors are hard to tell apart. A notification arrives as the date gets close.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M6 3.5h8.5L19 8v12.5H6z"/><path d="M14 3.5V8h5"/><path d="M9.5 15.5h5M9.5 12h5"/></svg>
           </div>
-          <h3>Save the recipes you made with it</h3>
-          <p>Ingredients and steps, cook time and your rating. You can log which seasonings you used and how much of each. Next time you open the same bottle, last time&rsquo;s recipe is right there next to it.</p>
+          <h3>Keep a recipe note</h3>
+          <p>Something as short as &ldquo;rubbed it on chicken thighs and roasted them&rdquo; is enough. Add as many as you like to one seasoning. Next time you open the same bottle, what you made before is right there next to it.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 8h16M4 12h16M4 16h16"/><circle cx="9" cy="8" r="1.6" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="7" cy="16" r="1.6" fill="currentColor" stroke="none"/></svg>
           </div>
-          <h3>Rate heat, tanginess, and sweetness</h3>
-          <p>Instead of a star rating, you record it on a scale from 0 to 5. &ldquo;not set&rdquo; and &ldquo;0 (none)&rdquo; are kept as different meanings, so a bottle you haven&rsquo;t tried yet is never confused with one you know isn&rsquo;t spicy.</p>
+          <h3>Taste scales you define yourself</h3>
+          <p>&ldquo;Heat,&rdquo; &ldquo;how aromatic,&rdquo; &ldquo;goes with rice&rdquo; &mdash; whatever suits you. You name the scale and set where the bottle falls on it. Your overall impression is kept separately as an overall rating.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M15.2 8.8l-2 4.4-4.4 2 2-4.4z"/></svg>
           </div>
-          <h3>Find a flavor you don&rsquo;t know yet</h3>
-          <p>Harissa, zhug, za&rsquo;atar, dukkah. Read about each one&rsquo;s flavor, what it goes with, and tips plus a recipe for using it the first time. Tap &ldquo;Add to my shelf&rdquo; and it&rsquo;s logged with the name and flavor details carried over.</p>
+          <h3>Keep a list of ones you&rsquo;re curious about</h3>
+          <p>Your collection has &ldquo;Collected&rdquo; and &ldquo;Wishlist.&rdquo; Save a jar you spotted in a shop to your Wishlist, and the moment you buy it and log it, it moves to Collected on its own.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>
           </div>
-          <h3>Search your Shelf</h3>
-          <p>Search by part of a name, or filter by category, opened status, or best-before date. Sort by soonest to expire, most recently added, or name. <strong>There is no limit on how many you can log.</strong></p>
+          <h3>The record outlives the bottle</h3>
+          <p>Bottles with matching names link to the same collection entry automatically. When one runs out, the overall rating, taste scales, tags, and recipe notes all stay behind in your collection. <strong>There is no limit on how many you can log.</strong></p>
         </li>
       </ul>
-      <p class="instruments">Seeing every seasoning in Discover, analyzing your flavor trends, color themes, switching the appearance, and exporting and importing as JSON are available with TASTOCK Pro. <a href="./support.html">See Support for details.</a></p>
+      <p class="instruments">Choosing when the reminder arrives, five color themes, switching the appearance between light and dark, and exporting and importing your records are available with TASTOCK Pro. <a href="./support.html">See Support for details.</a></p>
     </div>
   </section>
 
@@ -359,7 +344,7 @@
     <div class="wrap">
       <div class="privacy-box">
         <h2 id="privacy-h">Your records stay on your device</h2>
-        <p>Your seasoning names, notes, recipes, and photos are stored only on your device. Nothing syncs to another device and nothing is sent to our servers. The only external communication is purchase processing for the paid plan and anonymous usage measurement (app launches, opening the paid plan screen, and the result of a purchase or restore). See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
+        <p>Your seasoning names, ratings, tags, and recipe notes are stored only on your device. Nothing syncs to another device and nothing is sent to our servers. The only external communication is purchase processing for the paid plan and anonymous usage measurement (app launches, opening the paid plan screen, and the result of a purchase or restore). See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
       </div>
     </div>
   </section>
@@ -382,22 +367,10 @@
     </nav>
   </div>
 </footer>
-<!-- data-zoom は拡大表示だけが読む画像。姉妹アプリと同じく 5120x2880 の @2x を指す。 -->
-<dialog class="lightbox" data-zoom="../app-image-en@2x.webp" aria-label="Enlarged view">
-  <div class="lightbox-track">
-    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:0"><img alt="" decoding="async"></div></div>
-    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:1"><img alt="" decoding="async"></div></div>
-    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:2"><img alt="" decoding="async"></div></div>
-    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:3"><img alt="" decoding="async"></div></div>
-  </div>
-  <div class="lightbox-dots">
-    <button type="button" class="lightbox-dot" aria-label="Show screen 1"></button>
-    <button type="button" class="lightbox-dot" aria-label="Show screen 2"></button>
-    <button type="button" class="lightbox-dot" aria-label="Show screen 3"></button>
-    <button type="button" class="lightbox-dot" aria-label="Show screen 4"></button>
-  </div>
-  <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
-</dialog>
+<!-- ⚠️ 拡大表示の dialog（class="lightbox" / data-zoom="../app-image-en@2x.webp"）も
+     画面の紹介セクションと一緒に外してある。素材を用意したら、姉妹アプリの
+     ../../fukumeguri/en/index.html の同じ位置から dialog ごと戻すこと。
+     下のスクリプトは .lightbox が無ければ何もしない。 -->
 <script>
 (function(){
   var figure = document.querySelector('.shot');

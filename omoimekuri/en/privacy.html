@@ -50,18 +50,36 @@
 <main class="wrap">
   <p class="eyebrow">TempuraApps</p>
   <h1>OmoiMekuri Privacy Policy</h1>
-  <p class="updated">Last updated: August 13, 2026</p>
+  <p class="updated">Last updated: August 20, 2026</p>
   <p class="lang"><a href="index.html">About the app</a> · <a href="support.html">Support</a> · <a href="../privacy.html">日本語</a></p>
   <p class="lead">OmoiMekuri ("the App") is provided by TempuraApps ("we"). This policy explains how the App handles user information.</p>
 
   <h2>1. Information we collect</h2>
-  <p>The App does not collect personal information such as your name, email address, or phone number. Your theme name, the photos themselves, their capture dates, and photo identifiers are stored only on your device and are never transmitted to or held on servers operated by us or by third parties. The only exception is the usage measurement described in section 3, which sends a limited set of information to an external service. It never includes the photos themselves, the theme name, capture dates, or note-like content.</p>
+  <p>The App does not collect personal information such as your name, email address, or phone number. Your collection name, the photos themselves, their capture dates, and photo identifiers are stored only on your device and are never transmitted to or held on servers operated by us or by third parties. The only exception is the usage measurement described in section 3, which sends a limited set of information to an external service. It never includes the photos themselves, the collection name, capture dates, or the text of your notes.</p>
 
   <h2>2. Accounts and network use</h2>
-  <p>No account registration is required to use the App. The photos themselves, the theme name, capture dates, and photo identifiers stay on your device and are not transmitted externally. The App does, however, communicate with a limited external service for the usage measurement described below (section 3). See section 4 for how purchase infrastructure is handled.</p>
+  <p>No account registration is required to use the App. The photos themselves, the collection name, capture dates, and photo identifiers stay on your device and are not transmitted externally. The App does, however, communicate with a limited external service for the usage measurement described below (section 3). See section 4 for how purchase infrastructure is handled.</p>
 
   <h2>3. Usage analytics (PostHog)</h2>
-  <p>To improve quality and features, the App measures anonymous usage with the analytics service PostHog. What is collected is limited to: app launches, updates, and moving to and from the background; completing initial setup; creating a theme (the number of photos chosen); switching themes; adding photos (the count); choosing &ldquo;Not right now&rdquo;; opening or sharing &ldquo;Turns&rdquo;; opening the widget guide; opening the OmoiMekuri Pro screen; and starting, completing, failing, or restoring a purchase &mdash; nothing beyond this range of action types. We never send the photos themselves, the theme name, capture dates, or note-like content. Rage-click detection, which would send on-screen text, is disabled because content could be caught up in it.</p>
+  <p>To improve quality and features, the App measures anonymous usage with the analytics service PostHog. What is collected is the fact that you performed one of the actions below, together with any count (of photos or characters) or the kind of option chosen:</p>
+  <ul>
+    <li>App launches, updates, and moving to and from the background</li>
+    <li>Completing initial setup</li>
+    <li>Creating a collection (the number of photos chosen), and switching collections</li>
+    <li>Adding photos (how many were added, how many are in that collection, and how many in total)</li>
+    <li>Choosing &ldquo;Hide for now&rdquo;</li>
+    <li>Stepping today&rsquo;s photo forward or back (which direction)</li>
+    <li>Choosing &ldquo;Start from this photo&rdquo; on the full-screen view</li>
+    <li>Swapping a day&rsquo;s photo from the Calendar</li>
+    <li>Saving a note (<strong>the number of characters only &mdash; never the text</strong>)</li>
+    <li>Changing the photo order, the photo frame, or what the medium widget shows (which option was chosen)</li>
+    <li>Adding or removing the sample collection from Settings</li>
+    <li>Opening or sharing the Calendar</li>
+    <li>Opening the widget guide</li>
+    <li>Opening the OmoiMekuri Pro screen (which screen you came from)</li>
+    <li>Starting, completing, failing, or restoring a purchase (monthly or yearly, and the reason for a failure)</li>
+  </ul>
+  <p>Nothing beyond this is sent. We never send the photos themselves, the collection name, capture dates, or the text of your notes &mdash; the values that can be sent are limited to numbers, true/false, and a fixed set of options, so <strong>there is no mechanism for carrying text you typed</strong>. Rage-click detection, which would send on-screen text, is disabled because content could be caught up in it.</p>
   <p>Technical information automatically attached by PostHog may also be included: the App version, your OS type and version, your device type, and the App's display language. Your time zone is stripped before sending, because it can be used to infer your approximate region. IP addresses are configured to be discarded on the analytics side, and we have specified that no region or location be inferred from them. Finer locations such as your city or your coordinates are never collected. None of this is intended to identify a specific individual, and none of it is linked to an account. The data is stored in the EU region.</p>
   <p>Each record sent carries an anonymous identifier created for that installation of the App. It exists so that actions from the same installation can be read as one thread. It is not tied to your name, email address, account, or any hardware identifier provided by the device, and we do not use it to identify you. Deleting and reinstalling the App produces a new one.</p>
   <p>We have no way to connect that identifier to you as a person. For that reason we cannot act on requests to retrieve or delete one user's data individually. If you wish to stop the measurement entirely, please delete the App; nothing is sent after it is removed.</p>
@@ -71,10 +89,10 @@
   <p>Purchases and restores for OmoiMekuri Pro are handled through Apple's App Store, and we use the subscription infrastructure service RevenueCat to manage purchases and entitlement status. Payment details such as credit card numbers will be handled by Apple and will never be received by us. Purchases will be managed under an anonymous identifier and will not be linked to personal information such as your name or email address. Please note that RevenueCat is a service provided by a company based in the United States.</p>
 
   <h2>5. Your photo library</h2>
-  <p>The App shows photos from your photo library within the scope you grant in your device's Settings. It works whether you choose &ldquo;All Photos&rdquo; or &ldquo;Selected Photos Only,&rdquo; and photos you have not selected are never shown. Photos are never copied into the App &mdash; only the photo library's identifier is stored on your device and read again each time. The photos themselves and their capture dates, once read, are stored only on your device and are never transmitted to servers operated by us or by third parties. The App also uses the add-only photo permission, because the card image you share from &ldquo;Turns&rdquo; can be placed in your Photos app by choosing &ldquo;Save Image&rdquo; in the iOS share sheet. You can change these permissions at any time in Settings &gt; Privacy &amp; Security &gt; Photos.</p>
+  <p>The App shows photos from your photo library within the scope you grant in your device's Settings. It works whether you choose &ldquo;All Photos&rdquo; or &ldquo;Selected Photos Only,&rdquo; and photos you have not selected are never shown. Photos are never copied into the App &mdash; only the photo library's identifier is stored on your device and read again each time. The photos themselves and their capture dates, once read, are stored only on your device and are never transmitted to servers operated by us or by third parties. The App also uses the add-only photo permission, because the card image you share from the Calendar can be placed in your Photos app by choosing &ldquo;Save Image&rdquo; in the iOS share sheet. You can change these permissions at any time in Settings &gt; Privacy &amp; Security &gt; Photos.</p>
 
   <h2>6. Data backup</h2>
-  <p>The App can export your theme and history to a file (JSON). Both exporting and importing are free. The exported file is placed wherever you choose to save it and stays under your control; we never access it.</p>
+  <p>The App can export your collections and history to a file (JSON). Both exporting and importing are free. The exported file is placed wherever you choose to save it and stays under your control; we never access it.</p>
   <p><strong>The exported file does not contain the photos themselves.</strong> It contains only identifiers pointing to where each photo lives in your photo library, so photos may not be found if you load the file on a different device. Importing applies only to the file you pick; its contents are read on your device and stored on your device. Nothing is transmitted to servers operated by us or by third parties.</p>
 
   <h2>7. Provision to third parties</h2>

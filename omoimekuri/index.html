@@ -310,10 +310,10 @@
         <p class="sr-only">アプリの4画面。1. 今日の一枚「テーマに入れた写真から、その日の一枚が大きく届く」2. テーマ編集「日めくりに出す写真を選び、それぞれが最後に出た日を確かめる」3. カレンダー「その月に届いた一枚が、日ごとに並ぶ」4. 使い方「毎日一枚だけ届くこと、今は出さないの意味、ウィジェットの置き方」</p>
         <div class="shot-frame">
           <div class="shot-track">
-            <button type="button" class="shot-slide" style="‑‑i:0" aria-label="1枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
-            <button type="button" class="shot-slide" style="‑‑i:1" aria-label="2枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
-            <button type="button" class="shot-slide" style="‑‑i:2" aria-label="3枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
-            <button type="button" class="shot-slide" style="‑‑i:3" aria-label="4枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:0" aria-label="1枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:1" aria-label="2枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:2" aria-label="3枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:3" aria-label="4枚目の画面を拡大"><img src="./app-image.webp" alt="" decoding="async"></button>
           </div>
         </div>
         <div class="shot-dots">
@@ -330,7 +330,7 @@
 
   <section class="features" aria-labelledby="features-h">
     <div class="wrap">
-      <h2 id="features-h">毎日をめくるための、6つの道具</h2>
+      <h2 id="features-h">毎日をめくるための、7つの道具</h2>
       <ul class="cards" role="list">
         <li class="card">
           <div class="chip" aria-hidden="true">
@@ -345,6 +345,13 @@
           </div>
           <h3>今日の一枚</h3>
           <p>アプリを開くと、その日の一枚が大きく表示されます。同じ日のあいだは変わらないので、ウィジェットとアプリで同じ写真が出ます。上にテーマ名と日付、下に「3年前の今日」「5か月前」と、どれくらい前の写真かが出ます。タップすれば全画面で見られます。残しておきたい日には一言を添えられます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="2.5" y="3.5" width="19" height="17" rx="2"/><rect x="6" y="7" width="12" height="10" rx="1"/></svg>
+          </div>
+          <h3>写真のフレーム</h3>
+          <p>写真の見せ方を5種類から選べます。そのまま・白ふち・ましかく・アルバム・インスタント。無料では「そのまま」、Pro で5種類ぜんぶ使えます。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
@@ -365,7 +372,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="3.5" width="8" height="8" rx="2"/><rect x="13.5" y="3.5" width="7" height="17" rx="2"/><rect x="3.5" y="13.5" width="8" height="7" rx="2"/></svg>
           </div>
           <h3>ホーム画面ウィジェット</h3>
-          <p>小は写真を全面に、日付だけを添えて。中は写真と当月のカレンダーを並べて。タップするとアプリの「ホーム」が開きます。更新のタイミングは iOS の仕様で前後することがあります。</p>
+          <p>小は写真を全面に、日付だけを添えて。中は写真の隣に当月のカレンダー——設定で一言に切り替えることもできます。タップするとアプリの「ホーム」が開きます。更新のタイミングは iOS の仕様で前後することがあります。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
@@ -384,7 +391,7 @@
     <div class="wrap">
       <div class="privacy-box">
         <h2 id="privacy-h"><span class="nowrap">写真は、</span><span class="nowrap">あなたの端末の中に</span></h2>
-        <p>写真そのもの・テーマ名・撮影日・写真の識別子は、すべて端末内にのみ保存され、外部に送信されることはありません。写真をアプリ内に複製することはなく、写真ライブラリの識別子だけを保存して都度読み出します。品質改善のための匿名の利用状況の計測は行っていますが、送るのは操作の種別だけで、写真やテーマ名の内容は含みません。詳細は<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+        <p>写真そのもの・テーマ名・撮影日・写真の識別子は、すべて端末内にのみ保存され、外部に送信されることはありません。写真をアプリ内に複製することはなく、写真ライブラリの識別子だけを保存して都度読み出します。品質改善のための匿名の利用状況の計測は行っていますが、送るのは操作の種別と枚数などの数だけで、写真・テーマ名・一言の本文は含みません。詳細は<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
       </div>
     </div>
   </section>

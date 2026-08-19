@@ -44,6 +44,12 @@
   a:hover { text-decoration:underline; }
   .contact { margin-top:10px; padding:14px 16px; background:var(--soft); border:1px solid var(--border); border-radius:10px; }
   .contact a { font-weight:600; }
+  .table-scroll { overflow-x:auto; margin:10px 0 0; }
+  table.plans { width:100%; border-collapse:collapse; font-size:15px; }
+  table.plans th, table.plans td { padding:9px 10px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top; }
+  table.plans thead th { color:var(--ink); font-weight:600; }
+  table.plans td { color:var(--ink-2); }
+  table.plans th[scope="row"] { color:var(--ink); font-weight:600; white-space:nowrap; }
   footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--border); color:var(--ink-2); font-size:13px; }
 </style>
 </head>
@@ -63,51 +69,68 @@
   <h2>Frequently asked questions</h2>
 
   <h3>Where do I start?</h3>
-  <p>The first time you open the app, it takes you straight to building a theme. Name someone you love, a pet, or a place, then choose photos from your photo library. That&rsquo;s it &mdash; today&rsquo;s photo appears on the <strong>Today</strong> tab. You can select several photos at once, and around eight or more keeps the same faces from cycling too quickly.</p>
+  <p>The first time you open the app, it takes you straight to building a collection. Name someone you love, a pet, or a place, then choose photos from your photo library. That&rsquo;s it &mdash; today&rsquo;s photo appears on the <strong>Home</strong> tab. You can select several photos at once, and around eight or more keeps the same faces from cycling too quickly.</p>
 
   <h3>How is today&rsquo;s photo chosen? The same photos keep showing up</h3>
-  <p>Photos aren&rsquo;t picked at random, and not by popularity either. Ones that haven&rsquo;t appeared much are a little more likely, while ones shown in the past week are less likely. Yesterday&rsquo;s photo is avoided too, unless it&rsquo;s the only candidate left. With only a few photos in a theme, the same handful cycles through quickly &mdash; adding more, around eight or more, changes how it feels. Once chosen, the photo stays the same all day, and each theme is decided separately.</p>
+  <p>Photos aren&rsquo;t picked at random, and not by popularity either. Ones that haven&rsquo;t appeared much are a little more likely, while ones shown in the past week are less likely. Yesterday&rsquo;s photo is avoided too, unless it&rsquo;s the only candidate left. With only a few photos in a collection, the same handful cycles through quickly &mdash; adding more, around eight or more, changes how it feels. Once chosen, the photo stays the same all day, and each collection is decided separately.</p>
 
   <h3>There&rsquo;s a photo I&rsquo;d rather not see</h3>
-  <p>Choose &ldquo;Not right now&rdquo; below today&rsquo;s photo and it stays out of the rotation for one month. There is no choice of duration. The photo is never deleted &mdash; bring it back with one tap in theme editing, or with &ldquo;Undo&rdquo; in the toast that appears right after.</p>
+  <p>Choose &ldquo;Hide for now&rdquo; below today&rsquo;s photo and it stays out of the rotation for one month. There is no choice of duration. The photo is never deleted &mdash; bring it back with one tap in the Edit collection screen, or with &ldquo;Undo&rdquo; in the toast that appears right after.</p>
 
   <h3>Can I reorder photos or pick today&rsquo;s photo myself?</h3>
-  <p>No. One photo arriving on its own each day is the heart of the app. You can open any photo whenever you like from the <strong>Turns</strong> calendar or the grid in theme editing.</p>
+  <p>No. One photo arriving on its own each day is the heart of the app. You can open any photo whenever you like from the <strong>Calendar</strong> tab or the grid in the Edit collection screen.</p>
 
   <h3>I&rsquo;m not sure how to add the widget, or it doesn&rsquo;t switch when the date changes</h3>
   <p>Touch and hold your Home Screen, tap &ldquo;Add Widget,&rdquo; and choose OmoiMekuri in the small or medium size. Widget updates are handled by iOS, so it can take a little while to switch after the date changes. Opening the app always updates it to that moment&rsquo;s photo.</p>
 
   <h3>A photo says &ldquo;not found&rdquo;</h3>
-  <p>The photo may have been deleted in the Photos app, or your access permission may have changed. Choose photos again from theme editing.</p>
+  <p>The photo may have been deleted in the Photos app, or your access permission may have changed. Choose photos again from the Edit collection screen.</p>
 
   <h3>Can I use it with &ldquo;Selected Photos Only&rdquo; access?</h3>
-  <p>Yes. Photos you have not selected never appear in the daily rotation, and only photos within the access you&rsquo;ve granted can be added to your theme.</p>
+  <p>Yes. Photos you have not selected never appear in the daily rotation, and only photos within the access you&rsquo;ve granted can be added to your collection.</p>
 
-  <h3>What is the &ldquo;Turns&rdquo; tab?</h3>
+  <h3>What is the &ldquo;Calendar&rdquo; tab?</h3>
   <p>A month calendar. The photo that arrived on each day sits in its square, and tapping one opens it large. Move between months with the arrows beside the month name. The free plan covers the last three months including this one; OmoiMekuri Pro opens up every month you have.</p>
 
   <h3>Can I turn a month into a single image?</h3>
-  <p>Yes. Tap the share button at the top right of the <strong>Turns</strong> tab and that month&rsquo;s calendar becomes a tall card image, then the iOS share sheet opens. To put it in your Photos app, choose &ldquo;Save Image&rdquo; there (this needs the add-only photo permission &mdash; check it in <strong>Settings &gt; Privacy &amp; Security &gt; Photos</strong>). The button is disabled for months with no records.</p>
+  <p>Yes. Tap the share button at the top right of the <strong>Calendar</strong> tab and that month&rsquo;s calendar becomes a tall card image, then the iOS share sheet opens. To put it in your Photos app, choose &ldquo;Save Image&rdquo; there (this needs the add-only photo permission &mdash; check it in <strong>Settings &gt; Privacy &amp; Security &gt; Photos</strong>). The button is disabled for months with no records.</p>
 
-  <h3>I want to change the theme name or photos, or add another theme</h3>
-  <p>Tap <strong>Edit</strong> at the top right of the <strong>Today</strong> tab to rename the theme and add or remove photos. To switch or add a theme, tap the theme name at the top left of the same screen. A theme can only be deleted from the bottom of the edit screen, behind a two-step confirmation.</p>
+  <h3>I want to change the collection name or photos, or add another collection</h3>
+  <p>Tap <strong>Edit</strong> at the top right of the <strong>Home</strong> tab to rename the collection and add or remove photos. To switch or add a collection, tap the collection name at the top left of the same screen. A collection can only be deleted from the bottom of the edit screen, behind a two-step confirmation.</p>
 
   <h3>Does my data sync to my other devices?</h3>
-  <p>It does not. The theme name and photo identifiers are stored only on your device. You can export and import them as a JSON file from <strong>Settings &gt; Back up your data</strong> (both are free). Note, however, that <strong>the file holds no photos &mdash; only markers pointing to where each photo sits in your photo library</strong>. Importing on a different device can leave photos showing as &ldquo;not found,&rdquo; so treat it as a way to restore onto the same device. Importing replaces your current data.</p>
+  <p>It does not. The collection name and photo identifiers are stored only on your device. You can export and import them as a JSON file from <strong>Settings &gt; Back up your data</strong> (both are free). Note, however, that <strong>the file holds no photos &mdash; only markers pointing to where each photo sits in your photo library</strong>. Importing on a different device can leave photos showing as &ldquo;not found,&rdquo; so treat it as a way to restore onto the same device. Importing replaces your current data.</p>
 
   <h3>What happens to my data if I delete the app?</h3>
-  <p>The theme and records stored on your device, such as &ldquo;Not right now,&rdquo; are removed with it. The original photos in your photo library are not affected. If you want to keep them, export from <strong>Settings &gt; Back up your data</strong> first.</p>
+  <p>The collection and records stored on your device, such as &ldquo;Hide for now,&rdquo; are removed with it. The original photos in your photo library are not affected. If you want to keep them, export from <strong>Settings &gt; Back up your data</strong> first.</p>
 
   <h2>About OmoiMekuri Pro</h2>
 
   <h3>What does Pro unlock?</h3>
-  <p>Three things.</p>
+  <p>Four things.</p>
   <ul>
-    <li><strong>Build as many themes as you like</strong> &mdash; the free plan holds one</li>
-    <li><strong>Add as many photos as you like</strong> &mdash; the free plan holds 50 per theme (theme editing shows how many you have left)</li>
-    <li><strong>Look back at all your past turns</strong> &mdash; the free plan covers the last three months including this one</li>
+    <li><strong>Add as many photos as you like</strong></li>
+    <li><strong>Build as many collections as you like</strong></li>
+    <li><strong>Look back at all your past days</strong></li>
+    <li><strong>Choose any of the five photo frames</strong></li>
   </ul>
-  <p>Everything else &mdash; today&rsquo;s photo, &ldquo;Not right now,&rdquo; the Home Screen widget, the <strong>Turns</strong> calendar and sharing a month as a card, and backing up your data (both export and import) &mdash; is free. <strong>There is no limit on how many days you can keep.</strong></p>
+
+  <h3>What does the free plan include?</h3>
+  <div class="table-scroll">
+    <table class="plans">
+      <thead>
+        <tr><th scope="col"></th><th scope="col">Free</th><th scope="col">OmoiMekuri Pro</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Photos</th><td>20 in total, across every collection</td><td>Unlimited</td></tr>
+        <tr><th scope="row">Collections</th><td>3</td><td>Unlimited</td></tr>
+        <tr><th scope="row">Calendar history</th><td>The last three months, including this one</td><td>Every month</td></tr>
+        <tr><th scope="row">Photo frames</th><td>One (&ldquo;None&rdquo;)</td><td>All five</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The Edit collection screen shows how many photos you have left. Anything beyond the free limits becomes <strong>hidden, never deleted</strong>.</p>
+  <p>Everything else &mdash; today&rsquo;s photo, &ldquo;Hide for now,&rdquo; the Home Screen widget, the <strong>Calendar</strong> tab and sharing a month as a card, and backing up your data (both export and import) &mdash; is free. <strong>There is no limit on how many days you can keep.</strong></p>
 
   <h3>What does it cost?</h3>
   <p>US$1.99 per month or US$19.99 per year (prices vary by country or region; the App Store shows your local price). There is no free trial. Payment is charged to your Apple Account at confirmation of purchase, and renews automatically unless you cancel at least 24 hours before the period ends. The renewal charge is taken within 24 hours of the end of the period.</p>
@@ -122,8 +145,8 @@
   <h3>I want to switch between monthly and yearly</h3>
   <p>Switch from the same <strong>Settings &gt; your name &gt; Subscriptions</strong> screen. The two OmoiMekuri plans sit at the same level, so <strong>a switch takes effect at your next renewal date</strong> &mdash; it does not swap immediately, and no prorated refund is involved. Until then, the plan you are paying for continues.</p>
 
-  <h3>What happens to my themes and photos if I cancel?</h3>
-  <p>Nothing is lost. Your themes, the photos you added, and every past turn stay exactly as they were. Only the three things above stop &mdash; whatever sits beyond the free limits simply becomes <strong>hidden, not deleted</strong>. Subscribe again and it all comes back as it was. We never delete your themes or photos on our side.</p>
+  <h3>What happens to my collections and photos if I cancel?</h3>
+  <p>Nothing is lost. Your collections, the photos you added, and every past day stay exactly as they were. Only the four things above stop &mdash; whatever sits beyond the free limits simply becomes <strong>hidden, not deleted</strong>. Subscribe again and it all comes back as it was. We never delete your collections or photos on our side.</p>
 
   <h3>I want to check my renewal date</h3>
   <p>Open <strong>Settings &gt; your name &gt; Subscriptions</strong> to see the next renewal date and amount. Auto-renewal continues unless you cancel at least 24 hours before the period ends.</p>

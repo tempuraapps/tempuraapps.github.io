@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TempuraApps | OmoiMekuri — The photo that matters, comes to find you today.</title>
-<meta name="description" content="A daily photo app that delivers one photo a day from the theme you choose. The same photo shows on your Home Screen widget, and every day you have kept sits in a month calendar to look back on. Photos stay on your device and are never copied into the app. No account, no ads.">
+<meta name="description" content="A daily photo app that delivers one photo a day from the collection you choose. The same photo shows on your Home Screen widget, and every day you have kept sits in a month calendar to look back on. Photos stay on your device and are never copied into the app. No account, no ads.">
 <meta name="theme-color" content="#FFF9F2" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1C1917" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://tempuraapps.github.io/omoimekuri/en/">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ja_JP">
 <meta property="og:title" content="TempuraApps | OmoiMekuri — The photo that matters, comes to find you today.">
-<meta property="og:description" content="One photo a day from the theme you choose, on your Home Screen widget too.">
+<meta property="og:description" content="One photo a day from the collection you choose, on your Home Screen widget too.">
 <meta property="og:url" content="https://tempuraapps.github.io/omoimekuri/en/">
 <meta property="og:image" content="https://tempuraapps.github.io/omoimekuri/icon-512.png">
 <meta property="og:image:width" content="512">
@@ -287,7 +287,7 @@
       <img class="app-icon" src="../icon-384.jpg" width="128" height="128" fetchpriority="high" alt="OmoiMekuri app icon">
       <p class="eyebrow">OmoiMekuri</p>
       <h1>The photo that matters,<br>comes to find you today.</h1>
-      <p class="subcopy">Add photos to a theme, and one photo arrives each day &mdash; the same one on your Home Screen widget and in the app. Photos you&rsquo;d rather not see can be tucked away with &ldquo;Not right now&rdquo; &mdash; nothing is deleted. Every day you have kept stays in a month calendar to look back on. No account, no ads.</p>
+      <p class="subcopy">Add photos to a collection, and one photo arrives each day &mdash; the same one on your Home Screen widget and in the app. Photos you&rsquo;d rather not see can be tucked away with &ldquo;Hide for now&rdquo; &mdash; nothing is deleted. Every day you have kept stays in a month calendar to look back on. No account, no ads.</p>
       <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
            あわせて CTA セクションの本文にも導線を足すこと。 -->
       <p class="platform">iOS 18.0 or later / iPhone</p>
@@ -300,13 +300,13 @@
   <section class="shots" aria-label="App screens">
     <div class="wrap">
       <figure class="shot">
-        <p class="sr-only">Four screens from the app. 1. Today&rsquo;s photo &mdash; one photo from your theme arrives large. 2. Edit theme &mdash; choose which photos turn, and see how often you tapped See again and when each last appeared. 3. This month&rsquo;s turn &mdash; four photos you wanted to see again become one card. 4. How to use &mdash; one photo a day, what See again means, and how to add the widget.</p>
+        <p class="sr-only">Four screens from the app. 1. Today&rsquo;s photo &mdash; one photo from your collection arrives large. 2. Edit collection &mdash; choose which photos are in the rotation, and see when each last appeared. 3. Calendar &mdash; the month you have kept, one photo per day. 4. How to use &mdash; one photo a day, what &ldquo;Hide for now&rdquo; means, and how to add the widget.</p>
         <div class="shot-frame">
           <div class="shot-track">
-            <button type="button" class="shot-slide" style="‑‑i:0" aria-label="Enlarge screen 1"><img src="../app-image-en.webp" alt="" decoding="async"></button>
-            <button type="button" class="shot-slide" style="‑‑i:1" aria-label="Enlarge screen 2"><img src="../app-image-en.webp" alt="" decoding="async"></button>
-            <button type="button" class="shot-slide" style="‑‑i:2" aria-label="Enlarge screen 3"><img src="../app-image-en.webp" alt="" decoding="async"></button>
-            <button type="button" class="shot-slide" style="‑‑i:3" aria-label="Enlarge screen 4"><img src="../app-image-en.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:0" aria-label="Enlarge screen 1"><img src="../app-image-en.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:1" aria-label="Enlarge screen 2"><img src="../app-image-en.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:2" aria-label="Enlarge screen 3"><img src="../app-image-en.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:3" aria-label="Enlarge screen 4"><img src="../app-image-en.webp" alt="" decoding="async"></button>
           </div>
         </div>
         <div class="shot-dots">
@@ -323,53 +323,60 @@
 
   <section class="features" aria-labelledby="features-h">
     <div class="wrap">
-      <h2 id="features-h">Six tools for turning the page each day</h2>
+      <h2 id="features-h">Seven tools for turning the page each day</h2>
       <ul class="cards" role="list">
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M4 16.5l4.5-4.5 3 3 3.5-4 5 5.5"/></svg>
           </div>
-          <h3>Build a theme</h3>
-          <p>Name someone you love, a pet, or a place, then add photos from your device&rsquo;s photo library, choosing several at once. Around eight or more keeps the same faces from cycling too quickly. One theme on the free plan, as many as you like with Pro.</p>
+          <h3>Build a collection</h3>
+          <p>Name someone you love, a pet, or a place, then add photos from your device&rsquo;s photo library, choosing several at once. Around eight or more keeps the same faces from cycling too quickly. Three collections on the free plan, as many as you like with Pro.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="14" height="14" rx="3"/><path d="M4.5 15l3.5-4 2.5 2.5 3-3.5 3.5 4"/><circle cx="19" cy="6" r="2.6"/></svg>
           </div>
           <h3>Today&rsquo;s photo</h3>
-          <p>Open the app and today&rsquo;s photo fills the screen. It stays the same for the whole day, so the widget and the app always show the same photo. The theme name and date sit above it, the date it was taken below. Tap to see it full screen.</p>
+          <p>Open the app and today&rsquo;s photo fills the screen. It stays the same for the whole day, so the widget and the app always show the same photo. The collection name and date sit above it, and how long ago it was taken below &mdash; &ldquo;3 years ago today,&rdquo; &ldquo;5 months ago.&rdquo; Tap to see it full screen, and leave a note on any day you want to remember.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="2.5" y="3.5" width="19" height="17" rx="2"/><rect x="6" y="7" width="12" height="10" rx="1"/></svg>
+          </div>
+          <h3>Photo frames</h3>
+          <p>Choose how the photo is presented: None, White border, Square, Album, or Instant. The free plan uses &ldquo;None&rdquo;; Pro opens all five.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3.5v3M16 3.5v3M3.5 10h17"/></svg>
           </div>
-          <h3>Turns</h3>
-          <p>Each day&rsquo;s photo sits in its square on a month calendar. Tap one to see it large. The last three months on the free plan, every month with Pro.</p>
+          <h3>Calendar</h3>
+          <p>Each day&rsquo;s photo sits in its square on a month calendar. Tap one to see it large. The last three months including this one on the free plan, every month with Pro.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 12s3.2-6 8-6 8 6 8 6-3.2 6-8 6-8-6-8-6z"/><path d="M4 4l16 16"/></svg>
           </div>
-          <h3>Not right now</h3>
-          <p>Set a photo aside for a month when it doesn&rsquo;t match how you feel. The photo is never deleted &mdash; bring it back with &ldquo;Undo&rdquo; right after, or with one tap in theme editing.</p>
+          <h3>Hide for now</h3>
+          <p>Set a photo aside for a month when it doesn&rsquo;t match how you feel. The photo is never deleted &mdash; bring it back with &ldquo;Undo&rdquo; right after, or with one tap in the Edit collection screen.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="3.5" width="8" height="8" rx="2"/><rect x="13.5" y="3.5" width="7" height="17" rx="2"/><rect x="3.5" y="13.5" width="8" height="7" rx="2"/></svg>
           </div>
           <h3>Home Screen widget</h3>
-          <p>Small fills with the photo and a date badge; medium sets the photo beside this month&rsquo;s calendar. Tap to open the app on Today. Update timing can shift a little &mdash; that&rsquo;s how iOS widgets work.</p>
+          <p>Small fills with the photo and a date badge; medium sets the photo beside this month&rsquo;s calendar &mdash; or your note, if you prefer, in Settings. Tap to open the app on Home. Update timing can shift a little &mdash; that&rsquo;s how iOS widgets work.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="3.5" width="11" height="16" rx="2.5"/><rect x="9" y="6.5" width="11" height="16" rx="2.5"/></svg>
           </div>
           <h3>A month in one image</h3>
-          <p>The share button on <strong>Turns</strong> renders that month&rsquo;s calendar as a tall card image. Send it as it is, or save it to your Photos app from the iOS share sheet.</p>
+          <p>The share button on <strong>Calendar</strong> renders that month&rsquo;s calendar as a tall card image. Send it as it is, or save it to your Photos app from the iOS share sheet.</p>
         </li>
       </ul>
       <p class="instruments">Photos aren&rsquo;t picked at random, and not by popularity either. Ones that haven&rsquo;t appeared much are a little more likely, while ones shown in the past week &mdash; and yesterday&rsquo;s &mdash; are less likely. You can still meet a photo you&rsquo;d forgotten, without the same faces coming round again and again. There is no reordering and no picking by hand.</p>
-      <p class="instruments">Building as many themes as you like, adding as many photos as you like, and looking back at every past turn come with OmoiMekuri Pro (US$1.99 per month or US$19.99 per year, auto-renewing). The free plan still gives you one theme, 50 photos, and the last three months of turns. Today&rsquo;s photo, &ldquo;Not right now,&rdquo; the widget, the Turns calendar, sharing a month as a card, and backing up your data are all free. See <a href="./support.html">Support</a> for details.</p>
+      <p class="instruments">Adding as many photos as you like, building as many collections as you like, looking back at every month you have kept, and choosing any of the five photo frames come with OmoiMekuri Pro (US$1.99 per month or US$19.99 per year, auto-renewing). The free plan gives you 20 photos in total across every collection, 3 collections, the last three months of the calendar including this one, and one photo frame &mdash; anything past those limits becomes hidden, never deleted. Today&rsquo;s photo, &ldquo;Hide for now,&rdquo; the widget, the Calendar tab and sharing a month as a card, notes, and backing up your data are all free. See <a href="./support.html">Support</a> for details.</p>
     </div>
   </section>
 
@@ -377,7 +384,7 @@
     <div class="wrap">
       <div class="privacy-box">
         <h2 id="privacy-h">Your photos stay on your device</h2>
-        <p>Your photos, theme name, capture dates, and photo identifiers are stored only on your device and are never sent anywhere. Photos are never copied into the app &mdash; only the photo library&rsquo;s identifier is stored and read again each time. We run anonymous usage measurement to improve the app, but it only sends the type of action taken, never the content of your photos or theme name. See the <a href="./privacy.html">Privacy Policy</a> for the full picture.</p>
+        <p>Your photos, collection name, capture dates, and photo identifiers are stored only on your device and are never sent anywhere. Photos are never copied into the app &mdash; only the photo library&rsquo;s identifier is stored and read again each time. We run anonymous usage measurement to improve the app, but it only sends the type of action taken and counts such as how many photos &mdash; never your photos, your notes, or your collection name. See the <a href="./privacy.html">Privacy Policy</a> for the full picture.</p>
       </div>
     </div>
   </section>

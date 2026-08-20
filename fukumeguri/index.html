@@ -90,6 +90,17 @@
   }
   .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
   .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+  /* App Store への導線。⚠️ **Apple 公式バッジ画像は置いていない。** 公式バッジを使うなら
+     Apple のマーケティングリソースから取得した画像に差し替えること（勝手に描き起こさない）。
+     文字リンクは公式バッジの代わりとして認められている。
+     ⚠️ 文字色は `--bg`。`--surface` にすると dark（白地に近い）で読めなくなる。 */
+  .store-cta{
+    display:inline-flex; align-items:center; justify-content:center;
+    margin:0 0 16px; padding:14px 30px; min-height:44px;
+    background:var(--accent); color:var(--bg);
+    border-radius:999px; font-size:16px; font-weight:700; letter-spacing:.01em;
+  }
+  .store-cta:hover{ opacity:.88; }
 
   /* features */
   .features{ padding-block:clamp(56px,11vw,104px); }
@@ -298,8 +309,7 @@
       <p class="eyebrow">服メグリ</p>
       <h1><span class="nowrap">好きな店を</span>、<span class="nowrap">めぐりにいこう。</span></h1>
       <p class="subcopy">気になったお店を街ごとにまとめて、地図で見渡す。行った日はカレンダーに残り、その月によく行ったお店もわかります。アカウント不要・広告なしの、店めぐりの記録アプリです。</p>
-      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
-           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p><a class="store-cta" href="https://apps.apple.com/app/id6796754945">App Store で入手</a></p>
       <p class="platform">iOS 18.0 以降 / iPhone 向け</p>
     </div>
   </section>
@@ -383,7 +393,7 @@
   <section class="cta" aria-labelledby="cta-h">
     <div class="wrap">
       <h2 class="cta-head" id="cta-h">次の休みは、あの店から。</h2>
-      <p>よくあるご質問は<a href="./support.html">サポート</a>に掲載しています。お問い合わせ: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+      <p><a href="https://apps.apple.com/app/id6796754945">App Store で入手できます</a>。よくあるご質問は<a href="./support.html">サポート</a>に掲載しています。お問い合わせ: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
     </div>
   </section>
 </main>

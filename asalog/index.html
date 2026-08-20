@@ -92,6 +92,17 @@
   }
   .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
   .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+  /* App Store への導線。⚠️ **Apple 公式バッジ画像は置いていない。** 公式バッジを使うなら
+     Apple のマーケティングリソースから取得した画像に差し替えること（勝手に描き起こさない）。
+     文字リンクは公式バッジの代わりとして認められている。
+     ⚠️ 文字色は `--bg`。`--surface` にすると dark（白地に近い）で読めなくなる。 */
+  .store-cta{
+    display:inline-flex; align-items:center; justify-content:center;
+    margin:0 0 16px; padding:14px 30px; min-height:44px;
+    background:var(--accent); color:var(--bg);
+    border-radius:999px; font-size:16px; font-weight:700; letter-spacing:.01em;
+  }
+  .store-cta:hover{ opacity:.88; }
 
   /* features */
   .features{ padding-block:clamp(56px,11vw,104px); }
@@ -295,8 +306,7 @@
       <p class="eyebrow">朝ログ</p>
       <h1><span class="nowrap">毎朝5秒。</span><span class="nowrap">目覚めの良さを記録しよう。</span></h1>
       <p class="subcopy">起きたら顔をひとつ選ぶだけ。たまってくると、曜日や要因ごとの傾向が見えてきます。前夜の睡眠時間と並べれば、体感と実測のズレも分かります。アカウント不要・広告なしの、朝の記録アプリです。</p>
-      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
-           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p><a class="store-cta" href="https://apps.apple.com/app/id6799454261">App Store で入手</a></p>
       <p class="platform">iOS 18.0 以降 / iPhone 向け</p>
     </div>
   </section>
@@ -387,7 +397,7 @@
   <section class="cta" aria-labelledby="cta-h">
     <div class="wrap">
       <h2 class="cta-head" id="cta-h">明日の朝、ひとつ残そう。</h2>
-      <p>よくあるご質問は<a href="./support.html">サポート</a>に掲載しています。お問い合わせ: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+      <p><a href="https://apps.apple.com/app/id6799454261">App Store で入手できます</a>。よくあるご質問は<a href="./support.html">サポート</a>に掲載しています。お問い合わせ: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
     </div>
   </section>
 </main>

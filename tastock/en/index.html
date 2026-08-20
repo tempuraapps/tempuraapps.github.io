@@ -281,13 +281,29 @@
     </div>
   </section>
 
-  <!-- ⚠️ **画面の紹介セクションは外してある（2026-08-12）。**
-       素材（`../app-image-en.webp` / `../app-image-en@2x.webp`）はリポジトリに残っているが、
-       **中身が簡素化リファクタ前のアプリ**で、もう存在しない4画面と5タブのタブバーを写している。
-       審査 2.3（Accurate Metadata）を避けるため外した。詳細は ja 版の同じ位置のコメント。
-       撮り直しが済んだら、この位置に姉妹アプリ（`../../fukumeguri/en/index.html`）と同じ
-       `<section class="shots">` と、`</footer>` の下の `<dialog class="lightbox">` を戻すこと。
-       CSS とスクリプトは消していない。スクリプトは `.shot` が無ければ何もしない。 -->
+  <!-- Restored 2026-08-21 with images recaptured from the current three-tab UI. -->
+  <section class="shots" aria-label="App screens">
+    <div class="wrap">
+      <figure class="shot">
+        <p class="sr-only">Four app screens. 1. Seasonings "Soonest to expire, always on top — No sorting to do. Days left as both a number and a color." 2. Collection "Used the last drop? The record stays — Ratings, tags and notes, ready when you spot that jar again." 3. Reminders "Before it expires, a reminder arrives — Choose the time and how many days ahead. All of it free." 4. Add "Logging a bottle takes just a name — Add the best-before date and tags whenever you get to them."</p>
+        <div class="shot-frame">
+          <div class="shot-track">
+            <button type="button" class="shot-slide" style="--i:0" aria-label="Enlarge screen 1"><img src="../app-image-en.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:1" aria-label="Enlarge screen 2"><img src="../app-image-en.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:2" aria-label="Enlarge screen 3"><img src="../app-image-en.webp" alt="" decoding="async"></button>
+            <button type="button" class="shot-slide" style="--i:3" aria-label="Enlarge screen 4"><img src="../app-image-en.webp" alt="" decoding="async"></button>
+          </div>
+        </div>
+        <div class="shot-dots">
+          <button type="button" class="shot-dot" aria-label="Show screen 1"></button>
+          <button type="button" class="shot-dot" aria-label="Show screen 2"></button>
+          <button type="button" class="shot-dot" aria-label="Show screen 3"></button>
+          <button type="button" class="shot-dot" aria-label="Show screen 4"></button>
+        </div>
+        <figcaption class="shot-hint">Tap to enlarge</figcaption>
+      </figure>
+    </div>
+  </section>
 
   <section class="features" aria-labelledby="features-h">
     <div class="wrap">
@@ -312,7 +328,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M6 3.5h8.5L19 8v12.5H6z"/><path d="M14 3.5V8h5"/><path d="M9.5 15.5h5M9.5 12h5"/></svg>
           </div>
           <h3>Keep a memo</h3>
-          <p>Something as short as &ldquo;rubbed it on chicken thighs and roasted them&rdquo; is enough. Each collection entry holds one memo. Next time you open the same bottle, what you made before is right there.</p>
+          <p>Something as short as &ldquo;rubbed it on chicken thighs and roasted them&rdquo; is enough. Each collection entry holds one memo. Next time you reach for the same bottle, what you made before is waiting in your collection.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
@@ -333,7 +349,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>
           </div>
           <h3>The record outlives the bottle</h3>
-          <p>Bottles with matching names link to the same collection entry automatically. When one runs out, the overall rating, taste scales, tags, and memos all stay behind in your collection. <strong>There is no limit on how many bottles you can keep in your stock.</strong></p>
+          <p>Bottles with matching names link to the same collection entry automatically. When one runs out, the overall rating, taste scales, tags, and memos all stay behind in your collection. <strong>There is no limit on how many bottles of the same seasoning you can keep.</strong></p>
         </li>
       </ul>
       <p class="instruments">More entries in your collection, higher limits for taste scales, categories, and tags, five color themes, switching the appearance between automatic, light, and dark, and exporting and importing your records are available with TASTOCK Pro. <a href="./support.html">See Support for details.</a></p>
@@ -344,7 +360,7 @@
     <div class="wrap">
       <div class="privacy-box">
         <h2 id="privacy-h">Your records stay on your device</h2>
-        <p>Your seasoning names, ratings, tags, and memos are stored only on your device. Nothing syncs to another device and nothing is sent to our servers. The only external communication is purchase processing for the paid plan and anonymous usage measurement (app launches, opening the paid plan screen, and the result of a purchase or restore). See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
+        <p>Your seasoning names, ratings, tags, and memos are stored only on your device. Nothing syncs to another device and nothing is sent to our servers. The only external communication is purchase processing for the paid plan and anonymous usage measurement (app launches, updates, moves between foreground and background, opening the paid plan screen, and purchase and restore actions and their results). See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
       </div>
     </div>
   </section>
@@ -367,10 +383,21 @@
     </nav>
   </div>
 </footer>
-<!-- ⚠️ 拡大表示の dialog（class="lightbox" / data-zoom="../app-image-en@2x.webp"）も
-     画面の紹介セクションと一緒に外してある。素材を用意したら、姉妹アプリの
-     ../../fukumeguri/en/index.html の同じ位置から dialog ごと戻すこと。
-     下のスクリプトは .lightbox が無ければ何もしない。 -->
+<dialog class="lightbox" data-zoom="../app-image-en@2x.webp" aria-label="Enlarged view">
+  <div class="lightbox-track">
+    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:0"><img alt="" decoding="async"></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:1"><img alt="" decoding="async"></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:2"><img alt="" decoding="async"></div></div>
+    <div class="lightbox-slide"><div class="lightbox-pane" style="--i:3"><img alt="" decoding="async"></div></div>
+  </div>
+  <div class="lightbox-dots">
+    <button type="button" class="lightbox-dot" aria-label="Show screen 1"></button>
+    <button type="button" class="lightbox-dot" aria-label="Show screen 2"></button>
+    <button type="button" class="lightbox-dot" aria-label="Show screen 3"></button>
+    <button type="button" class="lightbox-dot" aria-label="Show screen 4"></button>
+  </div>
+  <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+</dialog>
 <script>
 (function(){
   var figure = document.querySelector('.shot');

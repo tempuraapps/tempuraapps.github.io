@@ -85,6 +85,17 @@
   }
   .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
   .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+  /* App Store への導線。⚠️ **Apple 公式バッジ画像は置いていない。** 公式バッジを使うなら
+     Apple のマーケティングリソースから取得した画像に差し替えること（勝手に描き起こさない）。
+     文字リンクは公式バッジの代わりとして認められている。
+     ⚠️ 文字色は `--bg`。`--surface` にすると dark（白地に近い）で読めなくなる。 */
+  .store-cta{
+    display:inline-flex; align-items:center; justify-content:center;
+    margin:0 0 16px; padding:14px 30px; min-height:44px;
+    background:var(--accent); color:var(--bg);
+    border-radius:999px; font-size:16px; font-weight:700; letter-spacing:.01em;
+  }
+  .store-cta:hover{ opacity:.88; }
 
   /* features */
   .features{ padding-block:clamp(56px,11vw,104px); }
@@ -292,8 +303,7 @@
       <p class="eyebrow">AIノリツギ</p>
       <h1>次のAIへ、<br>コンテキストを乗り継ごう。</h1>
       <p class="subcopy">ChatGPT で考えた続きを、Claude で。会話ログではなく前提だけを保存しておけば、あとは貼り付けるだけで、どのAIでも続きから話せます。アカウント不要・広告なしのコンテキスト管理アプリです。</p>
-      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
-           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p><a class="store-cta" href="https://apps.apple.com/app/id6796743897">App Store で入手</a></p>
       <p class="platform">iOS 18.0 以降 / iPhone 向け</p>
     </div>
   </section>
@@ -354,7 +364,7 @@
           <p>ChatGPT の入力欄でキーボードを切り替えれば、アプリを離れずに保存したコンテキストを挿入できます。かな漢字変換・ライブ変換・片手キーボードを備え、ふだんの日本語入力にもそのまま使えます。</p>
         </li>
       </ul>
-      <p class="instruments">保存したコンテキストは JSON で書き出し・読み込みできます。</p>
+      <p class="instruments">保存したコンテキストは JSON で書き出し・読み込みできます。無料のままでも、コンテキスト5件・お気に入り3件までお使いいただけます。次のAIへ渡す操作・専用キーボードからの差し込み・JSON の書き出しと読み込みに上限はありません。件数の上限は AIノリツギ Pro で無くなります。詳しくは<a href="./support.html">サポート</a>をご覧ください。</p>
     </div>
   </section>
 
@@ -370,7 +380,7 @@
   <section class="cta" aria-labelledby="cta-h">
     <div class="wrap">
       <h2 class="cta-head" id="cta-h">もう一度、説明し直さなくていい。</h2>
-      <p>よくあるご質問は<a href="./support.html">サポート</a>に掲載しています。お問い合わせ: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+      <p><a href="https://apps.apple.com/app/id6796743897">App Store で入手できます</a>。よくあるご質問は<a href="./support.html">サポート</a>に掲載しています。お問い合わせ: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
     </div>
   </section>
 </main>

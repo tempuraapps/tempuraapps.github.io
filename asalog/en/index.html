@@ -92,6 +92,17 @@
   }
   .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
   .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+  /* App Store への導線。⚠️ **Apple 公式バッジ画像は置いていない。** 公式バッジを使うなら
+     Apple のマーケティングリソースから取得した画像に差し替えること（勝手に描き起こさない）。
+     文字リンクは公式バッジの代わりとして認められている。
+     ⚠️ 文字色は `--bg`。`--surface` にすると dark（白地に近い）で読めなくなる。 */
+  .store-cta{
+    display:inline-flex; align-items:center; justify-content:center;
+    margin:0 0 16px; padding:14px 30px; min-height:44px;
+    background:var(--accent); color:var(--bg);
+    border-radius:999px; font-size:16px; font-weight:700; letter-spacing:.01em;
+  }
+  .store-cta:hover{ opacity:.88; }
 
   /* features */
   .features{ padding-block:clamp(56px,11vw,104px); }
@@ -291,8 +302,7 @@
       <p class="eyebrow">AsaLog</p>
       <h1>Five seconds each morning.<br>Log how well you woke up.</h1>
       <p class="subcopy">Just pick one of five faces when you wake up. As it builds, patterns by weekday and reason start to surface, and laying last night&rsquo;s sleep over it shows the gap between how you felt and what was measured. Your records stay on your iPhone. No account, no ads.</p>
-      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
-           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p><a class="store-cta" href="https://apps.apple.com/app/id6799454261">Get it on the App Store</a></p>
       <p class="platform">iOS 18.0 or later / iPhone</p>
     </div>
   </section>
@@ -383,7 +393,7 @@
   <section class="cta" aria-labelledby="cta-h">
     <div class="wrap">
       <h2 class="cta-head" id="cta-h">Tomorrow morning, leave one behind.</h2>
-      <p>Common questions are answered on the <a href="./support.html">support page</a>. Contact: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+      <p><a href="https://apps.apple.com/app/id6799454261">Get it on the App Store</a>. Common questions are answered on the <a href="./support.html">support page</a>. Contact: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
     </div>
   </section>
 </main>

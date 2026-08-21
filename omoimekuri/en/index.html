@@ -294,13 +294,14 @@
     </div>
   </section>
 
-  <!-- ⚠️ 紹介画像を出していない。**画像が旧UIのまま**だから（ja 版と同じ理由）。
-       `app-image-en.webp` に写っているのは See again ボタン・テーマの代表色6色・
-       月次の4枚カードで、いずれも**アプリから廃止済み**。撮り直すまでは無いほうが正しい。
+  <!-- 4分割の合成画像を、4枚のスクリーンショットとして見せる仕掛け（ja 版と同じ）。
+       いまの `app-image-en.webp` は Build 25 の画面で、順番は
+       Today's photo / Calendar / Edit collection / Settings。
+       ⚠️ 画面を撮り直したら、下の sr-only の説明と data-zoom の @2x も必ず揃えること。 -->
   <section class="shots" aria-label="App screens">
     <div class="wrap">
       <figure class="shot">
-        <p class="sr-only">Four screens from the app. 1. Today&rsquo;s photo &mdash; one photo from your collection arrives large. 2. Edit collection &mdash; choose which photos are in the rotation, and see when each last appeared. 3. Calendar &mdash; the month you have kept, one photo per day. 4. How to use &mdash; one photo a day, what &ldquo;Hide for now&rdquo; means, and how to add the widget.</p>
+        <p class="sr-only">Four screens from the app. 1. Today&rsquo;s photo &mdash; one photo from your collection arrives large. 2. Calendar &mdash; the month you have kept, one photo per day. 3. Edit collection &mdash; add photos to a collection straight from your library. 4. Settings &mdash; choose the flip order, the photo frame, and what the widget shows.</p>
         <div class="shot-frame">
           <div class="shot-track">
             <button type="button" class="shot-slide" style="--i:0" aria-label="Enlarge screen 1"><img src="../app-image-en.webp" alt="" decoding="async"></button>
@@ -319,7 +320,6 @@
       </figure>
     </div>
   </section>
-  -->
 
   <section class="features" aria-labelledby="features-h">
     <div class="wrap">
@@ -375,8 +375,7 @@
           <p>The share button on <strong>Calendar</strong> renders that month&rsquo;s calendar as a tall card image. Send it as it is, or save it to your Photos app from the iOS share sheet.</p>
         </li>
       </ul>
-      <p class="instruments">Photos aren&rsquo;t drawn by lottery. Each collection keeps one rotation, and every day moves one step along it &mdash; so, as long as two or more photos can be shown, <strong>no photo comes round again until the whole collection has been through once</strong>, and the same photo never lands two days running (with only one photo to show, that photo stays). Choose the order under <strong>Settings &gt; Flip order</strong>: Random (shuffled once), Date added, or Custom (the order you set by touching and holding in Edit collection). Photos you add later are mixed into the part of the rotation you haven&rsquo;t reached yet.</p>
-      <p class="instruments">Adding as many photos as you like, building as many collections as you like, looking back at every month you have kept, and choosing any of the five photo frames come with OmoiMekuri Pro (US$1.99 per month or US$19.99 per year, auto-renewing). The free plan gives you 20 photos in total across every collection, 3 collections, the calendar back to three months before this one (four months in all), and one photo frame &mdash; for photos and collections, reaching the limit only stops you from adding more &mdash; nothing you already have is deleted or hidden, and the sample collections you can add from Settings (3 collections, 28 photos) are not counted; for the calendar and the frames, what sits outside the free range simply is not shown, and the records stay. Today&rsquo;s photo, &ldquo;Hide for now,&rdquo; the widget, the Calendar tab and sharing a month as a card, notes, and backing up your data are all free. See <a href="./support.html">Support</a> for details.</p>
+      <p class="instruments">Adding as many photos and as many collections as you like, looking back at every month you have kept, and choosing any of the five photo frames are available with OmoiMekuri Pro. The free plan gives you 20 photos in total across every collection, 3 collections, the calendar back to three months before this one (four months in all), and one photo frame. <a href="./support.html">See Support for details.</a></p>
     </div>
   </section>
 

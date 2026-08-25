@@ -92,18 +92,25 @@
   }
   .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
   .platform{ font-size:14px; color:var(--ink-2); margin:0; }
-  /* App Store への導線。⚠️ **Apple 公式バッジ画像は置いていない。** 公式バッジを使うなら
-     Apple のマーケティングリソースから取得した画像に差し替えること（勝手に描き起こさない）。
-     文字リンクは公式バッジの代わりとして認められている。
-     ⚠️ 文字色は `--bg`。light は #0F58C4 上の淡色で 6.1:1、dark は #7FB6FF 上の暗色で 8.6:1。
-     `--surface` でも読める（6.4:1 / 7.5:1）が、姉妹アプリと同じく `--bg` に統一している。 */
-  .store-cta{
-    display:inline-flex; align-items:center; justify-content:center;
-    margin:0 0 16px; padding:14px 30px; min-height:44px;
-    background:var(--accent); color:var(--bg);
-    border-radius:999px; font-size:16px; font-weight:700; letter-spacing:.01em;
-  }
-  .store-cta:hover{ opacity:.88; }
+  /* App Store への導線。Apple 公式バッジ画像（assets/app-store-badge-{ja,en}-{black,white}.svg）。
+     Apple のマーケティングリソースから取得した原本そのまま。原本と md5 一致を確認済み。
+     light は黒バッジ（外周 #a6a6a6 の枠があり、淡い --bg 上でも輪郭が出る）、dark は白バッジ。
+     出し分けは <picture> の media="(prefers-color-scheme: dark)"。このサイトに data-theme は無い。
+     ⚠️ バッジ画像に手を加えないこと。背景色・角丸・影・filter・opacity・transform はすべて規約違反。
+        hover の見た目変化も付けない（下の text-decoration:none はグローバル a:hover の下線を消すためだけ）。
+     ⚠️ 1レイアウトにつきバッジは1つ。このヒーロー以外に足さない。
+     クリアスペースは上 26px（.subcopy の margin-bottom）と下 16px ＋ <p> の 16px で確保。
+     フォーカスリングはグローバルの a:focus-visible がそのまま効く（画像への装飾ではない）。 */
+  /* vertical-align:top は必須。既定の baseline だと、包む <p> の strut の
+     ディセンダ分（実測 9.09px）が下に出て .platform との間隔が 32px から 41px へ広がる。 */
+  .store-badge{ display:inline-block; vertical-align:top; margin:0 0 16px; line-height:0; }
+  .store-badge:hover{ text-decoration:none; }
+  .store-badge picture{ display:block; }
+  /* max-width:none は必須。グローバルの img{ max-width:100% } が効くと、
+     幅だけ縮んで height:54px が残り、バッジが横に潰れる（実測: 100x54 = 比率1.85 / 本来3.0）。
+     縦横比を変えることも Apple の規約違反にあたるため、クランプ自体を無効化する。
+     実機幅では発生しない（320px 幅でも版面 280px > バッジ 162px）ので、はみ出しの心配もない。 */
+  .store-badge img{ height:54px; width:auto; max-width:none; }
 
   /* features */
   .features{ padding-block:clamp(56px,11vw,104px); }
@@ -307,7 +314,7 @@
       <p class="eyebrow">朝ログ</p>
       <h1><span class="nowrap">毎朝5秒。</span><span class="nowrap">目覚めの良さを記録しよう。</span></h1>
       <p class="subcopy">起きたら顔をひとつ選ぶだけ。たまってくると、曜日や要因ごとの傾向が見えてきます。前夜の睡眠時間と並べれば、体感と実測のズレも分かります。アカウント不要・広告なしの、朝の記録アプリです。</p>
-      <p><a class="store-cta" href="https://apps.apple.com/app/id6799454261">App Store で入手</a></p>
+      <p><a class="store-badge" href="https://apps.apple.com/app/id6799454261"><picture><source media="(prefers-color-scheme: dark)" srcset="../assets/app-store-badge-ja-white.svg"><img src="../assets/app-store-badge-ja-black.svg" width="147" height="54" alt="App Storeからダウンロード" decoding="async"></picture></a></p>
       <p class="platform">iOS 18.0 以降 / iPhone 向け</p>
     </div>
   </section>

@@ -50,15 +50,15 @@
 <main class="wrap">
   <p class="eyebrow">TempuraApps</p>
   <h1>Kajidori Privacy Policy</h1>
-  <p class="updated">Last updated: August 25, 2026</p>
+  <p class="updated">Last updated: August 26, 2026</p>
   <p class="lang"><a href="index.html">About the app</a> · <a href="support.html">Support</a> · <a href="../privacy.html">日本語</a></p>
   <p class="lead">Kajidori ("the App") is provided by TempuraApps ("we"). This policy explains how the App handles user information.</p>
 
   <h2>1. Information we collect</h2>
-  <p>The App does not collect personal information such as your name, email address, or phone number. Member names, chore template names, the text of steps, notes, schedules, and records are stored only on your device and are never transmitted to or held on servers operated by us or by third parties. The only exception is the usage measurement described in section 3, which sends a limited set of information to an external service. It never includes chore names, the text of steps, notes, or member names.</p>
+  <p>The App does not collect personal information such as your name, email address, or phone number. Member names, chore names, notes, schedules, and records are stored only on your device and are never transmitted to or held on servers operated by us or by third parties. The only exception is the usage measurement described in section 3, which sends a limited set of information to an external service. It never includes chore names, notes, or member names.</p>
 
   <h2>2. Accounts and network use</h2>
-  <p>No account registration is required to use the App. Member names, chore templates, schedules, records, and notes stay on your device and are not transmitted externally. The App does, however, communicate with a limited external service for the usage measurement described below (section 3). See section 4 for how purchase infrastructure is handled.</p>
+  <p>No account registration is required to use the App. Member names, chores, schedules, records, and notes stay on your device and are not transmitted externally. The App does, however, communicate with a limited external service for the usage measurement described below (section 3). See section 4 for how purchase infrastructure is handled.</p>
 
   <h2>3. Usage analytics (PostHog)</h2>
   <p>To improve quality and features, the App measures anonymous usage with the analytics service PostHog. What is collected is the fact that you performed one of the actions below, together with any count (of people, chores, or minutes) or the kind of option chosen:</p>
@@ -66,18 +66,16 @@
     <li>App launches, updates, and moving to and from the background</li>
     <li>Opening the Kajidori Pro screen (which screen you came from)</li>
     <li>Starting, completing, or failing a purchase (plan type, whether the build has billing enabled, and the reason for a failure), and restoring a purchase (no plan type is sent for a restore)</li>
-    <li>Completing initial setup (the number of members registered and the number of chore templates)</li>
+    <li>Completing initial setup (the number of members registered and the number of chores)</li>
     <li>Manually scheduling a chore (how many days ahead, whether it has an assignee, and whether it repeats &mdash; chores generated automatically from a repeat are never sent)</li>
-    <li>Starting a timer session (the number of steps and where it was started from)</li>
-    <li>Completing a session and recording it (the planned and actual minutes, the number of steps, whether it was applied to the estimate, and whether it was treated as an outlier)</li>
+    <li>Starting a timer session (where it was started from)</li>
+    <li>Completing a session and recording it (the planned and actual minutes)</li>
     <li>Discarding a session (the number of seconds elapsed)</li>
-    <li>Later switching whether a record is applied to the estimate</li>
     <li>Adding a member (the total number registered)</li>
-    <li>Creating a chore template (the total number registered, and whether it came from a preset)</li>
-    <li>Receiving a link from an external app (only a fixed value naming the source app &mdash; never the name or content of the chore received)</li>
-    <li>Changing a notification setting (morning or evening, on or off)</li>
+    <li>Creating a chore (the total number registered, and whether it came from a preset)</li>
+    <li>Changing a notification setting (on or off)</li>
   </ul>
-  <p>Nothing beyond this is sent. We never send chore names, the text of steps, notes, or member names &mdash; the values that can be sent are limited to numbers, true/false, and a fixed set of options, so <strong>there is no mechanism for carrying text you typed</strong>. Rage-click detection, which would send on-screen text, is disabled because content could be caught up in it.</p>
+  <p>Nothing beyond this is sent. We never send chore names, notes, or member names &mdash; the values that can be sent are limited to numbers, true/false, and a fixed set of options, so <strong>there is no mechanism for carrying text you typed</strong>. Rage-click detection, which would send on-screen text, is disabled because content could be caught up in it.</p>
   <p>Technical information automatically attached by PostHog may also be included: the App version, your OS type and version, your device type, and the App's display language. Your time zone is stripped before sending, because it can be used to infer your approximate region. IP addresses are configured to be discarded on the analytics side, and we have specified that no region or location be inferred from them. Finer locations such as your city or your coordinates are never collected. None of this is intended to identify a specific individual, and none of it is linked to an account. The data is stored in the EU region.</p>
   <p>Each record sent carries an anonymous identifier created for that installation of the App. It exists so that actions from the same installation can be read as one thread. It is not tied to your name, email address, account, or any hardware identifier provided by the device, and we do not use it to identify you. Deleting and reinstalling the App produces a new one.</p>
   <p>We have no way to connect that identifier to you as a person. For that reason we cannot act on requests to retrieve or delete one user's data individually. If you wish to stop the measurement entirely, please delete the App; nothing is sent after it is removed.</p>
@@ -87,11 +85,11 @@
   <p>Purchases and restores for Kajidori Pro are handled through Apple's App Store, and we use the subscription infrastructure service RevenueCat to manage purchases and entitlement status. Payment details such as credit card numbers will be handled by Apple and will never be received by us. Purchases will be managed under an anonymous identifier and will not be linked to personal information such as your name or email address. Please note that RevenueCat is a service provided by a company based in the United States.</p>
 
   <h2>5. Your chore records (on-device only, never transmitted)</h2>
-  <p>Members, chore templates, steps, schedules, completed records, and notes are all stored in a single file on your device and are never transmitted to servers operated by us or by third parties. The App does not use Photos, Location, or Health data of any kind, and never asks for permission to access them. It has no feature to sync with other devices &mdash; your records stay entirely on the device you use.</p>
+  <p>Members, chores, schedules, completed records, and notes are all stored in a single file on your device and are never transmitted to servers operated by us or by third parties. The App does not use Photos, Location, or Health data of any kind, and never asks for permission to access them. It has no feature to sync with other devices &mdash; your records stay entirely on the device you use.</p>
 
   <h2>6. Data backup</h2>
-  <p>The App can export your members, chore templates, schedules, and records to a file (JSON). Exporting and importing are available with <strong>Kajidori Pro</strong>.</p>
-  <p><strong>The exported file contains what you typed as-is &mdash; member names, chore names, the text of steps, and notes.</strong> The file is placed wherever you choose to save it and stays under your control; we never access it, and it is never transmitted. Importing applies only to the file you pick; its contents are read on your device and used to replace the data on your device. Nothing is transmitted to servers operated by us or by third parties. Before importing, your existing data is set aside on your device first, then replaced.</p>
+  <p>The App can export your members, chores, schedules, and records to a file (JSON). Exporting and importing are available with <strong>Kajidori Pro</strong>.</p>
+  <p><strong>The exported file contains what you typed as-is &mdash; member names, chore names, and notes.</strong> The file is placed wherever you choose to save it and stays under your control; we never access it, and it is never transmitted. Importing applies only to the file you pick; its contents are read on your device and used to replace the data on your device. Nothing is transmitted to servers operated by us or by third parties. Before importing, your existing data is set aside on your device first, then replaced.</p>
 
   <h2>7. Provision to third parties</h2>
   <p>We do not provide or sell your information to third parties for advertising purposes. Information sent to the external service described in section 3 (PostHog) for measurement is handled under that service's own privacy policy. The same applies to RevenueCat, described in section 4.</p>

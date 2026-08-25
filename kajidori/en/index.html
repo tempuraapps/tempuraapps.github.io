@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TempuraApps | Kajidori — Split the chores, run them by time.</title>
+<meta name="description" content="A chore-splitting app for families and partners: decide what's coming up together and run it by time. Plan next week ahead, run each chore with a stopwatch and step guide, and let real times teach the next estimate. No scores, no rankings. No account, no ads.">
+<meta name="theme-color" content="#F5F8FF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#10151F" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://tempuraapps.github.io/kajidori/en/">
+<link rel="alternate" hreflang="ja" href="https://tempuraapps.github.io/kajidori/">
+<link rel="alternate" hreflang="en" href="https://tempuraapps.github.io/kajidori/en/">
+<link rel="alternate" hreflang="x-default" href="https://tempuraapps.github.io/kajidori/">
+<link rel="icon" type="image/png" sizes="64x64" href="../icon-64.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TempuraApps">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:title" content="TempuraApps | Kajidori — Split the chores, run them by time.">
+<meta property="og:description" content="Plan next week's chores ahead of time, then run each one with a stopwatch and step guide. Real times teach the next estimate.">
+<meta property="og:url" content="https://tempuraapps.github.io/kajidori/en/">
+<meta property="og:image" content="https://tempuraapps.github.io/kajidori/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="Kajidori app icon">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    color-scheme: light dark;
+    /* ===== THEME TOKENS（アプリの Theme.swift のブランド色に合わせる）=====
+       カジドリのブランドカラーは Primary Blue。hero のグラデーションの上で WCAG AA 4.5:1 を
+       満たすよう調整済みの値を使う（ライト/ダークとも）。 */
+    --bg:#F5F8FF; --surface:#FFFFFF; --ink:#182233; --ink-2:#5B6B82;
+    --accent:#1467E8; --border:#DCE5F2; --grad-a:#6FA1F5; --grad-b:#1467E8;
+    --icon-shadow:0 16px 40px rgba(0,0,0,.14), 0 0 0 1px rgba(24,34,51,.06); --card-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#10151F; --surface:#1A212E; --ink:#EAF0FB; --ink-2:#9AAAC2;
+      --accent:#5E97F6; --border:#2A3444; --grad-a:#5E97F6; --grad-b:#1467E8;
+      --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
+    }
+  }
+  /* ===== 構造CSS（LP共通。トークンのみ参照）===== */
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.75; font-size:16px; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:960px; margin-inline:auto; padding-inline:20px; }
+
+  /* header */
+  .site-head .head-inner{
+    display:flex; align-items:center; justify-content:space-between; min-height:56px; gap:12px; flex-wrap:wrap;
+  }
+  .wordmark{ font-size:13px; letter-spacing:.06em; color:var(--ink-2); font-weight:600; }
+  .wordmark:hover{ color:var(--accent); }
+  .head-links, .foot-links{ display:flex; align-items:center; flex-wrap:wrap; gap:18px; row-gap:2px; }
+  .head-links a, .foot-links a{ white-space:nowrap; }
+  .head-link{ font-size:14px; color:var(--ink-2); padding:8px 0; }
+  .head-link:hover{ color:var(--accent); }
+
+  /* hero */
+  .hero{
+    text-align:center;
+    padding-block:clamp(40px,10vw,96px) clamp(48px,9vw,88px);
+    background:var(--bg);
+    background-image:
+      radial-gradient(120% 70% at 50% -20%, color-mix(in srgb, var(--grad-a) 15%, transparent), transparent 70%),
+      radial-gradient(60% 42% at 82% 0%, color-mix(in srgb, var(--grad-b) 12%, transparent), transparent 70%);
+  }
+  .hero-inner{ max-width:640px; margin-inline:auto; padding-inline:20px; }
+  .app-icon{
+    width:128px; height:128px; border-radius:22.37%;
+    margin:0 auto 24px; box-shadow:var(--icon-shadow);
+  }
+  .eyebrow{ font-size:13px; letter-spacing:.08em; color:var(--accent); font-weight:600; margin:0 0 10px; }
+  h1{
+    font-size:clamp(30px,7.5vw,46px); line-height:1.25; letter-spacing:-0.02em;
+    font-weight:700; margin:0 0 16px;
+  }
+  .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
+  .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+
+  /* features */
+  .features{ padding-block:clamp(56px,11vw,104px); }
+  h2{
+    font-size:clamp(24px,5vw,32px); line-height:1.25; letter-spacing:-0.02em;
+    font-weight:700; text-align:center; margin:0 0 36px;
+  }
+  .cards{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+  @media (min-width:640px){ .cards{ grid-template-columns:1fr 1fr; gap:20px; } }
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:24px; box-shadow:var(--card-shadow); }
+  .chip{
+    width:44px; height:44px; border-radius:12px; margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent);
+    background:var(--surface);
+    background:color-mix(in srgb, var(--accent) 13%, var(--surface));
+  }
+  .chip svg{ width:24px; height:24px; }
+  .card h3{ font-size:17px; font-weight:600; margin:0 0 6px; }
+  .card p{ font-size:15px; color:var(--ink-2); margin:0; }
+  .instruments{ text-align:center; font-size:14px; color:var(--ink-2); margin:24px 0 0; }
+
+  /* privacy */
+  .privacy{ padding-block:0 clamp(56px,11vw,104px); }
+  .privacy-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:24px;
+    padding:clamp(28px,5vw,40px); text-align:center; max-width:720px; margin-inline:auto; box-shadow:var(--card-shadow);
+  }
+  .privacy-box h2{ margin:0 0 14px; }
+  .privacy-box p{ font-size:16px; color:var(--ink-2); max-width:34em; margin:0 auto; }
+
+  /* cta */
+  .cta{
+    text-align:center; padding-block:clamp(56px,11vw,104px);
+    background-image:radial-gradient(80% 70% at 50% 130%, color-mix(in srgb, var(--grad-a) 12%, transparent), transparent 72%);
+  }
+  .cta-head{ font-size:clamp(24px,5vw,34px); line-height:1.3; font-weight:700; letter-spacing:-0.02em; margin:0 0 12px; }
+  .cta p{ font-size:15px; color:var(--ink-2); margin:0; }
+
+  /* footer */
+  .site-foot{ border-top:1px solid var(--border); }
+  .site-foot .foot-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding-block:22px; font-size:13px; color:var(--ink-2);
+  }
+  .site-foot a{ color:var(--ink-2); }
+  .site-foot a:hover{ color:var(--accent); }
+  .foot-links a{ padding:6px 0; }
+
+  .privacy-box p a, .cta p a{ text-decoration:underline; text-underline-offset:2px; }
+  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="wordmark" href="../../en/">TempuraApps</a>
+    <nav class="head-links" aria-label="Site links">
+      <a class="head-link" href="./support.html">Support</a>
+      <a class="head-link" href="./privacy.html">Privacy Policy</a>
+      <a class="head-link" href="../" lang="ja" hreflang="ja">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <!-- アイコン確定後にここへ戻す。壊れた画像を目立たせないよう、それまではコメントアウトしておく。
+      <img class="app-icon" src="../icon-384.jpg" width="128" height="128" fetchpriority="high" alt="Kajidori app icon">
+      -->
+      <p class="eyebrow">Kajidori</p>
+      <h1>Split the chores.<br>Run them by time.</h1>
+      <p class="subcopy">Plan next week&rsquo;s chores with your family or partner ahead of time, and lay them out on the schedule. When the day comes, run each one with a stopwatch and a step-by-step guide. How long it actually took gets recorded, and the next estimate gets a little closer to reality. There are no scores or rankings to compete over. No account, no ads &mdash; everything stays on your device.</p>
+      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
+           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p class="platform">iOS 18.0 or later / iPhone</p>
+    </div>
+  </section>
+
+  <!-- スクリーンショットのカルーセル（.shots ブロックとその CSS/JS）は、
+       app-image-en.webp が用意でき次第 omoimekuri/en/index.html から丸ごと移植する。
+       現時点では画面の画像が無いため、セクションごと省いてある。 -->
+
+  <section class="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <h2 id="features-h">Tools for sharing the load and running it by time</h2>
+      <ul class="cards" role="list">
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="9" cy="8" r="3"/><path d="M3.5 19.5c0-3.3 2.5-5.7 5.5-5.7s5.5 2.4 5.5 5.7"/><circle cx="17" cy="8.5" r="2.3"/><path d="M15 14.2c2.2.4 3.8 2.3 4 4.8"/></svg>
+          </div>
+          <h3>Add members</h3>
+          <p>Register each person with a name and a color, and you can start assigning chores &mdash; no account, no invite link needed. The free plan covers 2 people; Pro opens up to 6. Archive someone and their past records stay under their name.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4.5" y="3.5" width="15" height="17" rx="2.5"/><path d="M8 8.5h8M8 12.5h8M8 16.5h5"/></svg>
+          </div>
+          <h3>Chore templates</h3>
+          <p>Give a chore a name, category, steps, and the days it repeats, and it&rsquo;s ready to schedule again every week with the same setup. Fifteen presets are ready to use. The free plan covers 15 in total; Pro lets you add as many as you like.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3.5v3M16 3.5v3M3.5 10h17"/></svg>
+          </div>
+          <h3>Plan next week</h3>
+          <p>Lay out chores ahead of time on the weekly board or the month calendar, each with an assignee and an estimate. Chores that repeat on set days are generated automatically as far ahead as the view shows.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="5" y="4.5" width="14" height="16" rx="2.5"/><path d="M9 4.5V3.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M8.5 13l2 2 4.5-4.5"/></svg>
+          </div>
+          <h3>Today</h3>
+          <p>Today&rsquo;s chores show up in one list, with the total estimated time and each person&rsquo;s share at a glance. Filter by &ldquo;15 minutes or less&rdquo; or &ldquo;30 minutes or less,&rdquo; and anything carried over from yesterday shows up here too.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="13" r="8"/><path d="M12 13V9"/><path d="M9.5 3.5h5"/><path d="M18.2 6.8l1.3-1.3"/></svg>
+          </div>
+          <h3>Timer and step guide</h3>
+          <p>Start a chore and a large timer fills the screen with &ldquo;the current step&rdquo; and &ldquo;the next step.&rdquo; Check one off to move on, and if you close the app partway through, reopening it brings back the running screen with the elapsed time intact.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 18l5-5 4 3 6-7"/><path d="M14 8h5v5"/></svg>
+          </div>
+          <h3>Records that teach the estimate</h3>
+          <p>When you&rsquo;re done, one tap on &ldquo;Record&rdquo; is all it takes. Add a note if the time ran differently than planned, and as real times build up over the last three runs, the next estimate edges closer to how long it actually takes. Unusually long or short runs can be left out, and you can change that later.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="12" width="3.5" height="8" rx="1"/><rect x="10.2" y="7" width="3.5" height="13" rx="1"/><rect x="16.4" y="15" width="3.5" height="5" rx="1"/></svg>
+          </div>
+          <h3>History</h3>
+          <p>Look back at weekly and monthly totals &mdash; planned versus actual, broken down by person and by chore, with any patterns worth noticing. The free plan keeps the last 30 days; Pro keeps everything.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M6 16v-4.5a6 6 0 0 1 12 0V16l1.5 2.5h-15L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>
+          </div>
+          <h3>Notifications</h3>
+          <p>A morning notification lists today&rsquo;s chores; an evening one covers tomorrow&rsquo;s plan and anything left today &mdash; both just a count and a total time, nothing more. No notification arrives on a day with nothing to say. Turn each kind on or off in Settings.</p>
+        </li>
+      </ul>
+      <p class="instruments">Adding up to 6 members, creating as many chore templates as you like, looking back through your full history, switching to Dark or Automatic appearance, and exporting or importing your data as JSON are all available with Kajidori Pro. The free plan already covers 2 members, 15 chore templates, the last 30 days of history, scheduling and repeats, the timer and step guide, and notifications. <a href="./support.html">See Support for details.</a></p>
+    </div>
+  </section>
+
+  <section class="privacy" aria-labelledby="privacy-h">
+    <div class="wrap">
+      <div class="privacy-box">
+        <h2 id="privacy-h">Your chores stay on your device</h2>
+        <p>Members, chore templates, schedules, completed records, and notes are all stored in a single file on your device and are never sent anywhere. We run anonymous usage measurement to improve the app, but what it records is things like the type of action taken, counts such as how many people, chores, or minutes, and which option was chosen &mdash; never chore names, the text of steps, notes, or member names. See the <a href="./privacy.html">Privacy Policy</a> for the full picture.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-h">
+    <div class="wrap">
+      <h2 class="cta-head" id="cta-h">Plan next week&rsquo;s chores first.</h2>
+      <p>Common questions are answered on the <a href="./support.html">support page</a>. Contact: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <span>© 2026 TempuraApps</span>
+    <nav class="foot-links" aria-label="Secondary links">
+      <a href="./support.html">Support</a>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="../" lang="ja" hreflang="ja">日本語</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

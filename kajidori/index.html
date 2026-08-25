@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TempuraApps | カジドリ — 家事を分けて、時間でまわす。</title>
+<meta name="description" content="家族やパートナーで、これからの家事を分けて時間でまわす家事分担アプリ。来週の予定を先に決め、当日はストップウォッチと手順ナビで実行、実測が次回の見積りを育てます。公平さを競う点数やランキングはありません。アカウント不要・広告なしのiPhone向けアプリ。">
+<meta name="theme-color" content="#F5F8FF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#10151F" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://tempuraapps.github.io/kajidori/">
+<link rel="alternate" hreflang="ja" href="https://tempuraapps.github.io/kajidori/">
+<link rel="alternate" hreflang="en" href="https://tempuraapps.github.io/kajidori/en/">
+<link rel="alternate" hreflang="x-default" href="https://tempuraapps.github.io/kajidori/">
+<link rel="icon" type="image/png" sizes="64x64" href="./icon-64.png">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TempuraApps">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="TempuraApps | カジドリ — 家事を分けて、時間でまわす。">
+<meta property="og:description" content="来週の家事を先に決め、当日はストップウォッチと手順ナビで実行。実測が次回の見積りを育てる家事分担アプリ。">
+<meta property="og:url" content="https://tempuraapps.github.io/kajidori/">
+<meta property="og:image" content="https://tempuraapps.github.io/kajidori/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="カジドリのアプリアイコン">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    color-scheme: light dark;
+    /* ===== THEME TOKENS（アプリの Theme.swift のブランド色に合わせる）=====
+       カジドリのブランドカラーは Primary Blue。hero のグラデーションの上で WCAG AA 4.5:1 を
+       満たすよう調整済みの値を使う（ライト/ダークとも）。 */
+    --bg:#F5F8FF; --surface:#FFFFFF; --ink:#182233; --ink-2:#5B6B82;
+    --accent:#1467E8; --border:#DCE5F2; --grad-a:#6FA1F5; --grad-b:#1467E8;
+    --icon-shadow:0 16px 40px rgba(0,0,0,.14), 0 0 0 1px rgba(24,34,51,.06); --card-shadow:0 1px 2px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#10151F; --surface:#1A212E; --ink:#EAF0FB; --ink-2:#9AAAC2;
+      --accent:#5E97F6; --border:#2A3444; --grad-a:#5E97F6; --grad-b:#1467E8;
+      --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
+    }
+  }
+  /* ===== 構造CSS（LP共通。トークンのみ参照）===== */
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Helvetica Neue",Arial,sans-serif;
+    line-height:1.85; font-size:16px; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:960px; margin-inline:auto; padding-inline:20px; }
+
+  /* header */
+  .site-head .head-inner{
+    display:flex; align-items:center; justify-content:space-between; min-height:56px; gap:12px; flex-wrap:wrap;
+  }
+  .wordmark{ font-size:13px; letter-spacing:.06em; color:var(--ink-2); font-weight:600; }
+  .wordmark:hover{ color:var(--accent); }
+  .head-links, .foot-links{ display:flex; align-items:center; flex-wrap:wrap; gap:18px; row-gap:2px; }
+  .head-links a, .foot-links a{ white-space:nowrap; }
+  .head-link{ font-size:14px; color:var(--ink-2); padding:8px 0; }
+  .head-link:hover{ color:var(--accent); }
+
+  /* hero */
+  .hero{
+    text-align:center;
+    padding-block:clamp(40px,10vw,96px) clamp(48px,9vw,88px);
+    background:var(--bg);
+    background-image:
+      radial-gradient(120% 70% at 50% -20%, color-mix(in srgb, var(--grad-a) 15%, transparent), transparent 70%),
+      radial-gradient(60% 42% at 82% 0%, color-mix(in srgb, var(--grad-b) 12%, transparent), transparent 70%);
+  }
+  .hero-inner{ max-width:640px; margin-inline:auto; padding-inline:20px; }
+  .app-icon{
+    width:128px; height:128px; border-radius:22.37%;
+    margin:0 auto 24px; box-shadow:var(--icon-shadow);
+  }
+  .eyebrow{ font-size:13px; letter-spacing:.08em; color:var(--accent); font-weight:600; margin:0 0 10px; }
+  h1{
+    font-size:clamp(30px,7.5vw,46px); line-height:1.3; letter-spacing:-0.02em;
+    font-weight:700; margin:0 0 16px;
+  }
+  .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
+  .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+
+  /* features */
+  .features{ padding-block:clamp(56px,11vw,104px); }
+  h2{
+    font-size:clamp(24px,5vw,32px); line-height:1.3; letter-spacing:-0.02em;
+    font-weight:700; text-align:center; margin:0 0 36px;
+  }
+  .cards{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+  @media (min-width:640px){ .cards{ grid-template-columns:1fr 1fr; gap:20px; } }
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:24px; box-shadow:var(--card-shadow); }
+  .chip{
+    width:44px; height:44px; border-radius:12px; margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent);
+    background:var(--surface);
+    background:color-mix(in srgb, var(--accent) 13%, var(--surface));
+  }
+  .chip svg{ width:24px; height:24px; }
+  .card h3{ font-size:17px; font-weight:600; margin:0 0 6px; }
+  .card p{ font-size:15px; color:var(--ink-2); margin:0; }
+  .instruments{ text-align:center; font-size:14px; color:var(--ink-2); margin:24px 0 0; }
+
+  /* privacy */
+  .privacy{ padding-block:0 clamp(56px,11vw,104px); }
+  .privacy-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:24px;
+    padding:clamp(28px,5vw,40px); text-align:center; max-width:720px; margin-inline:auto; box-shadow:var(--card-shadow);
+  }
+  .privacy-box h2{ margin:0 0 14px; }
+  .privacy-box p{ font-size:16px; color:var(--ink-2); max-width:34em; margin:0 auto; }
+
+  /* cta */
+  .cta{
+    text-align:center; padding-block:clamp(56px,11vw,104px);
+    background-image:radial-gradient(80% 70% at 50% 130%, color-mix(in srgb, var(--grad-a) 12%, transparent), transparent 72%);
+  }
+  .cta-head{ font-size:clamp(24px,5vw,34px); line-height:1.35; font-weight:700; letter-spacing:-0.02em; margin:0 0 12px; }
+  .cta p{ font-size:15px; color:var(--ink-2); margin:0; }
+
+  /* footer */
+  .site-foot{ border-top:1px solid var(--border); }
+  .site-foot .foot-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding-block:22px; font-size:13px; color:var(--ink-2);
+  }
+  .site-foot a{ color:var(--ink-2); }
+  .site-foot a:hover{ color:var(--accent); }
+  .foot-links a{ padding:6px 0; }
+
+  /* 地の文に混ざるリンクは、色だけでは本文と見分けられないので下線を戻す */
+  .privacy-box p a, .cta p a{ text-decoration:underline; text-underline-offset:2px; }
+  /* キーボード操作中の現在位置を明示する */
+  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+  /* 見出しを語中で割らせず、読点の位置でだけ折り返す */
+  .nowrap{ white-space:nowrap; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="wordmark" href="../">TempuraApps</a>
+    <nav class="head-links" aria-label="サイト内リンク">
+      <a class="head-link" href="./support.html">サポート</a>
+      <a class="head-link" href="./privacy.html">プライバシーポリシー</a>
+      <a class="head-link" href="./en/" lang="en" hreflang="en">English</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <!-- アイコン確定後にここへ戻す。壊れた画像を目立たせないよう、それまではコメントアウトしておく。
+      <img class="app-icon" src="./icon-384.jpg" width="128" height="128" fetchpriority="high" alt="カジドリ（アプリアイコン）">
+      -->
+      <p class="eyebrow">カジドリ</p>
+      <h1><span class="nowrap">家事を分けて、</span><span class="nowrap">時間でまわす。</span></h1>
+      <p class="subcopy">来週の家事を、家族やパートナーとあらかじめ分けて予定に並べておくと、当日はストップウォッチと手順ナビでそのまま進められます。かかった時間は記録に残り、次の見積りが少しずつ実態に近づいていきます。公平さを競う点数やランキングはありません。アカウント不要・広告なし・データは端末内だけで完結するiPhone向けアプリです。</p>
+      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
+           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p class="platform">iOS 18.0 以降 / iPhone 向け</p>
+    </div>
+  </section>
+
+  <!-- スクリーンショットのカルーセル（.shots ブロックとその CSS/JS）は、
+       app-image.webp が用意でき次第 omoimekuri/index.html から丸ごと移植する。
+       現時点では画面の画像が無いため、セクションごと省いてある。 -->
+
+  <section class="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <h2 id="features-h">分けて、まわすための道具</h2>
+      <ul class="cards" role="list">
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="9" cy="8" r="3"/><path d="M3.5 19.5c0-3.3 2.5-5.7 5.5-5.7s5.5 2.4 5.5 5.7"/><circle cx="17" cy="8.5" r="2.3"/><path d="M15 14.2c2.2.4 3.8 2.3 4 4.8"/></svg>
+          </div>
+          <h3>メンバーを迎える</h3>
+          <p>名前と色でメンバーを登録するだけで、担当を割り振れるようになります。アカウントも招待リンクも要りません。無料では2人まで、Pro なら6人まで迎えられます。アーカイブしても、それまでの記録は名前ごと残ります。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4.5" y="3.5" width="15" height="17" rx="2.5"/><path d="M8 8.5h8M8 12.5h8M8 16.5h5"/></svg>
+          </div>
+          <h3>家事テンプレート</h3>
+          <p>家事に名前・カテゴリ・手順・繰り返す曜日を設定しておくと、毎週同じ手間で予定に呼び出せます。すぐ使えるプリセットを15件用意しました。無料では合計15件まで、Pro なら何件でも増やせます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3.5v3M16 3.5v3M3.5 10h17"/></svg>
+          </div>
+          <h3>来週の予定を決める</h3>
+          <p>週間ボードと月間カレンダーで、来週以降の家事をあらかじめ担当・見積り時間つきで並べておけます。毎週決まった曜日の家事は、繰り返し設定でまとめて先まで自動的に作成されます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="5" y="4.5" width="14" height="16" rx="2.5"/><path d="M9 4.5V3.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M8.5 13l2 2 4.5-4.5"/></svg>
+          </div>
+          <h3>今日の家事</h3>
+          <p>今日担当する家事が一覧になり、合計の見積り時間とメンバーごとの時間が一目で分かります。「〜15分」「〜30分」で絞り込んだり、前日までの持ち越しもここに並びます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="13" r="8"/><path d="M12 13V9"/><path d="M9.5 3.5h5"/><path d="M18.2 6.8l1.3-1.3"/></svg>
+          </div>
+          <h3>タイマーと手順ナビ</h3>
+          <p>家事を開始すると、大きなタイマーと「今の手順・次の手順」が画面いっぱいに出ます。チェックで次に進み、途中でアプリを閉じても経過時間を保ったまま作業中の画面に戻れます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 18l5-5 4 3 6-7"/><path d="M14 8h5v5"/></svg>
+          </div>
+          <h3>完了記録と見積り学習</h3>
+          <p>終わったら「記録する」を押すだけ。予定との差やメモを添えられ、実測が直近3回ぶん積み重なるほど次回の見積りが実態に近づいていきます。極端な記録は反映するかどうかをあとから選べます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="4" y="12" width="3.5" height="8" rx="1"/><rect x="10.2" y="7" width="3.5" height="13" rx="1"/><rect x="16.4" y="15" width="3.5" height="5" rx="1"/></svg>
+          </div>
+          <h3>記録</h3>
+          <p>週・月ごとの予定対実測、担当別・家事別の内訳、傾向の気づきをまとめて振り返れます。過去の記録は無料で直近30日、Pro でずっと前まで見返せます。</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M6 16v-4.5a6 6 0 0 1 12 0V16l1.5 2.5h-15L6 16z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg>
+          </div>
+          <h3>通知</h3>
+          <p>朝は今日の家事、夜は明日の予定と今日の残りを、件数と合計時間だけでそっと知らせます。何も無い日は通知が届きません。種類ごとにオン・オフできます。</p>
+        </li>
+      </ul>
+      <p class="instruments">メンバーを6人まで迎えること・家事テンプレートを何件でも増やすこと・記録をずっと前まで見返すこと・ダークモードや自動切り替えを選ぶこと・JSON形式でのデータの書き出しと読み込みは、カジドリ Pro でご利用いただけます。無料のままでも、メンバー2人・家事テンプレート15件・直近30日の記録・予定と繰り返し・タイマーと手順ナビ・通知はすべてお使いいただけます。<a href="./support.html">詳しくはサポート</a>をご覧ください。</p>
+    </div>
+  </section>
+
+  <section class="privacy" aria-labelledby="privacy-h">
+    <div class="wrap">
+      <div class="privacy-box">
+        <h2 id="privacy-h"><span class="nowrap">家事の記録は、</span><span class="nowrap">あなたの端末の中に</span></h2>
+        <p>メンバー・家事テンプレート・予定・完了の記録・メモは、すべて端末内の1つのファイルに保存され、外部に送信されることはありません。品質改善のための匿名の利用状況の計測は行っていますが、送るのは操作の種別や、人数・件数・分数といった数、選ばれた選択肢といった記録で、家事名・手順の本文・メモ・メンバー名は一切含まれません。詳細は<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-h">
+    <div class="wrap">
+      <h2 class="cta-head" id="cta-h">来週の家事を、先に決めよう。</h2>
+      <p>よくあるご質問は<a href="./support.html">サポート</a>に掲載しています。お問い合わせ: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <span>© 2026 TempuraApps</span>
+    <nav class="foot-links" aria-label="補助リンク">
+      <a href="./support.html">サポート</a>
+      <a href="./privacy.html">プライバシーポリシー</a>
+      <a href="./en/" lang="en" hreflang="en">English</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

@@ -102,14 +102,20 @@
      クリアスペースは上 26px（.subcopy の margin-bottom）と下 16px ＋ <p> の 16px で確保。
      フォーカスリングはグローバルの a:focus-visible がそのまま効く（画像への装飾ではない）。 */
   /* vertical-align:top は必須。既定の baseline だと、包む <p> の strut の
-     ディセンダ分（実測 9.09px）が下に出て .platform との間隔が 32px から 41px へ広がる。 */
+     ディセンダ分（実測 9.09px）が下に出て .platform との間隔が 32px から 41px へ広がる。
+     line-height:0 は保険。下の picture{ display:block } でアンカー内に行ボックスが
+     生成されなくなるため現状は効いていないが、picture のブロック化を外したときに
+     画像下のディセンダ隙間が出るのを防ぐ。 */
   .store-badge{ display:inline-block; vertical-align:top; margin:0 0 16px; line-height:0; }
   .store-badge:hover{ text-decoration:none; }
   .store-badge picture{ display:block; }
   /* max-width:none は必須。グローバルの img{ max-width:100% } が効くと、
-     幅だけ縮んで height:54px が残り、バッジが横に潰れる（実測: 100x54 = 比率1.85 / 本来3.0）。
+     幅だけ縮んで height:54px が残り、バッジが横に潰れる
+     （実測: 版面 100px のとき 100x54 = 比率1.85。本来の比率は ja 2.72 / en 2.99）。
      縦横比を変えることも Apple の規約違反にあたるため、クランプ自体を無効化する。
-     実機幅では発生しない（320px 幅でも版面 280px > バッジ 162px）ので、はみ出しの心配もない。 */
+     ⚠️ このコメントは ja/en 10ファイルで共有している。片方の値だけ書かないこと。
+     実機幅では発生しない（320px 幅でも版面 280px > バッジ幅 ja 147px / en 162px）ので、
+     はみ出しの心配もない。 */
   .store-badge img{ height:54px; width:auto; max-width:none; }
 
   /* features */

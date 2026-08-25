@@ -53,6 +53,9 @@
   .is-omoimekuri{ --app-accent:#B84E1B; }
   .is-tastock{ --app-accent:#435331; }
   .is-kajidori{ --app-accent:#1467E8; }
+  /* アイコン未作成のカード用。実アイコンを置いたらこの2行は消してよい。 */
+  .app-icon-fallback{ display:flex; align-items:center; justify-content:center;
+    background:var(--app-accent); color:#fff; font-weight:700; font-size:28px; line-height:1; }
   @media (prefers-color-scheme: dark){
     .is-ai-noritsugi{ --app-accent:#7EA6D1; }
     .is-michiaruki{ --app-accent:#5CC6B2; }
@@ -357,7 +360,10 @@
         </li>
         <li class="app-card is-kajidori">
           <a href="./kajidori/">
-            <img class="app-icon" src="./kajidori/icon-180.png" width="64" height="64" alt="">
+            <!-- アイコン未作成のあいだのプレースホルダ。実アイコンを置いたら
+                 <img class="app-icon" src="./kajidori/icon-180.png" width="64" height="64" alt="">
+                 に戻すこと（他アプリのカードと同じ形になる）。 -->
+            <span class="app-icon app-icon-fallback" aria-hidden="true">カ</span>
             <div class="app-body">
               <p class="app-eyebrow">家事分担アプリ</p>
               <h3>カジドリ</h3>

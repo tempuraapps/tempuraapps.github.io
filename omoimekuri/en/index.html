@@ -89,6 +89,31 @@
   }
   .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
   .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+  /* App Store への導線。Apple 公式バッジ画像（assets/app-store-badge-{ja,en}-{black,white}.svg）。
+     Apple のマーケティングリソースから取得した原本そのまま。原本と md5 一致を確認済み。
+     light は黒バッジ（外周 #a6a6a6 の枠があり、淡い --bg 上でも輪郭が出る）、dark は白バッジ。
+     出し分けは <picture> の media="(prefers-color-scheme: dark)"。このサイトに data-theme は無い。
+     ⚠️ バッジ画像に手を加えないこと。背景色・角丸・影・filter・opacity・transform はすべて規約違反。
+        hover の見た目変化も付けない（下の text-decoration:none はグローバル a:hover の下線を消すためだけ）。
+     ⚠️ 1レイアウトにつきバッジは1つ。このヒーロー以外に足さない。
+     クリアスペースは上 26px（.subcopy の margin-bottom）と下 16px ＋ <p> の 16px で確保。
+     フォーカスリングはグローバルの a:focus-visible がそのまま効く（画像への装飾ではない）。 */
+  /* vertical-align:top は必須。既定の baseline だと、包む <p> の strut の
+     ディセンダ分（実測 9.09px）が下に出て .platform との間隔が 32px から 41px へ広がる。
+     line-height:0 は保険。下の picture{ display:block } でアンカー内に行ボックスが
+     生成されなくなるため現状は効いていないが、picture のブロック化を外したときに
+     画像下のディセンダ隙間が出るのを防ぐ。 */
+  .store-badge{ display:inline-block; vertical-align:top; margin:0 0 16px; line-height:0; }
+  .store-badge:hover{ text-decoration:none; }
+  .store-badge picture{ display:block; }
+  /* max-width:none は必須。グローバルの img{ max-width:100% } が効くと、
+     幅だけ縮んで height:54px が残り、バッジが横に潰れる
+     （実測: 版面 100px のとき 100x54 = 比率1.85。本来の比率は ja 2.72 / en 2.99）。
+     縦横比を変えることも Apple の規約違反にあたるため、クランプ自体を無効化する。
+     ⚠️ このコメントは配信中LPの ja/en 全ファイルで共有している。片方の値だけ書かないこと。
+     実機幅では発生しない（320px 幅でも版面 280px > バッジ幅 ja 147px / en 162px）ので、
+     はみ出しの心配もない。 */
+  .store-badge img{ height:54px; width:auto; max-width:none; }
 
   /* features */
   .features{ padding-block:clamp(56px,11vw,104px); }
@@ -288,8 +313,7 @@
       <p class="eyebrow">OmoiMekuri</p>
       <h1>The photo that matters<br>comes to find you today.</h1>
       <p class="subcopy">Add photos to a collection, and one photo arrives each day &mdash; the same one on your Home Screen widget and in the app. Photos you&rsquo;d rather not see can be tucked away with &ldquo;Hide for now&rdquo; &mdash; nothing is deleted. Every day you have kept stays in a month calendar to look back on. No account, no ads.</p>
-      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
-           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p><a class="store-badge" href="https://apps.apple.com/app/id6799960046"><picture><source media="(prefers-color-scheme: dark)" srcset="../../assets/app-store-badge-en-white.svg"><img src="../../assets/app-store-badge-en-black.svg" width="162" height="54" alt="Download on the App Store" decoding="async"></picture></a></p>
       <p class="platform">iOS 18.0 or later / iPhone</p>
     </div>
   </section>
@@ -391,7 +415,7 @@
   <section class="cta" aria-labelledby="cta-h">
     <div class="wrap">
       <h2 class="cta-head" id="cta-h">Come meet today&rsquo;s photo.</h2>
-      <p>Common questions are answered on the <a href="./support.html">support page</a>. Contact: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+      <p><a href="https://apps.apple.com/app/id6799960046">Download on the App Store</a>. Common questions are answered on the <a href="./support.html">support page</a>. Contact: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
     </div>
   </section>
 </main>

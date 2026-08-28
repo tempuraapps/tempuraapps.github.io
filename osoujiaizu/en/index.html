@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TempuraApps | OsoujiAizu — You don't have to remember cleaning day.</title>
+<meta name="description" content="Keep the steps, tools, and cautions for each cleaning task, set a cycle, and get notified on the day. Couldn't do it? Skip it, do it tomorrow, pick a date, or mark it done — your cycle never changes on its own. Spotted some grime? Add it as a one-off. Everything stays on your iPhone — no account, no ads.">
+<meta name="theme-color" content="#F6F9FD" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#11161D" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://tempuraapps.github.io/osoujiaizu/en/">
+<link rel="alternate" hreflang="ja" href="https://tempuraapps.github.io/osoujiaizu/">
+<link rel="alternate" hreflang="en" href="https://tempuraapps.github.io/osoujiaizu/en/">
+<link rel="alternate" hreflang="x-default" href="https://tempuraapps.github.io/osoujiaizu/">
+<link rel="icon" type="image/png" sizes="64x64" href="../icon-64.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TempuraApps">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:title" content="TempuraApps | OsoujiAizu — You don't have to remember cleaning day.">
+<meta property="og:description" content="No blame when you miss a day — just re-plan it, and the app never changes your cycle on its own. Keep the steps and tools for every cleaning task.">
+<meta property="og:url" content="https://tempuraapps.github.io/osoujiaizu/en/">
+<meta property="og:image" content="https://tempuraapps.github.io/osoujiaizu/icon-512.jpg">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="OsoujiAizu app icon">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    color-scheme: light dark;
+    /* ===== THEME TOKENS（アプリの Theme.swift のブランド色に合わせる）===== */
+    --bg:#F6F9FD; --surface:#FFFFFF; --ink:#17304D; --ink-2:#51627A;
+    --accent:#1467E8; --border:#D8E2EE; --grad-a:#1467E8; --grad-b:#0F55C8;
+    --icon-shadow:0 16px 40px rgba(0,0,0,.14), 0 0 0 1px rgba(24,33,43,.06); --card-shadow:0 1px 2px rgba(0,0,0,.04);
+    --shot-shadow:0 14px 36px rgba(0,0,0,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#11161D; --surface:#1B222C; --ink:#E7EDF5; --ink-2:#9DACBF;
+      --accent:#8FB8F5; --border:#36404D; --grad-a:#8FB8F5; --grad-b:#2E66C8;
+      --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
+      --shot-shadow:0 16px 44px rgba(0,0,0,.6);
+    }
+  }
+  /* ===== 構造CSS（LP共通。トークンのみ参照）===== */
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.75; font-size:16px; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:960px; margin-inline:auto; padding-inline:20px; }
+
+  /* header */
+  .site-head .head-inner{
+    display:flex; align-items:center; justify-content:space-between; min-height:56px; gap:12px; flex-wrap:wrap;
+  }
+  .wordmark{ font-size:13px; letter-spacing:.06em; color:var(--ink-2); font-weight:600; }
+  .wordmark:hover{ color:var(--accent); }
+  .head-links, .foot-links{ display:flex; align-items:center; flex-wrap:wrap; gap:18px; row-gap:2px; }
+  .head-links a, .foot-links a{ white-space:nowrap; }
+  .head-link{ font-size:14px; color:var(--ink-2); padding:8px 0; }
+  .head-link:hover{ color:var(--accent); }
+
+  /* hero */
+  .hero{
+    text-align:center;
+    padding-block:clamp(40px,10vw,96px) clamp(48px,9vw,88px);
+    background:var(--bg);
+    background-image:
+      radial-gradient(120% 70% at 50% -20%, color-mix(in srgb, var(--grad-a) 15%, transparent), transparent 70%),
+      radial-gradient(60% 42% at 82% 0%, color-mix(in srgb, var(--grad-b) 12%, transparent), transparent 70%);
+  }
+  .hero-inner{ max-width:640px; margin-inline:auto; padding-inline:20px; }
+  .app-icon{
+    width:128px; height:128px; border-radius:22.37%;
+    margin:0 auto 24px; box-shadow:var(--icon-shadow);
+  }
+  .eyebrow{ font-size:13px; letter-spacing:.08em; color:var(--accent); font-weight:600; margin:0 0 10px; }
+  h1{
+    font-size:clamp(30px,7.5vw,46px); line-height:1.25; letter-spacing:-0.02em;
+    font-weight:700; margin:0 0 16px;
+  }
+  .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
+  .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+
+  /* features */
+  .features{ padding-block:clamp(56px,11vw,104px); }
+  h2{
+    font-size:clamp(24px,5vw,32px); line-height:1.25; letter-spacing:-0.02em;
+    font-weight:700; text-align:center; margin:0 0 36px;
+  }
+  .cards{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+  @media (min-width:640px){ .cards{ grid-template-columns:1fr 1fr; gap:20px; } }
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:24px; box-shadow:var(--card-shadow); }
+  .chip{
+    width:44px; height:44px; border-radius:12px; margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent);
+    background:var(--surface);
+    background:color-mix(in srgb, var(--accent) 13%, var(--surface));
+  }
+  .chip svg{ width:24px; height:24px; }
+  .card h3{ font-size:17px; font-weight:600; margin:0 0 6px; }
+  .card p{ font-size:15px; color:var(--ink-2); margin:0; }
+  .instruments{ text-align:center; font-size:14px; color:var(--ink-2); margin:24px 0 0; }
+
+  /* privacy */
+  .privacy{ padding-block:0 clamp(56px,11vw,104px); }
+  .privacy-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:24px;
+    padding:clamp(28px,5vw,40px); text-align:center; max-width:720px; margin-inline:auto; box-shadow:var(--card-shadow);
+  }
+  .privacy-box h2{ margin:0 0 14px; }
+  .privacy-box p{ font-size:16px; color:var(--ink-2); max-width:34em; margin:0 auto; }
+
+  /* cta */
+  .cta{
+    text-align:center; padding-block:clamp(56px,11vw,104px);
+    background-image:radial-gradient(80% 70% at 50% 130%, color-mix(in srgb, var(--grad-a) 12%, transparent), transparent 72%);
+  }
+  .cta-head{ font-size:clamp(24px,5vw,34px); line-height:1.3; font-weight:700; letter-spacing:-0.02em; margin:0 0 12px; }
+  .cta p{ font-size:15px; color:var(--ink-2); margin:0; }
+
+  /* footer */
+  .site-foot{ border-top:1px solid var(--border); }
+  .site-foot .foot-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding-block:22px; font-size:13px; color:var(--ink-2);
+  }
+  .site-foot a{ color:var(--ink-2); }
+  .site-foot a:hover{ color:var(--accent); }
+  .foot-links a{ padding:6px 0; }
+
+  .privacy-box p a, .cta p a{ text-decoration:underline; text-underline-offset:2px; }
+  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="wordmark" href="../../en/">TempuraApps</a>
+    <nav class="head-links" aria-label="Site links">
+      <a class="head-link" href="./support.html">Support</a>
+      <a class="head-link" href="./privacy.html">Privacy Policy</a>
+      <a class="head-link" href="../" lang="ja" hreflang="ja">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <img class="app-icon" src="../icon-384.jpg" width="128" height="128" fetchpriority="high" alt="OsoujiAizu app icon">
+      <p class="eyebrow">OsoujiAizu</p>
+      <h1>You don't have to remember cleaning day.</h1>
+      <p class="subcopy">Set a cycle for each cleaning task, and you'll get a notification on the day. Miss a day? Just choose a new one — the app never changes the cycle on its own. Spotted some grime mid-clean? Add it as a one-off task on the spot. No account, no ads.</p>
+      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
+           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p class="platform">iOS 18.0 or later / iPhone</p>
+    </div>
+  </section>
+
+  <!-- スクリーンショットのカルーセル（.shots ブロックとその CSS/JS）は、
+       app-image-en.webp が用意でき次第 omoimekuri/en/index.html から丸ごと移植する。
+       現時点では画面の画像が無いため、セクションごと省いてある。 -->
+
+  <section class="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <h2 id="features-h">Five tools for everyday cleaning</h2>
+      <ul class="cards" role="list">
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 12a8 8 0 0 1 13.9-5.4"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-13.9 5.4"/><path d="M4 20v-5h5"/></svg>
+          </div>
+          <h3>Run on a set cycle</h3>
+          <p>Choose a cycle for each task: daily, a day of the week, every few days, every few weeks, or every few months. You can also count from the scheduled day or from the day you actually finished, so running late doesn't push everything after it. You'll get a notification on the day.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17"/><path d="M8 3v4M16 3v4"/><path d="M9.5 15l2.5 2.5 2.5-2.5"/></svg>
+          </div>
+          <h3>Miss a day, and you can still get back on track</h3>
+          <p>Couldn't get to it? Skip it, do it tomorrow, pick a date, or mark it done. Only this one occurrence moves — <strong>the cycle itself never changes</strong>. Preview the new date before you confirm.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>
+          </div>
+          <h3>Add it the moment you spot it</h3>
+          <p>Grime you notice mid-clean can go straight in as a one-off task for today or tomorrow. A name, a room, and a rough duration is all it takes, and it doesn't repeat once it's done — so things that don't deserve a cycle still don't get forgotten.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M9 6h9M9 12h9M9 18h9"/><path d="M4.5 6l1 1 2-2"/><path d="M4.5 12l1 1 2-2"/><path d="M4.5 18l1 1 2-2"/></svg>
+          </div>
+          <h3>Never wonder what to do next</h3>
+          <p>Keep steps, tools, cautions, photos, and history on every task. Register your tools once and you can search by them — "where do I use this cleaner again?" — or search by cycle, like "every Sunday".</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17"/><path d="M8 3v4M16 3v4"/><circle cx="8" cy="14" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="14" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="14" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <h3>See today, and what's coming</h3>
+          <p>Switch the Today screen between today only and the week ahead. The calendar shows upcoming plans and finished records month by month. A task can only be completed once a day, and if you tap it by mistake you can undo it the same day.</p>
+        </li>
+      </ul>
+      <p class="instruments">Free covers 15 tasks and 10 schedules. There's no limit on the records you keep, and dark mode is free too. Pro removes the caps, unlocks five color themes, and adds export and import of your records.</p>
+    </div>
+  </section>
+
+  <section class="privacy" aria-labelledby="privacy-h">
+    <div class="wrap">
+      <div class="privacy-box">
+        <h2 id="privacy-h">Your cleaning records stay on your device</h2>
+        <p>Your tasks, their steps, tools, cautions, cycles, photos, and cleaning records are stored only on your device. No account or sign-in is required, and none of this content is ever sent to our servers. See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-h">
+    <div class="wrap">
+      <h2 class="cta-head" id="cta-h">Forget it, and the cleaning keeps going.</h2>
+      <p>Common questions are answered on the <a href="./support.html">support page</a>. Contact: <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <span>© 2026 TempuraApps</span>
+    <nav class="foot-links" aria-label="Secondary links">
+      <a href="./support.html">Support</a>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="../" lang="ja" hreflang="ja">日本語</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

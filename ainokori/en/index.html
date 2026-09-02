@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TempuraApps | AINOKORI — See what your AI has left.</title>
+<meta name="description" content="Your Mac reads the remaining capacity and reset time for Claude Code, Codex, Gemini CLI, and GitHub Copilot, and brings them together on your iPhone and Apple Watch. Get notified when your capacity runs low. It never reads your code or conversations, and syncs only through your own iCloud.">
+<meta name="theme-color" content="#F4F6FB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0F1A" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://tempuraapps.github.io/ainokori/en/">
+<link rel="alternate" hreflang="ja" href="https://tempuraapps.github.io/ainokori/">
+<link rel="alternate" hreflang="en" href="https://tempuraapps.github.io/ainokori/en/">
+<link rel="alternate" hreflang="x-default" href="https://tempuraapps.github.io/ainokori/">
+<link rel="icon" type="image/png" sizes="64x64" href="../icon-64.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TempuraApps">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:title" content="TempuraApps | AINOKORI — See what your AI has left.">
+<meta property="og:description" content="The remaining capacity and reset time for four AI coding tools, together on your iPhone. Read by your Mac and delivered only through your own iCloud.">
+<meta property="og:url" content="https://tempuraapps.github.io/ainokori/en/">
+<meta property="og:image" content="https://tempuraapps.github.io/ainokori/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="AINOKORI app icon">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    color-scheme: light dark;
+    /* ===== THEME TOKENS（アプリの Shared/Palette.swift と同じ値）===== */
+    --bg:#F4F6FB; --surface:#FFFFFF; --ink:#14213D; --ink-2:#5B6478;
+    --accent:#3F4FD9; --border:#DCE2EE; --grad-a:#3F4FD9; --grad-b:#2F3DB5;
+    --panel:#EAEEF8; --track:#E3E8F3;
+    --icon-shadow:0 16px 40px rgba(20,33,61,.16), 0 0 0 1px rgba(20,33,61,.06);
+    --card-shadow:none;
+    /* サービスの識別色。アプリの Palette.provider(_:) と同じ。各社のロゴ・ブランドカラーの模倣ではない。 */
+    --p-claude:#BE6832; --p-codex:#0D8C6E; --p-gemini:#0C85BB; --p-copilot:#A24BE0;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0B0F1A; --surface:#151B2B; --ink:#E6EAF2; --ink-2:#9AA3B5;
+      --accent:#93A0FF; --border:#2A3348; --grad-a:#93A0FF; --grad-b:#4756C9;
+      --panel:#1C2438; --track:#263048;
+      --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
+      --p-claude:#F0955E; --p-codex:#3CC9A3; --p-gemini:#5AC4F5; --p-copilot:#C98CFF;
+    }
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.85; font-size:16px; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:960px; margin-inline:auto; padding-inline:20px; }
+
+  /* header */
+  .site-head .head-inner{
+    display:flex; align-items:center; justify-content:space-between; min-height:56px; gap:12px; flex-wrap:wrap;
+  }
+  .wordmark{ font-size:13px; letter-spacing:.06em; color:var(--ink-2); font-weight:600; }
+  .wordmark:hover{ color:var(--accent); }
+  .head-links, .foot-links{ display:flex; align-items:center; flex-wrap:wrap; gap:18px; row-gap:2px; }
+  .head-links a, .foot-links a{ white-space:nowrap; }
+  .head-link{ font-size:14px; color:var(--ink-2); padding:8px 0; }
+  .head-link:hover{ color:var(--accent); }
+
+  /* hero */
+  .hero{
+    text-align:center;
+    padding-block:clamp(40px,10vw,96px) clamp(48px,9vw,88px);
+    background:var(--bg);
+    background-image:
+      radial-gradient(120% 70% at 50% -20%, color-mix(in srgb, var(--grad-a) 14%, transparent), transparent 70%),
+      radial-gradient(60% 42% at 82% 0%, color-mix(in srgb, var(--grad-b) 12%, transparent), transparent 70%);
+  }
+  .hero-inner{ max-width:640px; margin-inline:auto; padding-inline:20px; }
+  .app-icon{
+    width:128px; height:128px; border-radius:22.37%;
+    margin:0 auto 24px; box-shadow:var(--icon-shadow);
+  }
+  .eyebrow{ font-size:13px; letter-spacing:.08em; color:var(--accent); font-weight:600; margin:0 0 10px; }
+  h1{
+    font-size:clamp(30px,7.5vw,46px); line-height:1.3; letter-spacing:-0.02em;
+    font-weight:700; margin:0 0 16px;
+  }
+  .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
+  .platform{ font-size:14px; color:var(--ink-2); margin:0; }
+
+  /* meters（このアプリ固有の飾り。4サービスを色で示す） */
+  .meters{ display:flex; align-items:flex-end; justify-content:center; gap:14px; margin:0 auto 28px; height:96px; }
+  .meters span{ width:18px; border-radius:9px; display:block; }
+  .meters .m1{ height:44px; background:var(--p-claude); }
+  .meters .m2{ height:70px; background:var(--p-codex); }
+  .meters .m3{ height:56px; background:var(--p-gemini); }
+  .meters .m4{ height:96px; background:var(--p-copilot); }
+
+  /* features */
+  .features{ padding-block:clamp(56px,11vw,104px); }
+  h2{
+    font-size:clamp(24px,5vw,32px); line-height:1.3; letter-spacing:-0.02em;
+    font-weight:700; text-align:center; margin:0 0 36px;
+  }
+  .cards{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+  @media (min-width:640px){ .cards{ grid-template-columns:1fr 1fr; gap:20px; } }
+  .card{ background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px; box-shadow:var(--card-shadow); }
+  .chip{
+    width:44px; height:44px; border-radius:10px; margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent);
+    background:color-mix(in srgb, var(--accent) 13%, var(--surface));
+  }
+  .chip svg{ width:24px; height:24px; }
+  .card h3{ font-size:17px; font-weight:600; margin:0 0 6px; }
+  .card p{ font-size:15px; color:var(--ink-2); margin:0; }
+  .instruments{ text-align:center; font-size:14px; color:var(--ink-2); margin:24px 0 0; }
+
+  /* privacy */
+  .privacy{ padding-block:0 clamp(56px,11vw,104px); }
+  .privacy-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:20px;
+    padding:clamp(28px,5vw,40px); text-align:center; max-width:720px; margin-inline:auto; box-shadow:var(--card-shadow);
+  }
+  .privacy-box h2{ margin:0 0 14px; }
+  .privacy-box p{ font-size:16px; color:var(--ink-2); max-width:34em; margin:0 auto; }
+
+  /* cta */
+  .cta{
+    text-align:center; padding-block:clamp(56px,11vw,104px);
+    background-image:radial-gradient(80% 70% at 50% 130%, color-mix(in srgb, var(--grad-a) 12%, transparent), transparent 72%);
+  }
+  .cta-head{ font-size:clamp(24px,5vw,34px); line-height:1.35; font-weight:700; letter-spacing:-0.02em; margin:0 0 12px; }
+  .cta p{ font-size:15px; color:var(--ink-2); margin:0; }
+
+  /* trademark */
+  .legal{ padding-block:0 clamp(40px,8vw,72px); }
+  .legal p{ font-size:13px; color:var(--ink-2); max-width:52em; margin-inline:auto; text-align:center; }
+
+  /* footer */
+  .site-foot{ border-top:1px solid var(--border); }
+  .site-foot .foot-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding-block:22px; font-size:13px; color:var(--ink-2);
+  }
+  .site-foot a{ color:var(--ink-2); }
+  .site-foot a:hover{ color:var(--accent); }
+  .foot-links a{ padding:6px 0; }
+
+  /* 地の文に混ざるリンクは、色だけでは本文と見分けられないので下線を戻す */
+  .privacy-box p a, .cta p a, .legal p a{ text-decoration:underline; text-underline-offset:2px; }
+  /* キーボード操作中の現在位置を明示する */
+  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+  /* 見出しを語中で割らせず、読点の位置でだけ折り返す */
+  .nowrap{ white-space:nowrap; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="wordmark" href="../../en/">TempuraApps</a>
+    <nav class="head-links" aria-label="Site links">
+      <a class="head-link" href="./support.html">Support</a>
+      <a class="head-link" href="./privacy.html">Privacy Policy</a>
+      <a class="head-link" href="../" lang="ja" hreflang="ja">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <img class="app-icon" src="../icon-384.jpg" width="128" height="128" fetchpriority="high" alt="AINOKORI app icon">
+      <p class="eyebrow">AINOKORI</p>
+      <h1>See what your AI has left.</h1>
+      <p class="subcopy">Claude Code, Codex, Gemini CLI, GitHub Copilot. The more you switch between them, the harder it gets to know how much each one has left. AINOKORI has your Mac read the answer and deliver it to your iPhone and Apple Watch.</p>
+      <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
+           あわせて CTA セクションの本文にも導線を足すこと。 -->
+      <p class="platform">iOS 18.0 or later for iPhone and Apple Watch, plus a companion Mac app requiring macOS 14.0 or later</p>
+    </div>
+  </section>
+
+  <!-- スクリーンショットのカルーセル（.shots ブロックとその CSS/JS）は、
+       app-image.webp が用意でき次第 omoimekuri/index.html から丸ごと移植する。
+       現時点では画面の画像が無いため、セクションごと省いてある。 -->
+
+  <section class="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <div class="meters" aria-hidden="true"><span class="m1"></span><span class="m2"></span><span class="m3"></span><span class="m4"></span></div>
+      <h2 id="features-h">Six gauges, right in your pocket</h2>
+      <ul class="cards" role="list">
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 20V10"/><path d="M9.3 20V5"/><path d="M14.7 20v-9"/><path d="M20 20V8"/></svg>
+          </div>
+          <h3>All four, on one screen</h3>
+          <p>Claude Code, Codex, Gemini CLI, and GitHub Copilot line up their remaining capacity in one column. The big number is how much is left, as a percentage — switch to percent used in Settings if you prefer. Tools with more than one window, like a 5-hour window and a weekly window, are grouped together.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+          </div>
+          <h3>Know when it comes back</h3>
+          <p>&ldquo;Resets in 2h 18m.&rdquo; Once you hit the limit, AINOKORI shows when each window opens back up. When a reset time can&rsquo;t be read, it says &ldquo;unknown&rdquo; rather than guessing.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M7 17.5a4.5 4.5 0 0 1 .6-8.96 6 6 0 0 1 11.4 1.86A3.8 3.8 0 0 1 18.2 17.5z"/><path d="M12 12v5"/><path d="M9.8 14.8 12 12l2.2 2.8"/></svg>
+          </div>
+          <h3>Your Mac reads it, your iPhone gets it</h3>
+          <p>A small app that lives in your Mac&rsquo;s menu bar reads the usage records each tool leaves on this Mac. The handoff runs only through your own Apple ID&rsquo;s iCloud &mdash; we have no servers of our own.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M18 9a6 6 0 1 0-12 0c0 5-2 6-2 6h16s-2-1-2-6"/><path d="M10.3 19.5a2 2 0 0 0 3.4 0"/></svg>
+          </div>
+          <h3>We&rsquo;ll let you know when it runs low</h3>
+          <p>You&rsquo;ll get notified when your capacity runs low, and when a usage window resets. Every notification is assembled right on your iPhone, without passing through our servers or anyone else&rsquo;s. You keep working, and just know when it&rsquo;s time to switch.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="2"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="2"/><rect x="13" y="13" width="7.5" height="7.5" rx="2"/></svg>
+          </div>
+          <h3>See it without opening the app</h3>
+          <p>Check your remaining capacity from a Home Screen widget or your Apple Watch, without opening the app. Widgets come in small and medium sizes; tap one to open that service&rsquo;s details.</p>
+        </li>
+        <li class="card">
+          <div class="chip" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3.5 20 8v5c0 4.3-3.2 6.9-8 7.5-4.8-.6-8-3.2-8-7.5V8z"/><path d="M9.2 12.2 11.3 14.3 15 10.6"/></svg>
+          </div>
+          <h3>When we can&rsquo;t get it, we say so</h3>
+          <p>How much detail we can read varies by tool. AINOKORI shows &ldquo;limit unknown&rdquo; or &ldquo;not available yet&rdquo; exactly as they are, rather than guessing at a number. When a limit is estimated, it&rsquo;s always labeled &ldquo;estimated.&rdquo;</p>
+        </li>
+      </ul>
+      <p class="instruments">Free plan includes remaining capacity and reset times for all four services, the widget, Apple Watch, 7 days of history, and notifications for low capacity and resets. 90 days of history, usage statistics, a forecast of when you&rsquo;ll hit the limit, fine-grained notification thresholds, a daily report, and a suggestion for which AI to use next are AINOKORI Pro features.</p>
+    </div>
+  </section>
+
+  <section class="privacy" aria-labelledby="privacy-h">
+    <div class="wrap">
+      <div class="privacy-box">
+        <h2 id="privacy-h">We don&rsquo;t read your code or your conversations</h2>
+        <p>The Mac app reads only the usage records each tool leaves on this Mac. It never reads the text of your prompts or responses, your source code, credentials, project names, or file paths. The Mac app doesn&rsquo;t connect to the network, either. See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-h">
+    <div class="wrap">
+      <h2 class="cta-head">Never wonder which one to use next.</h2>
+      <p>Common questions are answered on the <a href="./support.html">support page</a>. For feedback or to report a problem, contact <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a>.</p>
+    </div>
+  </section>
+
+  <section class="legal" aria-labelledby="legal-h">
+    <div class="wrap">
+      <h2 id="legal-h" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Trademarks</h2>
+      <p>AINOKORI is not affiliated with, and is not approved or endorsed by, Anthropic, OpenAI, Google, GitHub, or Microsoft. Claude and Claude Code are trademarks of Anthropic PBC; Codex and OpenAI are trademarks of OpenAI, Inc.; Gemini and Google are trademarks of Google LLC; GitHub and GitHub Copilot are trademarks of GitHub, Inc. This app uses these names solely to identify the corresponding tools, and does not use any of these companies&rsquo; logos or icons. The values shown are read from, or estimated from, local records left on your own Mac &mdash; they are not official figures provided by any of these companies.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <span>© 2026 TempuraApps</span>
+    <nav class="foot-links" aria-label="Secondary links">
+      <a href="./support.html">Support</a>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="../" lang="ja" hreflang="ja">日本語</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

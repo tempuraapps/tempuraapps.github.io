@@ -50,27 +50,28 @@
 <main class="wrap">
   <p class="eyebrow">TempuraApps</p>
   <h1>OsoujiAizu Privacy Policy</h1>
-  <p class="updated">Last updated: August 28, 2026</p>
+  <p class="updated">Last updated: September 2, 2026</p>
   <p class="lang"><a href="index.html">About the app</a> · <a href="support.html">Support</a> · <a href="../privacy.html">日本語</a></p>
   <p class="lead">OsoujiAizu ("the App") is provided by TempuraApps ("we"). This policy explains how the App handles user information.</p>
 
   <h2>1. Information we collect</h2>
-  <p>The App does not collect personal information such as your name, email address, or phone number. Everything you record or enter — your tasks and rooms, their steps, tools, cautions, cycles, photos, and your cleaning records — is stored only on your device and is never transmitted to or held on servers operated by us or by third parties. The only exceptions are the usage measurement described in section 6 and the Pro purchase processing described in section 7, each of which sends a limited set of information to external services. Neither includes your name, or the content you record or enter such as task names, room names, tool names, steps, cautions, or photos.</p>
+  <p>The App does not collect personal information such as your name, email address, or phone number. Everything you record or enter — your tasks and rooms, their steps, tools, cautions, cycles, photos, and your cleaning records — is stored only on your device and is never transmitted to or held on servers operated by us or by third parties. If you yourself turn on iCloud sync or family sharing (section 8; both are off by default), this data is also stored in your own iCloud. The only exceptions are the usage measurement described in section 6 and the Pro purchase processing described in section 7, each of which sends a limited set of information to external services. Neither includes your name, or the content you record or enter such as task names, room names, tool names, steps, cautions, or photos.</p>
 
   <h2>2. Photos</h2>
-  <p>Photos you take or choose in the App are stored only on your device. They are never sent to servers operated by us or by third parties. The backup file (JSON format) created by the export feature described in section 8 does not include photos either. Photo library access is requested only when you try to attach a photo to a task. Every feature that doesn't involve a photo still works if you decline.</p>
+  <p>Photos you take or choose in the App are stored on your device. They are never sent to our servers. If iCloud sync or family sharing (section 8) is on, photos are synced too and stored in your own iCloud. The backup file (JSON format) created by the export feature described in section 9 does not include photos. Photo library access is requested only when you try to attach a photo to a task. Every feature that doesn't involve a photo still works if you decline.</p>
 
   <h2>3. Location data</h2>
   <p>The App does not use location data. It never requests or collects your location.</p>
 
   <h2>4. Accounts and network use</h2>
-  <p>No account registration is required to use the App. The data you record or enter stays on your device and is not transmitted externally. The App does, however, communicate with a limited set of external services for the usage measurement described below (section 6) and for purchase processing (section 7).</p>
+  <p>No account registration is required to use the App. Unless you turn on iCloud sync or family sharing (section 8), the data you record or enter stays on your device and is not transmitted externally. The App does, however, communicate with a limited set of external services for the usage measurement described below (section 6) and for purchase processing (section 7).</p>
 
   <h2>5. Notifications</h2>
   <p>Notifications from the App are local notifications that stay on your device. They use the mechanism your device's OS manages, to let you know when a cleaning task is due or to nudge you to re-plan a task you missed. Notification content never passes through our servers or a third party's. You can change notification permission at any time in your device's Settings.</p>
 
   <h2>6. Usage analytics (PostHog)</h2>
-  <p>To improve quality and features, the App measures anonymous usage with the analytics service PostHog. What is sent is limited to purchase-related actions — opening the paid plan screen, purchasing a plan (monthly or annual, and whether it went through), restoring a purchase — together with statistical information such as the type and count of feature actions, like creating or completing a routine or re-planning a task. Task names, room names, tool names, steps, cautions, and photos you record or enter can never be sent by design, and we never send personal information such as your name or email address.</p>
+  <p>To improve quality and features, the App measures anonymous usage with the analytics service PostHog. What is sent is limited to purchase-related actions — opening the paid plan screen, purchasing a plan (monthly or annual, and whether it went through), restoring a purchase — together with statistical information such as the type and count of feature actions, like creating or completing a routine or re-planning a task. Task names, room names, tool names, steps, cautions, and photos you record or enter can never be sent by design, and we never send personal information such as your name or email address. The analytics features that could pick up the content of your records are all switched off — the one that detects repeated taps and sends the text on screen (rage click), and the survey feature that can be published from the analytics dashboard (free-text answers are sent as written).</p>
+  <p>Records may also carry technical information that PostHog adds automatically: the app version, the kind and version of the operating system, the device type, and the app's display language. The time zone is removed before sending, because it would suggest your approximate region. For the same reason, the request the analytics service makes at launch to fetch feature flags is disabled as well — the request itself carries the time zone. IP addresses are set to be discarded on the analytics side, and region and location estimation are turned off. Detailed location such as your city or coordinates is never collected under any circumstances.</p>
   <p>Each record sent carries an anonymous identifier created for that installation of the App. It exists so that actions from the same installation can be read as one thread. It is not tied to your name, email address, account, or any hardware identifier provided by the device, and we do not use it to identify you. Deleting and reinstalling the App produces a new one.</p>
   <p>We have no way to connect that identifier to you as a person. For that reason we cannot act on requests to retrieve or delete one user's data individually. If you wish to stop the measurement entirely, please delete the App; nothing is sent after it is removed. The data is stored in the EU region.</p>
   <p>The App does not serve advertising or perform advertising tracking (ATT, IDFA, and similar) of any kind. Nor do we use the information collected for advertising purposes, or provide or sell it to third parties.</p>
@@ -78,22 +79,28 @@
   <h2>7. Purchases (RevenueCat)</h2>
   <p>Purchases and restores of the App's paid features (OsoujiAizu Pro) are handled through Apple's App Store, and we use the subscription infrastructure service RevenueCat to manage purchases and entitlement status. Information such as your purchase status is therefore processed by RevenueCat. Payment details such as credit card numbers are handled by Apple and are never received by us. Purchases are managed under an anonymous identifier and are not linked to personal information such as your name or email address. Please note that RevenueCat is a service provided by a company based in the United States.</p>
 
-  <h2>8. Data backup</h2>
+  <h2>8. iCloud sync and family sharing</h2>
+  <p>The App can sync your data between devices signed in to the same Apple ID, using your own iCloud, and share it with family members you invite. Both are Pro features, and both are off by default. Until you turn them on, your data stays on your device as described in section 1. When enabled, your tasks (including their steps, tools, cautions, cycles, and photos), rooms, schedules, and cleaning records are stored in your own area of Apple's iCloud servers (the private database). We cannot access this area, and nothing is sent to our servers. Apple's privacy policy applies to data stored in iCloud. Notification, appearance, and color theme settings are not synced; they remain per-device.</p>
+  <p>Starting family sharing creates an invite link, and you will be sharing the data above with the people you invite (users with a different Apple ID). <strong>Anyone who has the link can join the share from this app and view and edit the data above.</strong> Share the link only with people you trust, such as your family. You can stop sharing at any time, which also invalidates the invite link. Joining a share replaces the data on that device with the shared data (the App offers to export a backup before you join). When sharing is stopped, when you leave a share, or when you are removed from one, each device keeps a copy of the data as of that moment, and changes independently afterwards.</p>
+  <p>You can turn sync off in Settings at any time. Turning it off — or letting Pro lapse — does not delete the data on your device or in iCloud; sync simply stops, and catches up from there when you turn it back on. For deleting the copy in iCloud, see section 11.</p>
+
+  <h2>9. Data backup</h2>
   <p>The App can export your recorded data as a file (in JSON format), a Pro feature. Exported files do not include photos. An exported file is placed in the location you choose and is under your control. We do not access it.</p>
 
-  <h2>9. Provision to third parties</h2>
+  <h2>10. Provision to third parties</h2>
   <p>We do not provide or sell your information to third parties for advertising purposes. Information sent to the external services described in sections 6 and 7 (PostHog and RevenueCat) for measurement and purchase processing is handled under each service's own privacy policy.</p>
 
-  <h2>10. Deleting your data</h2>
-  <p>Data stored on your device can be erased using the App's delete and reset features, or by deleting the App itself. What "Delete all data" in Settings covers is listed on the confirmation screen inside the App; settings such as the color theme are kept. To be certain everything stored on the device is erased, delete the App itself.</p>
+  <h2>11. Deleting your data</h2>
+  <p>Data stored on your device can be erased using the App's delete and reset features, or by deleting the App itself. What "Delete all data" in Settings covers is listed on the confirmation screen inside the App; settings such as the color theme are kept. To be certain everything stored on the device is erased, delete the App itself. If iCloud sync (section 8) was on, however, deleting the App alone leaves the copy in iCloud.</p>
+  <p>To delete the copy in iCloud, run "Delete all data" in the App while sync is on. This also deletes the data in iCloud and on every synced device (during family sharing, every member's device). While you are in a family share as a participant, "Delete all data" is not available — leave the share first.</p>
 
-  <h2>11. Children's privacy</h2>
+  <h2>12. Children's privacy</h2>
   <p>The App is not directed at children under 13, and we do not knowingly collect personal information from children.</p>
 
-  <h2>12. Changes to this policy</h2>
+  <h2>13. Changes to this policy</h2>
   <p>We may revise this policy as features are added or changed. If a change is significant, we will announce it on this page.</p>
 
-  <h2>13. Contact</h2>
+  <h2>14. Contact</h2>
   <div class="contact">
     For questions about this policy or about the App, please contact us at:<br>
     <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a>

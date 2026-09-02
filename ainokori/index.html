@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TempuraApps | AINOKORI — AIの残りを、ひと目で。</title>
-<meta name="description" content="Claude Code・Codex・Gemini CLI・GitHub Copilot の利用枠の余力とリセット時刻を、Mac が読み取って iPhone・Apple Watch にまとめて表示します。余力が減ったら通知でお知らせ。コードも会話も読み取らず、同期はあなたの iCloud だけを通ります。">
+<meta name="description" content="Claude Code・Codex・Gemini CLI の利用枠の余力とリセット時刻、および GitHub Copilot の対応状況を、Mac が読み取って iPhone・Apple Watch にまとめて表示します。余力が減ったら通知でお知らせ。コードも会話も読み取らず、同期はあなたの iCloud だけを通ります。">
 <meta name="theme-color" content="#F4F6FB" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0B0F1A" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://tempuraapps.github.io/ainokori/">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:title" content="TempuraApps | AINOKORI — AIの残りを、ひと目で。">
-<meta property="og:description" content="4つの AI コーディングツールの余力とリセット時刻を、iPhone でまとめて。Mac が取って、あなたの iCloud だけを通して届きます。">
+<meta property="og:description" content="Claude Code・Codex・Gemini CLI の余力とリセット時刻、GitHub Copilot の対応状況を、iPhone でまとめて。Mac が取って、あなたの iCloud だけを通して届きます。">
 <meta property="og:url" content="https://tempuraapps.github.io/ainokori/">
 <meta property="og:image" content="https://tempuraapps.github.io/ainokori/icon-512.png">
 <meta property="og:image:width" content="512">
@@ -180,10 +180,11 @@
       <img class="app-icon" src="./icon-384.jpg" width="128" height="128" fetchpriority="high" alt="AINOKORI（アプリアイコン）">
       <p class="eyebrow">AINOKORI ／ アイノコリ</p>
       <h1><span class="nowrap">AIの残りを、</span><span class="nowrap">ひと目で。</span></h1>
-      <p class="subcopy">Claude Code、Codex、Gemini CLI、GitHub Copilot。使い分けるほど、どれがあとどれくらい使えるのか分からなくなります。AINOKORI は Mac がその答えを読み取って、iPhone と Apple Watch に届けます。</p>
+      <p class="subcopy">Claude Code、Codex、Gemini CLI の余力と、GitHub Copilot の対応状況。使い分けるほど、どれがあとどれくらい使えるのか分からなくなります。AINOKORI は Mac がその答えを読み取って、iPhone と Apple Watch に届けます。</p>
       <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
            あわせて CTA セクションの本文にも導線を足すこと。 -->
       <p class="platform">iOS 18.0 以降 / iPhone・Apple Watch 向け ＋ macOS 14.0 以降の Mac アプリ</p>
+      <p class="platform">Mac 版は App Store 公開にあわせて、このページで配布します。</p>
     </div>
   </section>
 
@@ -194,14 +195,14 @@
   <section class="features" aria-labelledby="features-h">
     <div class="wrap">
       <div class="meters" aria-hidden="true"><span class="m1"></span><span class="m2"></span><span class="m3"></span><span class="m4"></span></div>
-      <h2 id="features-h">計器が6つ、ポケットの中に</h2>
+      <h2 id="features-h">ポケットの中の計器盤</h2>
       <ul class="cards" role="list">
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 20V10"/><path d="M9.3 20V5"/><path d="M14.7 20v-9"/><path d="M20 20V8"/></svg>
           </div>
-          <h3>4つを1画面で</h3>
-          <p>Claude Code、Codex、Gemini CLI、GitHub Copilot の余力を縦に並べます。大きい数字は「あと何%使えるか」。設定で「使った%」に切り替えることもできます。5時間枠と週間枠のように複数の枠があるものは、まとめて出します。</p>
+          <h3>3つを1画面で</h3>
+          <p>Claude Code、Codex、Gemini CLI の余力を縦に並べます。大きい数字は「あと何%使えるか」。設定で「使った%」に切り替えることもできます。5時間枠と週間枠のように複数の枠があるものは、まとめて出します。GitHub Copilot は現在のバージョンでは余力を取得できず、検出状況のみを表示します。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
@@ -236,10 +237,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3.5 20 8v5c0 4.3-3.2 6.9-8 7.5-4.8-.6-8-3.2-8-7.5V8z"/><path d="M9.2 12.2 11.3 14.3 15 10.6"/></svg>
           </div>
           <h3>取れないものは、取れないと書く</h3>
-          <p>ツールごとに、取得できる情報の細かさは違います。AINOKORI は「上限が分からない」「取得未対応」をそのまま表示します。推測で数字を埋めません。上限を推定して出すときは「推定」と明記します。</p>
+          <p>ツールごとに、取得できる情報の細かさは違います。AINOKORI は「上限が分からない」「取得未対応」をそのまま表示します。たとえば GitHub Copilot の利用量は、現在のバージョンでは「取得未対応」です。推測で数字を埋めません。上限を推定して出すときは「推定」と明記します。</p>
         </li>
       </ul>
-      <p class="instruments">無料で4サービスの余力・リセット時刻・ウィジェット・Apple Watch・7日ぶんの履歴・余力低下とリセットの通知が使えます。90日の履歴、統計、上限到達の予測、通知の閾値の細かい指定、日次レポート、次に使う AI の提案は AINOKORI Pro の機能です。</p>
+      <p class="instruments">無料で各サービスの余力（GitHub Copilot は対応状況のみ）・リセット時刻・ウィジェット・Apple Watch・7日ぶんの履歴・余力低下とリセットの通知が使えます。90日の履歴、統計、上限到達の予測、通知の閾値の細かい指定、日次レポート、次に使う AI の提案は AINOKORI Pro の機能です。</p>
     </div>
   </section>
 
@@ -269,7 +270,7 @@
 
 <footer class="site-foot">
   <div class="wrap foot-inner">
-    <span>© 2026 TempuraApps</span>
+    <span>© 2026 TempuraApps · AINOKORI</span>
     <nav class="foot-links" aria-label="補助リンク">
       <a href="./support.html">サポート</a>
       <a href="./privacy.html">プライバシーポリシー</a>

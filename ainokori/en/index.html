@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TempuraApps | AINOKORI — See what your AI has left.</title>
-<meta name="description" content="Your Mac reads the remaining capacity and reset time for Claude Code, Codex, Gemini CLI, and GitHub Copilot, and brings them together on your iPhone and Apple Watch. Get notified when your capacity runs low. It never reads your code or conversations, and syncs only through your own iCloud.">
+<meta name="description" content="Your Mac reads the remaining capacity and reset time for Claude Code, Codex, and Gemini CLI, plus whether GitHub Copilot is detected, and brings them together on your iPhone and Apple Watch. Get notified when your capacity runs low. It never reads your code or conversations, and syncs only through your own iCloud.">
 <meta name="theme-color" content="#F4F6FB" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0B0F1A" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://tempuraapps.github.io/ainokori/en/">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ja_JP">
 <meta property="og:title" content="TempuraApps | AINOKORI — See what your AI has left.">
-<meta property="og:description" content="The remaining capacity and reset time for four AI coding tools, together on your iPhone. Read by your Mac and delivered only through your own iCloud.">
+<meta property="og:description" content="The remaining capacity and reset time for Claude Code, Codex, and Gemini CLI, plus GitHub Copilot's detection status, together on your iPhone. Read by your Mac and delivered only through your own iCloud.">
 <meta property="og:url" content="https://tempuraapps.github.io/ainokori/en/">
 <meta property="og:image" content="https://tempuraapps.github.io/ainokori/icon-512.png">
 <meta property="og:image:width" content="512">
@@ -180,10 +180,11 @@
       <img class="app-icon" src="../icon-384.jpg" width="128" height="128" fetchpriority="high" alt="AINOKORI app icon">
       <p class="eyebrow">AINOKORI</p>
       <h1>See what your AI has left.</h1>
-      <p class="subcopy">Claude Code, Codex, Gemini CLI, GitHub Copilot. The more you switch between them, the harder it gets to know how much each one has left. AINOKORI has your Mac read the answer and deliver it to your iPhone and Apple Watch.</p>
+      <p class="subcopy">Claude Code, Codex, and Gemini CLI&rsquo;s remaining capacity, plus whether GitHub Copilot is detected. The more you switch between them, the harder it gets to know how much each one has left. AINOKORI has your Mac read the answer and deliver it to your iPhone and Apple Watch.</p>
       <!-- 審査通過後にここへ App Store バッジ／ダウンロードボタンを置く。
            あわせて CTA セクションの本文にも導線を足すこと。 -->
       <p class="platform">iOS 18.0 or later for iPhone and Apple Watch, plus a companion Mac app requiring macOS 14.0 or later</p>
+      <p class="platform">The Mac app will be available for download from this page once AINOKORI is live on the App Store.</p>
     </div>
   </section>
 
@@ -194,14 +195,14 @@
   <section class="features" aria-labelledby="features-h">
     <div class="wrap">
       <div class="meters" aria-hidden="true"><span class="m1"></span><span class="m2"></span><span class="m3"></span><span class="m4"></span></div>
-      <h2 id="features-h">Six gauges, right in your pocket</h2>
+      <h2 id="features-h">Your instrument panel, in your pocket</h2>
       <ul class="cards" role="list">
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 20V10"/><path d="M9.3 20V5"/><path d="M14.7 20v-9"/><path d="M20 20V8"/></svg>
           </div>
-          <h3>All four, on one screen</h3>
-          <p>Claude Code, Codex, Gemini CLI, and GitHub Copilot line up their remaining capacity in one column. The big number is how much is left, as a percentage — switch to percent used in Settings if you prefer. Tools with more than one window, like a 5-hour window and a weekly window, are grouped together.</p>
+          <h3>All three, on one screen</h3>
+          <p>Claude Code, Codex, and Gemini CLI line up their remaining capacity in one column. The big number is how much is left, as a percentage — switch to percent used in Settings if you prefer. Tools with more than one window, like a 5-hour window and a weekly window, are grouped together. GitHub Copilot can&rsquo;t be read yet in this version, so AINOKORI shows its detection status only.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
@@ -236,10 +237,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3.5 20 8v5c0 4.3-3.2 6.9-8 7.5-4.8-.6-8-3.2-8-7.5V8z"/><path d="M9.2 12.2 11.3 14.3 15 10.6"/></svg>
           </div>
           <h3>When we can&rsquo;t get it, we say so</h3>
-          <p>How much detail we can read varies by tool. AINOKORI shows &ldquo;limit unknown&rdquo; or &ldquo;not available yet&rdquo; exactly as they are, rather than guessing at a number. When a limit is estimated, it&rsquo;s always labeled &ldquo;estimated.&rdquo;</p>
+          <p>How much detail we can read varies by tool. AINOKORI shows &ldquo;limit unknown&rdquo; or &ldquo;not available yet&rdquo; exactly as they are, rather than guessing at a number. GitHub Copilot&rsquo;s usage, for example, currently shows as &ldquo;not available yet.&rdquo; When a limit is estimated, it&rsquo;s always labeled &ldquo;estimated.&rdquo;</p>
         </li>
       </ul>
-      <p class="instruments">Free plan includes remaining capacity and reset times for all four services, the widget, Apple Watch, 7 days of history, and notifications for low capacity and resets. 90 days of history, usage statistics, a forecast of when you&rsquo;ll hit the limit, fine-grained notification thresholds, a daily report, and a suggestion for which AI to use next are AINOKORI Pro features.</p>
+      <p class="instruments">Free plan includes remaining capacity for each service (GitHub Copilot shows detection status only) and reset times, the widget, Apple Watch, 7 days of history, and notifications for low capacity and resets. 90 days of history, usage statistics, a forecast of when you&rsquo;ll hit the limit, fine-grained notification thresholds, a daily report, and a suggestion for which AI to use next are AINOKORI Pro features.</p>
     </div>
   </section>
 
@@ -269,7 +270,7 @@
 
 <footer class="site-foot">
   <div class="wrap foot-inner">
-    <span>© 2026 TempuraApps</span>
+    <span>© 2026 TempuraApps · AINOKORI</span>
     <nav class="foot-links" aria-label="Secondary links">
       <a href="./support.html">Support</a>
       <a href="./privacy.html">Privacy Policy</a>

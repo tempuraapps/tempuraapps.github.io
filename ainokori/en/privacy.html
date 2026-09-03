@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TempuraApps | AINOKORI Privacy Policy</title>
+<meta name="description" content="Privacy Policy for AINOKORI (iPhone, Apple Watch, and Mac apps). Covers what the Mac app reads and its scope, what it doesn't read, iCloud sync, provision to third parties, deleting your data, and how to contact us.">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0F1A" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://tempuraapps.github.io/ainokori/en/privacy.html">
+<link rel="alternate" hreflang="ja" href="https://tempuraapps.github.io/ainokori/privacy.html">
+<link rel="alternate" hreflang="en" href="https://tempuraapps.github.io/ainokori/en/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://tempuraapps.github.io/ainokori/privacy.html">
+<link rel="icon" type="image/png" sizes="64x64" href="../icon-64.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TempuraApps">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:title" content="TempuraApps | AINOKORI Privacy Policy">
+<meta property="og:description" content="Privacy Policy for AINOKORI — what it reads, what it doesn't, iCloud sync, and deleting your data.">
+<meta property="og:url" content="https://tempuraapps.github.io/ainokori/en/privacy.html">
+<meta property="og:image" content="https://tempuraapps.github.io/ainokori/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="AINOKORI app icon">
+<meta name="twitter:card" content="summary">
+<style>
+  :root { --bg:#fff; --ink:#14213D; --ink-2:#4a515c; --accent:#3F4FD9; --border:#e6e8ec; --soft:#f6f7f9; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0B0F1A; --ink:#e9ecf2; --ink-2:#a7afbd; --accent:#93A0FF; --border:#262d38; --soft:#161b22; } }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; line-height:1.85; font-size:16px; }
+  .wrap { max-width:720px; margin:0 auto; padding:48px 20px 72px; }
+  .eyebrow { font-size:13px; letter-spacing:.04em; color:var(--ink-2); margin:0 0 6px; }
+  h1 { font-size:26px; line-height:1.35; margin:0 0 8px; letter-spacing:-0.01em; }
+  .updated { color:var(--ink-2); font-size:14px; margin:0 0 8px; }
+  .lang { font-size:14px; margin:0 0 8px; }
+  .lead { color:var(--ink-2); margin:16px 0 0; }
+  h2 { font-size:18px; margin:34px 0 8px; padding-top:18px; border-top:1px solid var(--border); }
+  h3 { font-size:16px; margin:22px 0 4px; }
+  p, li { color:var(--ink-2); }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .contact { margin-top:10px; padding:14px 16px; background:var(--soft); border:1px solid var(--border); border-radius:10px; }
+  .contact a { font-weight:600; }
+  footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--border); color:var(--ink-2); font-size:13px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="eyebrow">TempuraApps</p>
+  <h1>AINOKORI Privacy Policy</h1>
+  <p class="updated">Last updated: September 2, 2026</p>
+  <p class="lang"><a href="index.html">About the app</a> · <a href="support.html">Support</a> · <a href="../privacy.html">日本語</a></p>
+  <p class="lead">AINOKORI (&ldquo;the App&rdquo;) is provided by TempuraApps (&ldquo;we&rdquo;). The App consists of an app for iPhone and Apple Watch, together with a companion app for Mac. This policy explains how we handle user information.</p>
+
+  <h2>1. Information the Mac app reads</h2>
+  <p>The Mac app reads <strong>only usage records</strong> from among the files that the AI coding tools installed on your Mac (Claude Code, Codex, Gemini CLI, GitHub Copilot) save to your home folder for their own operation. Specifically: tokens and requests consumed, the usage rate for each usage window, the reset time for each usage window, and whether each tool is installed.</p>
+  <p>What&rsquo;s read is converted, inside the Mac app, into numbers showing which tool is currently used by how much, and only those numbers are synced as described in section 3. The content of the original files it reads is never stored or transmitted.</p>
+
+  <h2>2. What the Mac app doesn&rsquo;t read</h2>
+  <p>The App does not read the following. By design, the program has no data type for reading these, so they can&rsquo;t be picked up at all.</p>
+  <ul>
+    <li>The text of your conversations with AI &mdash; prompts you sent, responses you received</li>
+    <li>Source code, file contents, diffs</li>
+    <li>Credentials, API keys, access tokens (the App never opens any tool&rsquo;s credential files)</li>
+    <li>Project names, folder or file paths, Git branch names</li>
+    <li>Shell history, environment variables, SSH keys</li>
+  </ul>
+  <p>The Mac app also never connects to the network. Data reaches your iPhone only through iCloud, as described in section 3.</p>
+
+  <h2>3. Syncing via iCloud</h2>
+  <p>The usage numbers the Mac app creates are stored in <strong>the private iCloud database of your own Apple ID</strong>, and read from the iPhone and Apple Watch signed in with that same Apple ID. We cannot access this database. We have no servers, and no account registration is required.</p>
+  <p>What&rsquo;s synced is limited to: the AI tool type, the usage window type, the usage rate, the reset time, whether the data could be read, and your Mac&rsquo;s name, model, app version, and last-updated time. If you don&rsquo;t use iCloud, your Mac&rsquo;s data never reaches your iPhone (the App itself can still be used to the extent of, for example, viewing sample data).</p>
+
+  <h2>4. Information stored on iPhone and Apple Watch</h2>
+  <p>The usage history you receive, your notification settings, and your display settings are all stored only on your device. None of this is ever sent to our servers or a third party&rsquo;s.</p>
+
+  <h2>5. Location data</h2>
+  <p>The App does not use location data. It never requests or collects your location.</p>
+
+  <h2>6. Notifications</h2>
+  <p>Notifications from the App are local notifications assembled entirely on your iPhone. You&rsquo;re notified when your capacity runs low, when a usage window resets, and at the time of your daily report. Notification content never passes through our servers or a third party&rsquo;s. You can change notification permission at any time in your device&rsquo;s Settings.</p>
+  <p>To let your iPhone know a Mac update is ready, the App also uses Apple&rsquo;s iCloud notification mechanism &mdash; a silent notification that never appears on screen. It carries no usage numbers; it&rsquo;s only a trigger for your iPhone to fetch the latest values from iCloud.</p>
+
+  <h2>7. Usage analytics (PostHog)</h2>
+  <p>To improve quality and features, the iPhone app measures anonymous usage with the analytics service PostHog. What&rsquo;s sent is limited to purchase-related actions &mdash; opening the Pro screen, purchasing a plan (monthly or annual, and whether it went through), restoring a purchase &mdash; together with the type and count of actions showing how much a feature is used, and the number and type of AI tools connected along with whether their data could be read.</p>
+  <p><strong>We never send usage numbers (usage rate or token counts), reset times, your Mac&rsquo;s name, file paths, project names, or anything related to your conversations or code.</strong> By design, the App&rsquo;s analytics events cannot carry arbitrary runtime strings, so these are structurally impossible to send. We also never send personal information such as your name or email address.</p>
+  <p>Each record sent carries an anonymous identifier created for that installation of the App. It exists so that actions from the same installation can be read as one thread. It is not tied to your name, email address, account, or any hardware identifier provided by the device, and we do not use it to identify you. Deleting and reinstalling the App produces a new one.</p>
+  <p>We have no way to connect that identifier to you as a person. For that reason we cannot act on requests to retrieve or delete one user&rsquo;s data individually. If you wish to stop the measurement entirely, please delete the App; nothing is sent after it is removed. The data is stored in the EU region.</p>
+  <p><strong>The Mac app performs no analytics of any kind.</strong></p>
+  <p>The App does not serve advertising or perform advertising tracking (ATT, IDFA, and similar) of any kind. Nor do we use the information collected for advertising purposes, or provide or sell it to third parties.</p>
+
+  <h2>8. Purchases (RevenueCat)</h2>
+  <p>Purchases and restores of the iPhone app&rsquo;s paid features (AINOKORI Pro) are handled through Apple&rsquo;s App Store, and we use the subscription infrastructure service RevenueCat to manage purchases and entitlement status. Information such as your purchase status is therefore processed by RevenueCat. Payment details such as credit card numbers are handled by Apple and are never received by us. Purchases are managed under an anonymous identifier and are not linked to personal information such as your name or email address. Please note that RevenueCat is a service provided by a company based in the United States. <strong>The Mac app and Apple Watch app contain no purchasing mechanism.</strong></p>
+
+  <h2>9. Provision to third parties</h2>
+  <p>We do not provide or sell your information to third parties for advertising purposes. Information sent to the external services described in sections 7 and 8 (PostHog and RevenueCat) for measurement and purchase processing is handled under each service&rsquo;s own privacy policy.</p>
+
+  <h2>10. Deleting your data</h2>
+  <p>History stored on your iPhone can be erased from &ldquo;Settings &gt; Data &gt; Delete All History&rdquo; in the app. Usage numbers stored in iCloud can be erased from &ldquo;Settings &gt; iCloud &gt; Delete Data in iCloud&rdquo; in the Mac app. To be certain everything on your devices is erased, delete each app itself.</p>
+
+  <h2>11. Children&rsquo;s privacy</h2>
+  <p>The App is not directed at children under 13, and we do not knowingly collect personal information from children.</p>
+
+  <h2>12. Trademarks</h2>
+  <p>AINOKORI is not affiliated with, and is not approved or endorsed by, Anthropic, OpenAI, Google, GitHub, or Microsoft. Each name is a trademark of its respective owner.</p>
+
+  <h2>13. Changes to this policy</h2>
+  <p>We may revise this policy as features are added or changed. If a change is significant, we will announce it on this page.</p>
+
+  <h2>14. Contact</h2>
+  <div class="contact">
+    For questions about this policy or about the App, please contact us at:<br>
+    <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a>
+  </div>
+
+  <footer>© 2026 TempuraApps</footer>
+</main>
+</body>
+</html>

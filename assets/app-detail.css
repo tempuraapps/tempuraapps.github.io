@@ -39,7 +39,9 @@ body.app-detail[data-app="ainokori"] { --detail-accent: #3647b0; --detail-tint: 
 .app-detail .instruments,
 .app-detail .card p,
 .app-detail .privacy p,
-.app-detail .cta p { color: var(--detail-muted); }
+.app-detail .cta p,
+.app-detail .site-foot span,
+.app-detail .legal p { color: var(--detail-muted); }
 .app-detail .wordmark::before { content: "← "; color: var(--detail-accent); }
 .app-detail a { color: var(--detail-accent); }
 .app-detail a:focus-visible,

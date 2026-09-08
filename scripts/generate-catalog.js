@@ -15,7 +15,7 @@ const pages = {
     eyebrow: 'SMALL APPS, EVERYDAY JOY', hero: '<span class="nowrap">毎日に、</span><br class="mobile-break"><em class="nowrap">ちょっといい</em><br><span class="nowrap">アプリを。</span>',
     intro: '毎日がちょっと便利に、楽しくなるようなアプリをつくっています。', cta: 'アプリを見る',
     kicker: 'APP COLLECTION', collection: '<span class="nowrap">あなたの毎日に、</span><br><span class="nowrap">ぴったりを。</span>', collectionText: '気になること、続けたいこと、出かけたい場所。小さなアプリを、毎日のそばに。',
-    search: 'アプリを検索', searchLabel: 'アプリを検索', count: '{count} 件のアプリ', countSingular: '{count} 件のアプリ', more: '詳しく見る',
+    search: 'アプリを検索', searchLabel: 'アプリを検索', count: '{count} 件のアプリ', countSingular: '{count} 件のアプリ', more: '詳しく見る', comingSoon: '近日公開',
     categories: [['all', 'すべて'], ['life', '暮らし'], ['records', '記録・習慣'], ['outings', 'おでかけ'], ['tools', 'ツール・趣味']],
     noResults: '条件に合うアプリが見つかりませんでした。', reset: '絞り込みをリセット',
     belief: '小さなアプリで、毎日に余白を。', beliefText: '使うたびに、ほんの少し気分がよくなる。そんな道具を、ひとつずつ丁寧につくっています。', bannerAlt: 'TempuraApps のブランドバナー', bannerLabel: 'バナーを大きく見る ↗',
@@ -31,7 +31,7 @@ const pages = {
     eyebrow: 'SMALL APPS, EVERYDAY JOY', hero: 'Small apps.<br><em>Brighter days.</em>',
     intro: 'We make iPhone apps that make every day a little easier and a little more fun.', cta: 'Explore apps',
     kicker: 'APP COLLECTION', collection: 'Find a little app<br>that fits your day.', collectionText: 'For the things you notice, keep up with, and set out to do. Small apps, close at hand.',
-    search: 'Search apps', searchLabel: 'Search apps', count: '{count} apps', countSingular: '{count} app', more: 'Learn more',
+    search: 'Search apps', searchLabel: 'Search apps', count: '{count} apps', countSingular: '{count} app', more: 'Learn more', comingSoon: 'Coming soon',
     categories: [['all', 'All'], ['life', 'Everyday life'], ['records', 'Records & habits'], ['outings', 'Outings'], ['tools', 'Tools & hobbies']],
     noResults: 'No apps match those filters.', reset: 'Reset filters',
     belief: 'Small apps, more room in your day.', beliefText: 'We make thoughtful tools that leave you feeling just a little better each time you use them.', bannerAlt: 'TempuraApps brand banner', bannerLabel: 'View full-size banner ↗',
@@ -44,8 +44,11 @@ function categoryName(page, category) { return page.categories.find(([id]) => id
 function appLink(page, app) { return `${page.prefix}${app.slug}/${page.lang === 'en' ? 'en/' : ''}`; }
 function card(page, app) {
   const [name, eyebrow, tagline] = app[page.lang];
-  const search = `${name} ${eyebrow} ${tagline} ${categoryName(page, app.category)}`;
-  return `<li class="card" data-category="${app.category}" data-search="${esc(search)}"><a href="${appLink(page, app)}"><img src="${page.prefix}${app.slug}/icon-180.png" width="64" height="64" alt=""><p class="category">${esc(categoryName(page, app.category))}</p><h3>${esc(name)}</h3><p class="tagline">${esc(tagline)}</p><p class="more">${page.more} <span aria-hidden="true">→</span></p></a></li>`;
+  const search = `${name} ${eyebrow} ${tagline} ${categoryName(page, app.category)}${app.comingSoon ? ` ${page.comingSoon}` : ''}`;
+  // 未配信のアプリだけカテゴリ行の右に「近日公開」を出す。
+  // 配信されたら apps-data.js の comingSoon を消して再生成すれば、ここも一緒に消える。
+  const soon = app.comingSoon ? `<span class="soon">${esc(page.comingSoon)}</span>` : '';
+  return `<li class="card" data-category="${app.category}" data-search="${esc(search)}"><a href="${appLink(page, app)}"><img src="${page.prefix}${app.slug}/icon-180.png" width="64" height="64" alt=""><p class="category">${esc(categoryName(page, app.category))}${soon}</p><h3>${esc(name)}</h3><p class="tagline">${esc(tagline)}</p><p class="more">${page.more} <span aria-hidden="true">→</span></p></a></li>`;
 }
 function socialLinks(page) { return page.social.map(([href, label]) => `<a href="${href}"${href.startsWith('http') ? ' rel="me noopener" target="_blank"' : ''}>${esc(label)}</a>`).join(' · '); }
 function policyLinks(page) { return apps.map((app) => `<a href="${page.prefix}${app.slug}/${page.privacy}">${esc(app[page.lang][0])}</a>`).join(' '); }

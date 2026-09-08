@@ -25,7 +25,7 @@ const apps = [
     en: ['One Good Deed', 'A one-a-day good deed diary', 'One a day, and the world gets a little better.']
   },
   {
-    slug: 'oshimachi', category: 'outings',
+    slug: 'oshimachi', category: 'outings', comingSoon: true,
     ja: ['推し街さがし', '住みたい街さがしの記録', '住みたいほど好きな街を、自分でさがそう。'],
     en: ['OshiMachi', 'Rating towns you might live in', 'Find the town you’d call home.']
   },
@@ -35,7 +35,7 @@ const apps = [
     en: ['Pitawari', 'Split the bill by line item', 'Split it, to the last unit.']
   },
   {
-    slug: 'reeddiary', category: 'tools',
+    slug: 'reeddiary', category: 'tools', comingSoon: true,
     ja: ['リード日記', 'ダブルリードの管理', '本番の成功は、リード管理から。'],
     en: ['Reed Diary', 'A diary for double reeds', 'A good performance starts with good reeds.']
   },
@@ -50,17 +50,17 @@ const apps = [
     en: ['TASTOCK', 'A record of unusual seasonings', "Bring a flavor you don't know yet to everyday cooking."]
   },
   {
-    slug: 'kajidori', category: 'life',
+    slug: 'kajidori', category: 'life', comingSoon: true,
     ja: ['カジドリ', '家事分担アプリ', '家事を分けて、時間でまわす。'],
     en: ['Kajidori', 'A chore-splitting app', 'Split the chores, run them by time.']
   },
   {
-    slug: 'osoujiaizu', category: 'life',
+    slug: 'osoujiaizu', category: 'life', comingSoon: true,
     ja: ['おそうじ合図', '掃除の周期リマインダー', '掃除する日を、覚えておかなくていい。'],
     en: ['OsoujiAizu', 'A cleaning-cycle reminder', "You don't have to remember cleaning day."]
   },
   {
-    slug: 'ainokori', category: 'tools',
+    slug: 'ainokori', category: 'tools', comingSoon: true,
     ja: ['AINOKORI', 'AI開発ツールの残量管理', 'AIの残りを、ひと目で。'],
     en: ['AINOKORI', 'AI coding usage monitor', 'See what your AI has left.']
   }

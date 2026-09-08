@@ -55,6 +55,12 @@ body.app-detail[data-app="ainokori"] { --detail-accent: #3647b0; --detail-tint: 
 .app-detail .hero-inner h1 { margin: 0; color: var(--detail-ink); font-size: clamp(42px, 4.7vw, 56px); line-height: 1.2; letter-spacing: -.04em; }
 .app-detail .hero-inner .subcopy { max-width: 39em; margin: 18px 0 0; font-size: clamp(16px, 1.5vw, 18px); }
 .app-detail .hero-inner > p:not(.eyebrow):not(.subcopy) { margin: 24px 0 0; }
+/* 未配信アプリのヒーローに出す「近日公開」。App Store バッジと同じ位置。
+   配信されたらこの <p class="coming"> を丸ごとバッジの <p> に差し替える。
+   下の + セレクタは (0,4,2)。`.hero-inner > p:not(.eyebrow):not(.subcopy)` が (0,4,1) で
+   24px を入れてくるので、この字数で勝たないと .platform との間隔が詰まらない。 */
+.app-detail .coming { display: inline-block; width: fit-content; justify-self: start; padding: 5px 13px; border-radius: 999px; background: var(--detail-tint); color: var(--detail-accent); font-size: 14px; font-weight: 700; letter-spacing: .04em; }
+.app-detail .hero-inner > p.coming + p.platform { margin-top: 10px; }
 .app-detail .store-badge { display: inline-block; min-height: 44px; }
 .app-detail .store-badge img { height: 54px; width: auto; }
 

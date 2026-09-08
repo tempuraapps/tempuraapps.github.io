@@ -50,15 +50,15 @@
 <main class="wrap">
   <p class="eyebrow">TempuraApps</p>
   <h1>Kajidori Privacy Policy</h1>
-  <p class="updated">Last updated: August 26, 2026</p>
+  <p class="updated">Last updated: September 8, 2026</p>
   <p class="lang"><a href="index.html">About the app</a> · <a href="support.html">Support</a> · <a href="../privacy.html" lang="ja" hreflang="ja">日本語</a></p>
   <p class="lead">Kajidori ("the App") is provided by TempuraApps ("we"). This policy explains how the App handles user information.</p>
 
   <h2>1. Information we collect</h2>
-  <p>The App does not collect personal information such as your name, email address, or phone number. Member names, chore names, notes, schedules, and records are stored only on your device and are never transmitted to or held on servers operated by us or by third parties. The only exception is the usage measurement described in section 3, which sends a limited set of information to an external service. It never includes chore names, notes, or member names.</p>
+  <p>The App does not collect personal information such as your name, email address, or phone number. Member names, chore names, notes, schedules, and records are stored on your device. <strong>Only if you turn on family sharing yourself (section 5) are they synced, through Apple&rsquo;s iCloud, with the devices of the people you invite.</strong> In either case they are never transmitted to or held on servers operated by us or by third parties. The only exception is the usage measurement described in section 3, which sends a limited set of information to an external service. It never includes chore names, notes, or member names.</p>
 
   <h2>2. Accounts and network use</h2>
-  <p>No account registration is required to use the App. Member names, chores, schedules, records, and notes stay on your device and are not transmitted externally. The App does, however, communicate with a limited external service for the usage measurement described below (section 3). See section 4 for how purchase infrastructure is handled.</p>
+  <p>No account registration is required to use the App. <strong>Family sharing (section 5) is the one feature that uses the iCloud account already signed in on your device.</strong> We never create an account of our own. Member names, chores, schedules, records, and notes stay on your device unless you turn sharing on. The App does, however, communicate with a limited external service for the usage measurement described below (section 3). See section 4 for how purchase infrastructure is handled.</p>
 
   <h2>3. Usage analytics (PostHog)</h2>
   <p>To improve quality and features, the App measures anonymous usage with the analytics service PostHog. What is collected is the fact that you performed one of the actions below, together with any count (of people, chores, or minutes) or the kind of option chosen:</p>
@@ -84,8 +84,10 @@
   <h2>4. Purchases (RevenueCat)</h2>
   <p>Purchases and restores for Kajidori Pro are handled through Apple's App Store, and we use the subscription infrastructure service RevenueCat to manage purchases and entitlement status. Payment details such as credit card numbers are handled by Apple and are never received by us. Purchases are managed under an anonymous identifier and are not linked to personal information such as your name or email address. Please note that RevenueCat is a service provided by a company based in the United States.</p>
 
-  <h2>5. Your chore records (on-device only, never transmitted)</h2>
-  <p>Members, chores, schedules, completed records, and notes are all stored in a single file on your device and are never transmitted to servers operated by us or by third parties. The App does not use Photos, Location, or Health data of any kind, and never asks for permission to access them. It has no feature to sync with other devices &mdash; your records stay entirely on the device you use.</p>
+  <h2>5. Your chore records, and family sharing (iCloud)</h2>
+  <p>Members, chores, schedules, completed records, and notes are stored in a single file on your device. The App does not use Photos, Location, or Health data of any kind, and never asks for permission to access them.</p>
+  <p><strong>When you turn on family sharing, that data is placed in Apple&rsquo;s iCloud &mdash; your own iCloud account &mdash; and synced with the devices of the people you invite.</strong> Sharing is off by default and starts only when you begin it yourself from Sharing in Settings. Invitation links are created through Apple&rsquo;s own sharing sheet; we never mint invitation tokens of our own.</p>
+  <p><strong>We cannot read shared data.</strong> It lives in your iCloud and we hold no access to it. The only people it reaches are the ones you invite. You can stop sharing (as the owner) or leave it (as a participant) at any time from Sharing in Settings. Apple&rsquo;s privacy policy governs how iCloud handles it.</p>
 
   <h2>6. Data backup</h2>
   <p>The App can export your members, chores, schedules, and records to a file (JSON). Exporting and importing are available with <strong>Kajidori Pro</strong>.</p>

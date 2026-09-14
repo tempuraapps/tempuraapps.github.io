@@ -71,14 +71,15 @@ summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 .locale::after { content: ""; position: absolute; inset: 50% 0 auto 0; height: 44px; transform: translateY(-50%); }
 
 .hero { padding: clamp(28px, 4vw, 48px) 0 clamp(40px, 5vw, 56px); }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .82fr); align-items: end; gap: clamp(32px, 6vw, 86px); }
+/* 本文が無くなって右の段が CTA だけになったので、2段組はやめた。
+   1180px の版面の右端にボタンだけが残ると、見出しから 600px 離れて宙に浮く。 */
+.hero-grid { display: grid; gap: clamp(24px, 3vw, 32px); }
 .eyebrow { margin: 0 0 15px; color: var(--coral-ink); font-size: 12px; font-weight: 750; letter-spacing: .14em; }
 .hero h1, .catalogue h2, .belief h2 { margin: 0; letter-spacing: -.055em; line-height: 1.18; }
 .hero h1 { font-size: clamp(40px, 4.2vw, 52px); }
 .hero h1 em { color: var(--coral); font-style: normal; }
 .mobile-break { display: none; }
 .nowrap { white-space: nowrap; }
-.hero-copy { max-width: 31em; margin: 24px 0 28px; color: var(--muted); font-size: 17px; }
 .button { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 20px; border: 1px solid var(--green); border-radius: 999px; background: var(--green); color: var(--on-green); text-decoration: none; font-weight: 700; }
 .button:hover, .button:focus-visible { border-color: var(--coral-ink); background: var(--coral-ink); color: var(--on-green); text-decoration: none; }
 
@@ -121,10 +122,11 @@ summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 .brand-banner span { display: inline-block; margin-top: 8px; text-underline-offset: 3px; }
 .brand-banner:hover span, .brand-banner:focus-visible span { color: var(--coral-ink); text-decoration: underline; }
 .brand-banner:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
-/* バナーはヒーローの本文と CTA の「後ろ」に置く。先頭に置くと、画像
-   （cover.jpg 222KB / cover@2x.jpg 316KB）が描き終わるまで最初の画面が空の枠だけになり、
-   主張と導線がその下へ押し出される。 */
-.hero-banner { margin-top: clamp(32px, 5vw, 48px); text-align: right; }
+/* バナーはヒーローの先頭。2026-09-14 に #140 の並び（本文→CTA→バナー）から入れ替えた。
+   バナー自身が屋号と一文を持っているので、直下にあった .hero-copy は同じことの繰り返しだった。
+   ⚠️ 先頭に来た画像は LCP 要素になる。`loading="lazy"` を外し `fetchpriority="high"` を付けてある
+      （cover.jpg 222KB / cover@2x.jpg 316KB）。width/height があるので読み込み中も高さは動かない。 */
+.hero-banner { margin: 0 0 clamp(32px, 5vw, 48px); text-align: right; }
 .belief-grid { display: grid; grid-template-columns: 1fr .8fr; align-items: end; gap: clamp(28px, 7vw, 90px); }
 .belief p { max-width: 36em; color: var(--muted); }
 .contact-link { color: var(--coral-ink); font-weight: 700; text-underline-offset: 4px; }
@@ -147,11 +149,12 @@ html[lang="en"] .belief h2 { letter-spacing: -.03em; }
   .head-inner { align-items: center; }
   .head-nav { flex-wrap: wrap; justify-content: flex-end; gap: 4px 16px; }
   /* 縦積みになったら、見出しと本文の間は段の間隔ではなく文章の間隔にする
-     （PC の 86px がそのまま縦に出ると、見出しと説明が別のかたまりに見える）。 */
-  .hero-grid, .belief-grid { grid-template-columns: 1fr; gap: 20px; }
+     （PC の 90px がそのまま縦に出ると、見出しと説明が別のかたまりに見える）。 */
+  .belief-grid { grid-template-columns: 1fr; gap: 20px; }
+  /* ヒーローは元から1段。見出しと CTA の間だけ少し詰める。 */
+  .hero-grid { gap: 22px; }
   .hero { padding-top: 24px; }
-  .hero-copy { margin-bottom: 22px; }
-  .hero-banner { margin-top: clamp(24px, 7vw, 32px); }
+  .hero-banner { margin-bottom: clamp(24px, 7vw, 32px); }
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .card a { padding: 18px; }
   .card img { margin-bottom: 18px; }

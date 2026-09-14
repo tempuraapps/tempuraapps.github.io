@@ -13,7 +13,7 @@ const pages = {
     ogLocale: 'ja_JP', ogAlt: 'en_US', ogAltText: 'TempuraApps のブランドバナー',
     apps: 'アプリ一覧', contact: 'お問い合わせ', language: 'English', navLabel: 'サイト内リンク',
     eyebrow: 'SMALL APPS, EVERYDAY JOY', hero: '<span class="nowrap">毎日に、</span><br class="mobile-break"><em class="nowrap">ちょっといい</em><br><span class="nowrap">アプリを。</span>',
-    intro: '毎日がちょっと便利に、楽しくなるようなアプリをつくっています。', cta: 'アプリを見る',
+    cta: 'アプリを見る',
     catalogTitle: 'アプリ一覧',
     search: 'アプリを検索', searchLabel: 'アプリを検索', count: '{count} 件のアプリ', countSingular: '{count} 件のアプリ', countBreakdown: '（配信中 {live}・近日公開 {soon}）', countAllSoon: '（すべて近日公開）', more: '詳しく見る', comingSoon: '近日公開',
     categories: [['all', 'すべて'], ['life', '暮らし'], ['records', '記録・習慣'], ['outings', 'おでかけ'], ['tools', 'ツール・趣味']],
@@ -29,7 +29,7 @@ const pages = {
     ogLocale: 'en_US', ogAlt: 'ja_JP', ogAltText: 'TempuraApps brand banner',
     apps: 'Apps', contact: 'Contact', language: '日本語', navLabel: 'Site links',
     eyebrow: 'SMALL APPS, EVERYDAY JOY', hero: 'Small apps.<br><em>Brighter days.</em>',
-    intro: 'We make iPhone apps that make every day a little easier and a little more fun.', cta: 'Explore apps',
+    cta: 'Explore apps',
     catalogTitle: 'All apps',
     search: 'Search apps', searchLabel: 'Search apps', count: '{count} apps', countSingular: '{count} app', countBreakdown: ' ({live} available, {soon} coming soon)', countAllSoon: ' (all coming soon)', more: 'Learn more', comingSoon: 'Coming soon',
     categories: [['all', 'All'], ['life', 'Everyday life'], ['records', 'Records & habits'], ['outings', 'Outings'], ['tools', 'Tools & hobbies']],
@@ -94,7 +94,7 @@ function render(page) {
   <a class="skip" href="#apps">${page.lang === 'ja' ? 'アプリ一覧へ移動' : 'Skip to apps'}</a>
   <header class="site-head"><div class="wrap head-inner"><a class="brand" href="${page.lang === 'en' ? './' : './'}"><img src="${page.prefix}icon-64.png" width="32" height="32" alt="">TempuraApps</a><nav class="head-nav" aria-label="${page.navLabel}"><a href="#apps">${page.apps}</a><a href="#links">${page.contact}</a><a class="locale" href="${page.alternate}" lang="${page.lang === 'ja' ? 'en' : 'ja'}" hreflang="${page.lang === 'ja' ? 'en' : 'ja'}">${page.language}</a></nav></div></header>
   <main>
-    <section class="hero"><div class="wrap"><div class="hero-grid"><div><p class="eyebrow">${page.eyebrow}</p><h1>${page.hero}</h1></div><div><p class="hero-copy">${page.intro}</p><a class="button" href="#apps">${page.cta} <span aria-hidden="true">↓</span></a></div></div><a class="brand-banner hero-banner" href="${page.prefix}cover@2x.jpg" target="_blank" rel="noopener" aria-label="${page.bannerLabel}"><img src="${page.prefix}cover.jpg" srcset="${page.prefix}cover.jpg 1600w, ${page.prefix}cover@2x.jpg 1983w" sizes="(min-width: 1220px) 1180px, calc(100vw - 40px)" width="1600" height="640" loading="lazy" decoding="async" alt="${page.bannerAlt}"><span>${page.bannerLabel}</span></a></div></section>
+    <section class="hero"><div class="wrap"><a class="brand-banner hero-banner" href="${page.prefix}cover@2x.jpg" target="_blank" rel="noopener" aria-label="${page.bannerLabel}"><img src="${page.prefix}cover.jpg" srcset="${page.prefix}cover.jpg 1600w, ${page.prefix}cover@2x.jpg 1983w" sizes="(min-width: 1220px) 1180px, calc(100vw - 40px)" width="1600" height="640" fetchpriority="high" decoding="async" alt="${page.bannerAlt}"><span>${page.bannerLabel}</span></a><div class="hero-grid"><div><p class="eyebrow">${page.eyebrow}</p><h1>${page.hero}</h1></div><div><a class="button" href="#apps">${page.cta} <span aria-hidden="true">↓</span></a></div></div></div></section>
     <section class="catalogue" id="apps" aria-labelledby="apps-title"><div class="wrap"><div class="section-intro"><h2 id="apps-title">${page.catalogTitle}</h2></div><div class="filters"><label><span class="skip">${page.searchLabel}</span><input class="search" data-search type="search" placeholder="${page.search}" aria-label="${page.searchLabel}" autocomplete="off"></label><div class="filter-row" role="group" aria-label="${page.lang === 'ja' ? 'カテゴリで絞り込む' : 'Filter by category'}">${filters}</div><p class="result-count" data-result-count data-template="${esc(page.count)}" data-singular-template="${esc(page.countSingular)}" data-breakdown-template="${esc(page.countBreakdown)}" data-all-soon-template="${esc(page.countAllSoon)}" role="status" aria-live="polite">${initialCount}</p></div><ul class="cards" role="list">${apps.map((app) => card(page, app)).join('')}</ul><div class="empty is-hidden" data-empty><p>${page.noResults}</p><button class="reset" type="button" data-reset>${page.reset}</button></div></div></section>
     <section class="belief" id="links"><div class="wrap belief-grid"><h2>${page.belief}</h2><div><p>${page.beliefText}</p><p>${page.contactText} <a class="contact-link" href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a>${page.contactEnd}</p></div></div></section>
   </main>

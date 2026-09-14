@@ -1,11 +1,30 @@
+/* アプリLPの共通レイヤー。各 index.html の <style>（アプリ別トークン＋構造CSS）の後に読む。
+   ⚠️ 色はここで持たない。各LPの :root が light / dark 両方のトークンを持っているので、
+      この層はそれを参照するだけにする。以前ここにライト固定の色を書いていたため、
+      ダークでは「明るい地の上にダークのカードと白いバッジ」という混在が出ていた。 */
 :root {
-  --detail-bg: #f8f7f2;
-  --detail-paper: #fffef9;
-  --detail-ink: #20372d;
-  --detail-muted: #5d6c63;
-  --detail-accent: #2c6651;
-  --detail-tint: #e8f0e9;
-  --detail-line: #d8e2d9;
+  --detail-bg: var(--bg);
+  --detail-paper: var(--surface);
+  --detail-ink: var(--ink);
+  --detail-muted: var(--ink-2);
+  --detail-accent: var(--accent);
+  /* 淡色の地（プライバシー欄・アイコンの座・「近日公開」）。混ぜる比率はコントラストで決めた。
+     10% だとカジドリ・おそうじ合図の light で「近日公開」の文字が 4.43:1 に落ちる。
+     7% なら13本（apps-data.js に載る全アプリ）× light/dark のすべてで、
+     accent 文字 4.60:1 以上・本文 4.80:1 以上（実測）。
+     ⚠️ color-mix を var() 越しに使うと、旧ブラウザ向けの「2段書き」は効かない。
+        `background:A; background:var(--tint)` の2行目はパース時には有効なので A を置き換え、
+        計算値時に無効になって transparent に落ちる。下の @supports で分岐させること
+        （LP本体の .chip が2段書きで済むのは、そこが color-mix() を直に書いていて
+        パース時に落とされるため）。 */
+  --detail-tint: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  --detail-line: var(--border);
+}
+
+/* color-mix 未対応（Safari 16.2 未満）では淡色の地を紙色に落とす。
+   これが無いと .privacy-box・アイコンの座・「近日公開」の札が透明になる。 */
+@supports not (background: color-mix(in srgb, red 7%, blue)) {
+  :root { --detail-tint: var(--detail-paper); }
 }
 
 body.app-detail {
@@ -13,20 +32,6 @@ body.app-detail {
   color: var(--detail-ink);
   line-height: 1.8;
 }
-
-body.app-detail[data-app="ai-noritsugi"] { --detail-accent: #245782; --detail-tint: #e8f0f7; }
-body.app-detail[data-app="michiaruki"] { --detail-accent: #14705f; --detail-tint: #e4f2ee; }
-body.app-detail[data-app="asalog"] { --detail-accent: #1b5eaf; --detail-tint: #e7f0fb; }
-body.app-detail[data-app="fukumeguri"] { --detail-accent: #9d4665; --detail-tint: #f7e9ee; }
-body.app-detail[data-app="ichinichiichizen"] { --detail-accent: #a23e51; --detail-tint: #f7e8eb; }
-body.app-detail[data-app="oshimachi"] { --detail-accent: #326c4e; --detail-tint: #e8f1e9; }
-body.app-detail[data-app="pitawari"] { --detail-accent: #3e57af; --detail-tint: #e9edfb; }
-body.app-detail[data-app="reeddiary"] { --detail-accent: #314c70; --detail-tint: #e9eef5; }
-body.app-detail[data-app="omoimekuri"] { --detail-accent: #a94c24; --detail-tint: #f8ece5; }
-body.app-detail[data-app="tastock"] { --detail-accent: #536b32; --detail-tint: #edf2e6; }
-body.app-detail[data-app="kajidori"] { --detail-accent: #1f61a9; --detail-tint: #e8f0fa; }
-body.app-detail[data-app="osoujiaizu"] { --detail-accent: #1f61a9; --detail-tint: #e8f0fa; }
-body.app-detail[data-app="ainokori"] { --detail-accent: #3647b0; --detail-tint: #eaecfb; }
 
 .app-detail .wrap { max-width: 1180px; }
 .app-detail .site-head { border-color: var(--detail-line); }
@@ -43,31 +48,69 @@ body.app-detail[data-app="ainokori"] { --detail-accent: #3647b0; --detail-tint: 
 .app-detail .site-foot span,
 .app-detail .legal p { color: var(--detail-muted); }
 .app-detail .wordmark::before { content: "← "; color: var(--detail-accent); }
+/* 指で押す面積を 44px 確保する（見た目の文字サイズは変えない）。 */
+.app-detail .wordmark,
+.app-detail .head-link,
+.app-detail .foot-links a { display: inline-flex; align-items: center; min-height: 44px; }
+/* inline-flex にすると ::before が独立したフレックスアイテムになり、
+   content の末尾スペースが畳まれて「←TempuraApps」とくっつく。 */
+.app-detail .wordmark { gap: .3em; }
 .app-detail a { color: var(--detail-accent); }
+/* フォーカスリングは不透明で引く。accent を白と混ぜると地色に溶けて位置が分からない。 */
 .app-detail a:focus-visible,
-.app-detail button:focus-visible { outline: 3px solid color-mix(in srgb, var(--detail-accent) 45%, white); outline-offset: 3px; }
+.app-detail button:focus-visible { outline: 3px solid var(--detail-accent); outline-offset: 3px; }
+/* スクショは横スクロール領域（PCでは overflow:hidden の枠）の中にあるので、
+   外側に出るリングは切れる。内側に引く。 */
+.app-detail .shot-slide:focus-visible { outline: 3px solid var(--detail-accent); outline-offset: -5px; }
+/* 拡大表示は黒地。accent のリングだと light で最小 1.92:1（リード日記）になるので白に戻す。
+   ⚠️ 上の汎用 button:focus-visible は (0,2,1) で、各LPの .lightbox-dot:focus-visible (0,2,0) に勝つ。 */
+.app-detail .lightbox-dot:focus-visible,
+.app-detail .lightbox-close:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 
 .app-detail .hero { padding: clamp(46px, 7vw, 88px) 0 clamp(38px, 6vw, 68px); background: var(--detail-bg); }
 .app-detail .hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) clamp(180px, 19vw, 210px); align-items: center; column-gap: clamp(36px, 8vw, 110px); max-width: 1180px; padding-inline: 20px; text-align: left; }
-.app-detail .hero-inner .app-icon { grid-column: 2; grid-row: 1 / span 5; width: 100%; height: auto; aspect-ratio: 1; margin: 0; padding: 11px; border: 1px solid var(--detail-line); border-radius: 28%; background: var(--detail-tint); object-fit: cover; box-shadow: 0 10px 24px color-mix(in srgb, var(--detail-accent) 12%, transparent); }
+.app-detail .hero-inner .app-icon { grid-column: 2; grid-row: 1 / span 6; width: 100%; height: auto; aspect-ratio: 1; margin: 0; padding: 11px; border: 1px solid var(--detail-line); border-radius: 28%; background: var(--detail-tint); object-fit: cover; box-shadow: 0 10px 24px color-mix(in srgb, var(--detail-accent) 12%, transparent); }
 .app-detail .hero-inner > :not(.app-icon) { grid-column: 1; }
 .app-detail .hero-inner .eyebrow { margin: 0 0 10px; color: var(--detail-accent); font-weight: 700; }
 .app-detail .hero-inner h1 { margin: 0; color: var(--detail-ink); font-size: clamp(42px, 4.7vw, 56px); line-height: 1.2; letter-spacing: -.04em; }
 .app-detail .hero-inner .subcopy { max-width: 39em; margin: 18px 0 0; font-size: clamp(16px, 1.5vw, 18px); }
-.app-detail .hero-inner > p:not(.eyebrow):not(.subcopy) { margin: 24px 0 0; }
+/* 見出しの直後に長い説明が続くと、DL 導線がその下へ押し出される。
+   最初の2文だけを .subcopy に残し、残りは .subcopy-more として導線の後ろへ回してある。 */
+.app-detail .hero-inner .subcopy-more { max-width: 39em; margin: 22px 0 0; font-size: 15px; color: var(--detail-muted); }
+.app-detail .hero-inner > p:not(.eyebrow):not(.subcopy):where(:not(.subcopy-more)) { margin: 24px 0 0; }
 /* 未配信アプリのヒーローに出す「近日公開」。App Store バッジと同じ位置。
    配信されたらこの <p class="coming"> を丸ごとバッジの <p> に差し替える。
-   下の + セレクタは (0,4,2)。`.hero-inner > p:not(.eyebrow):not(.subcopy)` が (0,4,1) で
-   24px を入れてくるので、この字数で勝たないと .platform との間隔が詰まらない。 */
+   下の + セレクタは (0,4,2)。`.hero-inner > p:not(...)` が (0,4,1) で
+   24px を入れてくるので、この字数で勝たないと .platform との間隔が詰まらない。
+   ⚠️ 除外を足すときは `:where(:not(...))` で包むこと。素の `:not()` は詳細度を上げるので、
+      (0,5,1) になってこの 10px を黙って 24px に戻す。 */
 .app-detail .coming { display: inline-block; width: fit-content; justify-self: start; padding: 5px 13px; border-radius: 999px; background: var(--detail-tint); color: var(--detail-accent); font-size: 14px; font-weight: 700; letter-spacing: .04em; }
 .app-detail .hero-inner > p.coming + p.platform { margin-top: 10px; }
 .app-detail .store-badge { display: inline-block; min-height: 44px; }
 .app-detail .store-badge img { height: 54px; width: auto; }
 
-.app-detail .screens { padding-block: 22px clamp(50px, 8vw, 92px); background: var(--detail-bg); }
+/* 実要素は .shots（.screens はどこにも無く、この指定は一度も効いていなかった）。
+   下側は .features の padding-top（56〜108px）が持つので、ここでは上だけ足す。
+   両方に持たせると 390px で 106px、PC で 200px の空白帯になる。 */
+.app-detail .shots { padding-block: 22px 0; background: var(--detail-bg); }
 .app-detail .shot-slide { border-radius: 18px; }
 .app-detail .shot-slide,
-.app-detail .shot-frame { border-color: var(--detail-line); box-shadow: 0 6px 16px rgba(32, 55, 45, .06); }
+.app-detail .shot-frame { border-color: var(--detail-line); }
+/* 送る点。8px のままだと指で押せないので、44px の当たり判定を作って、
+   点そのものは疑似要素で描く。未選択も不透明のまま、地との差は色で付ける。 */
+.app-detail .shot-dot { position: relative; width: 44px; height: 44px; border-radius: 50%; background: none; opacity: 1; }
+.app-detail .shot-dot::after { content: ""; position: absolute; inset: 50% auto auto 50%; width: 9px; height: 9px; transform: translate(-50%, -50%); border-radius: 999px; background: var(--detail-muted); }
+.app-detail .shot-dot[aria-current="true"] { background: none; }
+/* 選択中は色だけでなく形（横長）でも分かるようにする。 */
+.app-detail .shot-dot[aria-current="true"]::after { width: 22px; background: var(--detail-accent); }
+.app-detail .shot-dots { gap: 0; margin-top: 4px; }
+/* 拡大表示のドットも同じ扱いにする（8px のままだと押せない）。地が写真なので、
+   点は白のまま・選択中は横長。44px × 最大6個 = 264px で 390px に収まる。 */
+.app-detail .lightbox-dot { position: relative; width: 44px; height: 44px; border-radius: 999px; background: none; opacity: 1; }
+.app-detail .lightbox-dot::after { content: ""; position: absolute; inset: 50% auto auto 50%; width: 9px; height: 9px; transform: translate(-50%, -50%); border-radius: 999px; background: rgba(255, 255, 255, .55); }
+.app-detail .lightbox-dot[aria-current="true"]::after { width: 22px; background: #fff; }
+.app-detail .lightbox-dots { gap: 0; padding: 0 6px; }
+
 .app-detail .features { padding-block: clamp(56px, 9vw, 108px); background: var(--detail-paper); }
 .app-detail .features h2,
 .app-detail .privacy h2,
@@ -76,24 +119,42 @@ body.app-detail[data-app="ainokori"] { --detail-accent: #3647b0; --detail-tint: 
 .app-detail .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .app-detail .card { padding: 22px; border: 1px solid var(--detail-line); border-radius: 16px; background: var(--detail-bg); box-shadow: none; }
 .app-detail .card h3 { color: var(--detail-ink); }
+/* 無料・Pro の条件。中央揃えの 14px だと読み飛ばされる。読む起点を見出しと揃え、
+   1行の長さも詰める（1180px 幅いっぱいだと1行が100字を超えて追えない）。 */
+.app-detail .instruments { max-width: 72ch; margin-inline: 0; text-align: left; font-size: 15px; }
 .app-detail .privacy { padding-block: clamp(56px, 9vw, 100px); background: var(--detail-bg); }
-.app-detail .privacy-box { max-width: 1180px; padding: clamp(24px, 4vw, 42px); border: 1px solid var(--detail-line); border-radius: 20px; background: var(--detail-tint); box-shadow: none; }
-.app-detail .cta { padding-block: clamp(56px, 9vw, 104px); background: var(--detail-paper); border-top: 1px solid var(--detail-line); }
+/* 見出しが左端・本文が中央だと読む起点が2つになる。ボックスごと左揃えに統一する。 */
+.app-detail .privacy-box { max-width: 1180px; padding: clamp(24px, 4vw, 42px); border: 1px solid var(--detail-line); border-radius: 20px; background: var(--detail-tint); box-shadow: none; text-align: left; }
+.app-detail .privacy-box p { max-width: 65ch; margin-inline: 0; }
+.app-detail .cta { padding-block: clamp(56px, 9vw, 104px); background: var(--detail-paper); border-top: 1px solid var(--detail-line); text-align: left; }
 .app-detail .cta-head { margin-bottom: 15px; }
-.app-detail .cta p { max-width: 1180px; margin-inline: auto; }
+.app-detail .cta p { max-width: 65ch; margin-inline: 0; }
+/* 未配信アプリの締め。状態を最後にもう一度示す（サポートと問い合わせだけで終わらせない）。 */
+.app-detail .cta p.cta-coming { max-width: 65ch; margin-inline: 0; color: var(--detail-ink); font-weight: 700; }
+/* 締めのダウンロード導線。補助リンクと同じ段落に埋めない。 */
+.app-detail .cta-store { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.app-detail .cta-note { margin-top: 6px; }
 .app-detail .site-foot { border-color: var(--detail-line); }
+
+@media (min-width: 900px) {
+  /* 900px 以上は4枚を隙間なく並べて1枚の合成画像に見せる（各LPの <style> の意図）。
+     ここで角丸と影を描くと内部の境界に丸い切り欠きが出るので、外枠だけに残す。 */
+  .app-detail .shot-slide { border-radius: 0; box-shadow: none; }
+}
 
 @media (max-width: 680px) {
   .app-detail .hero-inner { display: grid; grid-template-columns: minmax(0, 1fr); column-gap: 0; padding-inline: 20px; }
-  .app-detail .hero-inner .app-icon { grid-column: auto; grid-row: auto; width: 96px; padding: 5px; border-radius: 24%; }
+  .app-detail .hero-inner .app-icon { grid-column: auto; grid-row: auto; width: 96px; margin-bottom: 16px; padding: 5px; border-radius: 24%; }
   .app-detail .hero-inner > :not(.app-icon) { grid-column: auto; grid-row: auto; }
-  .app-detail .hero-inner .eyebrow { margin-bottom: 5px; font-size: 12px; }
+  .app-detail .hero-inner .eyebrow { margin-bottom: 5px; font-size: 13px; }
   .app-detail .hero-inner h1 { font-size: clamp(30px, 9vw, 38px); }
   .app-detail .hero-inner h1 .nowrap { white-space: normal; }
   .app-detail .hero-inner .subcopy { margin-top: 10px; font-size: 15px; }
-  .app-detail .hero-inner > p:not(.eyebrow):not(.subcopy) { margin-top: 24px; }
+  .app-detail .hero-inner > p:not(.eyebrow):not(.subcopy):where(:not(.subcopy-more)) { margin-top: 24px; }
+  /* ⚠️ .privacy h2 はここに入れない。見出しは .privacy-box の中にあり、
+     ボックス自身が padding を持っているので、足すと見出しだけ本文より内側へずれる。 */
   .app-detail .features h2,
-  .app-detail .privacy h2,
+  .app-detail .instruments,
   .app-detail .cta-head,
   .app-detail .cta p { padding-inline: 20px; }
   .app-detail .cards { grid-template-columns: 1fr; }

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TempuraApps | AINOKORI Privacy Policy</title>
-<meta name="description" content="Privacy Policy for AINOKORI (iPhone, Apple Watch, and Mac apps). Covers what the Mac app reads and its scope, what it doesn't read, iCloud sync, provision to third parties, deleting your data, and how to contact us.">
+<meta name="description" content="Privacy Policy for AINOKORI (iPhone, Apple Watch, and Mac apps). Covers what the Mac app reads and its scope, what it never stores or sends, iCloud sync, provision to third parties, deleting your data, and how to contact us.">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0B0F1A" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://tempuraapps.github.io/ainokori/en/privacy.html">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ja_JP">
 <meta property="og:title" content="TempuraApps | AINOKORI Privacy Policy">
-<meta property="og:description" content="Privacy Policy for AINOKORI — what it reads, what it doesn't, iCloud sync, and deleting your data.">
+<meta property="og:description" content="Privacy Policy for AINOKORI — what it reads, what it never stores or sends, iCloud sync, and deleting your data.">
 <meta property="og:url" content="https://tempuraapps.github.io/ainokori/en/privacy.html">
 <meta property="og:image" content="https://tempuraapps.github.io/ainokori/icon-512.png">
 <meta property="og:image:width" content="512">
@@ -54,16 +54,17 @@
 <main class="wrap">
   <p class="eyebrow">TempuraApps</p>
   <h1>AINOKORI Privacy Policy</h1>
-  <p class="updated">Last updated: September 24, 2026</p>
+  <p class="updated">Last updated: September 29, 2026</p>
   <p class="lang"><a href="index.html">About the app</a> · <a href="support.html">Support</a> · <a href="../privacy.html">日本語</a></p>
   <p class="lead">AINOKORI (&ldquo;the App&rdquo;) is provided by TempuraApps (&ldquo;we&rdquo;). The App consists of an app for iPhone and Apple Watch, together with a companion app for Mac. This policy explains how we handle user information.</p>
 
   <h2>1. Information the Mac app reads</h2>
-  <p>The Mac app reads <strong>only usage records</strong> from among the files that the AI coding tools installed on your Mac (Claude Code, Codex, Gemini CLI, GitHub Copilot) save to your home folder for their own operation. Specifically: tokens and requests consumed, the usage rate for each usage window, the reset time for each usage window, and whether each tool is installed.</p>
+  <p>The Mac app reads <strong>only usage records</strong> from among the files that the AI coding tools installed on your Mac (Claude Code, Codex, Gemini CLI) save to your home folder for their own operation. Specifically: tokens and requests consumed, the usage rate for each usage window, the reset time for each usage window, and whether each tool is installed. For GitHub Copilot, the current version reads nothing.</p>
   <p>What&rsquo;s read is converted, inside the Mac app, into numbers showing which tool is currently used by how much, and only those numbers are synced as described in section 3. The content of the original files it reads is never stored or transmitted.</p>
+  <p>If you use Claude Code and add the one-line status-line setting shown in the Mac app, Claude Code writes its 5-hour and weekly usage rates and their reset times into the Mac app&rsquo;s storage. The Mac app reads only those four numbers and never reads or writes Claude Code&rsquo;s settings file (~/.claude/settings.json).</p>
 
-  <h2>2. What the Mac app doesn&rsquo;t read</h2>
-  <p>The App does not read the following. By design, the program has no data type for reading these, so they can&rsquo;t be picked up at all.</p>
+  <h2>2. What the Mac app never extracts, stores or sends</h2>
+  <p>Only the usage numbers are extracted; conversations, code, credentials, project names and paths are never stored or sent. For conversation text and code, the program has no data type that could read them. To find usage records it lists folders, but folder names and paths are never stored or sent. None of the following is extracted:</p>
   <ul>
     <li>The text of your conversations with AI &mdash; prompts you sent, responses you received</li>
     <li>Source code, file contents, diffs</li>
@@ -74,11 +75,11 @@
   <p>The Mac app also collects no analytics. The only service it talks to is your own iCloud; it never connects to our servers or to any AI provider&rsquo;s API. Data reaches your iPhone only through iCloud, as described in section 3.</p>
 
   <h2>3. Syncing via iCloud</h2>
-  <p>The usage numbers the Mac app creates are stored in <strong>the private iCloud database of your own Apple ID</strong>, and read from the iPhone and Apple Watch signed in with that same Apple ID. We cannot access this database. We have no servers, and no account registration is required.</p>
-  <p>What&rsquo;s synced is limited to: the AI tool type, the usage window type, the usage rate, the reset time, whether the data could be read, and your Mac&rsquo;s name, model, app version, and last-updated time. If you don&rsquo;t use iCloud, your Mac&rsquo;s data never reaches your iPhone (the App itself can still be used to the extent of, for example, viewing sample data).</p>
+  <p>The usage numbers the Mac app creates are stored in <strong>the private iCloud database of your own Apple Account</strong>, and read from the iPhone and Apple Watch signed in with that same Apple Account. We cannot access this database. We have no servers, and no account registration is required.</p>
+  <p>What&rsquo;s synced is limited to: the AI tool type, the usage window type, the usage rate, the reset time, tokens and requests consumed, recent readings (time and usage rate), whether the data could be read, the reader version, a random per-Mac identifier, and your Mac&rsquo;s name, model, app version, polling interval and last-updated time. If you don&rsquo;t use iCloud, your Mac&rsquo;s data never reaches your iPhone (the App itself can still be used to the extent of, for example, viewing sample data).</p>
 
   <h2>4. Information stored on iPhone and Apple Watch</h2>
-  <p>The usage history you receive, your notification settings, and your display settings are all stored only on your device. None of this is ever sent to our servers or a third party&rsquo;s.</p>
+  <p>The usage history you receive, your notification settings and your display settings are stored on your device. History values are never sent to our servers or a third party&rsquo;s. When you change a notification or display setting, only which setting was changed and which option was chosen (the notification type and on/off, the chosen thresholds, remaining-vs-used display) is included in the analytics described in section 7.</p>
 
   <h2>5. Location data</h2>
   <p>The App does not use location data. It never requests or collects your location.</p>
@@ -88,7 +89,8 @@
   <p>To let your iPhone know a Mac update is ready, the App also uses Apple&rsquo;s iCloud notification mechanism &mdash; a silent notification that never appears on screen. It carries no usage numbers; it&rsquo;s only a trigger for your iPhone to fetch the latest values from iCloud.</p>
 
   <h2>7. Usage analytics (PostHog)</h2>
-  <p>To improve quality and features, the iPhone app measures anonymous usage with the analytics service PostHog. What&rsquo;s sent is limited to purchase-related actions &mdash; opening the Pro screen, purchasing a plan (monthly or annual, and whether it went through), restoring a purchase &mdash; together with the type and count of actions showing how much a feature is used, and the number and type of AI tools connected along with whether their data could be read.</p>
+  <p>To improve quality and features, the iPhone app measures anonymous usage with the analytics service PostHog. What&rsquo;s sent is limited to purchase-related actions &mdash; opening the Pro screen, purchasing a plan (monthly or annual, and whether it went through), restoring a purchase &mdash; together with the type and count of actions showing how much a feature is used, changes to notification and display settings (which setting and which option), and the number and type of AI tools connected along with whether their data could be read.</p>
+  <p>In addition, as standard behaviour of the analytics service, application lifecycle events (launch, install, update) and your device model, OS version, app version and language are sent.</p>
   <p><strong>We never send usage numbers (usage rate or token counts), reset times, your Mac&rsquo;s name, file paths, project names, or anything related to your conversations or code.</strong> By design, the App&rsquo;s analytics events cannot carry arbitrary runtime strings, so these are structurally impossible to send. We also never send personal information such as your name or email address.</p>
   <p>Each record sent carries an anonymous identifier created for that installation of the App. It exists so that actions from the same installation can be read as one thread. It is not tied to your name, email address, account, or any hardware identifier provided by the device, and we do not use it to identify you. Deleting and reinstalling the App produces a new one.</p>
   <p>We have no way to connect that identifier to you as a person. For that reason we cannot act on requests to retrieve or delete one user&rsquo;s data individually. If you wish to stop the measurement entirely, please delete the App; nothing is sent after it is removed. The data is stored in the EU region.</p>
@@ -100,9 +102,11 @@
 
   <h2>9. Provision to third parties</h2>
   <p>We do not provide or sell your information to third parties for advertising purposes. Information sent to the external services described in sections 7 and 8 (PostHog and RevenueCat) for measurement and purchase processing is handled under each service&rsquo;s own privacy policy.</p>
+  <p>Retention and deletion of information sent to PostHog and RevenueCat follow each company&rsquo;s privacy policy (PostHog: <a href="https://posthog.com/privacy">https://posthog.com/privacy</a> / RevenueCat: <a href="https://www.revenuecat.com/privacy">https://www.revenuecat.com/privacy</a>).</p>
 
   <h2>10. Deleting your data</h2>
   <p>History stored on your iPhone can be erased from &ldquo;Settings &gt; Reset &gt; Delete all history&rdquo; in the app. Usage numbers stored in iCloud can be erased from &ldquo;Settings &gt; iCloud &gt; Delete Data in iCloud&rdquo; in the Mac app. To be certain everything on your devices is erased, delete each app itself.</p>
+  <p>Without your Mac, you can delete the iCloud data from your iPhone: Settings &gt; [your name] &gt; iCloud &gt; Manage Account Storage &gt; AINOKORI.</p>
 
   <h2>11. Children&rsquo;s privacy</h2>
   <p>The App is not directed at children under 13, and we do not knowingly collect personal information from children.</p>

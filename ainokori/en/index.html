@@ -34,8 +34,6 @@
     --panel:#EAEEF8; --track:#E3E8F3;
     --icon-shadow:0 16px 40px rgba(20,33,61,.16), 0 0 0 1px rgba(20,33,61,.06);
     --card-shadow:none;
-    /* サービスの識別色。アプリの Palette.provider(_:) と同じ。各社のロゴ・ブランドカラーの模倣ではない。 */
-    --p-claude:#BE6832; --p-codex:#0D8C6E; --p-gemini:#0C85BB; --p-copilot:#A24BE0;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -43,7 +41,6 @@
       --accent:#93A0FF; --border:#2A3348; --grad-a:#93A0FF; --grad-b:#4756C9;
       --panel:#1C2438; --track:#263048;
       --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
-      --p-claude:#F0955E; --p-codex:#3CC9A3; --p-gemini:#5AC4F5; --p-copilot:#C98CFF;
     }
   }
   *{ box-sizing:border-box; }
@@ -91,13 +88,6 @@
   .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
   .platform{ font-size:14px; color:var(--ink-2); margin:0; }
 
-  /* meters（このアプリ固有の飾り。4サービスを色で示す） */
-  .meters{ display:flex; align-items:flex-end; justify-content:center; gap:14px; margin:0 auto 28px; height:96px; }
-  .meters span{ width:18px; border-radius:9px; display:block; }
-  .meters .m1{ height:44px; background:var(--p-claude); }
-  .meters .m2{ height:70px; background:var(--p-codex); }
-  .meters .m3{ height:56px; background:var(--p-gemini); }
-  .meters .m4{ height:96px; background:var(--p-copilot); }
 
   /* features */
   .features{ padding-block:clamp(56px,11vw,104px); }
@@ -196,7 +186,6 @@
 
   <section class="features" aria-labelledby="features-h">
     <div class="wrap">
-      <div class="meters" aria-hidden="true"><span class="m1"></span><span class="m2"></span><span class="m3"></span><span class="m4"></span></div>
       <h2 id="features-h">Your instrument panel, in your pocket</h2>
       <ul class="cards" role="list">
         <li class="card">

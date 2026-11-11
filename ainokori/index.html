@@ -91,13 +91,12 @@
   .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
   .platform{ font-size:14px; color:var(--ink-2); margin:0; }
 
-  /* meters（このアプリ固有の飾り。4サービスを色で示す） */
+  /* meters（このアプリ固有の飾り。3サービスを色で示す） */
   .meters{ display:flex; align-items:flex-end; justify-content:center; gap:14px; margin:0 auto 28px; height:96px; }
   .meters span{ width:18px; border-radius:9px; display:block; }
   .meters .m1{ height:44px; background:var(--p-claude); }
   .meters .m2{ height:70px; background:var(--p-codex); }
   .meters .m3{ height:56px; background:var(--p-gemini); }
-  .meters .m4{ height:96px; background:var(--p-copilot); }
 
   /* features */
   .features{ padding-block:clamp(56px,11vw,104px); }
@@ -184,7 +183,7 @@
       <p class="subcopy">Claude Code、Codex、Gemini CLI の余力と、GitHub Copilot の対応状況。使い分けるほど、どれがあとどれくらい使えるのか分からなくなります。AINOKORI は Mac がその答えを読み取って、iPhone と Apple Watch に届けます。</p>
       <!-- iOS 承認後: App Store バッジ。Mac 承認後: Mac App Store バッジを CTA と hero 補足に足し、『配信予定』の文を消す -->
       <p class="coming">近日公開</p>
-      <p class="platform">iOS 18.0 以降 / iPhone・Apple Watch 向け ＋ macOS 14.0 以降の Mac アプリ</p>
+      <p class="platform">iOS 18.0 以降の iPhone・watchOS 10.0 以降の Apple Watch 向け ＋ macOS 14.0 以降の Mac アプリ</p>
       <p class="platform">Mac 版は Mac App Store で配信予定です。</p>
     </div>
   </section>
@@ -195,7 +194,7 @@
 
   <section class="features" aria-labelledby="features-h">
     <div class="wrap">
-      <div class="meters" aria-hidden="true"><span class="m1"></span><span class="m2"></span><span class="m3"></span><span class="m4"></span></div>
+      <div class="meters" aria-hidden="true"><span class="m1"></span><span class="m2"></span><span class="m3"></span></div>
       <h2 id="features-h">ポケットの中の計器盤</h2>
       <ul class="cards" role="list">
         <li class="card">
@@ -224,7 +223,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M18 9a6 6 0 1 0-12 0c0 5-2 6-2 6h16s-2-1-2-6"/><path d="M10.3 19.5a2 2 0 0 0 3.4 0"/></svg>
           </div>
           <h3>減ったら知らせます</h3>
-          <p>余力が少なくなったときと、利用枠がリセットされたときにお知らせします。通知はすべて iPhone の中で組み立てられ、当方や第三者のサーバーを経由しません。作業を止めずに、切り替えどきだけ分かります。</p>
+          <p>余力が少なくなったとき、上限に達したとき、利用枠がリセットされたときにお知らせします（上限が分からないツールは、上限到達とリセットのみ）。通知はすべて iPhone の中で組み立てられ、当方や第三者のサーバーを経由しません。作業を止めずに、切り替えどきだけ分かります。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
@@ -238,10 +237,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3.5 20 8v5c0 4.3-3.2 6.9-8 7.5-4.8-.6-8-3.2-8-7.5V8z"/><path d="M9.2 12.2 11.3 14.3 15 10.6"/></svg>
           </div>
           <h3>取れないものは、取れないと書く</h3>
-          <p>ツールごとに、取得できる情報の細かさは違います。AINOKORI は「上限が分からない」「取得未対応」をそのまま表示します。たとえば GitHub Copilot の利用量は、現在のバージョンでは「取得未対応」です。推測で数字を埋めません。上限を推定して出すときは「推定」と明記します。</p>
+          <p>ツールごとに、取得できる情報の細かさは違います。AINOKORI は「上限不明」「取得未対応」をそのまま表示します。たとえば GitHub Copilot の利用量は、現在のバージョンでは「取得未対応」です。推測で数字を埋めません。上限を推定して出すときは「推定」と明記します。</p>
         </li>
       </ul>
-      <p class="instruments">無料で各サービスの余力（GitHub Copilot は対応状況のみ）・リセット時刻・ウィジェット・Apple Watch・7日ぶんの履歴・余力低下とリセットの通知が使えます。90日の履歴、統計、上限到達の予測、通知の閾値の細かい指定、日次レポート、次に使う AI の提案は AINOKORI Pro の機能です。</p>
+      <p class="instruments">無料で各サービスの余力（GitHub Copilot は対応状況のみ）・リセット時刻・リセットまで持つかの見通し・ウィジェット・Apple Watch・7日ぶんの履歴・余力低下（しきい値1つ）とリセットの通知が使えます。90日の履歴、統計、上限到達の見込み時刻、複数のしきい値での同時通知、日次レポート、次に使う AI の提案は AINOKORI Pro の機能です（統計・見込み時刻・日次レポートは、上限が分かる枠が対象です）。</p>
     </div>
   </section>
 
@@ -249,14 +248,14 @@
     <div class="wrap">
       <div class="privacy-box">
         <h2 id="privacy-h"><span class="nowrap">会話もコードも、</span><span class="nowrap">保存も送信もしません</span></h2>
-        <p>Mac アプリが読むのは、各ツールがこの Mac に残した使用量の記録だけです。使用量の数字だけを取り出し、会話の中身・コード・認証情報・プロジェクト名・ログ内のパスは保存も送信もしません。Mac 版は解析を行いません。通信する相手はあなた自身の iCloud だけで、自前サーバーや各社 API には接続しません。詳細は<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+        <p>Mac アプリが読むのは、各ツールがこの Mac に残した使用量の記録だけです。使用量の数字だけを取り出し、会話の中身・コード・認証情報・プロジェクト名・ログ内のパスは保存も送信もしません。Mac 版は解析を行いません。通信する相手はあなた自身の iCloud だけで、自前サーバーや各社 API には接続しません。iPhone 版は匿名の利用状況の解析（PostHog）と購入の管理（RevenueCat）を使いますが、使用量の数値は送りません。詳細は<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
       </div>
     </div>
   </section>
 
   <section class="cta" aria-labelledby="cta-h">
     <div class="wrap">
-      <h2 class="cta-head">次にどれを使うか、迷わない。</h2>
+      <h2 id="cta-h" class="cta-head">次にどれを使うか、迷わない。</h2>
       <p class="cta-coming">iPhone 版は App Store、Mac 版は Mac App Store で配信予定です。配信が始まったら、このページにリンクを載せます。</p>
       <p class="cta-note">使い方のご質問は<a href="./support.html">サポート</a>にまとめています。ご意見・不具合のご報告は <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a> まで。</p>
     </div>
@@ -265,7 +264,7 @@
   <section class="legal" aria-labelledby="legal-h">
     <div class="wrap">
       <h2 id="legal-h" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">商標について</h2>
-      <p>AINOKORI は、Anthropic、OpenAI、Google、GitHub および Microsoft とは提携しておらず、これらの企業から承認・後援を受けたものでもありません。Claude、Claude Code は Anthropic PBC の、Codex と OpenAI は OpenAI, Inc. の、Gemini と Google は Google LLC の、GitHub と GitHub Copilot は GitHub, Inc. の商標です。本アプリはこれらの名称を、対応するツールを識別する目的でのみ使用しており、各社のロゴやアイコンは使用していません。表示する数値は、お使いの Mac に残されたローカルの記録から読み取った値、またはそこから推定した値であり、各社が公式に提供する数値ではありません。</p>
+      <p>AINOKORI は、Anthropic、OpenAI、Google、GitHub および Microsoft とは提携しておらず、これらの企業から承認・後援を受けたものでもありません。Claude、Claude Code は Anthropic PBC の、Codex と OpenAI は OpenAI, Inc. の、Gemini と Google は Google LLC の、GitHub と GitHub Copilot は GitHub, Inc. の商標です。本アプリはこれらの名称を、対応するツールを識別する目的でのみ使用しており、各社のロゴやアイコンは使用していません。表示する数値は、お使いの Mac に各ツールが残したローカルの記録から読み取った値、Claude Code から受け取った値、またはそれらから推定した値であり、各社が公式に提供する数値ではありません。</p>
     </div>
   </section>
 </main>

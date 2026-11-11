@@ -91,13 +91,12 @@
   .subcopy{ font-size:17px; color:var(--ink-2); max-width:34em; margin:0 auto 26px; }
   .platform{ font-size:14px; color:var(--ink-2); margin:0; }
 
-  /* meters（このアプリ固有の飾り。4サービスを色で示す） */
+  /* meters（このアプリ固有の飾り。3サービスを色で示す） */
   .meters{ display:flex; align-items:flex-end; justify-content:center; gap:14px; margin:0 auto 28px; height:96px; }
   .meters span{ width:18px; border-radius:9px; display:block; }
   .meters .m1{ height:44px; background:var(--p-claude); }
   .meters .m2{ height:70px; background:var(--p-codex); }
   .meters .m3{ height:56px; background:var(--p-gemini); }
-  .meters .m4{ height:96px; background:var(--p-copilot); }
 
   /* features */
   .features{ padding-block:clamp(56px,11vw,104px); }
@@ -184,7 +183,7 @@
       <p class="subcopy">Claude Code, Codex, and Gemini CLI&rsquo;s remaining capacity, plus GitHub Copilot&rsquo;s support status. The more you switch between them, the harder it gets to know how much each one has left. AINOKORI has your Mac read the answer and deliver it to your iPhone and Apple Watch.</p>
       <!-- iOS 承認後: App Store バッジ。Mac 承認後: Mac App Store バッジを CTA と hero 補足に足し、『配信予定』の文を消す -->
       <p class="coming">Coming soon</p>
-      <p class="platform">iOS 18.0 or later for iPhone and Apple Watch, plus a companion Mac app requiring macOS 14.0 or later</p>
+      <p class="platform">For iPhone (iOS 18.0 or later) and Apple Watch (watchOS 10.0 or later), plus a companion Mac app requiring macOS 14.0 or later</p>
       <p class="platform">The Mac app is coming soon to the Mac App Store.</p>
     </div>
   </section>
@@ -195,7 +194,7 @@
 
   <section class="features" aria-labelledby="features-h">
     <div class="wrap">
-      <div class="meters" aria-hidden="true"><span class="m1"></span><span class="m2"></span><span class="m3"></span><span class="m4"></span></div>
+      <div class="meters" aria-hidden="true"><span class="m1"></span><span class="m2"></span><span class="m3"></span></div>
       <h2 id="features-h">Your instrument panel, in your pocket</h2>
       <ul class="cards" role="list">
         <li class="card">
@@ -224,7 +223,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M18 9a6 6 0 1 0-12 0c0 5-2 6-2 6h16s-2-1-2-6"/><path d="M10.3 19.5a2 2 0 0 0 3.4 0"/></svg>
           </div>
           <h3>We&rsquo;ll let you know when it runs low</h3>
-          <p>You&rsquo;ll get notified when your capacity runs low, and when a usage window resets. Every notification is assembled right on your iPhone, without passing through our servers or anyone else&rsquo;s. You keep working, and just know when it&rsquo;s time to switch.</p>
+          <p>You&rsquo;ll get notified when your capacity runs low, when you hit a limit, and when a usage window resets (for tools without a known limit, only the last two). Every notification is assembled right on your iPhone, without passing through our servers or anyone else&rsquo;s. You keep working, and just know when it&rsquo;s time to switch.</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
@@ -238,10 +237,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3.5 20 8v5c0 4.3-3.2 6.9-8 7.5-4.8-.6-8-3.2-8-7.5V8z"/><path d="M9.2 12.2 11.3 14.3 15 10.6"/></svg>
           </div>
           <h3>When we can&rsquo;t get it, we say so</h3>
-          <p>How much detail we can read varies by tool. AINOKORI shows &ldquo;limit unknown&rdquo; or &ldquo;not supported in this version&rdquo; exactly as they are, rather than guessing at a number. GitHub Copilot&rsquo;s usage, for example, currently shows as &ldquo;not supported in this version.&rdquo; When a limit is estimated, it&rsquo;s always labeled &ldquo;estimated.&rdquo;</p>
+          <p>How much detail we can read varies by tool. AINOKORI shows &ldquo;Limit unknown&rdquo; or &ldquo;Not supported in this version&rdquo; exactly as they are, rather than guessing at a number. GitHub Copilot&rsquo;s usage, for example, currently shows as &ldquo;Not supported in this version.&rdquo; When a limit is estimated, it&rsquo;s always labeled &ldquo;estimated.&rdquo;</p>
         </li>
       </ul>
-      <p class="instruments">Free plan includes remaining capacity for each service (GitHub Copilot shows support status only) and reset times, the widget, Apple Watch, 7 days of history, and notifications for low capacity and resets. 90 days of history, usage statistics, a forecast of when you&rsquo;ll hit the limit, fine-grained notification thresholds, a daily report, and a suggestion for which AI to use next are AINOKORI Pro features.</p>
+      <p class="instruments">The free plan includes remaining capacity for each service (GitHub Copilot shows support status only), reset times, whether you&rsquo;ll last until the reset, the widget, Apple Watch, 7 days of history, and notifications for low capacity (one level) and resets. 90 days of history, usage statistics, the estimated time you&rsquo;ll hit the limit, alerts at multiple levels at once, a daily report, and a suggestion for which AI to use next are AINOKORI Pro features (statistics, the estimate and the daily report need a window with a known limit).</p>
     </div>
   </section>
 
@@ -249,14 +248,14 @@
     <div class="wrap">
       <div class="privacy-box">
         <h2 id="privacy-h">Your code and chats are never stored or sent</h2>
-        <p>The Mac app reads only the usage records each tool leaves on this Mac. Only the usage numbers are extracted; conversations, code, credentials, project names and log paths are never stored or sent. The Mac app collects no analytics, and the only service it talks to is your own iCloud &mdash; never our servers or any AI provider&rsquo;s API. See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
+        <p>The Mac app reads only the usage records each tool leaves on this Mac. Only the usage numbers are extracted; conversations, code, credentials, project names and log paths are never stored or sent. The Mac app collects no analytics, and the only service it talks to is your own iCloud &mdash; never our servers or any AI provider&rsquo;s API. The iPhone app uses anonymous usage analytics (PostHog) and purchase management (RevenueCat), and never sends usage numbers. See the <a href="./privacy.html">Privacy Policy</a> for details.</p>
       </div>
     </div>
   </section>
 
   <section class="cta" aria-labelledby="cta-h">
     <div class="wrap">
-      <h2 class="cta-head">Never wonder which one to use next.</h2>
+      <h2 id="cta-h" class="cta-head">Never wonder which one to use next.</h2>
       <p class="cta-coming">Coming soon: the iPhone app on the App Store and the Mac app on the Mac App Store. Links will appear here once they are live.</p>
       <p class="cta-note">Common questions are answered on the <a href="./support.html">support page</a>. For feedback or to report a problem, contact <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a>.</p>
     </div>
@@ -265,7 +264,7 @@
   <section class="legal" aria-labelledby="legal-h">
     <div class="wrap">
       <h2 id="legal-h" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Trademarks</h2>
-      <p>AINOKORI is not affiliated with, and is not approved or endorsed by, Anthropic, OpenAI, Google, GitHub, or Microsoft. Claude and Claude Code are trademarks of Anthropic PBC; Codex and OpenAI are trademarks of OpenAI, Inc.; Gemini and Google are trademarks of Google LLC; GitHub and GitHub Copilot are trademarks of GitHub, Inc. This app uses these names solely to identify the corresponding tools, and does not use any of these companies&rsquo; logos or icons. The values shown are read from, or estimated from, local records left on your own Mac &mdash; they are not official figures provided by any of these companies.</p>
+      <p>AINOKORI is not affiliated with, and is not approved or endorsed by, Anthropic, OpenAI, Google, GitHub, or Microsoft. Claude and Claude Code are trademarks of Anthropic PBC; Codex and OpenAI are trademarks of OpenAI, Inc.; Gemini and Google are trademarks of Google LLC; GitHub and GitHub Copilot are trademarks of GitHub, Inc. This app uses these names solely to identify the corresponding tools, and does not use any of these companies&rsquo; logos or icons. The values shown are read from local records left on your own Mac, received from Claude Code, or estimated from those &mdash; they are not official figures provided by any of these companies.</p>
     </div>
   </section>
 </main>

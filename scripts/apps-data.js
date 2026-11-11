@@ -35,7 +35,7 @@ const apps = [
     en: ['Pitawari', 'Split the bill by line item', 'Split it, to the last unit.']
   },
   {
-    slug: 'reeddiary', category: 'tools', comingSoon: true,
+    slug: 'reeddiary', category: 'tools',
     ja: ['リード日記', 'ダブルリードの管理', '本番の成功は、リード管理から。'],
     en: ['Reed Diary', 'A diary for double reeds', 'A good performance starts with good reeds.']
   },

@@ -35,7 +35,7 @@
     --icon-shadow:0 16px 40px rgba(20,33,61,.16), 0 0 0 1px rgba(20,33,61,.06);
     --card-shadow:none;
     /* サービスの識別色。アプリの Palette.provider(_:) と同じ。各社のロゴ・ブランドカラーの模倣ではない。 */
-    --p-claude:#BE6832; --p-codex:#0D8C6E; --p-gemini:#0C85BB; --p-copilot:#A24BE0;
+    --p-claude:#BE6832; --p-codex:#0D8C6E; --p-gemini:#0C85BB;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -43,7 +43,7 @@
       --accent:#93A0FF; --border:#2A3348; --grad-a:#93A0FF; --grad-b:#4756C9;
       --panel:#1C2438; --track:#263048;
       --icon-shadow:0 16px 40px rgba(0,0,0,.5); --card-shadow:none;
-      --p-claude:#F0955E; --p-codex:#3CC9A3; --p-gemini:#5AC4F5; --p-copilot:#C98CFF;
+      --p-claude:#F0955E; --p-codex:#3CC9A3; --p-gemini:#5AC4F5;
     }
   }
   *{ box-sizing:border-box; }
@@ -94,9 +94,9 @@
   /* meters（このアプリ固有の飾り。3サービスを色で示す） */
   .meters{ display:flex; align-items:flex-end; justify-content:center; gap:14px; margin:0 auto 28px; height:96px; }
   .meters span{ width:18px; border-radius:9px; display:block; }
-  .meters .m1{ height:44px; background:var(--p-claude); }
-  .meters .m2{ height:70px; background:var(--p-codex); }
-  .meters .m3{ height:56px; background:var(--p-gemini); }
+  .meters .m1{ height:60px; background:var(--p-claude); }
+  .meters .m2{ height:96px; background:var(--p-codex); }
+  .meters .m3{ height:77px; background:var(--p-gemini); }
 
   /* features */
   .features{ padding-block:clamp(56px,11vw,104px); }
@@ -202,14 +202,14 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 20V10"/><path d="M9.3 20V5"/><path d="M14.7 20v-9"/><path d="M20 20V8"/></svg>
           </div>
           <h3>3つを1画面で</h3>
-          <p>Claude Code、Codex、Gemini CLI の余力を縦に並べます。5時間枠や週間枠など枠ごとに1行で、枠の名前とリセットまでの時間、バー、割合を並べます。割合は「あと何%使えるか」で、設定で「使った%」に切り替えることもできます。GitHub Copilot は現在のバージョンでは余力を取得できず、対応状況のみを表示します。</p>
+          <p>Claude Code、Codex、Gemini CLI の余力を縦に並べます。5時間枠や週間枠など枠ごとに1行で、枠の名前とリセットまでの時間か時刻、バー、割合を並べます。割合は「あと何%使えるか」で、設定で「使った%」に切り替えることもできます。Claude Code の割合は、Mac アプリの案内に沿ってステータス行に1行を加えると届きます（それまでは「使用中」とリセット時刻）。GitHub Copilot は現在のバージョンでは余力を取得できず、対応状況のみを表示します。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
           </div>
           <h3>いつ戻るかが分かる</h3>
-          <p>「リセットまで 2時間18分」。上限に達したあと、いつからまた使えるのかを枠ごとに表示します。リセット時刻を取得できないものは、無理に埋めずに「不明」と書きます。</p>
+          <p>「リセットまで 2時間18分」。上限に達したあと、いつからまた使えるのかを枠ごとに表示します。リセット時刻を取得できないものは、無理に埋めずに「リセット時刻は不明」と書きます。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
@@ -237,10 +237,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3.5 20 8v5c0 4.3-3.2 6.9-8 7.5-4.8-.6-8-3.2-8-7.5V8z"/><path d="M9.2 12.2 11.3 14.3 15 10.6"/></svg>
           </div>
           <h3>取れないものは、取れないと書く</h3>
-          <p>ツールごとに、取得できる情報の細かさは違います。AINOKORI は「上限不明」「取得未対応」をそのまま表示します。たとえば GitHub Copilot の利用量は、現在のバージョンでは「取得未対応」です。推測で数字を埋めません。上限を推定して出すときは「推定」と明記します。</p>
+          <p>ツールごとに、取得できる情報の細かさは違います。AINOKORI は「使用中」「上限不明」「取得未対応」をそのまま表示します。たとえば GitHub Copilot の利用量は、現在のバージョンでは「取得未対応」です。推測で数字を埋めません。上限を推定して出すときは「推定」と明記します。</p>
         </li>
       </ul>
-      <p class="instruments">無料で各サービスの余力（GitHub Copilot は対応状況のみ）・リセット時刻・リセットまで持つかの見通し・ウィジェット・Apple Watch・7日ぶんの履歴・余力低下（しきい値1つ）とリセットの通知が使えます。90日の履歴、統計、上限到達の見込み時刻、複数のしきい値での同時通知、日次レポート、次に使う AI の提案は AINOKORI Pro の機能です（統計・見込み時刻・日次レポートは、上限が分かる枠が対象です）。</p>
+      <p class="instruments">無料で各サービスの余力（GitHub Copilot は対応状況のみ）・リセット時刻・リセットまで持つかの見通し・ウィジェット・Apple Watch・7日ぶんの履歴・余力低下（しきい値1つ）とリセットの通知が使えます。90日の履歴、統計、上限到達の見込み時刻、複数のしきい値での同時通知、日次レポート、次に使う AI の提案は AINOKORI Pro の機能です（統計の消費推移・平均消費速度・見込み時刻・日次レポートは、上限が分かる枠が対象です）。</p>
     </div>
   </section>
 

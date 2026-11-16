@@ -63,6 +63,11 @@ const apps = [
     slug: 'ainokori', category: 'tools', comingSoon: true,
     ja: ['AINOKORI', 'AI開発ツールの残量管理', 'AIの残りを、ひと目で。'],
     en: ['AINOKORI', 'AI coding usage monitor', 'See what your AI has left.']
+  },
+  {
+    slug: 'koyomaru', category: 'life', comingSoon: true,
+    ja: ['こよまる', '月間カレンダー', '毎日の予定を、もっと見やすく。'],
+    en: ['Koyomaru', 'A monthly calendar', 'Your days, easier to see.']
   }
 ];
 

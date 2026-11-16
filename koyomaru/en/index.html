@@ -78,7 +78,7 @@
   .subcopy{ color:var(--ink-2); }
   .platform{ font-size:14px; color:var(--ink-2); margin:0; }
 
-  h2{ font-size:clamp(22px,4.6vw,30px); line-height:1.35; letter-spacing:-0.02em; font-weight:700; margin:0 0 28px; }
+  h2{ font-size:clamp(22px,4.6vw,30px); line-height:1.35; letter-spacing:-0.02em; font-weight:700; margin:0 0 28px; text-wrap:balance; }
 
   /* ===== 1週ぶんの見本（こよまる固有）=====
      アプリの権限説明画面（AccessViews.swift の IntroWeekPreview）と同じ予定・同じ色。
@@ -169,6 +169,9 @@
      このページは .wrap が同じ 20px を持っているので二重になる。左端を揃えるため戻す。 */
   @media (max-width:680px){
     body.app-detail .cta-head, body.app-detail .cta p{ padding-inline:0; }
+    /* 共通 CSS は 680px 以下で h1 の .nowrap を外す。こよまるの h1 は2句とも短いので、
+       外すと 320px で句の途中で割れる。句の単位で折り返させるため戻す。 */
+    body.app-detail .hero-inner h1 .nowrap{ white-space:nowrap; }
   }
   @media (prefers-reduced-motion: reduce){
     *{ animation:none !important; transition:none !important; }
@@ -212,13 +215,13 @@
         <span class="lb" style="--c:#2F6BC9;grid-column:2 / span 3;grid-row:3">Trip</span>
         <span class="lb" style="--c:#16808A;grid-column:5;grid-row:3">Dentist</span>
         <span class="lb" style="--c:#AD5812;grid-column:6 / span 2;grid-row:3">Vacation</span>
-        <span class="lb" style="--c:#7449B8;grid-column:1;grid-row:4">English class</span>
-        <span class="lb" style="--c:#4B57C2;grid-column:4;grid-row:4">Team meeting</span>
+        <span class="lb" style="--c:#7449B8;grid-column:1;grid-row:4">English</span>
+        <span class="lb" style="--c:#4B57C2;grid-column:4;grid-row:4">Meeting</span>
         <span class="lb" style="--c:#C94A33;grid-column:4;grid-row:5">Lunch</span>
       </div>
       <!-- スクリーンショットの置き場所（後日）。月表示の実画面を1枚大きく見せる。
            画像は ../app-image-en.webp・../app-image-en@2x.webp。端末枠なし・姉妹のカルーセルは写さない。
-           見本の英語の予定名はアプリの String Catalog に未登録（企画書 §7-9）。アプリ側で決まったら揃える。 -->
+           見本の英語の予定名は升目で切れない短い語にした。アプリの String Catalog には未登録（企画書 §7-9）なので、アプリ側も同じ語で揃える。 -->
     </div>
   </section>
 
@@ -275,8 +278,8 @@
           <p>Week Starts On (Sunday or Monday), Appearance (Auto, Light, Dark), Give Busy Weeks More Room, and Button Position (Right or Left).</p>
         </li>
         <li class="koma">
-          <h3 class="koma-label" style="--c:#7449B8">Lock and move in</h3>
-          <p>Lock the app with Face ID, Touch ID, or your passcode. Your events stay hidden in the app switcher, too. Events from another calendar app can be imported from an .ics file.</p>
+          <h3 class="koma-label" style="--c:#7449B8">Lock and import</h3>
+          <p>Lock the app with Face ID, Touch ID, or your passcode. While locked, your events stay hidden in the app switcher, too. Events from another calendar app can be imported from an .ics file.</p>
         </li>
       </ul>
     </div>
@@ -286,7 +289,8 @@
     <div class="wrap">
       <div class="privacy-box">
         <h2 id="privacy-h">Koyomaru never sends your event details anywhere.</h2>
-        <p>What you see are the events in your iPhone calendars. There&rsquo;s no Koyomaru account or server that holds your events. Koyomaru never sends event titles, dates and times, or notes anywhere. It does connect to outside services for anonymous usage analytics that help improve the app (PostHog) and for checking purchase status (RevenueCat), but what it sends is the kind of action, the option chosen, and an anonymous identifier &mdash; never your event details. Syncing with accounts such as iCloud or Google is done by your iPhone&rsquo;s Calendar, not by Koyomaru. For details, see the <a href="./privacy.html">Privacy Policy</a>.</p>
+        <p>What you see are the events in your iPhone calendars. There&rsquo;s no Koyomaru account or server that holds your events. Koyomaru never sends event titles, dates and times, or notes anywhere.</p>
+        <p>It does connect to outside services for anonymous usage analytics that help improve the app (PostHog) and for checking purchase status (RevenueCat), but what it sends is the kind of action, the option chosen, an anonymous identifier, and technical information such as the app and OS version &mdash; never your event details. Syncing with accounts such as iCloud or Google is done by your iPhone&rsquo;s Calendar, not by Koyomaru. For details, see the <a href="./privacy.html">Privacy Policy</a>.</p>
       </div>
     </div>
   </section>
@@ -295,14 +299,14 @@
     <div class="wrap">
       <h2 class="cta-head" id="cta-h">Your whole month, at a glance.</h2>
       <p class="cta-coming">Coming soon. We&rsquo;ll add the link here when it&rsquo;s out.</p>
-      <p class="cta-note">How to add calendars and move from another app is on the <a href="./support.html">support page</a>. Send feedback to <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a>.</p>
+      <p class="cta-note">The <a href="./support.html">support page</a> explains how to add calendars and switch from another app. Send feedback to <a href="mailto:tempuraapps.support@gmail.com">tempuraapps.support@gmail.com</a>.</p>
     </div>
   </section>
 
   <section class="legal" aria-labelledby="legal-h">
     <div class="wrap">
       <h2 id="legal-h" class="visually-hidden">Trademarks and service names</h2>
-      <p>Google Calendar is a trademark of Google LLC. Koyomaru is not affiliated with, sponsored by, or endorsed by any calendar service provider. No company logos are used.</p>
+      <p>Google Calendar is a trademark of Google LLC, and Outlook is a trademark of Microsoft Corporation. iPhone, iCloud, Face ID, Touch ID, and App Store are trademarks of Apple Inc. Koyomaru is not affiliated with, sponsored by, or endorsed by any calendar service provider. No company logos are used.</p>
     </div>
   </section>
 </main>

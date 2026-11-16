@@ -63,6 +63,11 @@ const apps = [
     slug: 'ainokori', category: 'tools', comingSoon: true,
     ja: ['AINOKORI', 'AI開発ツールの残量管理', 'AIの残りを、ひと目で。'],
     en: ['AINOKORI', 'AI coding usage monitor', 'See what your AI has left.']
+  },
+  {
+    slug: 'dopakin', category: 'records', comingSoon: true,
+    ja: ['ドパキン', 'SNS・動画のアプリロック', '決めた時間は、もう開けない。'],
+    en: ['Dopakin', 'App lock for social and video apps', 'Locked until the time you set.']
   }
 ];
 

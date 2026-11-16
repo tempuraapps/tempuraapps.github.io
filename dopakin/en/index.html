@@ -208,6 +208,8 @@
   @media (prefers-reduced-motion: reduce){
     *{ animation:none !important; transition:none !important; }
   }
+  /* スマホ幅でも見出しを語の途中で折らない（共有 CSS は 680px 以下で .nowrap を解除するため、ページ内で戻す） */
+  @media (max-width:680px){ .hero-inner h1 .nowrap{ display:inline-block; } }
 </style>
   <link rel="stylesheet" href="../../assets/app-detail.css">
 </head>
@@ -229,7 +231,7 @@
       <img class="app-icon" src="../icon-384.jpg" width="128" height="128" fetchpriority="high" alt="Dopakin app icon">
       <p class="eyebrow">Dopakin</p>
       <h1>Locked until the time you set.</h1>
-      <p class="subcopy">Lock social and short-video apps for exactly as long as you decide. A lock can't be ended from inside the app, so “just a quick look” never gets started. When time is up, everything opens again on its own.</p>
+      <p class="subcopy">Lock social and short-video apps for exactly as long as you decide. A lock can't be ended from inside the app, so “just a quick look” is harder to start. When time is up, everything opens again on its own.</p>
       <!-- 配信後: 「近日公開」の段落を App Store バッジの段落に差し替える -->
       <p class="coming">Coming soon</p>
       <p class="platform">iPhone only (iOS 18.0 or later)</p>
@@ -311,7 +313,7 @@
       <div class="plans">
         <div class="plan">
           <h3>Free</h3>
-          <p>Locks up to 30 minutes, as often as you like. There is no limit on the number of apps, exceptions, automatic unlocking, history, image sharing, or appearance settings.</p>
+          <p>Locks up to 30 minutes, as often as you like. The number of apps, exceptions, automatic unlocking, history, image sharing, and appearance settings work the same as with Pro.</p>
         </div>
         <div class="plan plan-night">
           <img src="../mascot-night.webp" width="120" height="120" alt="" decoding="async" loading="lazy">

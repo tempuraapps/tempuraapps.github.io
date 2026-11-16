@@ -208,6 +208,8 @@
   @media (prefers-reduced-motion: reduce){
     *{ animation:none !important; transition:none !important; }
   }
+  /* スマホ幅でも見出しを語の途中で折らない（共有 CSS は 680px 以下で .nowrap を解除するため、ページ内で戻す） */
+  @media (max-width:680px){ .hero-inner h1 .nowrap{ display:inline-block; } }
 </style>
   <link rel="stylesheet" href="../assets/app-detail.css">
 </head>
@@ -229,7 +231,7 @@
       <img class="app-icon" src="./icon-384.jpg" width="128" height="128" fetchpriority="high" alt="ドパキン（アプリアイコン）">
       <p class="eyebrow">ドパキン</p>
       <h1><span class="nowrap">決めた時間は、</span><span class="nowrap">もう開けない。</span></h1>
-      <p class="subcopy">SNSやショート動画のアプリを、自分で決めた時間だけロック。ロック中はアプリ内から解除できないので、「ちょっとだけ」が始まりません。時間になれば、自動で元に戻ります。</p>
+      <p class="subcopy">SNSやショート動画のアプリを、自分で決めた時間だけロック。ロック中はアプリ内から解除できないので、「ちょっとだけ」が始まりにくくなります。時間になれば、自動で元に戻ります。</p>
       <!-- 配信後: 「近日公開」の段落を App Store バッジの段落に差し替える -->
       <p class="coming">近日公開</p>
       <p class="platform">iPhone 専用（iOS 18.0 以降）</p>
@@ -311,7 +313,7 @@
       <div class="plans">
         <div class="plan">
           <h3>無料</h3>
-          <p>30分までのロックを、何回でも。ロックするアプリの数、例外、時間になったときの自動解除、記録、画像での共有、テーマの切り替えに制限はありません。</p>
+          <p>30分までのロックを、何回でも。ロックするアプリの数、例外、時間になったときの自動解除、記録、画像での共有、テーマの切り替えは、Pro と同じように使えます。</p>
         </div>
         <div class="plan plan-night">
           <img src="./mascot-night.webp" width="120" height="120" alt="" decoding="async" loading="lazy">

@@ -78,7 +78,7 @@
     <li>Changing the day the week starts on (Sunday or Monday)</li>
     <li>Changing the appearance (Auto, Light, or Dark)</li>
   </ul>
-  <p>Nothing beyond this is sent. We never send event titles, dates, times, or notes; calendar names; label colors; search terms; or input history &mdash; the values that can be sent are limited to numbers, true/false, and a fixed set of options, so <strong>there is no mechanism for carrying text you typed</strong>. Analytics features that could pick up event contents &mdash; rage-click detection, which would send on-screen text, and Surveys &mdash; are disabled.</p>
+  <p>Nothing beyond this is sent. We never send event titles, dates, times, or notes; calendar names; label colors; search terms; or recent titles &mdash; the values that can be sent are limited to numbers, true/false, and a fixed set of options, so <strong>there is no mechanism for carrying text you typed</strong>. Analytics features that could pick up event contents &mdash; rage-click detection, which would send on-screen text, and Surveys &mdash; are disabled.</p>
   <p>Technical information automatically attached by PostHog may also be included: the App version, your OS type and version, your device type, and the App&rsquo;s display language. Your time zone is stripped before sending, because it can be used to infer your approximate region. IP addresses are configured to be discarded on the analytics side, and we have specified that no region or location be inferred from them. Finer locations such as your city or your coordinates are never collected. None of this is intended to identify a specific individual, and none of it is linked to an account. The data is stored in the EU region.</p>
   <p>Each record sent carries an anonymous identifier created for that installation of the App. It exists so that actions from the same installation can be viewed as one sequence. It is not tied to your name, email address, account, or any hardware identifier provided by the device, and we do not use it to identify you. Deleting and reinstalling the App produces a new one.</p>
   <p>We have no way to connect that identifier to you as a person. For that reason we cannot act on requests to retrieve or delete one user&rsquo;s data individually. If you wish to stop the measurement entirely, please delete the App; nothing is sent after it is removed.</p>
@@ -97,8 +97,8 @@
   <p>The App stores the following information only on your device. None of it is sent to us.</p>
   <ul>
     <li>The label color chosen for each event (pairs of the identifier your iPhone assigns to the event and a color number)</li>
-    <li>Display settings (appearance, the day the week starts on, button position, Show Birthdays, Give Busy Weeks More Room, and whether the lock is on)</li>
-    <li>Input history (titles of events you saved, up to 30)</li>
+    <li>Display settings (appearance, the day the week starts on, button position, Show Birthdays, Expand Busy Weeks, and whether the lock is on)</li>
+    <li>Recent titles (titles of events you saved, up to 30)</li>
     <li>Identifiers of events imported from .ics files (so the same event isn&rsquo;t added twice)</li>
     <li>The month and date you were last viewing</li>
     <li>Whether you have finished the first-run introduction</li>

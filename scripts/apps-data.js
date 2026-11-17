@@ -65,6 +65,11 @@ const apps = [
     en: ['AINOKORI', 'AI coding usage monitor', 'See what your AI has left.']
   },
   {
+    slug: 'koyomaru', category: 'life', comingSoon: true,
+    ja: ['こよまる', '月間カレンダー', '毎日の予定を、もっと見やすく。'],
+    en: ['Koyomaru', 'A monthly calendar', 'Your days, easier to see.']
+  },
+  {
     slug: 'dopakin', category: 'records', comingSoon: true,
     ja: ['ドパキン', 'SNS・動画のアプリロック', '決めた時間は、もう開けない。'],
     en: ['Dopakin', 'App lock for social and video apps', 'Locked until the time you set.']

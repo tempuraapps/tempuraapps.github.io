@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TempuraApps | ドパキン — 決めた時間は、もう開けない。</title>
-<meta name="description" content="SNSやショート動画のアプリを、自分で決めた時間だけロックする iPhone アプリ。アプリを選んで、時間を決めて、開始するだけ。時間になると自動で元に戻ります。ロック中はアプリ内から解除できません（iOS の設定からは解除できます）。記録は端末の中だけ。">
+<meta name="description" content="SNSやショート動画のアプリを、自分で決めた時間だけロックする iPhone アプリ。時間を決めて、アプリを選んで、開始するだけ。時間になると自動で元に戻ります。ロック中はアプリ内から解除できません（iOS の設定からは解除できます）。記録は端末の中だけ。">
 <meta name="theme-color" content="#FBF3E4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#161312" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://tempuraapps.github.io/dopakin/">
@@ -250,14 +250,14 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><path d="M14 17.2l2 2 4-4.4"/></svg>
           </div>
           <h3>ロックするアプリを選ぶ</h3>
-          <p>アプリ単位でも、カテゴリごとでも、Web サイトでも選べます。連絡に使うアプリは「ロックしない（例外）」に入れておけば、開けるままにできます。</p>
+          <p>アプリ単位でも、カテゴリごとでも、Web サイトでも選べます。カテゴリで選ぶと、その中のアプリはすべてロックされます。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="13.5" r="7.5"/><path d="M10 2.5h4"/><path d="M12 2.5v3.5"/><path d="M12 13.5V9.5"/><path d="M12 8v.01M17.5 13.5h-.01M12 19v-.01M6.5 13.5h.01"/></svg>
           </div>
           <h3>タイマーの感覚で時間を決める</h3>
-          <p>ホイールを回して長さを決めるだけ。5分から最長8時間まで、5分きざみで選べます。「何時まで」と終わりの時刻で決めることもできます（30分をこえる長さは Pro）。</p>
+          <p>ホイールを回して長さを決めるだけ。5分から最長24時間まで、5分きざみで選べます。「何時まで」と終わりの時刻で決めることもできます（30分をこえる長さは Pro）。</p>
         </li>
         <li class="card">
           <div class="chip" aria-hidden="true">
@@ -271,7 +271,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 20h16"/><path d="M7 16.5V12"/><path d="M12 16.5V7"/><path d="M17 16.5v-6"/></svg>
           </div>
           <h3>記録は見るだけ、共有は画像で</h3>
-          <p>どれだけロックしたかを、今日・直近7日・累計で見られます。連続日数や目標、ランキングはありません。ロックの宣言・完了・今週の記録は、画像にして共有できます。</p>
+          <p>どれだけロックしたかを、今日・この7日間・累計で見られます。連続日数や目標、ランキングはありません。ロックの宣言・完了・この7日間の記録は、画像にして共有できます。</p>
         </li>
       </ul>
     </div>
@@ -284,18 +284,18 @@
         <ol class="steps">
           <li class="step">
             <span class="step-no" aria-hidden="true">1</span>
-            <h3>アプリを選ぶ</h3>
-            <p>ロックしたいアプリやカテゴリを選びます。選んだ内容は次からもそのまま使えます。</p>
-          </li>
-          <li class="step">
-            <span class="step-no" aria-hidden="true">2</span>
             <h3>時間を決める</h3>
             <p>長さをホイールで決めるか、終わりの時刻を指定します。</p>
           </li>
           <li class="step">
+            <span class="step-no" aria-hidden="true">2</span>
+            <h3>アプリを選ぶ</h3>
+            <p>ロックしたいアプリやカテゴリを選びます。選んだ内容は次からもそのまま使えます。</p>
+          </li>
+          <li class="step">
             <span class="step-no" aria-hidden="true">3</span>
-            <h3>開始</h3>
-            <p>確認の画面で「開始する」を押すと、ロックが始まります。時間になるとロック解除。</p>
+            <h3>開始する</h3>
+            <p>確認の画面で「開始する」を押すと、ロックが始まります。時間になると、自動で開きます。</p>
           </li>
         </ol>
         <figure class="howto-fig">
@@ -313,17 +313,17 @@
       <div class="plans">
         <div class="plan">
           <h3>無料</h3>
-          <p>30分までのロックを、何回でも。ロックするアプリの数、例外、時間になったときの自動解除、記録、画像での共有、テーマの切り替えは、Pro と同じように使えます。</p>
+          <p>30分までのロックを、何回でも。ロックするアプリの数、時間になったときの自動解除、記録、画像での共有、テーマの切り替えは、Proと同じように使えます。</p>
         </div>
         <div class="plan plan-night">
           <img src="./mascot-night.webp" width="120" height="120" alt="" decoding="async" loading="lazy">
           <h3>ドパキン Pro（買い切り）</h3>
-          <p class="plan-big">最長8時間</p>
+          <p class="plan-big">最長24時間</p>
           <p>30分をこえる長さでロックできます。一度の購入でずっと使えて、サブスクリプション（自動更新）はありません。</p>
           <p class="plan-price">日本の App Store では ¥680。価格は国や地域によって異なり、購入画面に表示される金額が正しい価格です。</p>
         </div>
       </div>
-      <p class="pricing-note">ロックの解除にお金はかかりません。時間になれば、無料でも Pro でも同じように元に戻ります。</p>
+      <p class="pricing-note">ロックの解除にお金はかかりません。時間になれば、無料でも Proでも同じように元に戻ります。</p>
     </div>
   </section>
 
@@ -336,15 +336,15 @@
       </div>
       <div class="qa">
         <h3>連絡に使うアプリまで開けなくなりませんか</h3>
-        <p>ロックされるのは、自分で選んだアプリ・カテゴリ・Web サイトだけです。カテゴリでまとめて選ぶときは、連絡に使うアプリを「ロックしない（例外）」に入れておくと、開けるままにできます。</p>
+        <p>ロックされるのは、自分で選んだアプリ・カテゴリ・Web サイトだけです。カテゴリで選ぶと中のアプリはすべてロックされるので、連絡に使うアプリを残したいときは、アプリを1つずつ選んでください。</p>
       </div>
       <div class="qa">
         <h3>時間を過ぎても開かないときは</h3>
-        <p>まず、ロックされたアプリを開き、「開く」を押してください。開かないときは、ドパキンを開いてください。くわしい手順は<a href="./support.html">サポート</a>にあります。</p>
+        <p>まず、ロックされたアプリで、下のボタンを押してください。開かなければ、ドパキンを開いてください。くわしい手順は<a href="./support.html">サポート</a>にあります。</p>
       </div>
       <div class="qa">
         <h3>無料でどこまで使えますか</h3>
-        <p>30分までのロックを、回数の制限なく使えます。30分をこえる長さ（最長8時間）は、買い切りのドパキン Pro で使えます。</p>
+        <p>30分までのロックを、回数の制限なく使えます。30分をこえる長さ（最長24時間）は、買い切りのドパキン Proで使えます。</p>
       </div>
       <div class="qa">
         <h3>どのアプリを選んだか、外に送られますか</h3>

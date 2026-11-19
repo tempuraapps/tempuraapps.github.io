@@ -81,6 +81,7 @@
     <li>Starting a lock, finishing a lock, and a lock ending early (the length that was set in minutes, whether Pro is active, and a category for why it ended early)</li>
     <li>A lock failing to start, and a category for the reason</li>
     <li>Opening the paid plan screen and where it was opened from; starting a purchase, a purchase succeeding or failing (the plan type, whether purchasing is enabled, and a category for the reason); restoring a purchase</li>
+    <li>Requesting a rating or review (no accompanying values; whether the prompt is actually shown is decided by iOS, so we cannot tell)</li>
   </ul>
   <p>We do not send personal information such as your name or email address, nor which apps, categories, or websites you chose.</p>
   <p>Technical information automatically attached by PostHog may also be included: the app version, the operating system type and version, the device type, and the app’s display language. Time zone is stripped before sending, because it can suggest an approximate region. IP addresses are configured to be discarded on the analytics side, and we have specified that no region or location be inferred from them. Finer locations such as your city or your coordinates are never collected. None of this is intended to identify a specific individual, and it is not linked to any account. Data is stored in the EU region.</p>
@@ -99,6 +100,7 @@
     <li>Your lock history (start time, end time, length, and whether the lock finished or ended early)</li>
     <li>A record of when each lock was removed and how (kept to check that the App is working; it contains no app names)</li>
     <li>Your saved lock time (the last length you chose) and settings such as appearance, Theme Color, and share image design</li>
+    <li>The date and time the App last asked for a rating or review (used to space out requests)</li>
   </ul>
   <p>If you have iOS backups turned on (iCloud Backup, for example), this information may be included in your own backup. Backups are provided by Apple for your account, and we cannot access them.</p>
 
@@ -109,7 +111,7 @@
   <p>We do not provide or sell your information to third parties for advertising purposes. The information sent to the external services described in sections 4 and 5 (PostHog and RevenueCat) is processed in accordance with each service’s own privacy policy. See the privacy policies of <a href="https://posthog.com/privacy">PostHog</a> and <a href="https://www.revenuecat.com/privacy">RevenueCat</a>.</p>
 
   <h2>9. Deleting your data</h2>
-  <p>Data stored on your device can be erased with “Delete Lock History & Settings” inside the App (it deletes your lock history, your selection of apps to lock, the record of when and how each lock was removed, and your saved lock time (the last length you chose); your appearance and Theme Color settings and your Pro purchase are kept), or by deleting the App itself. The analytics data described in section 4 is anonymous, so one user’s portion cannot be singled out and deleted.</p>
+  <p>Data stored on your device can be erased with “Delete Lock History & Settings” inside the App (it deletes your lock history, your selection of apps to lock, the record of when and how each lock was removed, and your saved lock time (the last length you chose); your appearance and Theme Color settings, the date and time the App last asked for a rating or review, and your Pro purchase are kept), or by deleting the App itself. The analytics data described in section 4 is anonymous, so one user’s portion cannot be singled out and deleted.</p>
 
   <h2>10. Children’s privacy</h2>
   <p>The App is not directed at children under 13, and we do not knowingly collect personal information from children. The App cannot be used on a device where Screen Time is managed by a parent or guardian.</p>

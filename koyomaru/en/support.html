@@ -59,7 +59,7 @@
   <p class="eyebrow">TempuraApps</p>
   <h1>Koyomaru Support</h1>
   <p class="lang"><a href="index.html">About the app</a> · <a href="privacy.html">Privacy Policy</a> · <a href="../support.html" lang="ja" hreflang="ja">日本語</a></p>
-  <p class="lead">Koyomaru lays out the events in your iPhone calendars in an easy-to-read month view. Below are answers to the questions we hear most, such as how to add calendars and how to move from another app. The basic gestures are also listed in the app under Settings &gt; About &gt; &ldquo;Gestures &amp; Tips&rdquo; (&ldquo;Help&rdquo; just below it opens this page). If something isn&rsquo;t answered here, please get in touch.</p>
+  <p class="lead">Koyomaru lays out the events in your iPhone calendars in an easy-to-read month view. Below are answers to the questions we hear most, such as how to add calendars and how to move from another app. The basic gestures are also listed in the app under Settings &gt; About &gt; &ldquo;How to Use&rdquo; (&ldquo;Help&rdquo; just below it opens this page). If something isn&rsquo;t answered here, please get in touch.</p>
 
   <h2>Contact</h2>
   <div class="contact">
@@ -73,9 +73,17 @@
 
   <h4>I want to see my Google Calendar events</h4>
   <p>On your iPhone, go to Settings &gt; Apps &gt; Calendar &gt; Calendar Accounts and add your Google account, and its events show up in Koyomaru as they are. (If you can&rsquo;t find it, type &ldquo;Calendar&rdquo; into the search field in Settings.) You don&rsquo;t need to sign in to Google inside Koyomaru. The same goes for accounts from other calendar services. Your iPhone handles syncing for those events.</p>
+  <h4 id="events-missing">I added my account, but my events don&rsquo;t appear</h4>
+  <p>If events still don&rsquo;t appear after you add an account on your iPhone, check the following.</p>
+  <ul>
+    <li><strong>Calendars are off for the account</strong> &mdash; In Settings &gt; Apps &gt; Calendar &gt; Calendar Accounts, select the account and turn on its calendars.</li>
+    <li><strong>Older events are missing</strong> &mdash; Your iPhone may be syncing only recent events. Check the sync period in Settings &gt; Apps &gt; Calendar.</li>
+    <li><strong>Some calendars are missing</strong> &mdash; Shared calendars may need to be turned on for syncing to your iPhone on the service&rsquo;s side.</li>
+    <li><strong>Just added the account</strong> &mdash; Syncing can take a little while. Wait a bit, then open the app again.</li>
+  </ul>
 
   <h4>My events don&rsquo;t show up / it says &ldquo;No Access to Calendars&rdquo;</h4>
-  <p>In your iPhone&rsquo;s Settings, set Koyomaru&rsquo;s access to Calendars to &ldquo;Full Access.&rdquo; You can get there with &ldquo;Open Settings&rdquo; in Koyomaru. With &ldquo;Add Events Only,&rdquo; the app can&rsquo;t read your events.</p>
+  <p>In your iPhone&rsquo;s Settings, set Koyomaru&rsquo;s access to Calendars to &ldquo;Full Access.&rdquo; You can get there with &ldquo;Open iPhone Settings&rdquo; in Koyomaru. With &ldquo;Add Events Only,&rdquo; the app can&rsquo;t read your events.</p>
 
   <h4>I want to see holidays</h4>
   <p>If your iPhone calendars include a holiday calendar (such as a national holidays calendar), holidays appear as red labels and their dates turn red. Koyomaru treats all-day events as holidays when they are in a subscribed calendar whose name contains &ldquo;holiday&rdquo; (or &ldquo;祝日&rdquo; in Japanese). Every all-day event in that calendar is treated the same way, so observances that aren&rsquo;t days off also appear in red. If holidays don&rsquo;t appear, check that a holiday calendar has been added to your iPhone calendars. Koyomaru has no holiday data of its own.</p>
@@ -98,7 +106,7 @@
   <h3>Adding and editing events</h3>
 
   <h4>How do I add an event?</h4>
-  <p>Tap the + at the bottom right, or touch and hold a date, and choose &ldquo;Timed Event&rdquo; or &ldquo;All-Day Event.&rdquo; You can enter a title, Location or Note, label color, all-day, start and end, repeat, alert, and notes.</p>
+  <p>Tap the + at the bottom right, or touch and hold a date, and choose &ldquo;Timed Event&rdquo; or &ldquo;All-Day Event.&rdquo; You can enter a title, Location or Note, color, all-day, start and end, repeat, alert, and notes.</p>
 
   <h4>What goes in &ldquo;Location or Note&rdquo;?</h4>
   <p>It&rsquo;s a single line under the title for a place or a short note. It&rsquo;s saved as the event&rsquo;s location in your iPhone calendar, so other calendar apps show it as the location. A location entered in another app shows up here, too. It appears in the day&rsquo;s list, the event details, and search results, not on the month labels. There&rsquo;s no map or address search.</p>
@@ -107,16 +115,16 @@
   <p>The calendar set as the Default Calendar on your iPhone (if that calendar can&rsquo;t be written to, another calendar that can). You can&rsquo;t choose a different calendar inside Koyomaru. Saved events also show up in other calendar apps.</p>
 
   <h4>I want to change a label color</h4>
-  <p>In the event editor, tap the color circle to the left of the title and choose Auto or one of 20 colors. The color is saved only in Koyomaru and doesn&rsquo;t change how other calendar apps show the event. Events left on Auto are shown in the color closest to their calendar&rsquo;s color.</p>
+  <p>In the event editor, tap the Color row and choose Match Calendar or one of 20 colors. The color is saved only in Koyomaru and doesn&rsquo;t change how other calendar apps show the event. Events set to Match Calendar are shown in the color closest to their calendar&rsquo;s color.</p>
 
   <h4>I want to move an event to another day</h4>
-  <p>Touch and hold a label in the month view, then drag it to another day to move it there (an event in a day&rsquo;s list can be dragged onto a date the same way). The time and length don&rsquo;t change. Right after, a bar at the bottom offers &ldquo;Undo&rdquo; and &ldquo;Make a Copy,&rdquo; which keeps the event on the original day as well. Pause near the left or right edge of the month to go to the previous or next month. For a repeating event, you choose &ldquo;Move This Event Only,&rdquo; &ldquo;Move All Future Events,&rdquo; or &ldquo;Duplicate to This Day&rdquo; when you drop it, and Undo isn&rsquo;t offered if you move it. An event with invitees asks for confirmation before it moves, and Undo and Make a Copy aren&rsquo;t offered afterward.</p>
+  <p>Touch and hold a label in the month view, then drag it to another day to move it there (you can also touch and hold an event in a day&rsquo;s list, or the top of an event&rsquo;s details where the title and time are, and drag it onto a date the same way). The time and length don&rsquo;t change. Right after, a bar at the bottom offers &ldquo;Undo&rdquo; and &ldquo;Duplicate Instead,&rdquo; which keeps the event on the original day as well. Pause near the left or right edge of the month to go to the previous or next month. For a repeating event, you choose &ldquo;Move This Event Only,&rdquo; &ldquo;Move All Future Events,&rdquo; or &ldquo;Duplicate to This Day&rdquo; when you drop it, and Undo isn&rsquo;t offered if you move it. An event with invitees asks for confirmation before it moves, and Undo and Duplicate Instead aren&rsquo;t offered afterward.</p>
 
   <h4>Some events can&rsquo;t be edited</h4>
   <p>Holidays, birthdays, and events in read-only calendars (such as subscribed calendars) can&rsquo;t be edited, moved, or deleted.</p>
 
   <h4>What happens when I change or delete a repeating event?</h4>
-  <p>When saving or deleting, you choose whether it applies to this event only or to all future events. If you change the repeat rule itself, the change applies to all future events. The repeat options are Daily, Weekly, Every 2 weeks, Monthly, and Yearly. A more detailed repeat rule made in another app is kept as it is (&ldquo;Keep current&rdquo;).</p>
+  <p>When saving or deleting, you choose whether it applies to this event only or to all future events. If you change the repeat rule itself, the change applies to all future events. The repeat options are Daily, Weekly, Every 2 weeks, Monthly, Yearly, and &ldquo;Custom&hellip;,&rdquo; where you can set the interval, the days of the week, a day of the month or a rule like &ldquo;the second Tuesday,&rdquo; and an end (a date or a number of times). A repeat rule made in another app that Koyomaru can&rsquo;t express is kept as it is (&ldquo;Keep Current Setting&rdquo;).</p>
 
   <h4>Will I get alerts?</h4>
   <p>If you set an alert on an event (At time of event, 5, 10, or 30 minutes before, 1 hour before, or 1 day before), it arrives as an iPhone Calendar notification. Koyomaru never sends notifications itself and never asks for notification permission.</p>
@@ -139,7 +147,7 @@
   <p>With weeks starting on Monday, Koyomaru follows ISO 8601 (week 1 is the week with the year&rsquo;s first Thursday). With weeks starting on Sunday, week 1 is the week that contains January 1.</p>
 
   <h4>I want to use dark mode</h4>
-  <p>Choose Auto, Light, or Dark in Settings &gt; Theme.</p>
+  <p>Choose Auto, Light, or Dark in Settings &gt; Theme &gt; &ldquo;Appearance.&rdquo;</p>
 
   <h4>Busy weeks are cramped and hard to read</h4>
   <p>Turn on Settings &gt; Display &gt; &ldquo;Expand Busy Weeks&rdquo; to make weeks with many events taller.</p>
@@ -161,13 +169,15 @@
   <h3>Switching apps and your data</h3>
 
   <h4>I want to move from another calendar app</h4>
-  <p>Events in accounts such as Google Calendar show up as soon as you add the account in your iPhone&rsquo;s Settings (see &ldquo;I want to see my Google Calendar events&rdquo; above). For events that exist only inside the other app, export them from that app as an .ics file, then import it in Koyomaru with Settings &gt; Lock &amp; Data &gt; &ldquo;Move from Another Calendar&rdquo; &gt; &ldquo;Import .ics File.&rdquo;</p>
+  <p>Events in accounts such as Google Calendar show up as soon as you add the account in your iPhone&rsquo;s Settings (see &ldquo;I want to see my Google Calendar events&rdquo; above). For events that exist only inside the other app, export them from that app as an .ics file (see &ldquo;How to export an .ics file&rdquo;), then import it in Koyomaru with Settings &gt; Lock &amp; Data &gt; &ldquo;Import from Other Calendars&rdquo; &gt; &ldquo;Import .ics File.&rdquo;</p>
+  <h4 id="ics-export">How to export an .ics file</h4>
+  <p>Each app exports differently. Look in that app&rsquo;s settings or menus for an item such as &ldquo;Export&rdquo; or &ldquo;.ics.&rdquo; Save the exported file in the Files app, then choose it with &ldquo;Import .ics File&rdquo; in Koyomaru (one file at a time). If you get a .zip file, tap it in the Files app to open it, then choose the .ics file inside. Events in an app that can&rsquo;t export to .ics can&rsquo;t be moved to Koyomaru. Events synced through an account, such as Google Calendar, don&rsquo;t need to be exported; they appear once you add the account on your iPhone.</p>
 
   <h4>What comes in with an .ics import?</h4>
-  <p>Titles, dates and times, whether an event is all-day, notes, and repeats. Locations and alerts aren&rsquo;t imported. You can check the number of events before they are added. Imported events go into your iPhone&rsquo;s Default Calendar.</p>
+  <p>Titles, dates and times, whether an event is all-day, locations (they go into &ldquo;Location or Note&rdquo;), notes, and repeats. Alerts aren&rsquo;t imported. Before anything is added, you can check the number of events, their date range, and the calendar they&rsquo;ll go into. Imported events go into your iPhone&rsquo;s Default Calendar. There&rsquo;s no way to undo an import all at once.</p>
 
   <h4>Do repeating events come in as repeating?</h4>
-  <p>Simple repeats with no end &mdash; daily, weekly, every 2 weeks, monthly, or yearly &mdash; come in as repeating events (including weekly repeats on one specified weekday). Repeats with an end date or a count, several weekdays, rules like &ldquo;the second Tuesday,&rdquo; or individual occurrences removed or changed are added as their first occurrence only, and the confirmation screen shows how many are affected. A repeating event whose first occurrence itself was removed or changed can&rsquo;t be added; the number of those is shown as well.</p>
+  <p>Repeats that Koyomaru can express (including &ldquo;Custom&hellip;&rdquo;) come in as repeating events, along with their interval, days of the week, rules like &ldquo;the second Tuesday,&rdquo; and an end date or count. Rules Koyomaru can&rsquo;t express, and repeats with individual occurrences removed or changed, are added as their first occurrence only, and the confirmation screen shows how many are affected. A repeating event whose first occurrence itself was removed or changed can&rsquo;t be added; the number of those is shown as well.</p>
 
   <h4>What happens if I import the same file again?</h4>
   <p>Events that already exist in your iPhone calendar (same title, dates, and times) aren&rsquo;t added again. If some failed partway through, importing again adds only the rest.</p>

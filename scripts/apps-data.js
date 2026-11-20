@@ -25,7 +25,7 @@ const apps = [
     en: ['One Good Deed', 'A one-a-day good deed diary', 'One a day, and the world gets a little better.']
   },
   {
-    slug: 'oshimachi', category: 'outings', comingSoon: true,
+    slug: 'oshimachi', category: 'outings',
     ja: ['推し街さがし', '住みたい街さがしの記録', '住みたいほど好きな街を、自分でさがそう。'],
     en: ['OshiMachi', 'Rating towns you might live in', 'Find the town you’d call home.']
   },

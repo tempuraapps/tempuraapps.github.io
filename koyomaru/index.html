@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TempuraApps | こよまる — 毎日の予定を、もっと見やすく。</title>
-<meta name="description" content="1か月の予定がひと目でわかる、月表示のカレンダーアプリ。iPhone のカレンダーに入っている予定を色つきのラベルで升目に並べます。アカウント登録は不要。こよまるが予定の内容を外部へ送ることはありません。">
+<meta name="description" content="1か月の予定がひと目でわかる、月表示のカレンダーアプリ。iPhone のカレンダーに入っている予定を色つきのラベルで升目に並べます。アカウント登録は不要。こよまるは、予定の内容を開発元のサーバーへ送信しません。">
 <meta name="theme-color" content="#FFFCF9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#151517" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://tempuraapps.github.io/koyomaru/">
@@ -263,11 +263,11 @@
         </li>
         <li class="koma">
           <h3 class="koma-label" style="--c:#24854B">追加は必要な項目だけ</h3>
-          <p>タイトル・「場所・ひとこと」・色・終日・開始と終了・繰り返し・通知・メモ。日付の長押しか、右下の＋から追加します。前に入れたタイトルが候補に出ます。保存した予定は iPhone のカレンダーに入り、ほかのカレンダーアプリにも表示されます。</p>
+          <p>タイトル・「場所・ひとこと」・色・終日・開始と終了・繰り返し・通知・メモ。日付の長押しか、右下の＋から追加します。繰り返しは、毎日・毎週・毎月などのほか、曜日や間隔を決めて細かく設定できます。前に入れたタイトルが候補に出ます。保存した予定は iPhone のカレンダーに入り、ほかのカレンダーアプリにも表示されます。</p>
         </li>
         <li class="koma">
           <h3 class="koma-label" style="--c:#C94A33">長押しで別の日へ</h3>
-          <p>予定のラベルを長押しして持ち上げ、別の日に落とすと、その日へ移動します。時刻はそのままです。直後に画面の下に出る「元に戻す」で取り消し、「複製にする」で元の日にも予定を残せます（繰り返しの予定は、落としたときに範囲を選びます）。</p>
+          <p>予定のラベルを長押しして持ち上げ、別の日に落とすと、その日へ移動します。その日の一覧や予定の詳細からも、同じように動かせます。時刻はそのままです。直後に画面の下に出る「元に戻す」で取り消し、「複製にする」で元の日にも予定を残せます（繰り返しの予定は、落としたときに範囲を選びます）。</p>
         </li>
         <li class="koma">
           <h3 class="koma-label" style="--c:#4B57C2">探す・移動する</h3>
@@ -292,9 +292,9 @@
   <section class="privacy" aria-labelledby="privacy-h">
     <div class="wrap">
       <div class="privacy-box">
-        <h2 id="privacy-h"><span class="nowrap">予定の内容は、</span><span class="nowrap">こよまるからは</span><span class="nowrap">送りません</span></h2>
-        <p>表示するのは、iPhone のカレンダーに入っている予定です。予定を預かる独自のアカウントやサーバーはありません。こよまるが予定のタイトル・日時・場所・メモを外部へ送ることはありません。</p>
-        <p>機能改善のための匿名の利用状況の計測（PostHog）と、購入状態の確認（RevenueCat）では外部と通信しますが、送るのは操作の種別や選択肢、匿名の識別子、アプリや OS のバージョンなどの技術情報で、予定の内容は含まれません。iCloud や Google などのアカウントとの同期は、iPhone のカレンダーの機能が行います。詳しくは<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+        <h2 id="privacy-h"><span class="nowrap">予定の内容は、</span><span class="nowrap">開発元のサーバーへ</span><span class="nowrap">送りません</span></h2>
+        <p>表示するのは、iPhone のカレンダーに入っている予定です。予定を預かる独自のアカウントやサーバーはありません。こよまるは、予定の内容（タイトル・日時・場所・メモ）を開発元のサーバーへ送信しません。予定の同期は、お使いのカレンダーアカウントの設定に従います。</p>
+        <p>アプリの改善のための匿名の利用状況の計測（PostHog）と、購入状態の確認（RevenueCat）のために、外部サービスへ情報を送ります。送るのは操作の種類や選んだ項目、匿名の識別子、アプリや OS のバージョンなどで、予定の内容は含みません。詳しくは<a href="./privacy.html">プライバシーポリシー</a>をご覧ください。</p>
       </div>
     </div>
   </section>

@@ -78,8 +78,10 @@
     <li>Whether Screen Time access was allowed, and which screen the request was made from</li>
     <li>Saving your apps to lock (only one fact: whether a category is included — never which apps or categories)</li>
     <li>Removing an item from your list of apps to lock, undoing a removal, and reordering the list (only the type of action — never how many items, which ones, or in what order)</li>
-    <li>Creating, switching, or deleting a group of apps to lock (only the number of groups — never the group names)</li>
-    <li>Starting a lock, finishing a lock, and a lock ending early (the length that was set in minutes, whether Pro is active, the number of groups at the start, a category for why it ended early, and whether this was detected after the end time)</li>
+    <li>Creating or deleting a group of apps to lock (only the number of groups after the action), and switching groups (no accompanying values); none of these include group names</li>
+    <li>Starting a lock (the length that was set in minutes, whether Pro is active, and the number of groups at the start)</li>
+    <li>A lock finishing (the length that was set in minutes)</li>
+    <li>A lock ending early (the length that was set in minutes, a category for why it ended early, and whether this was determined after the end time)</li>
     <li>A lock failing to start, and a category for the reason</li>
     <li>Opening the paid plan screen and where it was opened from; starting a purchase, a purchase succeeding or failing (the plan type, whether purchasing is enabled, and a category for the reason); restoring a purchase</li>
     <li>Requesting a rating or review (no accompanying values; whether the prompt is actually shown is decided by iOS, so we cannot tell)</li>
@@ -97,9 +99,9 @@
   <p>The App stores the following on your device. It is kept in an area of the device that only the App and its extensions can read and write, and it is not sent to our servers.</p>
   <ul>
     <li>Your groups of apps to lock (each group’s name, and its selection of apps to lock and their order; the selection is stored as the tokens described in section 2)</li>
-    <li>The state of a lock in progress (start time, end time, and length; if you have two or more groups, the name of the group used for that lock)</li>
-    <li>Your lock history (start time, end time, length, and whether the lock finished or ended early; if you have two or more groups, the name of the group used for that lock)</li>
-    <li>A record of when each lock was removed and how, and whether the lock was in place just before it was removed (kept to check that the App is working; it contains no app names or group names)</li>
+    <li>The state of a lock in progress (start time, end time, and length; if you had two or more groups when the lock started, the name the group had at that time)</li>
+    <li>Your lock history (start time, end time, length, and whether the lock finished or ended early; if you had two or more groups when the lock started, the name the group had at that time. The name saved in the history stays even if you later delete or rename the group)</li>
+    <li>A record of when each lock was removed and how, and whether the lock was in place just before it was removed (used to determine whether a lock finished or ended early, and to check that the App is working; it contains no app names or group names)</li>
     <li>Your saved lock time (the last length you chose) and settings such as appearance, Theme Color, and share image design</li>
     <li>The date and time the App last asked for a rating or review (used to space out requests)</li>
   </ul>
@@ -112,7 +114,7 @@
   <p>We do not provide or sell your information to third parties for advertising purposes. The information sent to the external services described in sections 4 and 5 (PostHog and RevenueCat) is processed in accordance with each service’s own privacy policy. We have confirmed, through each service’s terms and policies, that these services provide protection equal to or greater than that described in this policy. See the privacy policies of <a href="https://posthog.com/privacy">PostHog</a> and <a href="https://www.revenuecat.com/privacy">RevenueCat</a>.</p>
 
   <h2>9. Deleting your data</h2>
-  <p>Data stored on your device can be erased with “Delete Lock History & Settings” inside the App (it deletes your lock history, all groups and your selection of apps to lock, the record of when and how each lock was removed, and your saved lock time (the last length you chose); your appearance and Theme Color settings, the date and time the App last asked for a rating or review, and your Pro purchase are kept), or by deleting the App itself. The analytics data described in section 4 is kept only as long as needed to improve the App and is then deleted. The purchase information described in section 5 is kept as long as needed to verify and restore purchases. To ask for access to or deletion of either, contact us at the address in section 12.</p>
+  <p>Data stored on your device can be erased with “Delete Lock History & Settings” inside the App, or by deleting the App itself. “Delete Lock History & Settings” deletes your lock history, all groups (their names and your selection of apps to lock), the record of when and how each lock was removed, and your saved lock time (the last length you chose). After the deletion, one empty group with the default name (“Group 1”) is created again. Your appearance and Theme Color settings, the date and time the App last asked for a rating or review, and your Pro purchase are kept. The analytics data described in section 4 is kept only as long as needed to improve the App and is then deleted. The purchase information described in section 5 is kept as long as needed to verify and restore purchases. To ask for access to or deletion of either, contact us at the address in section 12.</p>
 
   <h2>10. Children’s privacy</h2>
   <p>The App is not directed at children under 13, and we do not knowingly collect personal information from children. The App cannot be used on a device where Screen Time is managed by a parent or guardian.</p>

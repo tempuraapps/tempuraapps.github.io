@@ -57,7 +57,7 @@ const apps = [
   {
     slug: 'osoujiaizu', category: 'life', comingSoon: true,
     ja: ['おそうじ合図', '掃除の周期リマインダー', '掃除する日を、覚えておかなくていい。'],
-    en: ['OsoujiAizu', 'A cleaning-cycle reminder', "You don't have to remember cleaning day."]
+    en: ['OsoujiAizu', 'A cleaning-cycle reminder', "You don't have to remember cleaning days."]
   },
   {
     slug: 'ainokori', category: 'tools', comingSoon: true,
